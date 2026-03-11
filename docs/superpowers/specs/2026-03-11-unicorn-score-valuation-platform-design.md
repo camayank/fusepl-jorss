@@ -4,7 +4,7 @@
 
 **Domain:** firstunicornstartup.com
 
-**Goal:** India's most comprehensive startup valuation platform — 5 valuation methods, Monte Carlo simulation, cap table modeling, ESOP valuation, investor matching, AI narrative analysis, IBC downside benchmarks, and Damodaran India data — built by an IBBI-registered IP and SFA-licensed Valuer. Free instant valuation as lead magnet → Rs 14,999 certified Rule 11UA/FEMA report as primary revenue → anonymized valuation data as long-term moat.
+**Goal:** India's most comprehensive startup valuation platform — 3 valuation approaches (Income, Market, Asset/Cost) × 10 methods aligned with IBBI/IVS/Rule 11UA standards, Monte Carlo simulation, cap table modeling, ESOP valuation, investor matching, AI narrative analysis, IBC downside benchmarks, and Damodaran India data — built by an IBBI-registered IP and SFA-licensed Valuer. Free instant valuation as lead magnet → Rs 14,999 certified Rule 11UA/FEMA report as primary revenue → anonymized valuation data as long-term moat.
 
 **Positioning:** Not a toy calculator. A professional valuation platform built by a practicing valuer who has analyzed 190+ IBC landmark cases, 3,952 corporate debtor outcomes, and processes Damodaran India industry benchmarks. The free tool demonstrates expertise; the paid report delivers legal compliance.
 
@@ -35,7 +35,8 @@
 The landing page MUST prominently feature:
 - "Built by an IBBI-Registered Insolvency Professional & SFA-Licensed Valuer"
 - "Powered by Damodaran India Industry Benchmarks (January 2026)"
-- "5 Valuation Methods: Revenue Multiple + DCF + Scorecard + Berkus + Risk Factor Summation"
+- "3 Valuation Approaches × 10 Methods — aligned with IBBI/IVS/Rule 11UA Standards"
+- "Income | Market | Asset/Cost — DCF, PWERM, Revenue Multiple, EV/EBITDA, Comparable Transactions, NAV, Replacement Cost, Scorecard, Berkus, Risk Factor"
 - "Monte Carlo Simulation with 10,000 iterations"
 - "190+ IBC landmark cases analyzed | 3,952 corporate debtor outcomes studied"
 - This is NOT a random calculator — it's a preview of professional valuation services
@@ -337,7 +338,7 @@ Sample investor data (5 entries — full list of 40+ compiled from fusepl data +
 LANDING PAGE
   Professional positioning + trust signals
   "India's Most Comprehensive Startup Valuation Platform"
-  "By an IBBI-Registered Valuer | 5 Methods | Monte Carlo | Damodaran India Data"
+  "By an IBBI-Registered Valuer | 3 Approaches × 10 Methods | Monte Carlo | Damodaran India Data"
   [Get Your Valuation] CTA
   [Cap Table Simulator] Secondary CTA
   [ESOP Calculator] Secondary CTA
@@ -374,12 +375,11 @@ LANDING PAGE
 VALUATION REVEAL (FREE — no gate)
   "Your Estimated Valuation: Rs 8 - 12 Cr"
   Valuation Confidence Score: 78/100
-  Method breakdown (5 methods with confidence bars):
-    - Revenue Multiple: Rs 10 Cr (confidence: high)
-    - DCF Analysis: Rs 9.2 Cr (confidence: medium)
-    - Scorecard: Rs 11.5 Cr (confidence: high)
-    - Berkus: Rs 8 Cr (confidence: medium)
-    - Risk Factor: Rs 10.8 Cr (confidence: medium)
+  Method breakdown (10 methods grouped by 3 approaches + VC methods):
+    Income: DCF Rs 9.2 Cr | PWERM Rs 8.5 Cr
+    Market: Revenue Multiple Rs 10 Cr | EV/EBITDA Rs 9.8 Cr | Comparable Txn Rs 11 Cr
+    Asset: NAV Rs 3.2 Cr | Replacement Cost Rs 4.5 Cr
+    VC: Scorecard Rs 11.5 Cr | Berkus Rs 8 Cr | Risk Factor Rs 10.8 Cr
   Probabilistic range chart (P10/P25/P50/P75/P90)
   Weighted composite with method contribution pie chart
   Downside scenario: "In insolvency, similar companies recovered 15-35%"
@@ -387,7 +387,7 @@ VALUATION REVEAL (FREE — no gate)
       ↓
 EMAIL GATE (for detailed report + tools)
   "Enter your email to unlock:"
-  ✓ Full methodology breakdown for all 5 methods
+  ✓ Full methodology breakdown for all 10 methods across 3 approaches
   ✓ Damodaran India benchmarks used
   ✓ Comparable Indian startups
   ✓ AI-powered insights from a VC perspective
@@ -398,7 +398,7 @@ EMAIL GATE (for detailed report + tools)
   ✓ Downloadable PDF report
       ↓
 DETAILED REPORT + TOOLS (unlocked)
-  Section 1: Valuation summary with 5-method breakdown + weighted composite
+  Section 1: Valuation summary with 10-method breakdown (3 approaches) + weighted composite
   Section 2: Probabilistic range (Monte Carlo P10/P25/P50/P75/P90 distribution chart)
   Section 3: Each method — full inputs, assumptions, calculations shown
   Section 4: Damodaran India benchmarks (beta, WACC, EV/Revenue, EV/EBITDA, margins)
@@ -447,25 +447,19 @@ startup_volatility = damodaran[sector].beta * MARKET_VOLATILITY * 1.5
 
 ---
 
-## Valuation Methods (5 Core Methods + Monte Carlo)
+## Valuation Framework: 3 Approaches × 10 Methods + Monte Carlo
 
-### Method 1: Revenue Multiple
+Aligned with **IBBI Valuation Standards**, **IVS 105 (International Valuation Standards)**, and **Rule 11UA** of the Income Tax Act. The platform uses the three internationally recognized valuation approaches, each containing specific methods appropriate for startup valuation.
 
-**Inputs:** Annual revenue, sector, growth rate, business model, LTV/CAC (optional)
-**When applicable:** Revenue > Rs 0 (pre-revenue companies excluded)
+### Approach 1: Income Approach (Future Earnings-Based)
 
-**Calculation:**
-1. Base multiple from Damodaran India EV/Revenue for sector (from psIndia.xls)
-2. Growth adjustment: +2x if >200% growth, +1x if >100%, +0.5x if >50%
-3. Business model premium: SaaS +1.5x, Marketplace +1x, Transaction +0.5x
-4. Unit economics bonus: +1x if LTV/CAC > 5 (when provided)
-5. Final = Revenue × adjusted multiple
-6. Confidence: 0.9 if revenue > Rs 1 Cr, 0.7 if Rs 10L-1Cr, 0.4 if < Rs 10L
+Values the startup based on its ability to generate future income. Primary approach for revenue-generating startups.
 
-### Method 2: DCF (Discounted Cash Flow) with Monte Carlo
+#### Method 1: DCF (Discounted Cash Flow) with Monte Carlo
 
 **Inputs:** Revenue, growth, gross margin, WACC (auto from Damodaran India)
 **When applicable:** Revenue > Rs 0 (pre-revenue uses sector median as proxy, confidence 0.3)
+**IVS/Rule 11UA alignment:** DCF Method under Rule 11UA; Income Approach under IVS 105
 
 **Deterministic DCF:**
 1. Project revenue for 5 years: growth decays at 0.85/year
@@ -484,7 +478,134 @@ startup_volatility = damodaran[sector].beta * MARKET_VOLATILITY * 1.5
 - If WACC <= growth in any iteration, set WACC = growth + 0.02 (prevent infinity)
 - Require 1,000+ valid iterations for output; else fall back to deterministic only
 
-### Method 3: Scorecard (Bill Payne)
+#### Method 2: PWERM (Probability Weighted Expected Return Method)
+
+**Inputs:** Revenue, stage, sector, growth rate, TAM
+**When applicable:** All stages (particularly useful for pre-revenue startups)
+**IVS/Rule 11UA alignment:** Probability Weighted Expected Return Method under Rule 11UA
+
+**Scenarios:**
+
+| Scenario | Probability | Exit Multiple | Applies When |
+|----------|-------------|---------------|--------------|
+| Bull (IPO/large exit) | stage-dependent | 5-10x revenue | Revenue company |
+| Base (strategic acquisition) | highest weight | 3-5x revenue | All |
+| Bear (acqui-hire/downround) | stage-dependent | 0.5-1x revenue | All |
+| Failure (shutdown) | stage-dependent | 0x (zero) | All |
+
+**Scenario probabilities by stage:**
+
+| Stage | Bull | Base | Bear | Failure |
+|-------|------|------|------|---------|
+| Idea | 5% | 20% | 25% | 50% |
+| Pre-seed | 8% | 25% | 30% | 37% |
+| Seed | 12% | 35% | 28% | 25% |
+| Pre-Series A | 18% | 40% | 25% | 17% |
+| Series A | 25% | 42% | 23% | 10% |
+| Series B | 30% | 45% | 18% | 7% |
+| Series C+ | 35% | 45% | 15% | 5% |
+
+**Calculation:**
+1. For each scenario: exit_value = revenue × exit_multiple (or base from stage benchmarks for pre-revenue)
+2. Bull exit multiple: Damodaran EV/Revenue × 1.5 (premium for high-growth)
+3. Base exit multiple: Damodaran EV/Revenue × 1.0
+4. Bear exit multiple: Damodaran EV/Revenue × 0.3
+5. Discount each to present value at WACC over time_to_exit (default: stage-based — Idea=7yr, Seed=5yr, Series A=4yr, Series B=3yr, C+=2yr)
+6. Weighted value = Σ(probability × PV(exit_value))
+7. Confidence: 0.7 if revenue > Rs 1 Cr, 0.5 if pre-revenue, 0.4 if idea stage
+
+### Approach 2: Market Approach (Comparable Data-Based)
+
+Values the startup by reference to market data from comparable transactions and companies. Primary approach when sector comparables are available.
+
+#### Method 3: Revenue Multiple
+
+**Inputs:** Annual revenue, sector, growth rate, business model, LTV/CAC (optional)
+**When applicable:** Revenue > Rs 0 (pre-revenue companies excluded)
+**IVS/Rule 11UA alignment:** Market Approach under IVS 105; part of Comparable Company Multiple under Rule 11UA
+
+**Calculation:**
+1. Base multiple from Damodaran India EV/Revenue for sector (from psIndia.xls)
+2. Growth adjustment: +2x if >200% growth, +1x if >100%, +0.5x if >50%
+3. Business model premium: SaaS +1.5x, Marketplace +1x, Transaction +0.5x
+4. Unit economics bonus: +1x if LTV/CAC > 5 (when provided)
+5. Final = Revenue × adjusted multiple
+6. Confidence: 0.9 if revenue > Rs 1 Cr, 0.7 if Rs 10L-1Cr, 0.4 if < Rs 10L
+
+#### Method 4: Comparable Company Multiple (EV/EBITDA)
+
+**Inputs:** Revenue, gross margin, sector, stage
+**When applicable:** Revenue > Rs 0 and gross_margin > 0
+**IVS/Rule 11UA alignment:** Comparable Company Multiple Method under Rule 11UA
+
+**Calculation:**
+1. Estimated EBITDA = Revenue × gross_margin × operating_margin_proxy(0.75)
+2. Base EV/EBITDA multiple from Damodaran India for sector (from vebitdaIndia.xls)
+3. Growth premium: +3x if >200% growth, +2x if >100%, +1x if >50%
+4. Stage discount: Idea/Pre-seed = 0.5x, Seed = 0.7x, Pre-Series A = 0.85x, Series A+ = 1.0x (more mature = more reliable comparable)
+5. Enterprise value = Estimated EBITDA × adjusted EV/EBITDA multiple
+6. Confidence: 0.8 if revenue > Rs 5 Cr, 0.6 if Rs 1-5 Cr, 0.3 if < Rs 1 Cr
+
+#### Method 5: Comparable Transaction Method
+
+**Inputs:** Sector, stage, revenue (if any), city
+**When applicable:** When we have comparable startups in our database for the sector
+**IVS/Rule 11UA alignment:** Market Approach — precedent transactions under IVS 105
+
+**Calculation:**
+1. Find top 5 comparable Indian startups from our database (same algorithm as report section: sector match → stage ±1 → revenue proximity → recency)
+2. For each comparable with known revenue: implied_multiple = valuation_cr / revenue_cr
+3. If < 3 comparables have revenue data: use valuation_cr / round_size_cr as proxy
+4. Median implied multiple from comparables
+5. Apply to startup's revenue (or stage benchmark if pre-revenue)
+6. Apply size discount: if startup revenue < 10% of comparable median revenue, apply 30% discount (smaller companies trade at lower multiples)
+7. Confidence: 0.75 if ≥ 3 sector-matched comparables, 0.5 if 1-2 matches, 0.3 if cross-sector fallback
+
+### Approach 3: Asset/Cost Approach (Replacement-Based)
+
+Values the startup based on what it would cost to recreate or replace it. Important for establishing a valuation floor and useful for early-stage companies with limited revenue.
+
+#### Method 6: Net Asset Value (NAV)
+
+**Inputs:** Cash in bank, annual revenue, team size, patents count, dev stage
+**When applicable:** All stages (primary method for establishing valuation floor)
+**IVS/Rule 11UA alignment:** Book Value / Net Asset Value under Rule 11UA; Cost Approach under IVS 105
+
+**Calculation (adapted for startups — no balance sheet available):**
+1. Tangible assets = cash_in_bank (the most reliably known asset)
+2. Technology asset proxy = dev_stage value × sector_tech_multiplier
+   - idea=Rs 0, prototype=Rs 10L, mvp=Rs 30L, beta=Rs 50L, production=Rs 1Cr, scaling=Rs 2Cr
+   - Software sectors: ×1.5, Hardware: ×2.0, Services: ×1.0
+3. IP assets = patents_count × Rs 25L per patent (Indian patent filing + development cost proxy)
+4. Customer asset proxy = annual_revenue × 0.3 (customer relationships as asset, 30% of revenue)
+5. NAV = tangible + technology + IP + customer_asset
+6. This is typically the FLOOR valuation — "at minimum, the startup is worth this"
+7. Confidence: 0.5 for all stages (NAV undervalues going-concern startups)
+
+#### Method 7: Replacement Cost
+
+**Inputs:** Team size, founding year, dev stage, annual revenue, CAC, monthly burn
+**When applicable:** All stages
+**IVS/Rule 11UA alignment:** Replacement Cost Method under Rule 11UA; Cost Approach under IVS 105
+
+**Calculation (what would it cost to recreate this startup from scratch?):**
+1. Team replacement cost = team_size × avg_annual_cost_per_employee × years_operating
+   - avg_annual_cost: Rs 15L (blended for Indian startup — tech + non-tech + overhead)
+   - years_operating = current_year - founding_year (min 1)
+2. Technology development cost = dev_stage_cost_map:
+   - idea=Rs 5L, prototype=Rs 25L, mvp=Rs 75L, beta=Rs 1.5Cr, production=Rs 3Cr, scaling=Rs 5Cr
+3. Customer acquisition cost = (annual_revenue / avg_revenue_per_customer_proxy) × CAC
+   - If CAC provided: use directly
+   - If not: proxy CAC from sector (SaaS=Rs 5000, D2C=Rs 2000, Marketplace=Rs 3000, default=Rs 3000)
+   - avg_revenue_per_customer proxy: annual_revenue / (team_size × 50) (rough proxy)
+4. Total replacement cost = team_cost + tech_cost + customer_cost
+5. Confidence: 0.5 for early stage (replacement cost is meaningful), 0.3 for later stage (undervalues network effects, brand)
+
+### Approach 4: VC/Startup-Specific Methods
+
+These methods are commonly used in the venture capital ecosystem for early-stage valuation. While not formally part of IVS, they are widely recognized in startup fundraising and complement the three formal approaches.
+
+#### Method 8: Scorecard (Bill Payne)
 
 **Inputs:** All wizard qualitative data
 **When applicable:** All stages (primary method for pre-revenue)
@@ -508,10 +629,11 @@ startup_volatility = damodaran[sector].beta * MARKET_VOLATILITY * 1.5
 4. Valuation = base × adjustment_multiplier
 5. Confidence: 0.7 pre-revenue, 0.5 idea stage, 0.6 otherwise
 
-### Method 4: Berkus Method
+#### Method 9: Berkus Method
 
 **Inputs:** Wizard qualitative data (team, product, market)
 **When applicable:** Pre-revenue and early-stage (Idea through Seed). For later stages, runs with reduced confidence.
+**Note:** Closely aligned with Rule 11UA Milestone Analysis Method
 
 **Wizard-to-Milestone Mapping:**
 
@@ -529,7 +651,7 @@ startup_volatility = damodaran[sector].beta * MARKET_VOLATILITY * 1.5
 3. Cap at Rs 5 Cr for pre-revenue (Berkus principle)
 4. Confidence: 0.8 for Idea/Pre-seed, 0.6 for Seed, 0.3 for later stages
 
-### Method 5: Risk Factor Summation
+#### Method 10: Risk Factor Summation
 
 **Inputs:** All wizard data including strategic factors
 **When applicable:** All stages
@@ -563,17 +685,42 @@ startup_volatility = damodaran[sector].beta * MARKET_VOLATILITY * 1.5
 
 Composite score displayed prominently on results page:
 - Data completeness: 0-30 points (each filled optional field = +3, required fields expected)
-- Method agreement: 0-40 points (coefficient of variation of methods: <20% CV=40, 20-40%=25, >40%=10)
+- Method agreement: 0-40 points (coefficient of variation of applicable methods: <20% CV=40, 20-40%=25, >40%=10)
 - Revenue maturity: 0-20 points (revenue >5Cr=20, 1-5Cr=15, 10L-1Cr=10, <10L=5, pre-rev=0)
 - Data quality: 0-10 points (realistic ranges, internal consistency checks)
 
 ### Final Valuation:
 - Weighted average of all applicable methods (weighted by confidence)
 - Methods with confidence < 0.3 excluded from composite
-- Pre-revenue companies: Scorecard + Berkus + Risk Factor (3 methods)
-- Revenue companies: All 5 methods
-- Display: individual method results + weighted composite + Monte Carlo range (P10-P90)
-- Show method contribution breakdown (pie chart)
+- Pre-revenue companies: PWERM + NAV + Replacement Cost + Scorecard + Berkus + Risk Factor (6 methods)
+- Revenue companies: All 10 methods
+- Display: individual method results grouped by approach + weighted composite + Monte Carlo range (P10-P90)
+- Show method contribution breakdown (pie chart grouped by approach)
+- Approach-level summary: "Income Approach: Rs X Cr | Market Approach: Rs Y Cr | Asset Approach: Rs Z Cr | VC Methods: Rs W Cr"
+
+### Results Display — Approach Grouping:
+
+```
+INCOME APPROACH (Rs X Cr avg)
+  ├─ DCF Analysis: Rs 9.2 Cr (confidence: high) ★ Monte Carlo: Rs 7-12 Cr
+  └─ PWERM: Rs 8.5 Cr (confidence: medium)
+
+MARKET APPROACH (Rs Y Cr avg)
+  ├─ Revenue Multiple: Rs 10 Cr (confidence: high)
+  ├─ EV/EBITDA Multiple: Rs 9.8 Cr (confidence: high)
+  └─ Comparable Transactions: Rs 11 Cr (confidence: medium)
+
+ASSET/COST APPROACH (Rs Z Cr avg)
+  ├─ Net Asset Value: Rs 3.2 Cr (confidence: low) — valuation floor
+  └─ Replacement Cost: Rs 4.5 Cr (confidence: low)
+
+VC METHODS (Rs W Cr avg)
+  ├─ Scorecard: Rs 11.5 Cr (confidence: medium)
+  ├─ Berkus: Rs 8 Cr (confidence: medium)
+  └─ Risk Factor: Rs 10.8 Cr (confidence: medium)
+
+WEIGHTED COMPOSITE: Rs 8 - 12 Cr (confidence: 78/100)
+```
 
 ---
 
@@ -613,7 +760,7 @@ Using the 3,952 corporate debtor records from the IBC valuation dataset:
 For companies with ESOPs, provide per-share ESOP value with sensitivity analysis.
 
 **Inputs (from Step 6 of wizard, or defaults):**
-- Current valuation (from our 5-method computation)
+- Current valuation (from our 10-method computation)
 - Total shares outstanding (default: 10,00,000)
 - ESOP pool % (default from stage: Seed=12%, Series A=15%, Series B=10%)
 - Exercise price per share (default: Rs 10 face value)
@@ -805,7 +952,7 @@ Team: {founder_exp}/5 experience, {domain_exp}/5 domain expertise, Previous exit
 Product: {dev_stage}, Competition: {competition_level}/5
 TAM: Rs {tam} Cr
 Competitive advantages: {advantages}
-Valuation estimate: Rs {low}-{high} Cr (5-method weighted average)
+Valuation estimate: Rs {low}-{high} Cr (10-method weighted average, 3 approaches)
 Confidence score: {score}/100
 
 IBC context: Companies in {sector} recover {recovery_range}% in insolvency scenarios.
@@ -857,7 +1004,7 @@ firstunicornstartup/
 │   │   │   ├── hero.tsx                  # Professional hero
 │   │   │   ├── trust-signals.tsx         # Credentials, data sources
 │   │   │   ├── how-it-works.tsx          # 3-step explainer
-│   │   │   ├── method-showcase.tsx       # 5 methods preview
+│   │   │   ├── method-showcase.tsx       # 10 methods × 3 approaches preview
 │   │   │   ├── testimonials.tsx          # Social proof (placeholder initially)
 │   │   │   └── footer.tsx
 │   │   ├── wizard/
@@ -870,14 +1017,14 @@ firstunicornstartup/
 │   │   │   └── esop-captable-step.tsx    # Step 6 (optional/expandable)
 │   │   ├── results/
 │   │   │   ├── valuation-reveal.tsx      # Main result + confidence score
-│   │   │   ├── method-cards.tsx          # 5 method results with details
+│   │   │   ├── method-cards.tsx          # 10 method results grouped by approach
 │   │   │   ├── method-contribution.tsx   # Pie chart: weight of each method
 │   │   │   ├── monte-carlo-chart.tsx     # Distribution + percentile markers
 │   │   │   ├── confidence-breakdown.tsx  # What drove the confidence score
 │   │   │   ├── share-buttons.tsx         # LinkedIn / Twitter / WhatsApp share
 │   │   │   └── email-gate.tsx            # Unlock detailed report
 │   │   ├── report/
-│   │   │   ├── methodology.tsx           # Full 5-method breakdown
+│   │   │   ├── methodology.tsx           # Full 10-method breakdown (3 approaches)
 │   │   │   ├── benchmarks.tsx            # Damodaran India data tables
 │   │   │   ├── comparables.tsx           # Indian startup matches
 │   │   │   ├── listed-comparables.tsx    # Public market sector multiples
@@ -1102,7 +1249,7 @@ CREATE POLICY "Anon can insert events" ON page_events FOR INSERT WITH CHECK (tru
 - Compliant with Rule 11UA (Income Tax) or FEMA (foreign investment) format
 - Signed by registered valuer (you) with registration number
 - Valid for RoC filing, investor submissions, tax compliance
-- 5 valuation methods with full methodology disclosure
+- 10 valuation methods (3 approaches) with full methodology disclosure, aligned with IBBI/IVS/Rule 11UA
 - Damodaran India data citations with source references
 - Comparable company analysis
 - Risk assessment with IBC downside context
@@ -1117,7 +1264,7 @@ CREATE POLICY "Anon can insert events" ON page_events FOR INSERT WITH CHECK (tru
    - Methods: Any internationally accepted methodology
    - Includes: Arm's length pricing certificate
 3. **General Valuation Report** — for board/investor presentations
-   - Methods: All 5 methods with Monte Carlo
+   - Methods: All 10 methods across 3 approaches with Monte Carlo
    - Includes: Full analysis, cap table impact, investor landscape
 
 ### Fulfillment Workflow:
@@ -1283,7 +1430,7 @@ Footer in all reports: "Industry benchmarks: Damodaran Online, January 2026."
 
 | Tier | Price | What | Revenue Target (90 days) |
 |------|-------|------|-------------------------|
-| Free | Rs 0 | 5-method valuation + email capture | 400 emails |
+| Free | Rs 0 | 10-method (3-approach) valuation + email capture | 400 emails |
 | Detailed Report | Rs 0 (post-email) | Full breakdown + cap table + investor matches + AI | Lead nurture |
 | Certified Report | Rs 14,999 | Rule 11UA / FEMA compliant, signed by RV | 20 reports = Rs 3L |
 | Full Engagement | Rs 49,999-1,99,999 | M&A, IBC, complex valuations | 2-3 engagements |
@@ -1330,7 +1477,7 @@ Both pages share components with the main report but work independently.
 ## Build Approach
 
 All code built fresh. Inspired by patterns from existing repos but no copy-paste:
-- **fusepl-valuation-tool:** 5 valuation method architecture, Indian benchmarks structure, calculator patterns (cap table, burn rate, unit economics), investor database
+- **fusepl-valuation-tool:** Valuation method architecture, Indian benchmarks structure, calculator patterns (cap table, burn rate, unit economics), investor database
 - **StartupValuator:** Database schema patterns, AI integration approach, report generation
 - **pValuation:** Monte Carlo simulation approach (dcf_stoch), Black-Scholes ESOP valuation (option_value), sensitivity analysis patterns
 - **ibc-valuation-dataset:** IBC sector recovery benchmarks for downside analysis (190 landmark cases, 3,952 corporate debtors)
