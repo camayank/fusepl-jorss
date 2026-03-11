@@ -44,18 +44,71 @@ The landing page MUST prominently feature:
 
 ## Enumerations & Lookup Tables
 
-### Sectors (11 options):
-1. SaaS
-2. Fintech
-3. D2C (Direct-to-Consumer)
-4. EdTech
-5. HealthTech
-6. E-commerce
-7. Marketplace
-8. AgriTech
-9. Logistics
-10. CleanTech
-11. Other
+### Two-Tier Sector System:
+
+**Tier 1: Startup Category (25 options — user-facing, searchable dropdown):**
+
+| # | Category | Description |
+|---|----------|-------------|
+| 1 | SaaS / Enterprise Software | B2B software, subscriptions, cloud tools |
+| 2 | Fintech — Payments & Lending | Payment gateways, BNPL, digital lending |
+| 3 | Fintech — Insurance & Wealth | InsurTech, WealthTech, robo-advisory |
+| 4 | Fintech — Banking & Neo-Banks | Digital banking, account aggregators |
+| 5 | D2C / Consumer Brands | Direct brands, FMCG, beauty, fashion |
+| 6 | EdTech | Online learning, skill platforms, test prep |
+| 7 | HealthTech — Products & Devices | MedTech, diagnostics, health devices |
+| 8 | HealthTech — Services & Platforms | Telemedicine, hospital tech, pharmacy |
+| 9 | E-commerce — General | Online retail, quick commerce |
+| 10 | E-commerce — Grocery & Food | Online grocery, food delivery |
+| 11 | Marketplace / Platform | Two-sided platforms, aggregators |
+| 12 | AgriTech | Farm-to-fork, precision agriculture |
+| 13 | Logistics & Supply Chain | Last-mile, warehousing, fleet tech |
+| 14 | CleanTech / Green Energy | Solar, EV, carbon tech, renewables |
+| 15 | DeepTech / AI-ML | AI products, robotics, computer vision |
+| 16 | Gaming & Entertainment | Gaming studios, OTT, content |
+| 17 | Real Estate Tech | PropTech, construction tech |
+| 18 | Auto / Mobility | EV, ride-sharing, fleet management |
+| 19 | Manufacturing / Industrial | Smart factory, industrial IoT |
+| 20 | Media & Advertising | AdTech, content marketing, publishing |
+| 21 | Telecom & Connectivity | Telecom services, ISP, IoT connectivity |
+| 22 | Travel & Hospitality | Travel booking, hotel tech, tourism |
+| 23 | Social Impact / Non-Profit Tech | Impact investing, social enterprises |
+| 24 | B2B Services | Consulting tech, HR tech, legal tech |
+| 25 | Other | (free-text sub-industry entry) |
+
+**Tier 2: Damodaran Industry Mapping (each startup category maps to 1-3 Damodaran industries for benchmark data):**
+
+| Startup Category | Primary Damodaran Industry | Secondary (fallback) |
+|-----------------|---------------------------|---------------------|
+| SaaS / Enterprise Software | Software (System & Application) | Information Services |
+| Fintech — Payments & Lending | Financial Services (Non-bank & Insurance) | Software (Internet) |
+| Fintech — Insurance & Wealth | Insurance (General) | Investments & Asset Management |
+| Fintech — Banking & Neo-Banks | Banks (Regional) | Financial Services (Non-bank & Insurance) |
+| D2C / Consumer Brands | Household Products | Retail (Special Lines) |
+| EdTech | Education | Software (Internet) |
+| HealthTech — Products & Devices | Healthcare Products | Electronics (General) |
+| HealthTech — Services & Platforms | Healthcare Support Services | Hospitals/Healthcare Facilities |
+| E-commerce — General | Retail (General) | Software (Internet) |
+| E-commerce — Grocery & Food | Food Wholesalers | Retail (Grocery and Food) |
+| Marketplace / Platform | Information Services | Software (Internet) |
+| AgriTech | Farming/Agriculture | Food Processing |
+| Logistics & Supply Chain | Transportation | Trucking |
+| CleanTech / Green Energy | Green & Renewable Energy | Power |
+| DeepTech / AI-ML | Software (System & Application) | Computer Services |
+| Gaming & Entertainment | Software (Entertainment) | Entertainment |
+| Real Estate Tech | Real Estate (Operations & Services) | Real Estate (Development) |
+| Auto / Mobility | Auto & Truck | Auto Parts |
+| Manufacturing / Industrial | Machinery | Engineering/Construction |
+| Media & Advertising | Publishing & Newspapers | Broadcasting |
+| Telecom & Connectivity | Telecom Services | Telecom Equipment |
+| Travel & Hospitality | Hotel/Gaming | Recreation |
+| Social Impact / Non-Profit Tech | Business & Consumer Services | Environmental & Waste Services |
+| B2B Services | Business & Consumer Services | Computer Services |
+| Other | Total Market (composite) | — |
+
+**How it works:** When a user selects "Fintech — Payments & Lending", the system pulls Damodaran benchmarks from the "Financial Services (Non-bank & Insurance)" industry. If that industry has missing data for any metric, it falls back to the secondary industry. The "Other" category uses Total Market composite as a conservative baseline.
+
+**Implementer note:** The full Damodaran India dataset has **~90 industry groupings**. The `scripts/process-damodaran.py` script extracts ALL 90 industries from each Excel file and stores them in `public/data/damodaran/india-benchmarks.json` keyed by Damodaran industry name. The mapping table above tells the UI which Damodaran industry to look up for each startup category. This means if Damodaran adds or renames industries, only the mapping needs updating — not the data pipeline.
 
 ### Stages (7 options):
 1. Idea (no product, no revenue)
@@ -113,21 +166,168 @@ The landing page MUST prominently feature:
 | Series B | Rs 10 Cr |
 | Series C+ | Rs 25 Cr |
 
-### Damodaran India Sector Mapping:
+### Damodaran India Benchmark Values (January 2026):
 
-| App Sector | Damodaran Industry |
-|------------|-------------------|
-| SaaS | Software (System & Application) |
-| Fintech | Financial Svcs. (Non-bank & Insurance) |
-| D2C | Retail (Online) |
-| EdTech | Education |
-| HealthTech | Healthcare Products |
-| E-commerce | Retail (Online) |
-| Marketplace | Information Services |
-| AgriTech | Farming/Agriculture |
-| Logistics | Transportation |
-| CleanTech | Green & Renewable Energy |
-| Other | Total Market (composite) |
+**All ~90 Damodaran India industries are processed and stored in `public/data/damodaran/india-benchmarks.json`.** Below are the values for the primary Damodaran industries used by our 25 startup categories:
+
+| Damodaran Industry | EV/Revenue | EV/EBITDA | WACC (%) | Unlevered Beta | Gross Margin (%) |
+|-------------------|-----------|-----------|----------|---------------|-----------------|
+| Software (System & Application) | 8.2x | 32.5x | 12.8% | 1.05 | 72% |
+| Software (Internet) | 7.5x | 30.1x | 13.0% | 1.12 | 68% |
+| Software (Entertainment) | 5.8x | 24.2x | 13.5% | 1.15 | 62% |
+| Financial Svcs. (Non-bank & Insurance) | 5.4x | 22.1x | 14.2% | 1.18 | 55% |
+| Insurance (General) | 2.8x | 12.5x | 12.0% | 0.78 | 40% |
+| Investments & Asset Management | 6.2x | 18.3x | 11.5% | 0.85 | 58% |
+| Banks (Regional) | 3.1x | — | 13.8% | 0.72 | — |
+| Household Products | 3.5x | 20.4x | 12.2% | 0.82 | 48% |
+| Retail (Special Lines) | 2.1x | 18.7x | 13.5% | 0.95 | 45% |
+| Retail (General) | 1.8x | 15.2x | 14.0% | 1.10 | 35% |
+| Retail (Grocery and Food) | 0.8x | 12.1x | 13.2% | 0.68 | 25% |
+| Education | 4.8x | 25.3x | 13.1% | 0.92 | 65% |
+| Healthcare Products | 5.1x | 21.8x | 12.5% | 0.88 | 60% |
+| Healthcare Support Services | 3.2x | 16.5x | 13.0% | 0.90 | 42% |
+| Hospitals/Healthcare Facilities | 2.5x | 14.2x | 12.8% | 0.85 | 38% |
+| Information Services | 6.5x | 28.4x | 13.3% | 1.02 | 68% |
+| Farming/Agriculture | 2.3x | 14.6x | 14.8% | 0.85 | 38% |
+| Food Processing | 1.9x | 15.8x | 13.5% | 0.75 | 32% |
+| Food Wholesalers | 0.5x | 10.2x | 13.0% | 0.65 | 18% |
+| Transportation | 1.5x | 12.1x | 13.9% | 0.90 | 30% |
+| Trucking | 1.2x | 10.5x | 14.2% | 0.95 | 25% |
+| Green & Renewable Energy | 3.8x | 19.5x | 13.0% | 0.98 | 48% |
+| Power | 2.5x | 11.8x | 12.5% | 0.72 | 35% |
+| Computer Services | 4.2x | 18.5x | 12.0% | 0.88 | 55% |
+| Entertainment | 3.5x | 20.8x | 14.0% | 1.20 | 50% |
+| Real Estate (Operations & Services) | 2.8x | 15.2x | 14.5% | 1.08 | 35% |
+| Real Estate (Development) | 1.5x | 10.8x | 15.0% | 1.15 | 28% |
+| Auto & Truck | 1.2x | 11.5x | 13.5% | 1.05 | 22% |
+| Auto Parts | 1.5x | 12.8x | 13.2% | 0.98 | 28% |
+| Machinery | 2.0x | 14.5x | 13.8% | 1.02 | 32% |
+| Engineering/Construction | 1.8x | 13.2x | 14.0% | 1.10 | 25% |
+| Publishing & Newspapers | 2.5x | 14.8x | 13.5% | 0.92 | 45% |
+| Broadcasting | 3.2x | 18.5x | 14.2% | 1.15 | 52% |
+| Telecom Services | 2.8x | 8.5x | 12.5% | 0.70 | 55% |
+| Telecom Equipment | 2.2x | 14.2x | 13.8% | 1.00 | 38% |
+| Hotel/Gaming | 3.5x | 16.8x | 14.0% | 1.12 | 42% |
+| Recreation | 2.8x | 15.5x | 13.5% | 1.05 | 38% |
+| Business & Consumer Services | 3.0x | 16.2x | 13.0% | 0.92 | 45% |
+| Environmental & Waste Services | 2.5x | 14.0x | 12.8% | 0.80 | 38% |
+| Total Market (composite) | 3.2x | 18.0x | 13.5% | 1.00 | 50% |
+| CleanTech | 3.8x | 19.5x | 13.0% | 0.98 | 48% |
+| Other | 3.2x | 18.0x | 13.5% | 1.00 | 50% |
+
+Source: Damodaran Online, pages.stern.nyu.edu/~adamodar/pc/datasets/ (psIndia.xls, vebitdaIndia.xls, waccIndia.xls, betaIndia.xls, marginIndia.xls). Values are sector medians for Indian companies. Updated annually every January.
+
+**Note for implementers:** The `scripts/process-damodaran.py` script processes ALL ~90 Damodaran India industries:
+
+1. **Input:** 5 Excel files downloaded to `data/raw/damodaran/` (psIndia.xls, vebitdaIndia.xls, waccIndia.xls, betaIndia.xls, marginIndia.xls)
+2. **Process:** For each Excel, extract the industry name column and relevant metric column. Join all 5 into a single record per industry.
+3. **Output:** `public/data/damodaran/india-benchmarks.json` containing ALL industries:
+```json
+{
+  "Software (System & Application)": { "ev_revenue": 8.2, "ev_ebitda": 32.5, "wacc": 0.128, "beta": 1.05, "gross_margin": 0.72 },
+  "Financial Svcs. (Non-bank & Insurance)": { "ev_revenue": 5.4, "ev_ebitda": 22.1, "wacc": 0.142, "beta": 1.18, "gross_margin": 0.55 },
+  "Total Market": { "ev_revenue": 3.2, "ev_ebitda": 18.0, "wacc": 0.135, "beta": 1.00, "gross_margin": 0.50 }
+}
+```
+4. **TypeScript usage:** `src/lib/data/damodaran-india.ts` imports this JSON. The Tier 2 mapping table (above) maps each startup category to a Damodaran industry key. Lookup: `damodaranData[SECTOR_MAPPING[userCategory].primary]`.
+5. **Update:** Run `python scripts/process-damodaran.py` after downloading fresh Excel files (annually, every January).
+
+### Market Constants:
+
+| Constant | Value | Source | Update |
+|----------|-------|--------|--------|
+| India risk-free rate | 7.0% | 10-year India govt bond yield (Damodaran currencyriskfree.xlsx) | Annual |
+| India equity risk premium | 7.5% | Damodaran countryriskfree.xlsx | Annual |
+| India long-term GDP growth cap | 5.5% | IMF/RBI consensus | Annual |
+| Nifty 50 market volatility | 0.22 (22% annualized) | 5-year Nifty 50 historical volatility | Annual |
+| Tax rate | 25% | Indian corporate tax rate (new regime) | As legislation changes |
+
+### Comparable Indian Startups Data:
+
+Schema for `src/lib/data/comparable-companies.ts`:
+```typescript
+interface ComparableCompany {
+  name: string;              // "Razorpay"
+  sector: string;            // "fintech" (matches app sector enum)
+  stage_at_round: string;    // "series_a" (matches app stage enum)
+  last_round_size_cr: number; // 150 (in crores)
+  valuation_cr: number;      // 3000 (post-money, in crores)
+  revenue_cr: number | null; // 500 (if publicly known)
+  year: number;              // 2024
+  city: string;              // "Bangalore"
+  business_model: string;    // "transaction_based"
+  source: string;            // "Tracxn" | "public_announcement" | "media_report"
+}
+```
+
+Matching algorithm:
+1. Filter: same sector → candidates
+2. Filter: stage within ±1 of startup's stage (e.g., Seed startup sees Pre-seed through Pre-Series A)
+3. If revenue available: sort by absolute difference in revenue
+4. If revenue not available: sort by stage proximity, then recency (newer first)
+5. Return top 5
+
+Sample data (10 entries — full list of 50+ compiled from Tracxn/public sources):
+
+| Name | Sector | Stage | Round (Cr) | Valuation (Cr) | Revenue (Cr) | Year | City |
+|------|--------|-------|-----------|---------------|-------------|------|------|
+| Razorpay | fintech | series_c_plus | 500 | 56,000 | 2,100 | 2024 | Bangalore |
+| Zerodha | fintech | series_a | 0 (bootstrapped) | 28,000 | 8,000 | 2024 | Bangalore |
+| Meesho | e-commerce | series_b | 1,900 | 35,000 | 500 | 2023 | Bangalore |
+| PhysicsWallah | edtech | series_a | 750 | 8,100 | 700 | 2023 | Noida |
+| Lenskart | d2c | series_c_plus | 450 | 37,500 | 3,200 | 2024 | Delhi |
+| Darwinbox | saas | series_b | 225 | 5,000 | 350 | 2024 | Hyderabad |
+| Zetwerk | marketplace | series_b | 380 | 18,000 | 12,000 | 2024 | Bangalore |
+| DeHaat | agritech | series_b | 150 | 2,200 | 400 | 2023 | Patna |
+| Delhivery | logistics | series_c_plus | 800 | 22,000 | 5,500 | 2023 | Gurgaon |
+| Healthifyme | healthtech | series_b | 120 | 1,500 | 200 | 2023 | Bangalore |
+
+Data compiled from public sources (Tracxn, company announcements, media). Updated quarterly.
+
+### Investor Database Schema and Sample Data:
+
+Schema for `src/lib/data/investors.ts`:
+```typescript
+interface Investor {
+  name: string;                 // "Sequoia Capital India"
+  type: 'vc' | 'pe' | 'angel' | 'family_office' | 'cvc';
+  sectors: string[];            // ["saas", "fintech", "healthtech"]
+  stages: string[];             // ["seed", "series_a", "series_b"]
+  check_size_min_cr: number;    // 5
+  check_size_max_cr: number;    // 200
+  city: string;                 // "Bangalore"
+  portfolio_highlights: string[]; // ["Razorpay", "BrowserStack", "Zomato"]
+  last_active_year: number;     // 2025
+  website: string;              // "https://www.sequoiacap.com/india/"
+}
+```
+
+**Sector Adjacency Matrix** (for "+1 point adjacent match"):
+
+| Sector | Adjacent Sectors |
+|--------|-----------------|
+| SaaS | fintech, marketplace |
+| Fintech | saas, e-commerce |
+| D2C | e-commerce, marketplace |
+| EdTech | healthtech, saas |
+| HealthTech | edtech, d2c |
+| E-commerce | d2c, marketplace, logistics |
+| Marketplace | saas, e-commerce, d2c |
+| AgriTech | logistics, cleantech |
+| Logistics | e-commerce, agritech |
+| CleanTech | agritech, logistics |
+
+"Recent activity" = `last_active_year >= current_year - 1` (active in last 12 months based on public portfolio announcements).
+
+Sample investor data (5 entries — full list of 40+ compiled from fusepl data + public sources):
+
+| Name | Type | Sectors | Stages | Check Size (Cr) | City |
+|------|------|---------|--------|-----------------|------|
+| Sequoia Capital India | vc | saas, fintech, healthtech | seed, series_a, series_b | 5-200 | Bangalore |
+| Accel India | vc | saas, fintech, marketplace | seed, series_a | 3-100 | Bangalore |
+| Blume Ventures | vc | saas, d2c, edtech, healthtech | pre_seed, seed | 1-15 | Mumbai |
+| Nexus Venture Partners | vc | fintech, e-commerce, agritech | seed, series_a, series_b | 5-150 | Delhi |
+| India Quotient | vc | d2c, fintech, edtech | pre_seed, seed | 0.5-10 | Bangalore |
 
 ---
 
@@ -183,7 +383,7 @@ VALUATION REVEAL (FREE — no gate)
   Probabilistic range chart (P10/P25/P50/P75/P90)
   Weighted composite with method contribution pie chart
   Downside scenario: "In insolvency, similar companies recovered 15-35%"
-  [Share on LinkedIn] [Share on Twitter]
+  [Share on LinkedIn] [Share on Twitter] [Share on WhatsApp]
       ↓
 EMAIL GATE (for detailed report + tools)
   "Enter your email to unlock:"
@@ -217,6 +417,32 @@ CERTIFIED REPORT CTA
   "Get a certified Rule 11UA / FEMA report — Rs 14,999"
   "Signed by a registered valuer. Valid for RoC filing."
   [Get Certified Report] → Razorpay → fulfillment workflow
+```
+
+---
+
+## Derived Fields (computed from wizard inputs)
+
+These fields are NOT collected from the user but computed automatically:
+
+```typescript
+// Runway (months)
+runway_months = monthly_burn > 0 ? cash_in_bank / monthly_burn : Infinity
+// When used in factor scoring, Infinity maps to the highest tier (>18 months)
+
+// LTV/CAC ratio (optional)
+ltv_cac_ratio = (cac && cac > 0 && ltv) ? ltv / cac : null
+
+// Has patents (boolean, derived from count)
+has_patents = patents_count > 0
+
+// ESOP pool default (based on stage, if not specified)
+default_esop_pct = stage === 'seed' ? 12 : stage === 'series_a' ? 15 : stage === 'series_b' ? 10 : 10
+
+// Startup volatility (for ESOP Black-Scholes)
+startup_volatility = damodaran[sector].beta * MARKET_VOLATILITY * 1.5
+// Where MARKET_VOLATILITY = 0.22 (from Market Constants table)
+// Clamped to range [0.40, 0.80] (40-80% annualized)
 ```
 
 ---
@@ -277,9 +503,10 @@ CERTIFIED REPORT CTA
 
 **Calculation:**
 1. Base = stage-based pre-money from benchmark table
-2. Sum weighted factor percentages → adjustment multiplier
-3. Valuation = base × adjustment_multiplier
-4. Confidence: 0.7 pre-revenue, 0.5 idea stage, 0.6 otherwise
+2. For each factor: compute raw score from wizard mapping, then **clamp to 50-150% range**
+3. Sum weighted factor percentages → adjustment multiplier
+4. Valuation = base × adjustment_multiplier
+5. Confidence: 0.7 pre-revenue, 0.5 idea stage, 0.6 otherwise
 
 ### Method 4: Berkus Method
 
@@ -291,7 +518,7 @@ CERTIFIED REPORT CTA
 | Milestone | Wizard → Score (0-100%) |
 |-----------|------------------------|
 | Sound idea | TAM: <100Cr=20%, 100-1000Cr=50%, 1000-10000Cr=80%, >10000Cr=100%. Plus competitive_advantage bonus (+10% each) |
-| Prototype/technology | dev_stage: idea=0%, prototype=40%, mvp=70%, beta=90%, production=100%, scaling=100%. Plus patents_bonus(+20%) |
+| Prototype/technology | dev_stage: idea=0%, prototype=40%, mvp=70%, beta=90%, production=100%, scaling=100%. Plus patents_bonus(1 patent=+15%, 2+=+20%) |
 | Quality management | (founder_exp + domain_exp) / 10 × 100. Plus exits_bonus(+25%), tech_cofounder_bonus(+15%) |
 | Strategic relationships | partnerships: none=0%, one=50%, multiple=100%. Plus key_hires_bonus(+10% each for CTO/CFO/sales) |
 | Product rollout/sales | revenue: Rs 0=0%, <10L=20%, 10L-50L=50%, 50L-1Cr=75%, >1Cr=100%. Plus growth_bonus(>100%=+20%) |
@@ -451,14 +678,39 @@ Inspired by fusepl-valuation-tool's cap table calculator but built fresh with In
    - Recommendation: "Create ESOP pool before the round to avoid diluting new investors"
 
 ### Calculation:
+
+**Basic round modeling:**
 ```
 post_money = pre_money + raise_amount
 new_investor_pct = raise_amount / post_money
 existing_dilution = 1 - (pre_money / post_money)
 
 For each existing shareholder:
-  new_pct = old_pct × (1 - new_investor_pct - esop_expansion_pct)
+  new_pct = old_pct × (1 - new_investor_pct)
 ```
+
+**ESOP pool — Pre-round creation (recommended):**
+```
+// ESOP carved from existing shareholders BEFORE new investor enters
+esop_shares = total_shares × esop_expansion_pct
+For each existing shareholder:
+  diluted_pct = old_pct × (1 - esop_expansion_pct)
+// Then apply new investor dilution on top:
+  final_pct = diluted_pct × (1 - new_investor_pct)
+// New investor is NOT diluted by ESOP pool
+new_investor_final_pct = new_investor_pct
+```
+
+**ESOP pool — Post-round creation:**
+```
+// First, new investor enters at negotiated percentage
+// Then ESOP carved from ALL shareholders including new investor
+For each shareholder (including new investor):
+  final_pct = post_round_pct × (1 - esop_expansion_pct)
+// New investor IS diluted by ESOP pool
+```
+
+**UI toggle:** Radio buttons: "Create ESOP pool before round (recommended)" vs "Create ESOP pool after round". Show side-by-side comparison of founder % in both scenarios.
 
 ### Display:
 - Interactive sliders for raise amount and pre-money
@@ -516,8 +768,9 @@ For **Series B+ and late-stage startups** approaching IPO, provide listed compan
 ### Implementation:
 - Map the startup's sector to NSE/BSE listed companies via Damodaran India sector mapping
 - Pull current P/E, EV/Revenue, EV/EBITDA from Damodaran India datasets
-- Apply private company discount (30-40%) for illiquidity
-- Show sensitivity: "At 20%/30%/40% illiquidity discount, your valuation equivalent would be Rs {X}/{Y}/{Z} Cr"
+- Apply private company illiquidity discount: **default 30%** for primary display
+  - Stage adjustment: Series C+ = 20%, Series B = 25%, Series A = 30%, earlier = 35%
+- Show sensitivity table: "At 20%/30%/40% illiquidity discount, your valuation equivalent would be Rs {X}/{Y}/{Z} Cr"
 
 ### Display:
 "Public companies in {Damodaran_industry} trade at {X}x EV/Revenue (Damodaran India, Jan 2026)."
@@ -621,7 +874,7 @@ firstunicornstartup/
 │   │   │   ├── method-contribution.tsx   # Pie chart: weight of each method
 │   │   │   ├── monte-carlo-chart.tsx     # Distribution + percentile markers
 │   │   │   ├── confidence-breakdown.tsx  # What drove the confidence score
-│   │   │   ├── share-buttons.tsx         # LinkedIn / Twitter / WhatsApp
+│   │   │   ├── share-buttons.tsx         # LinkedIn / Twitter / WhatsApp share
 │   │   │   └── email-gate.tsx            # Unlock detailed report
 │   │   ├── report/
 │   │   │   ├── methodology.tsx           # Full 5-method breakdown
@@ -813,10 +1066,23 @@ CREATE POLICY "Service role full access" ON valuations FOR ALL USING (auth.role(
 CREATE POLICY "Service role full access" ON users FOR ALL USING (auth.role() = 'service_role');
 CREATE POLICY "Service role full access" ON certified_requests FOR ALL USING (auth.role() = 'service_role');
 
--- Anon role can insert (for lead capture)
-CREATE POLICY "Anon can insert valuations" ON valuations FOR INSERT WITH CHECK (true);
-CREATE POLICY "Anon can insert users" ON users FOR INSERT WITH CHECK (true);
+-- Anon role: insert via API routes only (server-side uses service_role key)
+-- All inserts go through /api/capture which uses service_role, NOT anon direct insert
+-- This prevents arbitrary data injection. Client never writes directly to Supabase.
+
+-- Anon role: read own valuation by UUID (for report page /report/[id])
+-- UUID v4 is unguessable (122-bit random), so this is safe
+CREATE POLICY "Anon can read valuation by id" ON valuations FOR SELECT USING (true);
+-- Note: Security relies on UUID unguessability, not RLS filtering by user.
+-- The /report/[id] page fetches by UUID — only someone with the link can access.
+
+-- page_events: anon can insert (analytics), no read needed from client
+ALTER TABLE page_events ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Service role full access events" ON page_events FOR ALL USING (auth.role() = 'service_role');
+CREATE POLICY "Anon can insert events" ON page_events FOR INSERT WITH CHECK (true);
 ```
+
+**Data flow:** All valuation writes happen through `/api/capture` (Next.js API route) which uses the Supabase **service_role** key server-side. The client never writes directly to Supabase. This prevents data pollution since the API route validates inputs before inserting.
 
 ### API Routes:
 
@@ -1017,7 +1283,7 @@ Footer in all reports: "Industry benchmarks: Damodaran Online, January 2026."
 
 | Tier | Price | What | Revenue Target (90 days) |
 |------|-------|------|-------------------------|
-| Free | Rs 0 | 5-method valuation + email capture | 600 emails |
+| Free | Rs 0 | 5-method valuation + email capture | 400 emails |
 | Detailed Report | Rs 0 (post-email) | Full breakdown + cap table + investor matches + AI | Lead nurture |
 | Certified Report | Rs 14,999 | Rule 11UA / FEMA compliant, signed by RV | 20 reports = Rs 3L |
 | Full Engagement | Rs 49,999-1,99,999 | M&A, IBC, complex valuations | 2-3 engagements |
