@@ -11,6 +11,7 @@ import { MarketProductStep } from './market-product-step'
 import { StrategicStep } from './strategic-step'
 import { ESOPCapTableStep } from './esop-captable-step'
 import { toast } from 'sonner'
+import { WIZARD_STEPS } from '@/lib/constants'
 import type { WizardInputs } from '@/types'
 
 function validateStep(step: number, inputs: WizardInputs): string | null {
@@ -40,15 +41,6 @@ function validateStep(step: number, inputs: WizardInputs): string | null {
       return null
   }
 }
-
-const STEP_LABELS = [
-  'Company Profile',
-  'Team',
-  'Financials',
-  'Market & Product',
-  'Strategic Factors',
-  'ESOP & Cap Table',
-]
 
 const STEP_COMPONENTS = [
   CompanyStep,
@@ -95,7 +87,7 @@ export function WizardContainer() {
       <div className="mb-8">
         <Progress value={progress} className="h-2 bg-slate-800" />
         <div className="flex justify-between mt-3">
-          {STEP_LABELS.map((label, i) => {
+          {WIZARD_STEPS.map((label, i) => {
             const stepNum = i + 1
             const isActive = stepNum === currentStep
             const isCompleted = stepNum <= highestCompletedStep

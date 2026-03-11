@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useValuationStore } from '@/stores/valuation-store'
+import { EMAIL_REGEX } from '@/lib/utils'
 
 interface Props {
   onUnlocked: (reportId: string) => void
@@ -27,7 +28,7 @@ export function EmailGate({ onUnlocked }: Props) {
   const [emailInput, setEmailInput] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)
+  const isValidEmail = EMAIL_REGEX.test(emailInput)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

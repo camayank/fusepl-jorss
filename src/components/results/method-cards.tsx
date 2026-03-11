@@ -5,19 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import type { MethodResult, MonteCarloResult } from '@/types'
 import { APPROACH_ORDER, APPROACH_LABELS } from '@/types'
 import { formatINR } from '@/lib/utils'
-
-const METHOD_LABELS: Record<string, string> = {
-  dcf: 'DCF Analysis',
-  pwerm: 'PWERM',
-  revenue_multiple: 'Revenue Multiple',
-  ebitda_multiple: 'EV/EBITDA Multiple',
-  comparable_txn: 'Comparable Transactions',
-  nav: 'Net Asset Value',
-  replacement_cost: 'Replacement Cost',
-  scorecard: 'Scorecard (Bill Payne)',
-  berkus: 'Berkus Method',
-  risk_factor: 'Risk Factor Summation',
-}
+import { METHOD_LABELS } from '@/lib/constants'
 
 function confidenceBadge(confidence: number) {
   if (confidence >= 0.7) return <Badge className="bg-green-600/20 text-green-400 border-green-600/30">High</Badge>

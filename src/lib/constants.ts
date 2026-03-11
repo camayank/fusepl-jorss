@@ -38,3 +38,27 @@ export const DEFAULT_ESOP_PCT: Record<string, number> = {
   series_b: 10,
   series_c_plus: 10,
 }
+
+/** Short-form labels for UI display. The PDF generator (pdf-generator.ts) has its own
+ *  long-form labels (e.g. "Discounted Cash Flow (DCF)") — keep those separate for PDF. */
+export const METHOD_LABELS: Record<string, string> = {
+  dcf: 'DCF Analysis',
+  pwerm: 'PWERM',
+  revenue_multiple: 'Revenue Multiple',
+  ebitda_multiple: 'EV/EBITDA Multiple',
+  comparable_txn: 'Comparable Transactions',
+  nav: 'Net Asset Value',
+  replacement_cost: 'Replacement Cost',
+  scorecard: 'Scorecard (Bill Payne)',
+  berkus: 'Berkus Method',
+  risk_factor: 'Risk Factor Summation',
+}
+
+export const WIZARD_STEPS = [
+  'Company Profile',
+  'Team',
+  'Financials',
+  'Market & Product',
+  'Strategic Factors',
+  'ESOP & Cap Table',
+] as const
