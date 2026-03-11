@@ -54,6 +54,10 @@ Mobile:   H1: 36px | H2: 28px | H3: 20px | Body: 16px | Small: 14px | Micro: 12p
 
 All fonts from Fontshare (Indian Type Foundry) — free, WOFF2, `font-display: swap`.
 
+**Font subsetting:** Latin subset only, limited character set. Target: ~15-20kb per weight file. Total budget: 6 weight/family files × 18kb average = ~108kb WOFF2. Preload hero font (Clash Display 700) only; lazy-load others via `<link rel="preload" as="font">`.
+
+**Contrast note:** Muted Slate `#94a3b8` on Deep Slate `#1e293b` yields ~4.1:1 ratio. For body text at 14px ("Small" scale), use `#a1a1aa` (zinc-400) instead for 4.6:1 ratio. Gold on navy (#f59e0b on #0f172a) at 5.7:1 passes AA.
+
 ### Spacing & Layout
 
 - 8px grid system
@@ -129,13 +133,17 @@ Press:      scale(0.98), 100ms
 
 **Heading:** "Why founders trust us"
 
-**6 signals in glass cards:**
+**8 signals in glass cards (matching all functional spec required trust signals):**
 1. "Built by IBBI-Registered Valuer (not a random AI)" — Lucide `Shield` icon
-2. "Powered by the same Damodaran data VCs use" — Lucide `BarChart` icon
-3. "10 methods that real investors use" — Lucide `Target` icon
-4. "Your data stays private. Always." — Lucide `Lock` icon
-5. "Free. No credit card. Results in 3 minutes." — Lucide `Zap` icon
-6. "Used for actual fundraising rounds" — Lucide `Trophy` icon
+2. "Powered by the same Damodaran India data VCs use (Jan 2026)" — Lucide `BarChart` icon
+3. "3 Approaches × 10 Methods — aligned with IBBI/IVS/Rule 11UA" — Lucide `Target` icon
+4. "Monte Carlo Simulation with 10,000 iterations" — Lucide `Dice6` icon
+5. "190+ IBC cases analyzed | 3,952 outcomes studied" — Lucide `FileSearch` icon
+6. "Your data stays private. Always." — Lucide `Lock` icon
+7. "Free. No credit card. Results in 3 minutes." — Lucide `Zap` icon
+8. "Used for actual fundraising rounds" — Lucide `Trophy` icon
+
+**Layout:** 4-col grid (desktop), 2-col grid (tablet), vertical stack (mobile)
 
 **Layout:** 3-col grid (desktop), 2-col grid (tablet), vertical stack (mobile)
 **Animation:** Scroll-triggered stagger from bottom, 50ms apart
@@ -168,6 +176,10 @@ Press:      scale(0.98), 100ms
 - "Raised Rs 5 Cr using this as anchor" — Pre-Seed, SaaS
 - "Saved Rs 2L on CA fees" — Series A, SaaS
 - "Finally understood my cap table" — Seed, D2C
+
+**Note:** Testimonials and counters ("5,000+ founders", "Rs 47,000 Cr valued") are aspirational at launch. Replace with real Supabase aggregates once sufficient data exists. Mark in code as `// TODO: Replace with real aggregate query`.
+
+**Accessibility:** Auto-rotation pauses on hover (desktop) and includes visible pause/play button (mobile). Satisfies WCAG 2.1 SC 2.2.2.
 
 **Style:** Glass cards, auto-rotating 5s interval, swipeable on mobile
 
@@ -202,15 +214,22 @@ Press:      scale(0.98), 100ms
 
 **Auto-save:** Zustand + localStorage. Browser close → resume where left off.
 
+**Welcome-back UX:** If returning user has saved state, show toast: "Welcome back! You were on Step X." with two options: "Continue" (resumes) and "Start Fresh" (resets). Toast appears for 5 seconds, auto-dismisses to resume state. Framer Motion slide-in from top.
+
 **Transitions:** Framer Motion `AnimatePresence` — current step slides left, next slides in from right, 200ms.
 
 ### Step 1: "Tell us about your startup"
 
 **Fields:**
 1. **Company name** — Text input, placeholder "e.g. Razorpay"
-2. **Sector** — Searchable dropdown with popular chips ("SaaS", "Fintech", "D2C", "EdTech") for quick selection. Mobile: opens as bottom sheet with search
-3. **Stage** — Visual card selector with icons: 💡 Idea | 🌱 Seed | 🚀 Series A | 📈 Series B | 🏢 Series C+. Each card has one-line description on hover/tap
-4. **Business model** — Card selector (not dropdown): SaaS/Monthly, Marketplace/Commission, D2C/One-time, Freemium/Upsell, Services, Other
+2. **Sector** — Searchable dropdown containing all 25 categories from the functional spec. Quick-select chips for top 4 ("SaaS", "Fintech", "D2C", "EdTech") shown below. Full 25-category list accessible via search. Mobile: opens as bottom sheet with search at top, categorized scrollable list below
+3. **Stage** — Visual card selector with icons. Desktop: 7 cards in a row. Mobile: 2 rows (4+3) or horizontal scroll.
+   - 💡 Idea | 🌱 Pre-seed | 🌿 Seed | 🔗 Pre-Series A | 🚀 Series A | 📈 Series B | 🏢 Series C+
+   - Each card has one-line description on hover/tap (e.g., "Pre-seed: Building MVP, initial traction")
+   - Maps exactly to functional spec's 7-stage enum: `idea, pre_seed, seed, pre_series_a, series_a, series_b, series_c_plus`
+4. **Business model** — Card selector (not dropdown). All 10 models from functional spec:
+   - SaaS/Subscription | Marketplace/Commission | E-commerce/GMV | D2C/Product Sales | Advertising/AdTech | Freemium/Upsell | Transaction-based/Per-use | Licensing/IP | Services/Consulting | Hardware + Software
+   - Desktop: 5×2 grid. Mobile: 2-col grid with scroll. Each card: icon + label + one-line description
 5. **City** — Text input with auto-suggest (Bangalore, Mumbai, Delhi, Hyderabad, Pune, Chennai...). Auto-filled from geolocation with permission
 6. **Founded** — Year picker (2015–2026)
 
@@ -246,9 +265,9 @@ Press:      scale(0.98), 100ms
 
 **Fields:**
 1. **TAM** — Currency input with tooltip: "Total Addressable Market in Rs Cr. Think: how big is the entire pie?"
-2. **Development stage** — Visual card selector: Idea → MVP → Beta → Live/Revenue → Scaling
+2. **Development stage** — Visual card selector matching functional spec enum: Idea → Prototype → MVP → Beta → Production (Live) → Scaling. Maps to: `idea, prototype, mvp, beta, production, scaling`
 3. **Competition level** — Slider 1-5 with labels: "1 = Blue ocean" to "5 = Red ocean, 10+ funded competitors"
-4. **Competitive advantages** — Multi-select chips: Network Effects, Proprietary Tech/IP, First Mover, Brand Recognition, Regulatory Moat, Data Moat, Other
+4. **Competitive advantages** — Multi-select chips matching functional spec: Network Effects, Proprietary Tech/IP, Brand Recognition, Cost Advantage, Switching Costs, Regulatory Moat, Data Moat, None. Maps to: `network_effects, proprietary_tech, brand, cost_advantage, switching_costs, regulatory, data_moat, none`
 5. **Patents/IP** — Toggle + count input (if yes)
 
 ### Step 5: "Strategic factors"
@@ -430,6 +449,8 @@ Each section:
 - "Beta = how volatile your sector is compared to the overall market."
 - Triggered by `(?)` icon, shown as popover (desktop) or bottom sheet (mobile)
 
+**Note: Section ordering intentionally differs from functional spec for better UX narrative flow.** Listed Comparables moved near Comparable Startups (both are comparison sections). IBC Downside placed after comparables (provides risk context after seeing peers). Recommendations last (actionable takeaways as finale before CTA). This reordering improves the story arc: "What you're worth → How we calculated it → Who you compare to → What could go wrong → What to do next."
+
 ### Section 1: Valuation Summary
 - Valuation range card (reuse from reveal)
 - 10-method breakdown grouped by approach
@@ -478,7 +499,7 @@ Each section:
 - On-demand generation: "Generate AI Analysis" button
 - Not auto-triggered (cost control)
 - 4 sections: Investment Thesis, Key Risks, Valuation Opinion, Fundraise Playbook
-- Retry: 4 attempts with 1s/4s/16s exponential backoff
+- Retry: 1 initial attempt + 3 retries with exponential backoff (1s, 4s, 16s delays) = 4 total attempts
 - Loading state: skeleton with shimmer animation
 
 ### Section 11: Investor Matches
@@ -497,7 +518,11 @@ Each section:
 - "Get a certified Rule 11UA / FEMA report — Rs 14,999"
 - 5 bullet points: Rule 11UA compliant, FEMA valid, 15-20 page report, Signed by registered valuer, Delivered within 48 hours
 - Gold CTA button: "Get Certified Report — Rs 14,999"
-- Connected to Razorpay checkout
+- **Checkout flow (modal/bottom sheet on click):**
+  1. Report type selector (card selector): Rule 11UA | FEMA | General Purpose
+  2. Purpose text input: "What will this report be used for?" (e.g., "Series A fundraising", "RoC filing")
+  3. Summary: type + purpose + Rs 14,999 (incl. GST) + 48-hour delivery
+  4. "Pay with Razorpay" button → Razorpay checkout → webhook fulfillment
 
 ---
 
@@ -562,11 +587,13 @@ Charts (Recharts):        Lazy-loaded, only on pages that need them
 - TOC on report page opens as bottom sheet overlay
 - All bottom sheets: Framer Motion `drag` with `dragConstraints`
 
-### Haptic Feedback (Where Supported)
-- Number count-up completion: light tap
-- Step transition: light tap
-- CTA press: medium tap
-- Validation error: error pattern
+### Haptic Feedback (Android/Chrome Only — Silent Fallback on iOS)
+- Uses `navigator.vibrate()` API — no support on iOS Safari as of 2026
+- Degrades silently: no error, no alternative needed
+- Number count-up completion: `vibrate(10)` (light tap)
+- Step transition: `vibrate(10)` (light tap)
+- CTA press: `vibrate(20)` (medium tap)
+- Validation error: `vibrate([30, 50, 30])` (error pattern)
 
 ### Offline Support
 - Wizard inputs: Zustand + localStorage persistence
@@ -575,7 +602,8 @@ Charts (Recharts):        Lazy-loaded, only on pages that need them
 - Sync queue processes when back online
 
 ### Pull-to-Refresh
-- Report page supports pull-to-refresh for AI narrative re-fetch
+- Report page: "Refresh AI Analysis" button (not browser pull-to-refresh — conflicts with Chrome Android native behavior)
+- Button appears below AI narrative section when narrative exists
 
 ### Orientation (Mobile)
 - Charts in landscape: expand to full viewport
