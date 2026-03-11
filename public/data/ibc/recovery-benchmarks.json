@@ -1,0 +1,8 @@
+{
+  "manufacturing": { "avg_low": 25, "avg_high": 35, "sample_size": "large", "p25": 18, "p75": 42 },
+  "real_estate": { "avg_low": 10, "avg_high": 20, "sample_size": "medium", "p25": 5, "p75": 28 },
+  "services_it": { "avg_low": 30, "avg_high": 45, "sample_size": "medium", "p25": 22, "p75": 52 },
+  "infrastructure": { "avg_low": 15, "avg_high": 25, "sample_size": "medium", "p25": 8, "p75": 32 },
+  "retail_consumer": { "avg_low": 20, "avg_high": 30, "sample_size": "small", "p25": 12, "p75": 38 },
+  "other": { "avg_low": 10, "avg_high": 40, "sample_size": "large", "p25": 5, "p75": 45 }
+}
