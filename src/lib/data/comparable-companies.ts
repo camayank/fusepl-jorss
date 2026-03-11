@@ -51,10 +51,18 @@ export function findComparables(
     c.sector === sector && validStages.includes(c.stage_at_round)
   )
 
-  // If not enough from same sector, include adjacent (all stages)
+  // If not enough from same sector + stage range, widen stage range
+  if (candidates.length < topN) {
+    const widerCandidates = COMPARABLE_COMPANIES.filter(c =>
+      c.sector === sector && !validStages.includes(c.stage_at_round)
+    )
+    candidates = [...candidates, ...widerCandidates]
+  }
+
+  // If still not enough, include cross-sector
   if (candidates.length < topN) {
     const remaining = COMPARABLE_COMPANIES.filter(c =>
-      c.sector !== sector && validStages.includes(c.stage_at_round)
+      c.sector !== sector
     )
     candidates = [...candidates, ...remaining]
   }
