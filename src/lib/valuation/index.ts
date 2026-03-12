@@ -1,5 +1,8 @@
 import type { WizardInputs, ValuationResult, MethodResult } from '@/types'
+import { MARKET_CONSTANTS } from '@/lib/constants'
 import { computeDerivedFields } from '@/lib/calculators/burn-rate'
+import { getDamodaranBenchmark } from '@/lib/data/sector-mapping'
+import { runMonteCarloSimulation } from './monte-carlo.worker'
 import { calculateDCF } from './dcf'
 import { calculatePWERM } from './pwerm'
 import { calculateRevenueMultiple } from './revenue-multiple'
@@ -16,15 +19,7 @@ import { getIBCRecovery } from '@/lib/data/ibc-recovery'
 /**
  * Main valuation orchestrator.
  * Runs all 10 methods across 3 approaches + VC methods,
- * computes weighted composite, confidence score.
- *
- * Income: DCF, PWERM
- * Market: Revenue Multiple, EV/EBITDA Multiple, Comparable Transaction
- * Asset/Cost: NAV, Replacement Cost
- * VC/Startup: Scorecard, Berkus, Risk Factor
- *
- * Monte Carlo is NOT run here (it runs async in a Web Worker).
- * The caller should trigger MC separately and attach results.
+ * computes weighted composite, confidence score, and Monte Carlo simulation.
  */
 export function calculateValuation(inputs: WizardInputs): ValuationResult {
   const derived = computeDerivedFields({
@@ -63,6 +58,20 @@ export function calculateValuation(inputs: WizardInputs): ValuationResult {
     compositeValue = qualifying.reduce((sum, m) => sum + m.value * m.confidence, 0) / totalWeight
   }
 
+  // Monte Carlo simulation (synchronous — ~50-100ms for 10K iterations)
+  const benchmark = getDamodaranBenchmark(inputs.sector)
+  const terminalGrowth = MARKET_CONSTANTS.GDP_GROWTH_CAP
+  const rawWacc = benchmark.wacc ?? 0.12
+  const mcWacc = rawWacc <= terminalGrowth ? terminalGrowth + 0.02 : rawWacc
+  const mcGrossMargin = inputs.gross_margin_pct > 0 ? inputs.gross_margin_pct / 100 : 0.10
+  const mcResult = runMonteCarloSimulation({
+    baseRevenue: inputs.annual_revenue > 0 ? inputs.annual_revenue : 1_000_000,
+    growthRate: inputs.revenue_growth_pct / 100,
+    grossMargin: mcGrossMargin,
+    wacc: mcWacc,
+    iterations: 10000,
+  })
+
   // Confidence score
   const confidenceScore = calculateConfidenceScore(inputs, methods)
 
@@ -72,10 +81,10 @@ export function calculateValuation(inputs: WizardInputs): ValuationResult {
   return {
     methods,
     composite_value: compositeValue,
-    composite_low: compositeValue * 0.7,  // placeholder — MC will replace
-    composite_high: compositeValue * 1.3, // placeholder — MC will replace
+    composite_low: mcResult.p10,
+    composite_high: mcResult.p90,
     confidence_score: confidenceScore,
-    monte_carlo: null, // runs async in browser
+    monte_carlo: mcResult,
     ibc_recovery_range: {
       low: ibcRecovery.p25,
       high: ibcRecovery.p75,
