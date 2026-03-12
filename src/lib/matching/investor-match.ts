@@ -30,7 +30,7 @@ export function matchInvestors(query: MatchQuery): InvestorMatch[] {
   const candidates = INVESTORS.filter(investor => {
     const stageMatch = investor.stages.includes(query.stage)
     const sectorMatch = investor.sectors.includes(query.sector) ||
-      adjacentSectors.some(adj => investor.sectors.includes(adj))
+      adjacentSectors.some(adj => investor.sectors.includes(adj as StartupCategory))
     const sizeMatch = query.target_raise_cr >= investor.check_size_min_cr * 0.5 &&
       query.target_raise_cr <= investor.check_size_max_cr * 2
     return stageMatch && sectorMatch && sizeMatch
@@ -50,7 +50,7 @@ export function matchInvestors(query: MatchQuery): InvestorMatch[] {
     }
 
     // Adjacent sector match: +1 (only if no exact match)
-    const hasAdjacent = adjacentSectors.some(adj => investor.sectors.includes(adj))
+    const hasAdjacent = adjacentSectors.some(adj => investor.sectors.includes(adj as StartupCategory))
     if (hasAdjacent && !investor.sectors.includes(query.sector)) {
       score += 1
       reasons.push('Active in adjacent sector')

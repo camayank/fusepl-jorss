@@ -28,7 +28,7 @@ export const COMPARABLE_COMPANIES: ComparableCompany[] = [
   { name: 'Leadsquared', sector: 'saas', stage_at_round: 'series_a', last_round_size_cr: 120, valuation_cr: 2500, revenue_cr: 300, year: 2023, city: 'Bangalore', business_model: 'saas_subscription', source: 'Tracxn' },
 ]
 
-const STAGE_ORDER: string[] = ['idea', 'pre_seed', 'seed', 'pre_series_a', 'series_a', 'series_b', 'series_c_plus']
+const STAGE_ORDER: Stage[] = ['idea', 'pre_seed', 'seed', 'pre_series_a', 'series_a', 'series_b', 'series_c_plus']
 
 /**
  * Find top N comparable companies for given sector and stage.

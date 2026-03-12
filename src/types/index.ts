@@ -242,15 +242,24 @@ export interface CapTableResult {
 
 export interface Investor {
   name: string
-  type: 'vc' | 'pe' | 'angel' | 'family_office' | 'cvc'
-  sectors: string[]
-  stages: string[]
+  type: 'vc' | 'pe' | 'angel' | 'angel_network' | 'family_office' | 'cvc' | 'government'
+  sectors: StartupCategory[]
+  stages: Stage[]
   check_size_min_cr: number
   check_size_max_cr: number
   city: string
   portfolio_highlights: string[]
   last_active_year: number
   website: string
+  sweet_spot_cr?: number | null
+  deals_per_year?: number | null
+  follow_on_rate?: number | null
+  board_seat?: boolean
+  lead_investor?: boolean
+  co_invest_with?: string[]
+  geographic_focus?: string[]
+  thesis_summary?: string | null
+  contact_method?: 'website' | 'linkedin' | 'referral_only'
 }
 
 export interface InvestorMatch {
@@ -265,15 +274,24 @@ export interface InvestorMatch {
 
 export interface ComparableCompany {
   name: string
-  sector: string
-  stage_at_round: string
+  sector: StartupCategory
+  stage_at_round: Stage
   last_round_size_cr: number
   valuation_cr: number
   revenue_cr: number | null
   year: number
   city: string
-  business_model: string
+  business_model: BusinessModel
   source: string
+  revenue_multiple?: number | null
+  ebitda_cr?: number | null
+  ebitda_multiple?: number | null
+  arr_cr?: number | null
+  employees?: number | null
+  founded_year?: number | null
+  deal_type?: 'primary' | 'secondary' | 'ipo' | 'acquisition'
+  currency_original?: 'INR' | 'USD'
+  notes?: string | null
 }
 
 export interface ListedComparable {

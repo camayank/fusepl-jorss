@@ -1,4 +1,4 @@
-import type { Investor } from '@/types'
+import type { Investor, StartupCategory, Stage } from '@/types'
 
 export const INVESTORS: Investor[] = [
   {
