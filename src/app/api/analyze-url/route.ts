@@ -1,46 +1,200 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Sector detection keywords
+// Sector detection keywords — maps to StartupCategory values
 const SECTOR_KEYWORDS: Record<string, string[]> = {
-  saas: ['saas', 'software', 'cloud', 'platform', 'api', 'dashboard', 'analytics', 'crm', 'erp'],
-  fintech_payments: ['payment', 'fintech', 'upi', 'wallet', 'razorpay', 'paytm'],
+  // Fintech
+  fintech_payments: ['payment', 'upi', 'wallet', 'razorpay', 'paytm', 'cashfree', 'stripe'],
   fintech_insurance: ['insurance', 'insurtech', 'policy', 'claim', 'underwriting'],
-  fintech_banking: ['bank', 'neobank', 'account', 'deposit', 'savings'],
+  fintech_banking: ['bank', 'neobank', 'account', 'deposit', 'savings', 'banking'],
   fintech_lending: ['lending', 'bnpl', 'credit', 'loan', 'nbfc', 'microfinance'],
   fintech_wealthtech: ['wealth', 'advisory', 'invest', 'portfolio', 'mutual fund', 'robo-advisor', 'trading'],
-  d2c: ['brand', 'd2c', 'direct', 'consumer', 'beauty', 'skincare'],
-  edtech: ['education', 'learning', 'course', 'teach', 'skill', 'edtech', 'tutor', 'academy'],
-  healthtech_products: ['health', 'medical', 'device', 'diagnostic', 'medtech'],
-  healthtech_services: ['telemedicine', 'hospital', 'pharmacy', 'doctor', 'healthcare', 'wellness'],
-  ecommerce_general: ['shop', 'store', 'ecommerce', 'buy', 'sell', 'cart'],
-  ecommerce_grocery: ['grocery', 'quick commerce', 'instant delivery', 'dark store'],
-  ecommerce_fashion: ['fashion', 'apparel', 'clothing', 'lifestyle', 'accessories', 'jewellery'],
-  marketplace: ['marketplace', 'connect', 'match', 'aggregator', 'two-sided'],
-  agritech: ['agri', 'farm', 'crop', 'agriculture', 'seed', 'harvest'],
-  logistics: ['logistics', 'shipping', 'warehouse', 'fleet', 'supply chain', 'last mile'],
-  cleantech: ['solar', 'energy', 'clean', 'ev', 'electric', 'carbon', 'green', 'renewable'],
-  deeptech: ['robotics', 'deep tech', 'computer vision', 'quantum', 'semiconductor'],
-  ai_ml: ['ai', 'machine learning', 'artificial intelligence', 'nlp', 'genai', 'llm', 'generative'],
-  gaming: ['game', 'gaming', 'esport', 'entertainment', 'stream'],
-  real_estate_tech: ['property', 'real estate', 'proptech', 'construction', 'home'],
-  auto_mobility: ['auto', 'car', 'ride', 'mobility', 'vehicle'],
-  manufacturing: ['manufacture', 'factory', 'industrial', 'iot', 'machinery'],
-  media_advertising: ['media', 'advertising', 'adtech', 'content', 'publish', 'marketing'],
-  telecom: ['telecom', 'connectivity', 'isp', 'broadband', 'network'],
-  travel_hospitality: ['travel', 'hotel', 'booking', 'tourism', 'hospitality', 'trip'],
-  social_impact: ['social impact', 'ngo', 'non-profit', 'impact', 'sustainability'],
-  b2b_services: ['b2b', 'enterprise', 'consulting'],
-  legaltech: ['legal', 'law', 'contract', 'compliance', 'regtech', 'regulatory'],
-  hrtech: ['hr', 'human resource', 'payroll', 'recruitment', 'hiring', 'talent'],
-  foodtech: ['food', 'kitchen', 'meal', 'restaurant', 'chef', 'recipe', 'cloud kitchen'],
-  spacetech: ['space', 'satellite', 'aerospace', 'launch', 'orbit'],
-  biotech: ['biotech', 'genomics', 'pharma', 'drug discovery', 'life science', 'clinical trial'],
-  cybersecurity: ['security', 'cyber', 'threat', 'encryption', 'firewall', 'identity'],
-  web3_blockchain: ['blockchain', 'web3', 'crypto', 'defi', 'nft', 'token', 'decentralized'],
-  drone_tech: ['drone', 'uav', 'unmanned', 'aerial'],
-  retail_tech: ['retail', 'pos', 'point of sale', 'store tech', 'omnichannel'],
-  sportstech: ['sport', 'fitness', 'gym', 'athlete', 'wearable', 'training'],
+  fintech_accounting: ['accounting', 'invoicing', 'gst', 'bookkeeping', 'tally'],
+  fintech_credit_scoring: ['credit score', 'underwriting', 'risk analytics', 'bureau'],
+  fintech_remittance: ['remittance', 'forex', 'cross-border', 'international transfer'],
+  fintech_embedded: ['embedded finance', 'banking as a service', 'baas'],
+  fintech_neobroking: ['broking', 'stock trading', 'zerodha', 'demat', 'broker'],
+  fintech_regtech: ['regtech', 'kyc', 'aml', 'compliance automation'],
+  fintech_open_banking: ['open banking', 'account aggregat', 'aa framework'],
+  fintech_microfinance: ['microfinance', 'shg', 'rural credit', 'micro-lending'],
+  fintech_collections: ['collection', 'debt recovery', 'npa', 'recovery'],
+  // HealthTech
+  healthtech_products: ['medical device', 'diagnostic', 'medtech', 'health device'],
+  healthtech_services: ['telemedicine', 'hospital', 'doctor', 'healthcare platform'],
+  healthtech_mental: ['mental health', 'therapy', 'counseling', 'psycholog', 'mindful'],
+  healthtech_fitness: ['fitness', 'wellness', 'gym', 'workout', 'yoga'],
+  healthtech_pharma: ['pharmacy', 'medicine delivery', 'drug', 'e-pharmacy'],
+  healthtech_genomics: ['genomics', 'genetic testing', 'dna', 'precision medicine'],
+  healthtech_hospital_mgmt: ['hospital management', 'hms', 'opd', 'ipd', 'clinic management'],
+  healthtech_elderly: ['elderly', 'senior care', 'geriatric', 'old age'],
+  healthtech_fertility: ['fertility', 'ivf', 'reproductive', 'pregnancy'],
+  healthtech_diagnostics: ['diagnostic lab', 'pathology', 'imaging', 'radiology', 'blood test'],
+  // EdTech
+  edtech_k12: ['school', 'k-12', 'k12', 'cbse', 'icse', 'student'],
+  edtech_higher_ed: ['university', 'college', 'degree', 'mooc', 'higher education'],
+  edtech_test_prep: ['test prep', 'jee', 'neet', 'upsc', 'cat prep', 'coaching'],
+  edtech_upskilling: ['upskilling', 'reskilling', 'professional course', 'skill development'],
+  edtech_language: ['language learning', 'english', 'vernacular', 'translation'],
+  edtech_coding: ['coding', 'bootcamp', 'stem', 'programming', 'whitehat'],
+  edtech_corporate: ['corporate training', 'lms', 'l&d', 'employee training'],
+  edtech_early_childhood: ['preschool', 'early learning', 'montessori', 'nursery'],
+  edtech_study_abroad: ['study abroad', 'overseas education', 'visa', 'university admission'],
+  // E-Commerce
+  ecommerce_general: ['shop', 'store', 'ecommerce', 'buy online', 'cart'],
+  ecommerce_grocery: ['grocery', 'quick commerce', 'instant delivery', 'dark store', 'blinkit'],
+  ecommerce_fashion: ['fashion', 'apparel', 'clothing', 'accessories', 'jewellery'],
+  ecommerce_electronics: ['electronics', 'gadget', 'mobile phone', 'laptop', 'refurbished'],
+  ecommerce_luxury: ['luxury', 'premium brand', 'designer', 'authenticated'],
+  ecommerce_beauty: ['beauty', 'cosmetic', 'skincare', 'makeup', 'personal care'],
+  ecommerce_furniture: ['furniture', 'home decor', 'interior', 'furnishing'],
+  ecommerce_b2b: ['b2b marketplace', 'wholesale', 'industrial procurement', 'indiamart'],
+  ecommerce_recommerce: ['resale', 'refurbished', 'second hand', 'pre-owned', 'recommerce'],
+  // SaaS
+  saas_horizontal: ['saas', 'crm', 'erp', 'project management', 'productivity'],
+  saas_vertical: ['vertical saas', 'industry specific', 'niche saas'],
+  saas_devtools: ['developer tool', 'ci/cd', 'devops', 'api platform', 'sdk'],
+  saas_martech: ['marketing automation', 'email marketing', 'seo tool', 'martech'],
+  saas_salestech: ['sales enablement', 'revenue intelligence', 'salestech'],
+  saas_collaboration: ['collaboration', 'team', 'whiteboard', 'workspace'],
+  saas_security: ['cloud security', 'iam', 'compliance saas', 'security saas'],
+  saas_analytics: ['analytics', 'business intelligence', 'dashboard', 'data visualization'],
+  saas_nocode: ['no-code', 'low-code', 'nocode', 'workflow automation', 'app builder'],
+  saas_communication: ['cpaas', 'messaging api', 'notification', 'communication platform'],
+  // FoodTech
+  foodtech_delivery: ['food delivery', 'swiggy', 'zomato', 'food order'],
+  foodtech_cloud_kitchen: ['cloud kitchen', 'ghost kitchen', 'virtual restaurant'],
+  foodtech_processing: ['food processing', 'food manufacturing', 'packaged food'],
+  foodtech_beverages: ['beverage', 'craft drink', 'juice', 'kombucha', 'coffee'],
+  foodtech_nutrition: ['nutrition', 'supplement', 'health food', 'protein', 'superfood'],
+  foodtech_restaurant: ['restaurant management', 'table booking', 'kitchen os', 'pos restaurant'],
+  // Logistics
+  logistics_last_mile: ['last mile', 'courier', 'hyperlocal delivery', 'delhivery'],
+  logistics_warehousing: ['warehouse', 'fulfillment', 'inventory management'],
+  logistics_cold_chain: ['cold chain', 'cold storage', 'temperature controlled'],
+  logistics_freight: ['freight', 'trucking', 'full truck', 'ftl', 'ptl'],
+  logistics_reverse: ['reverse logistics', 'returns management', 'reverse supply'],
+  logistics_3pl: ['3pl', 'third party logistics', 'supply chain orchestration'],
+  // CleanTech
+  cleantech_solar: ['solar', 'rooftop solar', 'solar panel', 'photovoltaic'],
+  cleantech_ev: ['ev charging', 'battery swapping', 'charging station', 'electric vehicle infra'],
+  cleantech_battery: ['battery', 'energy storage', 'solid state', 'lithium'],
+  cleantech_waste: ['waste management', 'recycling', 'waste-to-energy', 'sewage'],
+  cleantech_carbon: ['carbon credit', 'carbon capture', 'carbon offset', 'climate'],
+  cleantech_water: ['water purification', 'wastewater', 'water management', 'desalination'],
+  cleantech_hydrogen: ['hydrogen', 'fuel cell', 'electrolyzer', 'green hydrogen'],
+  cleantech_biomass: ['biomass', 'biofuel', 'biogas', 'bioenergy', 'pellet'],
+  // AI/ML
+  ai_conversational: ['chatbot', 'voice assistant', 'conversational ai', 'virtual assistant'],
+  ai_computer_vision: ['computer vision', 'image recognition', 'video analytics', 'ocr'],
+  ai_genai: ['generative ai', 'llm', 'large language', 'gpt', 'genai', 'copilot'],
+  ai_data_analytics: ['ai analytics', 'predictive', 'data platform', 'data science'],
+  ai_mlops: ['mlops', 'ml pipeline', 'model deployment', 'experiment tracking'],
+  ai_enterprise: ['enterprise ai', 'ai automation', 'decision intelligence'],
+  // DeepTech
+  deeptech_robotics: ['robot', 'autonomous', 'drone delivery', 'service robot'],
+  deeptech_quantum: ['quantum', 'qubit', 'quantum computing', 'quantum algorithm'],
+  deeptech_semiconductor: ['semiconductor', 'chip', 'vlsi', 'fabless', 'risc-v'],
+  deeptech_iot: ['iot', 'connected device', 'edge computing', 'sensor network'],
+  deeptech_ar_vr: ['augmented reality', 'virtual reality', 'mixed reality', 'metaverse', 'xr'],
+  deeptech_nanotech: ['nanotechnology', 'nanomaterial', 'nano-medicine'],
+  // AgriTech
+  agritech_precision: ['precision agriculture', 'farm sensor', 'crop monitoring', 'smart farm'],
+  agritech_marketplace: ['farm to fork', 'mandi', 'agri marketplace', 'farm produce'],
+  agritech_input: ['seed', 'fertilizer', 'crop advisory', 'agri input'],
+  agritech_post_harvest: ['cold storage', 'post harvest', 'grain storage', 'food supply chain'],
+  agritech_dairy: ['dairy', 'cattle', 'livestock', 'aquaculture', 'poultry'],
+  // PropTech
+  proptech_rental: ['rental', 'tenant', 'pg', 'paying guest', 'housing'],
+  proptech_construction: ['construction management', 'bim', 'site monitoring', 'concrete'],
+  proptech_coworking: ['coworking', 'flexible office', 'managed office', 'shared workspace'],
+  proptech_facility: ['facility management', 'building automation', 'maintenance'],
+  proptech_commercial: ['commercial real estate', 'office space', 'cre', 'leasing'],
+  // Auto
+  auto_ev: ['electric vehicle', 'ev manufacturer', 'electric scooter', 'electric bike', 'ola electric'],
+  auto_fleet: ['fleet management', 'telematics', 'fleet tracking', 'fleet optimization'],
+  auto_ride_hailing: ['ride sharing', 'ride hailing', 'cab', 'ola', 'uber', 'micro-mobility'],
+  auto_parts: ['auto parts', 'car service', 'aftermarket', 'vehicle repair'],
+  auto_connected: ['connected car', 'adas', 'v2x', 'vehicle intelligence'],
+  // Media
+  media_ott: ['streaming', 'ott', 'video platform', 'audio stream', 'netflix'],
+  media_creator: ['creator', 'influencer', 'fan engagement', 'creator economy'],
+  media_adtech: ['programmatic', 'ad network', 'attribution', 'advertising tech'],
+  media_news: ['digital news', 'content aggregat', 'media tech', 'journalism'],
+  media_podcast: ['podcast', 'audio content', 'vernacular audio'],
+  // Gaming
+  gaming_mobile: ['mobile game', 'hyper casual', 'game studio'],
+  gaming_esports: ['esport', 'tournament', 'competitive gaming'],
+  gaming_fantasy: ['fantasy sport', 'dream11', 'prediction', 'skill-based gaming'],
+  gaming_casual: ['casual game', 'social gaming', 'puzzle game', 'board game'],
+  // Travel
+  travel_booking: ['travel booking', 'flight', 'hotel booking', 'ota', 'makemytrip'],
+  travel_experiences: ['activity booking', 'tour', 'local experience', 'adventure'],
+  travel_homestay: ['homestay', 'vacation rental', 'airbnb', 'staycation'],
+  travel_business: ['business travel', 'corporate travel', 'expense management'],
+  // Manufacturing
+  manufacturing_3d: ['3d printing', 'additive manufacturing', 'rapid prototyping'],
+  manufacturing_smart: ['smart factory', 'industry 4.0', 'industrial automation'],
+  manufacturing_textile: ['textile', 'garment', 'fabric', 'weaving'],
+  manufacturing_chemical: ['chemical', 'specialty chemical', 'formulation'],
+  manufacturing_electronics: ['electronics manufacturing', 'pcb', 'ems', 'contract manufacturing'],
+  // B2B
+  b2b_staffing: ['staffing', 'temp workforce', 'blue collar', 'manpower'],
+  b2b_consulting: ['consulting', 'fractional cxo', 'advisory platform'],
+  b2b_procurement: ['procurement', 'vendor management', 'sourcing platform'],
+  b2b_accounting: ['bookkeeping', 'cfo service', 'accounting platform'],
+  b2b_outsourcing: ['bpo', 'outsourcing', 'managed service', 'kpo'],
+  // LegalTech
+  legaltech_contracts: ['contract management', 'clm', 'e-signature', 'legal doc'],
+  legaltech_compliance: ['regulatory compliance', 'audit tool', 'policy management'],
+  legaltech_dispute: ['dispute resolution', 'arbitration', 'legal ai', 'court tech'],
+  // HRTech
+  hrtech_recruitment: ['recruitment', 'ats', 'hiring', 'job platform', 'talent acquisition'],
+  hrtech_payroll: ['payroll', 'benefits', 'pf', 'esi', 'compensation'],
+  hrtech_engagement: ['employee engagement', 'reward', 'culture platform', 'recognition'],
+  hrtech_gig: ['gig economy', 'freelancer', 'gig platform', 'independent contractor'],
+  // Cybersecurity
+  cybersecurity_identity: ['identity', 'authentication', 'sso', 'iam', 'biometric'],
+  cybersecurity_threat: ['threat intelligence', 'siem', 'endpoint security', 'soc'],
+  cybersecurity_cloud_sec: ['cloud security', 'casb', 'container security', 'devsecops'],
+  // Web3
+  web3_defi: ['defi', 'decentralized finance', 'dex', 'yield', 'staking'],
+  web3_nft: ['nft', 'digital collectible', 'tokeniz', 'non-fungible'],
+  web3_infra: ['blockchain infra', 'node', 'cross-chain', 'layer 2', 'web3 wallet'],
+  web3_dao: ['dao', 'governance', 'community treasury', 'decentralized organization'],
+  // SpaceTech
+  spacetech_satellite: ['satellite', 'small sat', 'satellite imagery', 'earth observation'],
+  spacetech_launch: ['launch vehicle', 'rocket', 'propulsion', 'orbital'],
+  spacetech_data: ['geospatial', 'space data', 'remote sensing'],
+  // BioTech
+  biotech_pharma: ['drug discovery', 'novel molecule', 'pharma r&d', 'therapeutic'],
+  biotech_genomics: ['genomics', 'gene therapy', 'crispr', 'genetic engineering'],
+  biotech_clinical: ['clinical trial', 'patient recruitment', 'cro', 'biomarker'],
+  biotech_agri: ['crop biotech', 'bio-pesticide', 'seed innovation', 'bio-fertilizer'],
+  // Drone
+  drone_commercial: ['drone', 'commercial uav', 'drone service', 'aerial survey'],
+  drone_defense: ['defense drone', 'military uav', 'counter-drone', 'defense tech'],
+  // Retail
+  retail_pos: ['pos', 'point of sale', 'billing software', 'retail management'],
+  retail_analytics: ['retail analytics', 'demand forecast', 'shelf intelligence', 'footfall'],
+  retail_omnichannel: ['omnichannel', 'o2o', 'unified commerce', 'online to offline'],
+  // SportsTech
+  sportstech_analytics: ['sports analytics', 'performance tracking', 'team analytics'],
+  sportstech_fitness: ['fitness app', 'gym management', 'home fitness', 'cult.fit'],
+  sportstech_wearables: ['fitness wearable', 'smart watch', 'performance tracker'],
+  // Standalone
   pet_care: ['pet', 'animal', 'veterinary', 'vet', 'dog', 'cat'],
+  social_impact: ['social impact', 'ngo', 'non-profit', 'impact invest', 'sustainability'],
+  telecom: ['telecom', 'isp', 'broadband', 'connectivity', 'network provider'],
+  wedding_tech: ['wedding', 'shaadi', 'matrimony', 'venue booking', 'wedding plan'],
+  beauty_tech: ['beauty tech', 'ar try-on', 'salon', 'spa management'],
+  govtech: ['government', 'civic tech', 'public sector', 'e-governance'],
+  event_tech: ['event management', 'ticketing', 'virtual event', 'conference'],
+  home_services: ['home service', 'plumbing', 'cleaning', 'repair', 'urban company'],
+  personal_finance: ['budgeting', 'expense tracking', 'financial literacy', 'money management'],
+  circular_economy: ['circular economy', 'upcycling', 'sustainable commerce'],
+  eldercare: ['elder care', 'senior living', 'assisted living'],
+  childcare: ['childcare', 'daycare', 'parenting', 'babysitting'],
+  marketplace: ['marketplace', 'aggregator', 'two-sided', 'platform connect'],
+  insurance_distribution: ['insurance aggregat', 'policy compar', 'insurance marketplace'],
 }
 
 function detectSector(text: string): string {
@@ -63,7 +217,6 @@ function detectSector(text: string): string {
 }
 
 function extractTeamSize(text: string): number | null {
-  // Look for team size mentions
   const patterns = [
     /(\d+)\s*\+?\s*(?:team|employees|people|members|engineers)/i,
     /team\s*(?:of|size)?\s*(\d+)/i,
@@ -84,6 +237,8 @@ function extractCity(text: string): string {
     'kolkata', 'pune', 'ahmedabad', 'jaipur', 'gurugram', 'gurgaon',
     'noida', 'lucknow', 'chandigarh', 'indore', 'kochi', 'coimbatore',
     'nagpur', 'visakhapatnam', 'bhubaneswar', 'thiruvananthapuram',
+    'surat', 'vadodara', 'mysore', 'mangalore', 'patna', 'ranchi',
+    'bhopal', 'dehradun', 'agra', 'varanasi', 'jodhpur', 'udaipur',
   ]
   const lower = text.toLowerCase()
   for (const city of indianCities) {
@@ -158,7 +313,7 @@ export async function POST(req: NextRequest) {
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
       .trim()
-      .slice(0, 10000) // Limit analysis to first 10K chars
+      .slice(0, 10000)
 
     // Extract metadata
     const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i)
@@ -179,7 +334,6 @@ export async function POST(req: NextRequest) {
 
     // Extract company name from title or og:title
     let companyName = ogTitle || title
-    // Remove common suffixes
     companyName = companyName
       .replace(/\s*[-|–—]\s*.*/g, '')
       .replace(/\s*\(.*?\)/g, '')

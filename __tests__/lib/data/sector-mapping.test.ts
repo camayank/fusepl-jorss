@@ -1,18 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { SECTOR_MAPPING, getSectorLabel, getDamodaranBenchmark, getAdjacentSectors } from '@/lib/data/sector-mapping'
-import type { StartupCategory } from '@/types'
+import { STARTUP_CATEGORIES } from '@/types'
 
 describe('sector-mapping', () => {
-  it('has mapping for all 25 startup categories', () => {
-    const categories: StartupCategory[] = [
-      'saas', 'fintech_payments', 'fintech_insurance', 'fintech_banking',
-      'd2c', 'edtech', 'healthtech_products', 'healthtech_services',
-      'ecommerce_general', 'ecommerce_grocery', 'marketplace', 'agritech',
-      'logistics', 'cleantech', 'deeptech', 'gaming', 'real_estate_tech',
-      'auto_mobility', 'manufacturing', 'media_advertising', 'telecom',
-      'travel_hospitality', 'social_impact', 'b2b_services', 'other',
-    ]
-    for (const cat of categories) {
+  it('has mapping for all startup categories', () => {
+    for (const cat of STARTUP_CATEGORIES) {
       expect(SECTOR_MAPPING[cat]).toBeDefined()
       expect(SECTOR_MAPPING[cat].label).toBeTruthy()
       expect(SECTOR_MAPPING[cat].primary_damodaran).toBeTruthy()
@@ -20,12 +12,12 @@ describe('sector-mapping', () => {
   })
 
   it('getSectorLabel returns human-readable label', () => {
-    expect(getSectorLabel('saas')).toBe('SaaS / Enterprise Software')
-    expect(getSectorLabel('fintech_payments')).toBe('Fintech — Payments & Lending')
+    expect(getSectorLabel('saas_horizontal')).toBe('SaaS — Horizontal')
+    expect(getSectorLabel('fintech_payments')).toBe('Fintech — Payments')
   })
 
   it('getDamodaranBenchmark returns benchmark for valid sector', () => {
-    const bm = getDamodaranBenchmark('saas')
+    const bm = getDamodaranBenchmark('saas_horizontal')
     expect(bm).toBeDefined()
     expect(bm.ev_revenue).toBeGreaterThan(0)
     expect(bm.wacc).toBeGreaterThan(0)
@@ -44,8 +36,8 @@ describe('sector-mapping', () => {
   })
 
   it('getAdjacentSectors returns array', () => {
-    const adj = getAdjacentSectors('saas')
-    expect(adj).toContain('fintech_payments')
-    expect(adj).toContain('marketplace')
+    const adj = getAdjacentSectors('saas_horizontal')
+    expect(adj).toContain('saas_collaboration')
+    expect(adj).toContain('saas_analytics')
   })
 })

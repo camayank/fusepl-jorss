@@ -4,7 +4,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Sequoia Capital India',
     type: 'vc',
-    sectors: ['saas', 'fintech_payments', 'healthtech_services', 'deeptech'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'healthtech_services', 'ai_enterprise'],
     stages: ['seed', 'series_a', 'series_b'],
     check_size_min_cr: 5,
     check_size_max_cr: 200,
@@ -16,7 +16,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Accel India',
     type: 'vc',
-    sectors: ['saas', 'fintech_payments', 'marketplace', 'deeptech'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'marketplace', 'ai_enterprise'],
     stages: ['seed', 'series_a'],
     check_size_min_cr: 3,
     check_size_max_cr: 100,
@@ -28,7 +28,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Blume Ventures',
     type: 'vc',
-    sectors: ['saas', 'd2c', 'edtech', 'healthtech_services', 'deeptech'],
+    sectors: ['saas_horizontal', 'ecommerce_beauty', 'edtech_upskilling', 'healthtech_services', 'ai_enterprise'],
     stages: ['pre_seed', 'seed'],
     check_size_min_cr: 1,
     check_size_max_cr: 15,
@@ -40,7 +40,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Nexus Venture Partners',
     type: 'vc',
-    sectors: ['fintech_payments', 'ecommerce_general', 'agritech', 'logistics'],
+    sectors: ['fintech_payments', 'ecommerce_general', 'agritech_marketplace', 'logistics_last_mile'],
     stages: ['seed', 'series_a', 'series_b'],
     check_size_min_cr: 5,
     check_size_max_cr: 150,
@@ -52,7 +52,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'India Quotient',
     type: 'vc',
-    sectors: ['d2c', 'fintech_payments', 'edtech', 'healthtech_services'],
+    sectors: ['ecommerce_beauty', 'fintech_payments', 'edtech_upskilling', 'healthtech_services'],
     stages: ['pre_seed', 'seed'],
     check_size_min_cr: 0.5,
     check_size_max_cr: 10,
@@ -64,7 +64,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Matrix Partners India',
     type: 'vc',
-    sectors: ['fintech_payments', 'saas', 'ecommerce_general', 'd2c'],
+    sectors: ['fintech_payments', 'saas_horizontal', 'ecommerce_general', 'ecommerce_beauty'],
     stages: ['seed', 'series_a', 'series_b'],
     check_size_min_cr: 5,
     check_size_max_cr: 100,
@@ -76,7 +76,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Peak XV Partners (Surge)',
     type: 'vc',
-    sectors: ['saas', 'fintech_payments', 'marketplace', 'healthtech_services'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'marketplace', 'healthtech_services'],
     stages: ['pre_seed', 'seed'],
     check_size_min_cr: 1,
     check_size_max_cr: 15,
@@ -88,7 +88,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Elevation Capital',
     type: 'vc',
-    sectors: ['saas', 'fintech_payments', 'ecommerce_general', 'edtech'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'ecommerce_general', 'edtech_upskilling'],
     stages: ['seed', 'series_a', 'series_b'],
     check_size_min_cr: 5,
     check_size_max_cr: 100,
@@ -100,7 +100,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Lightspeed India',
     type: 'vc',
-    sectors: ['saas', 'fintech_payments', 'healthtech_products', 'ecommerce_general'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'healthtech_products', 'ecommerce_general'],
     stages: ['seed', 'series_a'],
     check_size_min_cr: 3,
     check_size_max_cr: 80,
@@ -112,7 +112,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Kalaari Capital',
     type: 'vc',
-    sectors: ['d2c', 'fintech_payments', 'healthtech_services', 'gaming'],
+    sectors: ['ecommerce_beauty', 'fintech_payments', 'healthtech_services', 'gaming_mobile'],
     stages: ['seed', 'series_a'],
     check_size_min_cr: 3,
     check_size_max_cr: 50,
@@ -124,7 +124,7 @@ export const INVESTORS: Investor[] = [
   {
     name: '100X.VC',
     type: 'angel',
-    sectors: ['saas', 'deeptech', 'd2c', 'fintech_payments', 'healthtech_services'],
+    sectors: ['saas_horizontal', 'ai_enterprise', 'ecommerce_beauty', 'fintech_payments', 'healthtech_services'],
     stages: ['idea', 'pre_seed'],
     check_size_min_cr: 0.25,
     check_size_max_cr: 1.25,
@@ -136,7 +136,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Titan Capital',
     type: 'angel',
-    sectors: ['saas', 'fintech_payments', 'edtech', 'marketplace'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'edtech_upskilling', 'marketplace'],
     stages: ['pre_seed', 'seed'],
     check_size_min_cr: 0.5,
     check_size_max_cr: 5,
@@ -148,7 +148,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Chiratae Ventures',
     type: 'vc',
-    sectors: ['saas', 'healthtech_products', 'cleantech', 'manufacturing'],
+    sectors: ['saas_horizontal', 'healthtech_products', 'cleantech_solar', 'manufacturing_smart'],
     stages: ['seed', 'series_a', 'series_b'],
     check_size_min_cr: 5,
     check_size_max_cr: 80,
@@ -160,7 +160,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Omidyar Network India',
     type: 'vc',
-    sectors: ['fintech_payments', 'social_impact', 'edtech', 'agritech'],
+    sectors: ['fintech_payments', 'social_impact', 'edtech_upskilling', 'agritech_marketplace'],
     stages: ['seed', 'series_a'],
     check_size_min_cr: 2,
     check_size_max_cr: 30,
@@ -172,7 +172,7 @@ export const INVESTORS: Investor[] = [
   {
     name: 'Stellaris Venture Partners',
     type: 'vc',
-    sectors: ['saas', 'fintech_payments', 'marketplace', 'b2b_services'],
+    sectors: ['saas_horizontal', 'fintech_payments', 'marketplace', 'b2b_consulting'],
     stages: ['seed', 'series_a'],
     check_size_min_cr: 3,
     check_size_max_cr: 40,

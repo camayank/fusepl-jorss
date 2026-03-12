@@ -24,7 +24,7 @@ describe('computeDerivedFields', () => {
       ltv: 5000,
       patents_count: 2,
       stage: 'seed',
-      sector: 'saas',
+      sector: 'saas_horizontal',
     })
     expect(derived.runway_months).toBe(12)
     expect(derived.ltv_cac_ratio).toBe(5)

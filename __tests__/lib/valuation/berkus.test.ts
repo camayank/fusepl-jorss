@@ -4,7 +4,7 @@ import type { WizardInputs, DerivedFields } from '@/types'
 
 function makeInputs(overrides: Partial<WizardInputs> = {}): WizardInputs {
   return {
-    company_name: 'Test Co', sector: 'saas', stage: 'seed',
+    company_name: 'Test Co', sector: 'saas_horizontal', stage: 'seed',
     business_model: 'saas_subscription', city: 'Bangalore', founding_year: 2023,
     team_size: 5, founder_experience: 4, domain_expertise: 4,
     previous_exits: true, technical_cofounder: true, key_hires: ['cto'],

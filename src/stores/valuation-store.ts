@@ -6,7 +6,7 @@ import type { WizardInputs, ValuationResult, ValuationPurpose } from '@/types'
 
 const DEFAULT_INPUTS: WizardInputs = {
   company_name: '',
-  sector: 'saas',
+  sector: 'saas_horizontal',
   stage: 'seed',
   business_model: 'saas_subscription',
   city: '',

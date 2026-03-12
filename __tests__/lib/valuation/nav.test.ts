@@ -4,7 +4,7 @@ import type { WizardInputs, DerivedFields } from '@/types'
 
 function makeInputs(overrides: Partial<WizardInputs> = {}): WizardInputs {
   return {
-    company_name: 'Test Co', sector: 'saas', stage: 'seed',
+    company_name: 'Test Co', sector: 'saas_horizontal', stage: 'seed',
     business_model: 'saas_subscription', city: 'Bangalore', founding_year: 2023,
     team_size: 5, founder_experience: 3, domain_expertise: 3,
     previous_exits: false, technical_cofounder: true, key_hires: [],
@@ -57,7 +57,7 @@ describe('calculateNAV', () => {
   })
 
   it('applies sector-specific tech multiplier', () => {
-    const saas = calculateNAV(makeInputs({ sector: 'saas', dev_stage: 'mvp' }), makeDerived())
+    const saas = calculateNAV(makeInputs({ sector: 'saas_horizontal', dev_stage: 'mvp' }), makeDerived())
     const mfg = calculateNAV(makeInputs({ sector: 'manufacturing', dev_stage: 'mvp' }), makeDerived())
     // Hardware sectors get 2.0x tech multiplier vs software 1.5x
     expect(mfg.value).toBeGreaterThan(saas.value)

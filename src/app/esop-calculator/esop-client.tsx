@@ -13,7 +13,7 @@ import type { StartupCategory, ESOPResult } from '@/types'
 import { formatINR } from '@/lib/utils'
 
 export function ESOPClient() {
-  const [sector, setSector] = useState<StartupCategory>('saas')
+  const [sector, setSector] = useState<StartupCategory>('saas_horizontal')
   const [companyValuation, setCompanyValuation] = useState(100_000_000)
   const [esopPct, setEsopPct] = useState(10)
   const [timeToLiquidity, setTimeToLiquidity] = useState(4)

@@ -3,7 +3,7 @@ import { matchInvestors } from '@/lib/matching/investor-match'
 
 describe('matchInvestors', () => {
   const baseQuery = {
-    sector: 'saas' as const,
+    sector: 'saas_horizontal' as const,
     stage: 'seed' as const,
     city: 'Bangalore',
     target_raise_cr: 5,
@@ -26,7 +26,7 @@ describe('matchInvestors', () => {
   })
 
   it('gives +3 for exact sector match', () => {
-    const matches = matchInvestors({ ...baseQuery, sector: 'saas' })
+    const matches = matchInvestors({ ...baseQuery, sector: 'saas_horizontal' })
     const hasSectorMatch = matches.some(m =>
       m.reasons.some(r => r.includes('sector'))
     )
@@ -34,7 +34,7 @@ describe('matchInvestors', () => {
   })
 
   it('gives +1 for adjacent sector match', () => {
-    const matches = matchInvestors({ ...baseQuery, sector: 'agritech' })
+    const matches = matchInvestors({ ...baseQuery, sector: 'agritech_marketplace' })
     expect(matches.length).toBeGreaterThan(0)
   })
 
@@ -62,7 +62,7 @@ describe('matchInvestors', () => {
 
   it('returns empty array if no investors match', () => {
     const matches = matchInvestors({
-      sector: 'auto_mobility',
+      sector: 'auto_ev',
       stage: 'series_c_plus',
       city: 'Patna',
       target_raise_cr: 5000,

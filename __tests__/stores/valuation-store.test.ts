@@ -10,7 +10,7 @@ describe('useValuationStore', () => {
     const state = useValuationStore.getState()
     expect(state.currentStep).toBe(1)
     expect(state.inputs.company_name).toBe('')
-    expect(state.inputs.sector).toBe('saas')
+    expect(state.inputs.sector).toBe('saas_horizontal')
     expect(state.result).toBeNull()
   })
 

@@ -6,27 +6,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { STARTUP_CATEGORIES, STAGES, type StartupCategory, type Stage, type DealCheckInput, type DealCheckResult } from '@/types'
+import { STARTUP_CATEGORIES, CATEGORY_LABELS, STAGES, type StartupCategory, type Stage, type DealCheckInput, type DealCheckResult } from '@/types'
 import { computeDealCheck } from '@/lib/deal-check'
 import { formatINR } from '@/lib/utils'
-
-const SECTOR_LABELS: Partial<Record<StartupCategory, string>> = {
-  saas: 'SaaS',
-  fintech_payments: 'Fintech (Payments)',
-  fintech_insurance: 'Fintech (Insurance)',
-  fintech_banking: 'Fintech (Banking)',
-  d2c: 'D2C',
-  edtech: 'EdTech',
-  healthtech_products: 'HealthTech (Products)',
-  healthtech_services: 'HealthTech (Services)',
-  ecommerce_general: 'E-Commerce',
-  marketplace: 'Marketplace',
-  agritech: 'AgriTech',
-  logistics: 'Logistics',
-  deeptech: 'DeepTech',
-  auto_mobility: 'Auto/Mobility',
-  other: 'Other',
-}
 
 const STAGE_LABELS: Record<Stage, string> = {
   idea: 'Idea',
@@ -47,7 +29,7 @@ const VERDICT_COLORS = {
 
 export default function DealCheckPage() {
   const [input, setInput] = useState<DealCheckInput>({
-    sector: 'saas',
+    sector: 'saas_horizontal',
     stage: 'seed',
     revenue_cr: 0,
     growth_pct: 0,
@@ -89,7 +71,7 @@ export default function DealCheckPage() {
                   <SelectContent>
                     {STARTUP_CATEGORIES.map((s) => (
                       <SelectItem key={s} value={s}>
-                        {SECTOR_LABELS[s] || s}
+                        {CATEGORY_LABELS[s]}
                       </SelectItem>
                     ))}
                   </SelectContent>

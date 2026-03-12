@@ -3,58 +3,280 @@
 // ============================================================
 
 export const STARTUP_CATEGORIES = [
-  'saas', 'fintech_payments', 'fintech_insurance', 'fintech_banking', 'fintech_lending',
-  'fintech_wealthtech', 'd2c', 'edtech', 'healthtech_products', 'healthtech_services',
-  'ecommerce_general', 'ecommerce_grocery', 'ecommerce_fashion', 'marketplace',
-  'agritech', 'logistics', 'cleantech', 'deeptech', 'ai_ml', 'gaming',
-  'real_estate_tech', 'auto_mobility', 'manufacturing', 'media_advertising',
-  'telecom', 'travel_hospitality', 'social_impact', 'b2b_services', 'legaltech',
-  'hrtech', 'foodtech', 'spacetech', 'biotech', 'cybersecurity', 'web3_blockchain',
-  'drone_tech', 'retail_tech', 'sportstech', 'pet_care', 'other',
+  // Fintech (14)
+  'fintech_payments', 'fintech_insurance', 'fintech_banking', 'fintech_lending',
+  'fintech_wealthtech', 'fintech_accounting', 'fintech_credit_scoring', 'fintech_remittance',
+  'fintech_embedded', 'fintech_neobroking', 'fintech_regtech', 'fintech_open_banking',
+  'fintech_microfinance', 'fintech_collections',
+  // HealthTech (10)
+  'healthtech_products', 'healthtech_services', 'healthtech_mental', 'healthtech_fitness',
+  'healthtech_pharma', 'healthtech_genomics', 'healthtech_hospital_mgmt', 'healthtech_elderly',
+  'healthtech_fertility', 'healthtech_diagnostics',
+  // EdTech (9)
+  'edtech_k12', 'edtech_higher_ed', 'edtech_test_prep', 'edtech_upskilling',
+  'edtech_language', 'edtech_coding', 'edtech_corporate', 'edtech_early_childhood',
+  'edtech_study_abroad',
+  // E-Commerce (9)
+  'ecommerce_general', 'ecommerce_grocery', 'ecommerce_fashion', 'ecommerce_electronics',
+  'ecommerce_luxury', 'ecommerce_beauty', 'ecommerce_furniture', 'ecommerce_b2b',
+  'ecommerce_recommerce',
+  // SaaS (10)
+  'saas_horizontal', 'saas_vertical', 'saas_devtools', 'saas_martech', 'saas_salestech',
+  'saas_collaboration', 'saas_security', 'saas_analytics', 'saas_nocode', 'saas_communication',
+  // FoodTech (6)
+  'foodtech_delivery', 'foodtech_cloud_kitchen', 'foodtech_processing', 'foodtech_beverages',
+  'foodtech_nutrition', 'foodtech_restaurant',
+  // Logistics (6)
+  'logistics_last_mile', 'logistics_warehousing', 'logistics_cold_chain', 'logistics_freight',
+  'logistics_reverse', 'logistics_3pl',
+  // CleanTech (8)
+  'cleantech_solar', 'cleantech_ev', 'cleantech_battery', 'cleantech_waste',
+  'cleantech_carbon', 'cleantech_water', 'cleantech_hydrogen', 'cleantech_biomass',
+  // AI/ML (6)
+  'ai_conversational', 'ai_computer_vision', 'ai_genai', 'ai_data_analytics',
+  'ai_mlops', 'ai_enterprise',
+  // DeepTech (6)
+  'deeptech_robotics', 'deeptech_quantum', 'deeptech_semiconductor', 'deeptech_iot',
+  'deeptech_ar_vr', 'deeptech_nanotech',
+  // AgriTech (5)
+  'agritech_precision', 'agritech_marketplace', 'agritech_input', 'agritech_post_harvest',
+  'agritech_dairy',
+  // PropTech (5)
+  'proptech_rental', 'proptech_construction', 'proptech_coworking', 'proptech_facility',
+  'proptech_commercial',
+  // Auto & Mobility (5)
+  'auto_ev', 'auto_fleet', 'auto_ride_hailing', 'auto_parts', 'auto_connected',
+  // Media & Advertising (5)
+  'media_ott', 'media_creator', 'media_adtech', 'media_news', 'media_podcast',
+  // Gaming (4)
+  'gaming_mobile', 'gaming_esports', 'gaming_fantasy', 'gaming_casual',
+  // Travel (4)
+  'travel_booking', 'travel_experiences', 'travel_homestay', 'travel_business',
+  // Manufacturing (5)
+  'manufacturing_3d', 'manufacturing_smart', 'manufacturing_textile',
+  'manufacturing_chemical', 'manufacturing_electronics',
+  // B2B Services (5)
+  'b2b_staffing', 'b2b_consulting', 'b2b_procurement', 'b2b_accounting', 'b2b_outsourcing',
+  // LegalTech (3)
+  'legaltech_contracts', 'legaltech_compliance', 'legaltech_dispute',
+  // HRTech (4)
+  'hrtech_recruitment', 'hrtech_payroll', 'hrtech_engagement', 'hrtech_gig',
+  // Cybersecurity (3)
+  'cybersecurity_identity', 'cybersecurity_threat', 'cybersecurity_cloud_sec',
+  // Web3/Blockchain (4)
+  'web3_defi', 'web3_nft', 'web3_infra', 'web3_dao',
+  // SpaceTech (3)
+  'spacetech_satellite', 'spacetech_launch', 'spacetech_data',
+  // BioTech (4)
+  'biotech_pharma', 'biotech_genomics', 'biotech_clinical', 'biotech_agri',
+  // Drone Tech (2)
+  'drone_commercial', 'drone_defense',
+  // Retail Tech (3)
+  'retail_pos', 'retail_analytics', 'retail_omnichannel',
+  // SportsTech (3)
+  'sportstech_analytics', 'sportstech_fitness', 'sportstech_wearables',
+  // Standalone (15)
+  'pet_care', 'social_impact', 'telecom', 'wedding_tech', 'beauty_tech',
+  'govtech', 'event_tech', 'home_services', 'personal_finance', 'circular_economy',
+  'eldercare', 'childcare', 'marketplace', 'insurance_distribution', 'other',
 ] as const
 
 export type StartupCategory = typeof STARTUP_CATEGORIES[number]
 
 export const CATEGORY_LABELS: Record<StartupCategory, string> = {
-  saas: 'SaaS / Cloud Software',
+  // Fintech
   fintech_payments: 'Fintech — Payments & UPI',
   fintech_insurance: 'Fintech — InsurTech',
-  fintech_banking: 'Fintech — NeoBank / Banking',
+  fintech_banking: 'Fintech — NeoBank / Digital Banking',
   fintech_lending: 'Fintech — Lending & BNPL',
   fintech_wealthtech: 'Fintech — WealthTech / Investments',
-  d2c: 'D2C / Consumer Brand',
-  edtech: 'EdTech / Online Learning',
-  healthtech_products: 'HealthTech — MedDevices & Diagnostics',
-  healthtech_services: 'HealthTech — Telemedicine & Wellness',
-  ecommerce_general: 'E-Commerce — General',
+  fintech_accounting: 'Fintech — Accounting & Invoicing',
+  fintech_credit_scoring: 'Fintech — Credit Scoring & Underwriting',
+  fintech_remittance: 'Fintech — Remittance & Cross-Border',
+  fintech_embedded: 'Fintech — Embedded Finance',
+  fintech_neobroking: 'Fintech — Neo-Broking & Trading',
+  fintech_regtech: 'Fintech — RegTech & Compliance',
+  fintech_open_banking: 'Fintech — Open Banking & Account Aggregation',
+  fintech_microfinance: 'Fintech — Microfinance & Financial Inclusion',
+  fintech_collections: 'Fintech — Collections & Recovery',
+  // HealthTech
+  healthtech_products: 'HealthTech — MedDevices & Products',
+  healthtech_services: 'HealthTech — Telemedicine & Services',
+  healthtech_mental: 'HealthTech — Mental Health & Therapy',
+  healthtech_fitness: 'HealthTech — Fitness & Wellness',
+  healthtech_pharma: 'HealthTech — Online Pharmacy',
+  healthtech_genomics: 'HealthTech — Genomics & Precision Medicine',
+  healthtech_hospital_mgmt: 'HealthTech — Hospital Management & SaaS',
+  healthtech_elderly: 'HealthTech — Elderly Care',
+  healthtech_fertility: 'HealthTech — Fertility & Women\'s Health',
+  healthtech_diagnostics: 'HealthTech — Diagnostics & Lab Tech',
+  // EdTech
+  edtech_k12: 'EdTech — K-12 Schools',
+  edtech_higher_ed: 'EdTech — Higher Education & Online Degrees',
+  edtech_test_prep: 'EdTech — Test Prep & Competitive Exams',
+  edtech_upskilling: 'EdTech — Upskilling & Professional Development',
+  edtech_language: 'EdTech — Language Learning',
+  edtech_coding: 'EdTech — Coding & STEM',
+  edtech_corporate: 'EdTech — Corporate L&D',
+  edtech_early_childhood: 'EdTech — Early Childhood & Preschool',
+  edtech_study_abroad: 'EdTech — Study Abroad & Immigration',
+  // E-Commerce
+  ecommerce_general: 'E-Commerce — General / Horizontal',
   ecommerce_grocery: 'E-Commerce — Grocery & Quick Commerce',
   ecommerce_fashion: 'E-Commerce — Fashion & Lifestyle',
-  marketplace: 'Marketplace / Aggregator',
-  agritech: 'AgriTech / FarmTech',
-  logistics: 'Logistics & Supply Chain',
-  cleantech: 'CleanTech / EV / Green Energy',
-  deeptech: 'DeepTech / Robotics',
-  ai_ml: 'AI / Machine Learning / GenAI',
-  gaming: 'Gaming & Entertainment',
-  real_estate_tech: 'PropTech / Real Estate',
-  auto_mobility: 'Auto & Mobility',
-  manufacturing: 'Manufacturing / Industrial IoT',
-  media_advertising: 'Media, AdTech & Content',
-  telecom: 'Telecom & Connectivity',
-  travel_hospitality: 'Travel & Hospitality',
-  social_impact: 'Social Impact / NGO Tech',
-  b2b_services: 'B2B Services & Enterprise',
-  legaltech: 'LegalTech / RegTech',
-  hrtech: 'HRTech / Workforce',
-  foodtech: 'FoodTech / Cloud Kitchen',
-  spacetech: 'SpaceTech / Aerospace',
-  biotech: 'BioTech / Life Sciences',
-  cybersecurity: 'Cybersecurity',
-  web3_blockchain: 'Web3 / Blockchain / Crypto',
-  drone_tech: 'Drone Tech / UAV',
-  retail_tech: 'Retail Tech / POS',
-  sportstech: 'SportsTech / Fitness',
+  ecommerce_electronics: 'E-Commerce — Electronics & Gadgets',
+  ecommerce_luxury: 'E-Commerce — Luxury & Premium',
+  ecommerce_beauty: 'E-Commerce — Beauty & Personal Care',
+  ecommerce_furniture: 'E-Commerce — Furniture & Home Decor',
+  ecommerce_b2b: 'E-Commerce — B2B / Wholesale',
+  ecommerce_recommerce: 'E-Commerce — ReCommerce & Refurbished',
+  // SaaS
+  saas_horizontal: 'SaaS — Horizontal / General Purpose',
+  saas_vertical: 'SaaS — Vertical / Industry-Specific',
+  saas_devtools: 'SaaS — Developer Tools',
+  saas_martech: 'SaaS — MarTech & Growth Tools',
+  saas_salestech: 'SaaS — SalesTech & CRM',
+  saas_collaboration: 'SaaS — Collaboration & Productivity',
+  saas_security: 'SaaS — Security & Compliance',
+  saas_analytics: 'SaaS — Analytics & BI',
+  saas_nocode: 'SaaS — No-Code / Low-Code',
+  saas_communication: 'SaaS — Communication & CPaaS',
+  // FoodTech
+  foodtech_delivery: 'FoodTech — Delivery & Aggregation',
+  foodtech_cloud_kitchen: 'FoodTech — Cloud Kitchen',
+  foodtech_processing: 'FoodTech — Food Processing & Packaging',
+  foodtech_beverages: 'FoodTech — Beverages & D2C Brands',
+  foodtech_nutrition: 'FoodTech — Nutrition & Health Food',
+  foodtech_restaurant: 'FoodTech — Restaurant Tech & POS',
+  // Logistics
+  logistics_last_mile: 'Logistics — Last Mile Delivery',
+  logistics_warehousing: 'Logistics — Warehousing & Fulfilment',
+  logistics_cold_chain: 'Logistics — Cold Chain',
+  logistics_freight: 'Logistics — Freight & Trucking',
+  logistics_reverse: 'Logistics — Reverse Logistics & Returns',
+  logistics_3pl: 'Logistics — 3PL & Supply Chain',
+  // CleanTech
+  cleantech_solar: 'CleanTech — Solar & Renewable Energy',
+  cleantech_ev: 'CleanTech — EV & Charging',
+  cleantech_battery: 'CleanTech — Battery & Energy Storage',
+  cleantech_waste: 'CleanTech — Waste Management & Recycling',
+  cleantech_carbon: 'CleanTech — Carbon Credits & Offsetting',
+  cleantech_water: 'CleanTech — Water & Purification',
+  cleantech_hydrogen: 'CleanTech — Green Hydrogen',
+  cleantech_biomass: 'CleanTech — Biomass & Bioenergy',
+  // AI/ML
+  ai_conversational: 'AI — Conversational AI & Chatbots',
+  ai_computer_vision: 'AI — Computer Vision',
+  ai_genai: 'AI — Generative AI / LLMs',
+  ai_data_analytics: 'AI — Data Analytics & Insights',
+  ai_mlops: 'AI — MLOps & Model Infrastructure',
+  ai_enterprise: 'AI — Enterprise AI Solutions',
+  // DeepTech
+  deeptech_robotics: 'DeepTech — Robotics & Automation',
+  deeptech_quantum: 'DeepTech — Quantum Computing',
+  deeptech_semiconductor: 'DeepTech — Semiconductor & Chip Design',
+  deeptech_iot: 'DeepTech — IoT & Edge Computing',
+  deeptech_ar_vr: 'DeepTech — AR / VR / Metaverse',
+  deeptech_nanotech: 'DeepTech — Nanotechnology',
+  // AgriTech
+  agritech_precision: 'AgriTech — Precision Farming & IoT',
+  agritech_marketplace: 'AgriTech — Marketplace & Farm-to-Fork',
+  agritech_input: 'AgriTech — Inputs & Seeds',
+  agritech_post_harvest: 'AgriTech — Post-Harvest & Storage',
+  agritech_dairy: 'AgriTech — Dairy & Animal Husbandry',
+  // PropTech
+  proptech_rental: 'PropTech — Rental & Brokerage',
+  proptech_construction: 'PropTech — Construction Tech',
+  proptech_coworking: 'PropTech — Co-Working & Managed Spaces',
+  proptech_facility: 'PropTech — Facility Management',
+  proptech_commercial: 'PropTech — Commercial Real Estate',
+  // Auto & Mobility
+  auto_ev: 'Auto — EV & Electric Mobility',
+  auto_fleet: 'Auto — Fleet Management',
+  auto_ride_hailing: 'Auto — Ride Hailing & Shared Mobility',
+  auto_parts: 'Auto — Spare Parts & Aftermarket',
+  auto_connected: 'Auto — Connected Vehicles & Telematics',
+  // Media & Advertising
+  media_ott: 'Media — OTT & Streaming',
+  media_creator: 'Media — Creator Economy & Influencer',
+  media_adtech: 'Media — AdTech & Programmatic',
+  media_news: 'Media — News & Digital Publishing',
+  media_podcast: 'Media — Podcast & Audio',
+  // Gaming
+  gaming_mobile: 'Gaming — Mobile Games',
+  gaming_esports: 'Gaming — Esports & Tournaments',
+  gaming_fantasy: 'Gaming — Fantasy Sports & Real Money',
+  gaming_casual: 'Gaming — Casual & Social Games',
+  // Travel
+  travel_booking: 'Travel — Booking & OTA',
+  travel_experiences: 'Travel — Experiences & Activities',
+  travel_homestay: 'Travel — Homestay & Alternate Stays',
+  travel_business: 'Travel — Business Travel & Expense',
+  // Manufacturing
+  manufacturing_3d: 'Manufacturing — 3D Printing & Additive',
+  manufacturing_smart: 'Manufacturing — Smart Factory & Industry 4.0',
+  manufacturing_textile: 'Manufacturing — Textile & Apparel',
+  manufacturing_chemical: 'Manufacturing — Chemical & Materials',
+  manufacturing_electronics: 'Manufacturing — Electronics & Assembly',
+  // B2B Services
+  b2b_staffing: 'B2B — Staffing & Temp Workforce',
+  b2b_consulting: 'B2B — Consulting & Advisory',
+  b2b_procurement: 'B2B — Procurement & Vendor Management',
+  b2b_accounting: 'B2B — Accounting & Tax Filing',
+  b2b_outsourcing: 'B2B — Outsourcing & BPO',
+  // LegalTech
+  legaltech_contracts: 'LegalTech — Contracts & CLM',
+  legaltech_compliance: 'LegalTech — Compliance & Governance',
+  legaltech_dispute: 'LegalTech — Dispute Resolution & ODR',
+  // HRTech
+  hrtech_recruitment: 'HRTech — Recruitment & ATS',
+  hrtech_payroll: 'HRTech — Payroll & Benefits',
+  hrtech_engagement: 'HRTech — Employee Engagement & Culture',
+  hrtech_gig: 'HRTech — Gig Economy & Freelance',
+  // Cybersecurity
+  cybersecurity_identity: 'Cybersecurity — Identity & Access Management',
+  cybersecurity_threat: 'Cybersecurity — Threat Detection & Response',
+  cybersecurity_cloud_sec: 'Cybersecurity — Cloud Security',
+  // Web3/Blockchain
+  web3_defi: 'Web3 — DeFi & Decentralised Finance',
+  web3_nft: 'Web3 — NFT & Digital Collectibles',
+  web3_infra: 'Web3 — Infrastructure & Protocols',
+  web3_dao: 'Web3 — DAO & Governance',
+  // SpaceTech
+  spacetech_satellite: 'SpaceTech — Satellite & Communication',
+  spacetech_launch: 'SpaceTech — Launch Vehicles & Propulsion',
+  spacetech_data: 'SpaceTech — Earth Observation & Data',
+  // BioTech
+  biotech_pharma: 'BioTech — Pharma & Drug Discovery',
+  biotech_genomics: 'BioTech — Genomics & Diagnostics',
+  biotech_clinical: 'BioTech — Clinical Trials & CRO',
+  biotech_agri: 'BioTech — Agri-Biotech & Crop Science',
+  // Drone Tech
+  drone_commercial: 'Drone — Commercial & Industrial',
+  drone_defense: 'Drone — Defense & Surveillance',
+  // Retail Tech
+  retail_pos: 'Retail Tech — POS & Billing',
+  retail_analytics: 'Retail Tech — Analytics & Demand Forecasting',
+  retail_omnichannel: 'Retail Tech — Omnichannel & D2C Enablement',
+  // SportsTech
+  sportstech_analytics: 'SportsTech — Analytics & Performance',
+  sportstech_fitness: 'SportsTech — Fitness & Gyms',
+  sportstech_wearables: 'SportsTech — Wearables & Devices',
+  // Standalone
   pet_care: 'Pet Care & Animal Health',
+  social_impact: 'Social Impact & NGO Tech',
+  telecom: 'Telecom & Connectivity',
+  wedding_tech: 'Wedding Tech & Events',
+  beauty_tech: 'Beauty Tech & Cosmetics',
+  govtech: 'GovTech & Civic Tech',
+  event_tech: 'Event Tech & Ticketing',
+  home_services: 'Home Services & Urban Company Model',
+  personal_finance: 'Personal Finance & Advisory',
+  circular_economy: 'Circular Economy & Sustainability',
+  eldercare: 'Eldercare & Senior Living',
+  childcare: 'Childcare & Parenting',
+  marketplace: 'Marketplace / Aggregator',
+  insurance_distribution: 'Insurance Distribution & Broking',
   other: 'Other',
 }
 

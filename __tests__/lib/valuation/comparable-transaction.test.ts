@@ -4,7 +4,7 @@ import type { WizardInputs, DerivedFields } from '@/types'
 
 function makeInputs(overrides: Partial<WizardInputs> = {}): WizardInputs {
   return {
-    company_name: 'Test Co', sector: 'saas', stage: 'seed',
+    company_name: 'Test Co', sector: 'saas_horizontal', stage: 'seed',
     business_model: 'saas_subscription', city: 'Bangalore', founding_year: 2023,
     team_size: 5, founder_experience: 3, domain_expertise: 3,
     previous_exits: false, technical_cofounder: true, key_hires: [],
@@ -27,7 +27,7 @@ function makeDerived(overrides: Partial<DerivedFields> = {}): DerivedFields {
 
 describe('calculateComparableTransaction', () => {
   it('returns applicable result', () => {
-    const result = calculateComparableTransaction(makeInputs({ sector: 'saas' }), makeDerived())
+    const result = calculateComparableTransaction(makeInputs({ sector: 'saas_horizontal' }), makeDerived())
     expect(result.applicable).toBe(true)
     expect(result.method).toBe('comparable_txn')
     expect(result.approach).toBe('market')
@@ -35,20 +35,20 @@ describe('calculateComparableTransaction', () => {
   })
 
   it('uses comparables from database', () => {
-    const result = calculateComparableTransaction(makeInputs({ sector: 'saas' }), makeDerived())
+    const result = calculateComparableTransaction(makeInputs({ sector: 'saas_horizontal' }), makeDerived())
     const details = result.details as Record<string, unknown>
     expect(details.comparables_used).toBeDefined()
     expect((details.comparables_used as Array<unknown>).length).toBeGreaterThanOrEqual(1)
   })
 
   it('applies size discount for much smaller companies', () => {
-    const result = calculateComparableTransaction(makeInputs({ annual_revenue: 30_000_000, sector: 'saas' }), makeDerived())
+    const result = calculateComparableTransaction(makeInputs({ annual_revenue: 30_000_000, sector: 'saas_horizontal' }), makeDerived())
     const details = result.details as Record<string, unknown>
     expect(details.size_discount_applied).toBe(true)
   })
 
   it('sets higher confidence with more sector matches', () => {
-    const saas = calculateComparableTransaction(makeInputs({ sector: 'saas' }), makeDerived())
+    const saas = calculateComparableTransaction(makeInputs({ sector: 'saas_horizontal' }), makeDerived())
     expect(saas.confidence).toBeGreaterThanOrEqual(0.5)
   })
 

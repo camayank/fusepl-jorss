@@ -10,7 +10,7 @@ import type { WizardInputs, StartupCategory } from '@/types'
 
 function makeInputs(overrides: Partial<WizardInputs> = {}): WizardInputs {
   return {
-    company_name: 'TestCo', sector: 'saas', stage: 'seed',
+    company_name: 'TestCo', sector: 'saas_horizontal', stage: 'seed',
     business_model: 'saas_subscription', city: 'Bangalore', founding_year: 2023,
     team_size: 5, founder_experience: 4, domain_expertise: 4,
     previous_exits: false, technical_cofounder: true, key_hires: ['cto'],
@@ -63,7 +63,7 @@ describe('Full Valuation Flow', () => {
   })
 
   it('ESOP calculation produces valid sensitivity', () => {
-    const benchmark = getDamodaranBenchmark('saas')
+    const benchmark = getDamodaranBenchmark('saas_horizontal')
     const volatility = Math.min(0.80, Math.max(0.40, benchmark.beta * 0.25))
 
     const esop = calculateESOPValue({
@@ -105,7 +105,7 @@ describe('Full Valuation Flow', () => {
 
   it('investor matching returns sorted results', () => {
     const matches = matchInvestors({
-      sector: 'saas',
+      sector: 'saas_horizontal',
       stage: 'seed',
       city: 'Bangalore',
       target_raise_cr: 5,
@@ -120,7 +120,7 @@ describe('Full Valuation Flow', () => {
   })
 
   it('Damodaran benchmark lookup works for all sectors', () => {
-    const sectors: StartupCategory[] = ['saas', 'fintech_payments', 'healthtech_products', 'd2c', 'edtech']
+    const sectors: StartupCategory[] = ['saas_horizontal', 'fintech_payments', 'healthtech_products', 'ecommerce_beauty', 'edtech_test_prep']
     for (const sector of sectors) {
       const benchmark = getDamodaranBenchmark(sector)
       expect(benchmark).toBeDefined()
@@ -130,7 +130,7 @@ describe('Full Valuation Flow', () => {
   })
 
   it('IBC recovery data exists for key sectors', () => {
-    const sectors: StartupCategory[] = ['saas', 'fintech_payments', 'd2c', 'edtech']
+    const sectors: StartupCategory[] = ['saas_horizontal', 'fintech_payments', 'ecommerce_beauty', 'edtech_test_prep']
     for (const sector of sectors) {
       const recovery = getIBCRecovery(sector)
       expect(recovery).toBeDefined()

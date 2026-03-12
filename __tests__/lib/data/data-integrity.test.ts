@@ -44,7 +44,7 @@ describe('comparable-companies', () => {
   })
 
   it('findComparables returns up to 5 results', () => {
-    const results = findComparables('saas', 'series_a', 300)
+    const results = findComparables('saas_horizontal', 'series_a', 300)
     expect(results.length).toBeLessThanOrEqual(5)
     expect(results.length).toBeGreaterThan(0)
   })

@@ -3,10 +3,22 @@ import { STAGE_BENCHMARKS, RISK_FACTOR_ADJUSTMENT, VALUATION_FLOOR } from '@/lib
 import { clamp } from '@/lib/utils'
 
 const SOFTWARE_SECTORS = [
-  'saas', 'fintech_payments', 'fintech_insurance', 'fintech_banking',
-  'edtech', 'deeptech', 'gaming', 'media_advertising', 'marketplace',
+  'saas_horizontal', 'saas_vertical', 'saas_devtools', 'saas_security', 'saas_collaboration',
+  'saas_analytics', 'saas_infra', 'saas_api_first', 'saas_low_code', 'saas_martech',
+  'fintech_payments', 'fintech_insurance', 'fintech_banking', 'fintech_lending',
+  'fintech_wealthtech', 'fintech_accounting', 'fintech_credit_scoring', 'fintech_remittance',
+  'fintech_neobroking', 'fintech_regtech', 'fintech_crypto', 'fintech_embedded',
+  'fintech_pos', 'fintech_b2b_payments',
+  'edtech_k12', 'edtech_test_prep', 'edtech_upskilling', 'edtech_language',
+  'edtech_coding', 'edtech_corporate', 'edtech_ar_vr', 'edtech_study_abroad', 'edtech_lms',
+  'ai_enterprise', 'ai_consumer', 'ai_generative', 'ai_mlops', 'ai_vision', 'ai_nlp',
+  'marketplace', 'gaming_mobile', 'gaming_esports', 'gaming_casino', 'gaming_metaverse',
+  'media_adtech', 'media_streaming', 'media_publishing', 'media_creator_economy', 'media_podcast',
   'healthtech_services', 'ecommerce_general', 'ecommerce_grocery',
-  'b2b_services', 'social_impact',
+  'b2b_consulting', 'b2b_procurement', 'b2b_trade_finance', 'b2b_compliance', 'b2b_supply_chain',
+  'social_impact', 'hrtech_recruitment', 'hrtech_payroll', 'hrtech_engagement', 'hrtech_gig',
+  'legaltech_contracts', 'legaltech_compliance', 'legaltech_dispute',
+  'cybersecurity_endpoint', 'cybersecurity_identity', 'cybersecurity_cloud',
 ]
 
 /**

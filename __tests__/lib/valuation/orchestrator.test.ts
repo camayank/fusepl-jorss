@@ -4,7 +4,7 @@ import type { WizardInputs } from '@/types'
 
 function makeInputs(overrides: Partial<WizardInputs> = {}): WizardInputs {
   return {
-    company_name: 'Test Co', sector: 'saas', stage: 'seed',
+    company_name: 'Test Co', sector: 'saas_horizontal', stage: 'seed',
     business_model: 'saas_subscription', city: 'Bangalore', founding_year: 2023,
     team_size: 5, founder_experience: 3, domain_expertise: 3,
     previous_exits: false, technical_cofounder: true, key_hires: [],
@@ -97,7 +97,7 @@ describe('calculateValuation (orchestrator)', () => {
   })
 
   it('produces different results for different sectors', () => {
-    const saas = calculateValuation(makeInputs({ sector: 'saas' }))
+    const saas = calculateValuation(makeInputs({ sector: 'saas_horizontal' }))
     const agritech = calculateValuation(makeInputs({ sector: 'agritech' }))
     expect(saas.composite_value).not.toBe(agritech.composite_value)
   })

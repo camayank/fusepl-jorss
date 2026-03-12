@@ -4,7 +4,7 @@ import type { WizardInputs, MethodResult } from '@/types'
 
 function makeInputs(overrides: Partial<WizardInputs> = {}): WizardInputs {
   return {
-    company_name: 'Test Co', sector: 'saas', stage: 'seed',
+    company_name: 'Test Co', sector: 'saas_horizontal', stage: 'seed',
     business_model: 'saas_subscription', city: 'Bangalore', founding_year: 2023,
     team_size: 5, founder_experience: 3, domain_expertise: 3,
     previous_exits: false, technical_cofounder: true, key_hires: [],

@@ -39,5 +39,16 @@
   "Business & Consumer Services": { "ev_revenue": 3.0, "ev_ebitda": 16.2, "wacc": 0.130, "beta": 0.92, "gross_margin": 0.45 },
   "Environmental & Waste Services": { "ev_revenue": 2.5, "ev_ebitda": 14.0, "wacc": 0.128, "beta": 0.80, "gross_margin": 0.38 },
   "Electronics (General)": { "ev_revenue": 2.0, "ev_ebitda": 15.0, "wacc": 0.135, "beta": 1.00, "gross_margin": 0.35 },
+  "Drugs (Biotechnology)": { "ev_revenue": 6.8, "ev_ebitda": 28.0, "wacc": 0.140, "beta": 1.25, "gross_margin": 0.70 },
+  "Drugs (Pharmaceutical)": { "ev_revenue": 4.5, "ev_ebitda": 22.0, "wacc": 0.130, "beta": 0.95, "gross_margin": 0.62 },
+  "Aerospace/Defense": { "ev_revenue": 3.5, "ev_ebitda": 18.5, "wacc": 0.135, "beta": 1.00, "gross_margin": 0.40 },
+  "Apparel": { "ev_revenue": 1.8, "ev_ebitda": 14.0, "wacc": 0.138, "beta": 1.05, "gross_margin": 0.45 },
+  "Restaurant/Dining": { "ev_revenue": 2.2, "ev_ebitda": 12.8, "wacc": 0.142, "beta": 1.10, "gross_margin": 0.35 },
+  "Chemical (Basic)": { "ev_revenue": 1.5, "ev_ebitda": 10.5, "wacc": 0.132, "beta": 0.88, "gross_margin": 0.30 },
+  "Precious Metals": { "ev_revenue": 2.0, "ev_ebitda": 8.5, "wacc": 0.145, "beta": 0.75, "gross_margin": 0.28 },
+  "Beverage (Alcoholic)": { "ev_revenue": 3.8, "ev_ebitda": 18.0, "wacc": 0.128, "beta": 0.82, "gross_margin": 0.52 },
+  "Beverage (Soft)": { "ev_revenue": 4.2, "ev_ebitda": 20.5, "wacc": 0.125, "beta": 0.78, "gross_margin": 0.55 },
+  "Packaging & Container": { "ev_revenue": 1.5, "ev_ebitda": 11.0, "wacc": 0.130, "beta": 0.85, "gross_margin": 0.28 },
+  "Shoe": { "ev_revenue": 2.5, "ev_ebitda": 16.0, "wacc": 0.135, "beta": 0.95, "gross_margin": 0.48 },
   "Total Market": { "ev_revenue": 3.2, "ev_ebitda": 18.0, "wacc": 0.135, "beta": 1.00, "gross_margin": 0.50 }
 }
