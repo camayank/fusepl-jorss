@@ -243,7 +243,7 @@ export default function ReportPage() {
 
       <PDFDownloadButton valuation={valuation} result={result} />
 
-      <CertifiedCTA />
+      <CertifiedCTA valuationId={valuation.id} email={valuation.email || ''} />
     </main>
   )
 }
