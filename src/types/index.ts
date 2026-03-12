@@ -44,6 +44,29 @@ export type CompetitiveAdvantage = typeof COMPETITIVE_ADVANTAGES[number]
 export const PARTNERSHIP_LEVELS = ['none', 'one', 'multiple'] as const
 export type PartnershipLevel = typeof PARTNERSHIP_LEVELS[number]
 
+export const VALUATION_PURPOSES = [
+  'indicative', 'fundraising', 'esop', 'rule_11ua', 'fema', 'ma',
+] as const
+export type ValuationPurpose = typeof VALUATION_PURPOSES[number]
+
+export const PURPOSE_LABELS: Record<ValuationPurpose, string> = {
+  indicative: 'Indicative Valuation',
+  fundraising: 'Fundraising',
+  esop: 'ESOP Valuation',
+  rule_11ua: 'Tax / Rule 11UA',
+  fema: 'FEMA Pricing',
+  ma: 'M&A Advisory',
+}
+
+export const PURPOSE_PRICES: Record<ValuationPurpose, number> = {
+  indicative: 0,
+  fundraising: 499900,
+  esop: 499900,
+  rule_11ua: 999900,
+  fema: 1499900,
+  ma: 1499900,
+}
+
 // ============================================================
 // Wizard Inputs (collected from user)
 // ============================================================
@@ -172,6 +195,18 @@ export interface ValuationResult {
   ibc_recovery_range: { low: number; high: number; sector: string } | null
 }
 
+export interface CrossMethodWarning {
+  method: string
+  message: string
+  severity: 'info' | 'warning'
+}
+
+export interface SensitivityResult {
+  variable: string
+  baseValue: number
+  steps: { label: string; value: number; valuation: number }[]
+}
+
 // ============================================================
 // ESOP & Cap Table
 // ============================================================
@@ -241,6 +276,20 @@ export interface ComparableCompany {
   source: string
 }
 
+export interface ListedComparable {
+  name: string
+  ticker: string
+  sector: StartupCategory
+  market_cap_cr: number
+  revenue_cr: number
+  ebitda_cr: number
+  pe_ratio: number | null
+  ev_revenue: number
+  ev_ebitda: number | null
+  as_of_date: string
+  source: 'BSE' | 'NSE' | 'screener.in'
+}
+
 // ============================================================
 // Damodaran Data
 // ============================================================
@@ -278,6 +327,33 @@ export interface CaptureResponse {
 
 export interface CertifiedRequest {
   valuation_id: string
-  report_type: 'rule_11ua' | 'fema' | 'general'
+  report_type: ValuationPurpose
   purpose: string
+}
+
+// ============================================================
+// Deal Check (Investor Module)
+// ============================================================
+
+export type DealVerdict = 'green' | 'yellow' | 'red' | 'blue'
+
+export interface DealCheckInput {
+  sector: StartupCategory
+  stage: Stage
+  revenue_cr: number
+  growth_pct: number
+  raise_cr: number
+  ask_cr: number
+}
+
+export interface DealCheckResult {
+  verdict: DealVerdict
+  label: string
+  explanation: string
+  fairValue: number
+  impliedMultiple: number
+  sectorMedianMultiple: number
+  dilutionPct: number
+  comparables: ComparableCompany[]
+  negotiationInsight: string
 }
