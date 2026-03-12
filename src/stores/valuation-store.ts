@@ -2,7 +2,7 @@
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { WizardInputs, ValuationResult } from '@/types'
+import type { WizardInputs, ValuationResult, ValuationPurpose } from '@/types'
 
 const DEFAULT_INPUTS: WizardInputs = {
   company_name: '',
@@ -48,6 +48,7 @@ interface ValuationStore {
   inputs: WizardInputs
   result: ValuationResult | null
   email: string | null
+  purpose: ValuationPurpose
 
   setField: <K extends keyof WizardInputs>(key: K, value: WizardInputs[K]) => void
   nextStep: () => void
@@ -56,6 +57,7 @@ interface ValuationStore {
   completeStep: (step: number) => void
   setResult: (result: ValuationResult) => void
   setEmail: (email: string) => void
+  setPurpose: (purpose: ValuationPurpose) => void
   reset: () => void
 }
 
@@ -67,6 +69,7 @@ export const useValuationStore = create<ValuationStore>()(
       inputs: { ...DEFAULT_INPUTS },
       result: null,
       email: null,
+      purpose: 'indicative',
 
       setField: (key, value) =>
         set((state) => ({
@@ -95,6 +98,8 @@ export const useValuationStore = create<ValuationStore>()(
 
       setEmail: (email) => set({ email }),
 
+      setPurpose: (purpose) => set({ purpose }),
+
       reset: () =>
         set({
           currentStep: 1,
@@ -102,11 +107,19 @@ export const useValuationStore = create<ValuationStore>()(
           inputs: { ...DEFAULT_INPUTS },
           result: null,
           email: null,
+          purpose: 'indicative',
         }),
     }),
     {
       name: 'fus-valuation-store',
-      version: 1,
+      version: 2,
+      migrate: (persisted, version) => {
+        const state = persisted as Partial<ValuationStore>
+        if (version < 2) {
+          state.purpose = 'indicative'
+        }
+        return state as ValuationStore
+      },
     }
   )
 )

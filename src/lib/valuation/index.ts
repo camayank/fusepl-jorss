@@ -1,4 +1,5 @@
-import type { WizardInputs, ValuationResult, MethodResult } from '@/types'
+import type { WizardInputs, ValuationResult, MethodResult, CrossMethodWarning } from '@/types'
+import { METHOD_APPROACH, APPROACH_LABELS } from '@/types'
 import { MARKET_CONSTANTS } from '@/lib/constants'
 import { computeDerivedFields } from '@/lib/calculators/burn-rate'
 import { getDamodaranBenchmark } from '@/lib/data/sector-mapping'
@@ -78,6 +79,9 @@ export function calculateValuation(inputs: WizardInputs): ValuationResult {
   // IBC recovery
   const ibcRecovery = getIBCRecovery(inputs.sector)
 
+  // Cross-method validation: flag methods deviating >5x from median
+  const warnings = validateCrossMethod(qualifying, compositeValue)
+
   return {
     methods,
     composite_value: compositeValue,
@@ -90,5 +94,44 @@ export function calculateValuation(inputs: WizardInputs): ValuationResult {
       high: ibcRecovery.p75,
       sector: inputs.sector,
     },
+    warnings,
   }
+}
+
+/**
+ * Flag methods that deviate significantly from the median.
+ * >5x = warning, >2x = info.
+ */
+function validateCrossMethod(
+  qualifying: MethodResult[],
+  compositeValue: number,
+): CrossMethodWarning[] {
+  if (qualifying.length < 2 || compositeValue <= 0) return []
+
+  const values = qualifying.map(m => m.value).sort((a, b) => a - b)
+  const median = values[Math.floor(values.length / 2)]
+  if (median <= 0) return []
+
+  const warnings: CrossMethodWarning[] = []
+
+  for (const m of qualifying) {
+    const ratio = m.value / median
+    const approach = APPROACH_LABELS[METHOD_APPROACH[m.method]]
+
+    if (ratio > 5 || ratio < 0.2) {
+      warnings.push({
+        method: m.method,
+        message: `${m.method} (${approach}) deviates >5x from median — review assumptions`,
+        severity: 'warning',
+      })
+    } else if (ratio > 2 || ratio < 0.5) {
+      warnings.push({
+        method: m.method,
+        message: `${m.method} (${approach}) deviates >2x from median`,
+        severity: 'info',
+      })
+    }
+  }
+
+  return warnings
 }

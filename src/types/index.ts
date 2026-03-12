@@ -193,6 +193,7 @@ export interface ValuationResult {
   confidence_score: number        // 0-100
   monte_carlo: MonteCarloResult | null
   ibc_recovery_range: { low: number; high: number; sector: string } | null
+  warnings?: CrossMethodWarning[]
 }
 
 export interface CrossMethodWarning {

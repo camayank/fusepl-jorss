@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 // ---------------------------------------------------------------------------
-// Animated counter hook -- counts from 0 to `end` over `duration` ms
+// Animated counter hook
 // ---------------------------------------------------------------------------
-function useCounter(end: number, duration = 1600) {
+function useCounter(end: number, duration = 2000) {
   const [value, setValue] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
   const started = useRef(false)
@@ -24,8 +24,7 @@ function useCounter(end: number, duration = 1600) {
           const tick = (now: number) => {
             const elapsed = now - startTime
             const progress = Math.min(elapsed / duration, 1)
-            // Ease-out cubic
-            const eased = 1 - Math.pow(1 - progress, 3)
+            const eased = 1 - Math.pow(1 - progress, 4)
             setValue(Math.round(eased * end))
             if (progress < 1) requestAnimationFrame(tick)
           }
@@ -42,24 +41,24 @@ function useCounter(end: number, duration = 1600) {
 }
 
 // ---------------------------------------------------------------------------
-// Stats data
+// Stats
 // ---------------------------------------------------------------------------
 const STATS = [
-  { end: 10, suffix: '', label: 'Valuation Methods' },
-  { end: 3, suffix: '', label: 'Approaches' },
-  { end: 25, suffix: '+', label: 'Industry Sectors' },
-  { end: 10, suffix: 'K', label: 'Monte Carlo Sims' },
+  { end: 10, suffix: '', label: 'Methods', detail: 'IVS 105 Aligned' },
+  { end: 4, suffix: '', label: 'Approaches', detail: 'Income, Market, Asset, VC' },
+  { end: 25, suffix: '+', label: 'Sectors', detail: 'Damodaran India Data' },
+  { end: 10, suffix: 'K', label: 'Simulations', detail: 'Monte Carlo Engine' },
 ] as const
 
 // ---------------------------------------------------------------------------
 // Animation variants
 // ---------------------------------------------------------------------------
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.5, ease: 'easeOut' as const },
+    transition: { delay: 0.15 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
   }),
 }
 
@@ -68,64 +67,67 @@ const fadeUp = {
 // ---------------------------------------------------------------------------
 export function Hero() {
   return (
-    <section className="relative isolate w-full min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center text-center px-6 py-24 overflow-hidden">
+    <section className="grain relative isolate w-full min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center text-center px-6 py-28 overflow-hidden">
       {/* ---- Gradient mesh background ---- */}
       <div className="absolute inset-0 -z-10">
-        {/* Base dark */}
-        <div className="absolute inset-0 bg-slate-950" />
-        {/* Animated amber glow */}
-        <div className="absolute top-[-40%] left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-amber-500/[0.07] blur-[120px] animate-[hero-glow_8s_ease-in-out_infinite_alternate]" />
+        <div className="absolute inset-0 bg-[oklch(0.08_0.008_260)]" />
+        {/* Primary warm glow */}
+        <div className="absolute top-[-35%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[oklch(0.78_0.14_80/0.06)] blur-[140px] animate-[hero-glow_10s_ease-in-out_infinite_alternate]" />
         {/* Secondary cool glow for depth */}
-        <div className="absolute bottom-[-30%] right-[-10%] w-[600px] h-[600px] rounded-full bg-blue-500/[0.04] blur-[100px] animate-[hero-glow_12s_ease-in-out_infinite_alternate-reverse]" />
-        {/* Fine grid for texture */}
+        <div className="absolute bottom-[-25%] right-[-8%] w-[500px] h-[500px] rounded-full bg-[oklch(0.55_0.15_250/0.04)] blur-[120px] animate-[hero-glow_14s_ease-in-out_infinite_alternate-reverse]" />
+        {/* Fine diagonal lines for texture */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '64px 64px',
+              'repeating-linear-gradient(135deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 48px)',
           }}
         />
       </div>
 
-      {/* ---- Content ---- */}
-      <motion.p
+      {/* ---- Badge ---- */}
+      <motion.div
         custom={0}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-xs font-semibold text-amber-400/90 uppercase tracking-[0.2em] mb-5"
+        className="mb-8"
       >
-        AI-Powered Startup Valuation
-      </motion.p>
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[oklch(0.78_0.14_80/0.2)] bg-[oklch(0.78_0.14_80/0.06)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.78_0.14_80)] animate-pulse" />
+          <span className="text-[11px] font-semibold text-[oklch(0.80_0.12_80)] uppercase tracking-[0.18em]">
+            Built by an IBBI-Registered Valuer
+          </span>
+        </span>
+      </motion.div>
 
+      {/* ---- Headline ---- */}
       <motion.h1
         custom={1}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight max-w-4xl leading-[1.08]"
+        className="font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] tracking-tight max-w-5xl"
       >
-        <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-          India&apos;s Most Comprehensive
+        <span className="text-gold-gradient">
+          India&apos;s Most Rigorous
         </span>
         <br />
-        <span className="text-white">
-          Startup Valuation Platform
+        <span className="text-[oklch(0.93_0.005_80)]">
+          Startup Valuation
         </span>
       </motion.h1>
 
+      {/* ---- Sub-headline ---- */}
       <motion.p
         custom={2}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed"
+        className="mt-7 text-[clamp(0.95rem,1.5vw,1.15rem)] text-[oklch(0.50_0.01_260)] max-w-2xl leading-relaxed font-light"
       >
-        3 Approaches &times; 10 Methods &mdash; DCF, PWERM, Revenue Multiple,
-        EV/EBITDA, Comparable Transactions, NAV, Replacement Cost, Scorecard,
-        Berkus, Risk Factor Summation. Powered by Damodaran India data.
-        Monte Carlo simulation. Free.
+        4 approaches. 10 valuation methods. 10,000 Monte Carlo simulations.
+        Powered by Damodaran India benchmarks. Aligned with IVS 105, Rule 11UA, and FEMA NDI Rules.
       </motion.p>
 
       {/* ---- CTAs ---- */}
@@ -134,26 +136,22 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="flex flex-wrap justify-center gap-3 mt-10"
+        className="flex flex-wrap justify-center gap-4 mt-11"
       >
         <Link
-          href="/valuation"
-          className="group relative inline-flex items-center justify-center rounded-xl h-11 px-6 text-sm font-semibold bg-amber-500 text-slate-950 transition-all hover:bg-amber-400 hover:shadow-[0_0_32px_rgba(245,158,11,0.3)] active:scale-[0.97]"
+          href="/valuation/purpose"
+          className="group relative inline-flex items-center justify-center h-12 px-8 text-sm font-semibold tracking-wide bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] rounded-lg transition-all duration-300 hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_40px_oklch(0.78_0.14_80/0.25)] active:scale-[0.97]"
         >
-          <span className="relative z-10">Get Your Valuation</span>
-          <span className="absolute inset-0 rounded-xl bg-amber-400/0 group-hover:bg-amber-400/20 transition-colors" />
+          Get Your Valuation
+          <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
         </Link>
         <Link
-          href="/cap-table"
-          className="inline-flex items-center justify-center rounded-xl h-11 px-6 text-sm font-medium border border-white/10 text-slate-300 hover:text-white hover:border-white/20 hover:bg-white/[0.04] transition-all"
+          href="/deal-check"
+          className="inline-flex items-center justify-center h-12 px-7 text-sm font-medium tracking-wide border border-[oklch(0.78_0.14_80/0.2)] text-[oklch(0.70_0.05_80)] rounded-lg transition-all duration-300 hover:border-[oklch(0.78_0.14_80/0.35)] hover:text-[oklch(0.85_0.10_80)] hover:bg-[oklch(0.78_0.14_80/0.04)]"
         >
-          Cap Table Simulator
-        </Link>
-        <Link
-          href="/esop-calculator"
-          className="inline-flex items-center justify-center rounded-xl h-11 px-6 text-sm font-medium border border-white/10 text-slate-300 hover:text-white hover:border-white/20 hover:bg-white/[0.04] transition-all"
-        >
-          ESOP Calculator
+          Investor Deal Check
         </Link>
       </motion.div>
 
@@ -163,20 +161,12 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10"
+        className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[oklch(0.78_0.14_80/0.08)] rounded-xl overflow-hidden border border-[oklch(0.78_0.14_80/0.08)]"
       >
         {STATS.map((stat) => (
           <StatItem key={stat.label} {...stat} />
         ))}
       </motion.div>
-
-      {/* CSS keyframe for background glow pulse */}
-      <style jsx global>{`
-        @keyframes hero-glow {
-          0% { opacity: 0.5; transform: translate(-50%, 0) scale(1); }
-          100% { opacity: 1; transform: translate(-50%, 0) scale(1.15); }
-        }
-      `}</style>
     </section>
   )
 }
@@ -184,20 +174,23 @@ export function Hero() {
 // ---------------------------------------------------------------------------
 // Stat counter sub-component
 // ---------------------------------------------------------------------------
-function StatItem({ end, suffix, label }: (typeof STATS)[number]) {
+function StatItem({ end, suffix, label, detail }: (typeof STATS)[number]) {
   const { value, ref } = useCounter(end)
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-1 py-6 px-5 bg-[oklch(0.08_0.008_260)]">
       <span
         ref={ref}
-        className="text-3xl sm:text-4xl font-bold tabular-nums bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent"
+        className="text-3xl sm:text-4xl font-heading tabular-nums text-gold-gradient"
       >
         {value.toLocaleString()}
         {suffix}
       </span>
-      <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">
+      <span className="text-xs text-[oklch(0.55_0.01_260)] uppercase tracking-[0.15em] font-medium">
         {label}
+      </span>
+      <span className="text-[10px] text-[oklch(0.40_0.01_260)] mt-0.5">
+        {detail}
       </span>
     </div>
   )

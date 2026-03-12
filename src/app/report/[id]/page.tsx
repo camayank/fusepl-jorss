@@ -15,12 +15,14 @@ import { InvestorSection } from '@/components/report/investor-section'
 import { AINarrative } from '@/components/report/ai-narrative'
 import { RecommendationsSection } from '@/components/report/recommendations-section'
 import { CertifiedCTA } from '@/components/report/certified-cta'
+import { GatedSection } from '@/components/report/gated-section'
 import { PDFDownloadButton } from '@/components/report/pdf-download-button'
+import { getReportConfig } from '@/lib/report-config'
 import { formatINR } from '@/lib/utils'
 import { ReportSkeleton } from '@/components/skeletons'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import type { ValuationResult, MethodResult, MonteCarloResult, CapTableEntry } from '@/types'
+import type { ValuationResult, MethodResult, MonteCarloResult, CapTableEntry, ValuationPurpose } from '@/types'
 
 /** DB row type matching Supabase valuations table */
 interface ValuationRow {
@@ -54,6 +56,8 @@ interface ValuationRow {
   monte_carlo_percentiles: MonteCarloResult | null
   ibc_recovery_range: { low: number; high: number; sector: string } | null
   ai_narrative: string | null
+  purpose: ValuationPurpose | null
+  paid_purpose: ValuationPurpose | null
   created_at: string
 }
 
@@ -99,6 +103,7 @@ export default function ReportPage() {
       }
 
       // 2. Fall back to local store data
+      const storePurpose = useValuationStore.getState().purpose
       if (storeResult && storeInputs.company_name) {
         setUsingLocalFallback(true)
         setValuation({
@@ -132,6 +137,8 @@ export default function ReportPage() {
           monte_carlo_percentiles: storeResult.monte_carlo,
           ibc_recovery_range: storeResult.ibc_recovery_range,
           ai_narrative: null,
+          purpose: storePurpose,
+          paid_purpose: null,
           created_at: new Date().toISOString(),
         })
         setLoading(false)
@@ -191,6 +198,10 @@ export default function ReportPage() {
     ibc_recovery_range: valuation.ibc_recovery_range,
   }
 
+  const purpose = valuation.purpose ?? valuation.paid_purpose ?? 'indicative'
+  const paidPurpose = valuation.paid_purpose ?? null
+  const config = getReportConfig(purpose)
+
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl space-y-8">
       {/* Local fallback disclaimer */}
@@ -217,33 +228,59 @@ export default function ReportPage() {
 
       <BenchmarksSection sector={valuation.sector} />
 
-      <ComparablesSection sector={valuation.sector} stage={valuation.stage} />
+      <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+        <ComparablesSection sector={valuation.sector} stage={valuation.stage} />
+      </GatedSection>
 
-      <ListedComparablesSection
-        sector={valuation.sector}
-        revenue={valuation.annual_revenue}
-        stage={valuation.stage}
-      />
+      {config.showListedComparables && (
+        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+          <ListedComparablesSection
+            sector={valuation.sector}
+            revenue={valuation.annual_revenue}
+            stage={valuation.stage}
+          />
+        </GatedSection>
+      )}
 
-      <DownsideSection sector={valuation.sector} />
+      {config.showIBCDownside && (
+        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+          <DownsideSection sector={valuation.sector} />
+        </GatedSection>
+      )}
 
-      <ESOPSection valuation={valuation} compositeValue={result.composite_value} />
+      {config.showESOPDetail && (
+        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+          <ESOPSection valuation={valuation} compositeValue={result.composite_value} />
+        </GatedSection>
+      )}
 
-      <CapTableSection valuation={valuation} compositeValue={result.composite_value} />
+      <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+        <CapTableSection valuation={valuation} compositeValue={result.composite_value} />
+      </GatedSection>
 
-      <InvestorSection
-        sector={valuation.sector}
-        stage={valuation.stage}
-        targetRaise={valuation.target_raise}
-      />
+      {config.showInvestorMatch && (
+        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+          <InvestorSection
+            sector={valuation.sector}
+            stage={valuation.stage}
+            targetRaise={valuation.target_raise}
+          />
+        </GatedSection>
+      )}
 
-      <AINarrative valuationId={valuation.id} />
+      {config.showAINarrative && (
+        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+          <AINarrative valuationId={valuation.id} />
+        </GatedSection>
+      )}
 
-      <RecommendationsSection result={result} sector={valuation.sector} stage={valuation.stage} />
+      <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+        <RecommendationsSection result={result} sector={valuation.sector} stage={valuation.stage} />
+      </GatedSection>
 
       <PDFDownloadButton valuation={valuation} result={result} />
 
-      <CertifiedCTA valuationId={valuation.id} email={valuation.email || ''} />
+      <CertifiedCTA valuationId={valuation.id} email={valuation.email || ''} purpose={purpose} />
     </main>
   )
 }

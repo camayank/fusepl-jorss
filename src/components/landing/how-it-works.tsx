@@ -4,60 +4,62 @@ import { motion } from 'framer-motion'
 
 const STEPS = [
   {
-    num: '1',
-    title: 'Answer 6 Quick Steps',
-    desc: 'Company profile, team, financials, market, strategy, ESOP \u2014 takes 3\u20135 minutes.',
+    num: '01',
+    title: 'Choose Your Purpose',
+    desc: 'Indicative, fundraising, ESOP, Rule 11UA, FEMA, or M&A. Your purpose determines the analysis depth and regulatory framing.',
+    time: '30 seconds',
   },
   {
-    num: '2',
-    title: 'Get Your Valuation',
-    desc: '10 methods across 3 approaches compute your range. Monte Carlo simulation runs 10,000 scenarios.',
+    num: '02',
+    title: 'Complete the Wizard',
+    desc: 'Six steps: company profile, team, financials, market, strategy, cap table. Tooltips and mini-calculators at every field.',
+    time: '3-5 minutes',
   },
   {
-    num: '3',
-    title: 'Unlock Full Report',
-    desc: 'Enter your email for detailed methodology, benchmarks, ESOP valuation, investor matches, and AI insights.',
+    num: '03',
+    title: 'Get Your Report',
+    desc: '10 methods compute your range instantly. Monte Carlo simulation, AI narrative, comparable analysis, and investor matching.',
+    time: 'Instant',
   },
 ]
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.12 },
   },
 }
 
 const stepVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: 'easeOut' as const },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
   },
 }
 
 export function HowItWorks() {
   return (
-    <section className="relative py-20 px-6">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+    <section className="grain relative py-24 px-6">
+      <div className="section-divider absolute inset-x-0 top-0" />
 
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
-            How It Works
-          </h2>
-          <p className="mt-3 text-sm text-slate-500">
-            Three steps to a defensible, institutional-grade valuation.
+          <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.2em] mb-4">
+            Process
           </p>
+          <h2 className="font-heading text-3xl sm:text-4xl text-[oklch(0.93_0.005_80)]">
+            Three Steps to Defensible Numbers
+          </h2>
         </motion.div>
 
-        {/* Timeline */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -65,31 +67,35 @@ export function HowItWorks() {
           viewport={{ once: true, margin: '-40px' }}
           className="relative"
         >
-          {/* Connecting line -- desktop: horizontal, mobile: vertical */}
-          <div className="hidden md:block absolute top-6 left-[calc(16.67%+12px)] right-[calc(16.67%+12px)] h-[2px] bg-gradient-to-r from-amber-500/30 via-amber-500/20 to-amber-500/30" />
-          <div className="md:hidden absolute top-6 bottom-6 left-6 w-[2px] bg-gradient-to-b from-amber-500/30 via-amber-500/20 to-amber-500/30" />
+          {/* Vertical connecting line */}
+          <div className="absolute top-0 bottom-0 left-[23px] w-px bg-gradient-to-b from-[oklch(0.78_0.14_80/0.3)] via-[oklch(0.78_0.14_80/0.12)] to-transparent md:hidden" />
+          {/* Horizontal connecting line — desktop */}
+          <div className="hidden md:block absolute top-[28px] left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-px bg-gradient-to-r from-[oklch(0.78_0.14_80/0.25)] via-[oklch(0.78_0.14_80/0.12)] to-[oklch(0.78_0.14_80/0.25)]" />
 
-          <div className="grid md:grid-cols-3 gap-10 md:gap-8">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-6">
             {STEPS.map((step) => (
               <motion.div
                 key={step.num}
                 variants={stepVariants}
                 className="relative flex md:flex-col items-start md:items-center gap-5 md:gap-0 md:text-center"
               >
-                {/* Step number circle */}
-                <div className="relative z-10 flex items-center justify-center w-12 h-12 shrink-0 rounded-full bg-slate-950 border-2 border-amber-500/40 shadow-[0_0_16px_rgba(245,158,11,0.15)]">
-                  <span className="text-lg font-bold text-amber-400">
+                {/* Step number */}
+                <div className="relative z-10 flex items-center justify-center w-12 h-12 shrink-0 rounded-full bg-[oklch(0.08_0.008_260)] border border-[oklch(0.78_0.14_80/0.25)] shadow-[0_0_20px_oklch(0.78_0.14_80/0.08)]">
+                  <span className="text-sm font-heading text-[oklch(0.78_0.14_80)]">
                     {step.num}
                   </span>
                 </div>
 
-                <div className="md:mt-5">
-                  <h3 className="font-semibold text-white text-base">
+                <div className="md:mt-6">
+                  <h3 className="font-heading text-lg text-[oklch(0.93_0.005_80)]">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-xs">
+                  <p className="mt-2 text-sm text-[oklch(0.45_0.01_260)] leading-relaxed max-w-xs">
                     {step.desc}
                   </p>
+                  <span className="inline-block mt-3 text-[10px] font-semibold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.15em]">
+                    {step.time}
+                  </span>
                 </div>
               </motion.div>
             ))}

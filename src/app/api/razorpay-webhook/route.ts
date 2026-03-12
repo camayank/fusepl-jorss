@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
           payment_id: payment.id,
           razorpay_order_id: payment.order_id,
           amount: payment.amount / 100, // paise to rupees
-          report_type: notes.report_type || 'rule_11ua',
+          report_type: notes.purpose || notes.report_type || 'rule_11ua',
           purpose: notes.purpose || '',
           paid_at: new Date().toISOString(),
         })
@@ -66,6 +66,14 @@ export async function POST(req: NextRequest) {
       if (error) {
         console.error('Certified request insert error:', error)
         return NextResponse.json({ error: 'DB error' }, { status: 500 })
+      }
+
+      // Dual-write: update valuations.paid_purpose
+      if (notes.valuation_id) {
+        await supabase
+          .from('valuations')
+          .update({ paid_purpose: notes.purpose || 'rule_11ua' })
+          .eq('id', notes.valuation_id)
       }
     }
 

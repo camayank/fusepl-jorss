@@ -1,10 +1,21 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { DM_Sans, DM_Serif_Display } from 'next/font/google'
 import { Toaster } from 'sonner'
 import { Header } from '@/components/layout/header'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+})
+
+const dmSerif = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-dm-serif',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -16,10 +27,11 @@ export const metadata: Metadata = {
   authors: [{ name: 'First Unicorn Startup' }],
   openGraph: {
     title: 'First Unicorn Startup — Know Your Startup\'s True Worth',
-    description: '10 valuation methods, 3 approaches, Monte Carlo simulation. Free.',
+    description: '10 valuation methods, 4 approaches, Monte Carlo simulation. Powered by Damodaran India data.',
     url: 'https://firstunicornstartup.com',
     siteName: 'First Unicorn Startup',
     type: 'website',
+    locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
@@ -32,7 +44,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <body className={`${dmSans.variable} ${dmSerif.variable} font-sans antialiased`}>
         <Header />
         {children}
         <Toaster position="top-right" />

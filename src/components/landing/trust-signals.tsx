@@ -4,61 +4,68 @@ import { motion } from 'framer-motion'
 
 const SIGNALS = [
   {
-    icon: '\u2696\ufe0f',
+    label: 'IBBI Registered',
     text: 'Built by an IBBI-Registered Insolvency Professional & SFA-Licensed Valuer',
+    metric: 'Registration verified',
   },
   {
-    icon: '\ud83d\udcca',
-    text: 'Powered by Damodaran India Industry Benchmarks (January 2026)',
+    label: 'Damodaran India',
+    text: 'Industry benchmarks from Aswath Damodaran — the gold standard in valuation data',
+    metric: 'January 2026 data',
   },
   {
-    icon: '\ud83c\udfaf',
-    text: '3 Valuation Approaches \u00d7 10 Methods \u2014 aligned with IBBI / IVS / Rule 11UA Standards',
+    label: 'IVS 105 Aligned',
+    text: '3 valuation approaches, 10 methods — aligned with IBBI, IVS, and Rule 11UA standards',
+    metric: '10 methods',
   },
   {
-    icon: '\ud83c\udfb2',
-    text: 'Monte Carlo Simulation with 10,000 iterations for probabilistic ranges',
+    label: 'Monte Carlo',
+    text: 'Probabilistic valuation ranges from 10,000-iteration Box-Muller simulation',
+    metric: '10K iterations',
   },
   {
-    icon: '\ud83d\udcdc',
-    text: '190+ IBC landmark cases analyzed | 3,952 corporate debtor outcomes studied',
+    label: 'IBC Case Law',
+    text: '190+ IBC landmark cases analyzed for downside recovery benchmarks',
+    metric: '3,952 outcomes',
   },
 ]
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08 },
+    transition: { staggerChildren: 0.06 },
   },
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' as const },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
   },
 }
 
 export function TrustSignals() {
   return (
-    <section className="relative py-20 px-6">
-      {/* Subtle top divider gradient */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+    <section className="grain relative py-24 px-6">
+      <div className="section-divider absolute inset-x-0 top-0" />
 
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
+          <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.2em] mb-4">
+            Why trust this platform
+          </p>
+          <h2 className="font-heading text-3xl sm:text-4xl text-[oklch(0.93_0.005_80)]">
             Not a Random Calculator
           </h2>
-          <p className="mt-3 text-sm text-slate-500 max-w-lg mx-auto">
+          <p className="mt-4 text-sm text-[oklch(0.45_0.01_260)] max-w-md mx-auto leading-relaxed">
             Enterprise-grade methodology meets startup speed. Every number is defensible.
           </p>
         </motion.div>
@@ -67,19 +74,24 @@ export function TrustSignals() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          viewport={{ once: true, margin: '-40px' }}
+          className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {SIGNALS.map((signal, i) => (
+          {SIGNALS.map((signal) => (
             <motion.div
-              key={i}
+              key={signal.label}
               variants={cardVariants}
-              className="group relative flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] backdrop-blur-lg border border-white/[0.06] transition-colors hover:bg-white/[0.05] hover:border-white/[0.1]"
+              className="group relative p-5 rounded-lg bg-[oklch(0.12_0.008_260)] border border-[oklch(0.20_0.008_260)] transition-all duration-300 hover:border-[oklch(0.78_0.14_80/0.15)] hover:bg-[oklch(0.13_0.008_260)]"
             >
-              <span className="text-xl shrink-0 mt-0.5" aria-hidden="true">
-                {signal.icon}
-              </span>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.15em]">
+                  {signal.label}
+                </span>
+                <span className="text-[10px] text-[oklch(0.45_0.01_260)] tabular-nums">
+                  {signal.metric}
+                </span>
+              </div>
+              <p className="text-sm text-[oklch(0.60_0.01_260)] leading-relaxed">
                 {signal.text}
               </p>
             </motion.div>

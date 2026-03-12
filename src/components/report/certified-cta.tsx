@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Loader2, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
+import { PURPOSE_LABELS, PURPOSE_PRICES, type ValuationPurpose } from '@/types'
 
 declare global {
   interface Window {
@@ -15,6 +16,7 @@ declare global {
 interface Props {
   valuationId: string
   email: string
+  purpose: ValuationPurpose
 }
 
 function loadRazorpayScript(): Promise<void> {
@@ -28,21 +30,29 @@ function loadRazorpayScript(): Promise<void> {
   })
 }
 
-export function CertifiedCTA({ valuationId, email }: Props) {
+function formatPrice(paise: number): string {
+  return `Rs ${(paise / 100).toLocaleString('en-IN')}`
+}
+
+export function CertifiedCTA({ valuationId, email, purpose }: Props) {
   const [loading, setLoading] = useState(false)
   const [paid, setPaid] = useState(false)
 
-  const canPurchase = email.length > 0
+  const price = PURPOSE_PRICES[purpose]
+  const canPurchase = email.length > 0 && price > 0
+
+  // Free purpose — no CTA needed
+  if (price === 0) return null
 
   const handleCheckout = async () => {
     if (!canPurchase) return
     setLoading(true)
 
     try {
-      const res = await fetch('/api/certified/checkout', {
+      const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valuation_id: valuationId, email }),
+        body: JSON.stringify({ valuation_id: valuationId, email, purpose }),
       })
 
       if (res.status === 503) {
@@ -73,11 +83,11 @@ export function CertifiedCTA({ valuationId, email }: Props) {
         currency: data.currency,
         order_id: data.order_id,
         name: 'First Unicorn Startup',
-        description: 'IBBI-Certified Valuation Report',
+        description: `${PURPOSE_LABELS[purpose]} Report`,
         handler: () => {
           setPaid(true)
           setLoading(false)
-          toast.success('Payment received! Your certified report will be delivered within 48 hours.')
+          toast.success('Payment received! Your report will be delivered within 48 hours.')
         },
         modal: {
           ondismiss: () => setLoading(false),
@@ -99,7 +109,8 @@ export function CertifiedCTA({ valuationId, email }: Props) {
           <CheckCircle className="h-12 w-12 text-green-400 mx-auto" />
           <h2 className="text-xl font-bold text-white">Payment Received</h2>
           <p className="text-sm text-slate-400">
-            Your certified valuation report will be delivered to <strong className="text-white">{email}</strong> within 48 hours.
+            Your {PURPOSE_LABELS[purpose].toLowerCase()} report will be delivered to{' '}
+            <strong className="text-white">{email}</strong> within 48 hours.
           </p>
         </CardContent>
       </Card>
@@ -109,28 +120,13 @@ export function CertifiedCTA({ valuationId, email }: Props) {
   return (
     <Card className="border-2 border-amber-500/30 bg-amber-500/5">
       <CardContent className="text-center py-8 space-y-4">
-        <h2 className="text-xl font-bold text-white">Need a Legally Valid Valuation?</h2>
+        <h2 className="text-xl font-bold text-white">
+          Upgrade to {PURPOSE_LABELS[purpose]}
+        </h2>
         <p className="text-sm text-slate-400 max-w-lg mx-auto">
-          Get a certified Rule 11UA / FEMA valuation report — Rs 14,999.
-          Signed by a registered valuer. Valid for RoC filing, fundraising, and tax compliance.
+          Get a professionally prepared {PURPOSE_LABELS[purpose].toLowerCase()} report
+          — {formatPrice(price)}. Signed by a registered valuer where applicable.
         </p>
-        <ul className="text-sm space-y-1 text-left max-w-md mx-auto">
-          <li className="flex items-center gap-2 text-slate-300">
-            <span className="text-green-500">&#10003;</span> Compliant with Rule 11UA (Income Tax Act)
-          </li>
-          <li className="flex items-center gap-2 text-slate-300">
-            <span className="text-green-500">&#10003;</span> Valid for FEMA pricing (foreign investment)
-          </li>
-          <li className="flex items-center gap-2 text-slate-300">
-            <span className="text-green-500">&#10003;</span> 15-20 page professional report
-          </li>
-          <li className="flex items-center gap-2 text-slate-300">
-            <span className="text-green-500">&#10003;</span> Signed by registered valuer with registration number
-          </li>
-          <li className="flex items-center gap-2 text-slate-300">
-            <span className="text-green-500">&#10003;</span> Delivered within 48 hours of payment
-          </li>
-        </ul>
         <Button
           size="lg"
           className="mt-2 bg-amber-500 hover:bg-amber-600 text-black font-semibold"
@@ -143,10 +139,10 @@ export function CertifiedCTA({ valuationId, email }: Props) {
               Processing...
             </>
           ) : (
-            'Get Certified Report — Rs 14,999'
+            `Get ${PURPOSE_LABELS[purpose]} Report — ${formatPrice(price)}`
           )}
         </Button>
-        {!canPurchase && (
+        {!email && (
           <p className="text-xs text-amber-400">Complete the email gate above to purchase</p>
         )}
         <p className="text-xs text-slate-500">

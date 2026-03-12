@@ -83,6 +83,13 @@ export function matchInvestors(query: MatchQuery): InvestorMatch[] {
       reasons.push('Recently active in sector')
     }
 
+    // Check size sweet spot: +1 if raise is within ideal range
+    if (query.target_raise_cr >= investor.check_size_min_cr &&
+        query.target_raise_cr <= investor.check_size_max_cr) {
+      score += 1
+      reasons.push(`Check size fits (${investor.check_size_min_cr}-${investor.check_size_max_cr} Cr)`)
+    }
+
     if (score > 0 && reasons.length > 0) {
       scored.push({ investor, score, reasons })
     }

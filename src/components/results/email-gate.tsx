@@ -26,7 +26,7 @@ const UNLOCKS = [
 ]
 
 export function EmailGate({ onUnlocked }: Props) {
-  const { inputs, result, setEmail } = useValuationStore()
+  const { inputs, result, setEmail, purpose } = useValuationStore()
   const [emailInput, setEmailInput] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -45,6 +45,7 @@ export function EmailGate({ onUnlocked }: Props) {
           email: emailInput,
           valuation_inputs: inputs,
           valuation_result: result,
+          purpose,
         }),
       })
 

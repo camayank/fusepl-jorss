@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
     }
 
-    const body: CaptureRequest = await req.json()
-    const { email, valuation_inputs: inputs, valuation_result: result } = body
+    const body = await req.json() as CaptureRequest & { purpose?: string }
+    const { email, valuation_inputs: inputs, valuation_result: result, purpose } = body
 
     // Validate required fields
     if (!email || !inputs.company_name || !inputs.sector || !inputs.stage) {
@@ -88,6 +88,7 @@ export async function POST(req: NextRequest) {
         method_results: result.methods,
         monte_carlo_percentiles: result.monte_carlo,
         ibc_recovery_range: result.ibc_recovery_range,
+        purpose: purpose || 'indicative',
       })
       .select('id')
       .single()
