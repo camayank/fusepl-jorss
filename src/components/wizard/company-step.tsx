@@ -78,7 +78,7 @@ export function CompanyStep() {
               onChange={(e) => setWebsiteUrl(e.target.value)}
               placeholder="yourstarup.com"
               onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeUrl()}
-              className="w-full h-10 pl-10 pr-4 text-sm rounded-lg bg-[oklch(0.08_0.008_260)] border border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.30_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)] transition-colors"
+              className="w-full h-10 pl-10 pr-4 text-sm rounded-lg bg-[oklch(0.08_0.008_260)] border border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.38_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)] transition-colors"
             />
           </div>
           <button
@@ -106,7 +106,7 @@ export function CompanyStep() {
             value={inputs.company_name}
             onChange={(e) => setField('company_name', e.target.value)}
             placeholder="e.g., Acme Technologies"
-            className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.30_0.01_260)] mt-1.5 focus:border-[oklch(0.78_0.14_80/0.4)]"
+            className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.38_0.01_260)] mt-1.5 focus:border-[oklch(0.78_0.14_80/0.4)]"
           />
         </div>
 
@@ -130,7 +130,7 @@ export function CompanyStep() {
                       onChange={(e) => setSectorSearch(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                       onKeyDown={(e) => e.stopPropagation()}
-                      className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.08_0.008_260)] border border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.30_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)]"
+                      className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.08_0.008_260)] border border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.38_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)]"
                     />
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export function CompanyStep() {
               value={inputs.city}
               onChange={(e) => setField('city', e.target.value)}
               placeholder="e.g., Bangalore"
-              className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.30_0.01_260)] mt-1.5"
+              className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.38_0.01_260)] mt-1.5"
             />
           </div>
         </div>

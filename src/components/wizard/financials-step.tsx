@@ -12,9 +12,9 @@ function CurrencyInput({ label, value, onChange, placeholder, help }: {
   return (
     <div>
       <Label className="text-[oklch(0.65_0.005_80)]">{label}</Label>
-      {help && <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">{help}</p>}
+      {help && <p className="text-xs text-[oklch(0.38_0.01_260)] mb-1">{help}</p>}
       <div className="relative mt-1">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[oklch(0.30_0.01_260)] text-sm">₹</span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[oklch(0.38_0.01_260)] text-sm">₹</span>
         <Input
           type="number"
           value={value ?? ''}

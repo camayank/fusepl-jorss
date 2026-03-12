@@ -199,7 +199,7 @@ export function WizardContainer() {
         <button
           onClick={handlePrev}
           disabled={currentStep === 1}
-          className="group inline-flex items-center gap-1.5 h-11 px-5 text-sm font-medium rounded-lg border border-[oklch(0.20_0.008_260)] text-[oklch(0.55_0.01_260)] transition-all hover:border-[oklch(0.30_0.008_260)] hover:text-[oklch(0.78_0.14_80)] disabled:opacity-20 disabled:cursor-not-allowed"
+          className="btn-press focus-ring group inline-flex items-center gap-1.5 h-11 px-5 text-sm font-medium rounded-lg border border-[oklch(0.20_0.008_260)] text-[oklch(0.55_0.01_260)] transition-all hover:border-[oklch(0.30_0.008_260)] hover:text-[oklch(0.78_0.14_80)] hover:bg-[oklch(0.78_0.14_80/0.04)] disabled:opacity-20 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
           Back
@@ -207,7 +207,7 @@ export function WizardContainer() {
         <button
           onClick={handleNext}
           disabled={computing}
-          className="group inline-flex items-center gap-2 h-11 px-8 text-sm font-semibold rounded-lg bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_24px_oklch(0.78_0.14_80/0.25)] active:scale-[0.98] disabled:opacity-50"
+          className="btn-press focus-ring group inline-flex items-center gap-2 h-11 px-8 text-sm font-semibold rounded-lg bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_24px_oklch(0.78_0.14_80/0.25)] disabled:opacity-50"
         >
           {computing ? (
             <>

@@ -40,10 +40,10 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={`
-                  relative px-3.5 py-1.5 text-[13px] font-medium tracking-wide uppercase rounded-md transition-all duration-200
+                  focus-ring relative px-3.5 py-1.5 text-[13px] font-medium tracking-wide uppercase rounded-md transition-all duration-200
                   ${isActive
                     ? 'text-[oklch(0.85_0.12_80)]'
-                    : 'text-[oklch(0.50_0.01_260)] hover:text-[oklch(0.75_0.005_80)]'
+                    : 'text-[oklch(0.55_0.01_260)] hover:text-[oklch(0.80_0.005_80)] hover:bg-[oklch(0.78_0.14_80/0.04)]'
                   }
                 `}
                 aria-current={isActive ? 'page' : undefined}
@@ -59,7 +59,7 @@ export function Header() {
           <div className="ml-5 pl-5 border-l border-[oklch(0.78_0.14_80/0.12)]">
             <Link
               href="/valuation"
-              className="inline-flex items-center justify-center rounded-lg h-8 px-5 text-[13px] font-semibold tracking-wide bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_24px_oklch(0.78_0.14_80/0.2)] active:scale-[0.98]"
+              className="btn-press focus-ring inline-flex items-center justify-center rounded-lg h-8 px-5 text-[13px] font-semibold tracking-wide bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_24px_oklch(0.78_0.14_80/0.2)]"
             >
               Get Valuation
             </Link>

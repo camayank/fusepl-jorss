@@ -36,7 +36,7 @@ export function StrategicStep() {
 
         <div>
           <Label className="text-[oklch(0.65_0.005_80)]">Regulatory Risk (1-5): {inputs.regulatory_risk}</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
           <Slider
             value={[inputs.regulatory_risk]}
             onValueChange={(v) => setField('regulatory_risk', Array.isArray(v) ? v[0] : v)}
@@ -52,7 +52,7 @@ export function StrategicStep() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label className="text-[oklch(0.65_0.005_80)]">Revenue Concentration (%)</Label>
-              <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">% from top 3 customers</p>
+              <p className="text-xs text-[oklch(0.38_0.01_260)] mb-1">% from top 3 customers</p>
               <Input
                 type="number"
                 value={inputs.revenue_concentration_pct ?? ''}

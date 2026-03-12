@@ -49,7 +49,7 @@ export function TeamStep() {
 
         <div>
           <Label className="text-[oklch(0.65_0.005_80)]">Founder Experience (1-5): {inputs.founder_experience}</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-2">1 = First-time founder, 5 = Serial entrepreneur with deep expertise</p>
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-2">1 = First-time founder, 5 = Serial entrepreneur with deep expertise</p>
           <Slider
             value={[inputs.founder_experience]}
             onValueChange={(v) => setField('founder_experience', Array.isArray(v) ? v[0] : v)}
@@ -62,7 +62,7 @@ export function TeamStep() {
 
         <div>
           <Label className="text-[oklch(0.65_0.005_80)]">Domain Expertise (1-5): {inputs.domain_expertise}</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-2">1 = New to sector, 5 = Industry veteran (10+ years)</p>
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-2">1 = New to sector, 5 = Industry veteran (10+ years)</p>
           <Slider
             value={[inputs.domain_expertise]}
             onValueChange={(v) => setField('domain_expertise', Array.isArray(v) ? v[0] : v)}

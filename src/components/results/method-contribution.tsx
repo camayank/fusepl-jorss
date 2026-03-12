@@ -104,7 +104,7 @@ export function MethodContribution({ methods, compositeValue }: Props) {
           </div>
 
           <div className="mt-4 pt-3 border-t border-[oklch(0.15_0.008_260)] text-center">
-            <span className="text-[10px] text-[oklch(0.40_0.01_260)] uppercase tracking-wider">Composite</span>
+            <span className="text-[10px] text-[oklch(0.48_0.01_260)] uppercase tracking-wider">Composite</span>
             <p className="text-sm font-bold text-[oklch(0.78_0.14_80)] tabular-nums">{formatINR(compositeValue)}</p>
           </div>
         </div>

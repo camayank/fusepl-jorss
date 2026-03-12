@@ -98,7 +98,7 @@ export function EmailGate({ onUnlocked }: Props) {
               <h3 className="font-heading text-xl text-[oklch(0.93_0.005_80)] mb-2">
                 Unlock Your Full Report
               </h3>
-              <p className="text-sm text-[oklch(0.45_0.01_260)]">
+              <p className="text-sm text-[oklch(0.52_0.01_260)]">
                 Enter your email to access everything — <span className="text-[oklch(0.78_0.14_80)] font-medium">free during beta</span>.
               </p>
             </div>
@@ -120,7 +120,7 @@ export function EmailGate({ onUnlocked }: Props) {
                   >
                     <Icon className="w-3 h-3" style={{ color }} />
                   </div>
-                  <span className="text-xs text-[oklch(0.60_0.01_260)] leading-relaxed">{text}</span>
+                  <span className="text-xs text-[oklch(0.58_0.01_260)] leading-relaxed">{text}</span>
                 </motion.div>
               ))}
             </div>
@@ -134,7 +134,7 @@ export function EmailGate({ onUnlocked }: Props) {
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
                   required
-                  className="w-full h-12 px-4 text-sm rounded-xl bg-[oklch(0.08_0.008_260)] border border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.30_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)] focus:shadow-[0_0_0_3px_oklch(0.78_0.14_80/0.06)] transition-all"
+                  className="w-full h-12 px-4 text-sm rounded-xl bg-[oklch(0.08_0.008_260)] border border-[oklch(0.20_0.008_260)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.40_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)] focus:shadow-[0_0_0_3px_oklch(0.78_0.14_80/0.06)] transition-all"
                 />
               </div>
               <button
@@ -160,7 +160,7 @@ export function EmailGate({ onUnlocked }: Props) {
               <p className="text-xs text-[oklch(0.62_0.18_25)] mt-2">{error}</p>
             )}
 
-            <p className="text-[10px] text-[oklch(0.30_0.01_260)] mt-3 text-center">
+            <p className="text-[10px] text-[oklch(0.40_0.01_260)] mt-3 text-center">
               No spam. We only send your valuation report.
             </p>
           </div>

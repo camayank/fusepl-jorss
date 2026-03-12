@@ -53,7 +53,7 @@ export function MonteCarloChart({ monteCarlo }: Props) {
             </div>
             <h3 className="text-sm font-semibold text-[oklch(0.78_0.14_80)]">Monte Carlo Simulation</h3>
           </div>
-          <span className="text-[10px] text-[oklch(0.40_0.01_260)] tabular-nums">
+          <span className="text-[10px] text-[oklch(0.48_0.01_260)] tabular-nums">
             {monteCarlo.iterations_valid.toLocaleString()} / {monteCarlo.iterations_total.toLocaleString()} valid
           </span>
         </div>
@@ -114,7 +114,7 @@ export function MonteCarloChart({ monteCarlo }: Props) {
           <div className="flex justify-between mt-4 px-1">
             {percentiles.map(p => (
               <div key={p.label} className="flex flex-col items-center gap-0.5">
-                <span className="text-[9px] text-[oklch(0.40_0.01_260)] uppercase tracking-wider">{p.label}</span>
+                <span className="text-[9px] text-[oklch(0.48_0.01_260)] uppercase tracking-wider">{p.label}</span>
                 <span className={`text-[11px] tabular-nums ${p.color}`}>{formatINR(p.value)}</span>
               </div>
             ))}

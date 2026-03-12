@@ -88,7 +88,7 @@ export function ValuationReveal({ result, companyName }: Props) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.5 }}
-              className="text-sm text-[oklch(0.50_0.01_260)] mb-8"
+              className="text-sm text-[oklch(0.55_0.01_260)] mb-8"
             >
               Range:{' '}
               <span className="text-[oklch(0.65_0.005_80)]">
@@ -117,7 +117,7 @@ export function ValuationReveal({ result, companyName }: Props) {
                 >
                   {result.confidence_score}
                 </span>
-                <span className="text-[10px] text-[oklch(0.45_0.01_260)] uppercase tracking-wider">
+                <span className="text-[10px] text-[oklch(0.50_0.01_260)] uppercase tracking-wider">
                   Confidence ({confidenceLabel})
                 </span>
               </div>
@@ -129,7 +129,7 @@ export function ValuationReveal({ result, companyName }: Props) {
                 <span className="text-lg font-bold text-[oklch(0.85_0.005_80)]">
                   {applicableMethods}
                 </span>
-                <span className="text-[10px] text-[oklch(0.45_0.01_260)] uppercase tracking-wider">
+                <span className="text-[10px] text-[oklch(0.50_0.01_260)] uppercase tracking-wider">
                   Methods Used
                 </span>
               </div>
@@ -141,7 +141,7 @@ export function ValuationReveal({ result, companyName }: Props) {
                 <span className="text-lg font-bold text-[oklch(0.85_0.005_80)]">
                   {result.monte_carlo ? '10K' : '—'}
                 </span>
-                <span className="text-[10px] text-[oklch(0.45_0.01_260)] uppercase tracking-wider">
+                <span className="text-[10px] text-[oklch(0.50_0.01_260)] uppercase tracking-wider">
                   Simulations
                 </span>
               </div>
@@ -152,7 +152,7 @@ export function ValuationReveal({ result, companyName }: Props) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.3, duration: 0.4 }}
-                className="text-xs text-[oklch(0.40_0.01_260)] border-t border-[oklch(0.13_0.008_260)] pt-4 mt-6"
+                className="text-xs text-[oklch(0.48_0.01_260)] border-t border-[oklch(0.13_0.008_260)] pt-4 mt-6"
               >
                 Downside: In insolvency, similar {result.ibc_recovery_range.sector} companies
                 recovered {result.ibc_recovery_range.low}–{result.ibc_recovery_range.high}% of claims.

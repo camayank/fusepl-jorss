@@ -121,7 +121,7 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-7 text-[clamp(0.95rem,1.5vw,1.15rem)] text-[oklch(0.55_0.01_260)] max-w-2xl leading-relaxed"
+        className="mt-7 text-[clamp(0.95rem,1.5vw,1.15rem)] text-[oklch(0.58_0.01_260)] max-w-2xl leading-relaxed"
       >
         The same valuation rigour that Shark Tank investors demand — now available to every Indian founder.
         <span className="text-[oklch(0.78_0.14_80)] font-medium"> 5 minutes. 10 methods. Institutional-grade numbers.</span>
@@ -133,7 +133,7 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-3 text-xs text-[oklch(0.40_0.01_260)]"
+        className="mt-3 text-xs text-[oklch(0.46_0.01_260)]"
       >
         Built by an IBBI-Registered Insolvency Professional & SFA-Licensed Valuer
       </motion.p>
@@ -169,7 +169,7 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-6 text-[10px] text-[oklch(0.38_0.01_260)]"
+        className="mt-6 text-[10px] text-[oklch(0.46_0.01_260)]"
       >
         No signup required &bull; Results in under 5 minutes &bull; Powered by Damodaran India data
       </motion.div>
@@ -205,10 +205,10 @@ function StatItem({ end, suffix, label, detail }: (typeof STATS)[number]) {
         {value.toLocaleString()}
         {suffix}
       </span>
-      <span className="text-xs text-[oklch(0.55_0.01_260)] uppercase tracking-[0.15em] font-medium">
+      <span className="text-xs text-[oklch(0.58_0.01_260)] uppercase tracking-[0.15em] font-medium">
         {label}
       </span>
-      <span className="text-[10px] text-[oklch(0.40_0.01_260)] mt-0.5">
+      <span className="text-[10px] text-[oklch(0.46_0.01_260)] mt-0.5">
         {detail}
       </span>
     </div>

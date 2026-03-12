@@ -87,7 +87,7 @@ export function MethodShowcase() {
             <motion.div
               key={approach.key}
               variants={cardVariants}
-              className="relative rounded-lg bg-[oklch(0.12_0.008_260)] border border-[oklch(0.20_0.008_260)] p-6 transition-all duration-300 hover:border-[oklch(0.25_0.008_260)]"
+              className="card-hover relative rounded-lg bg-[oklch(0.12_0.008_260)] border border-[oklch(0.20_0.008_260)] p-6 hover:border-[oklch(0.25_0.008_260)]"
               style={{
                 borderLeftWidth: '2px',
                 borderLeftColor: approach.borderColor,
@@ -101,7 +101,7 @@ export function MethodShowcase() {
                 <h3 className="font-heading text-base text-[oklch(0.93_0.005_80)]">
                   {APPROACH_LABELS[approach.key]}
                 </h3>
-                <span className="ml-auto text-[10px] text-[oklch(0.40_0.01_260)] tabular-nums">
+                <span className="ml-auto text-[10px] text-[oklch(0.48_0.01_260)] tabular-nums">
                   {approach.methods.length} methods
                 </span>
               </div>
@@ -109,7 +109,7 @@ export function MethodShowcase() {
                 {approach.methods.map((method) => (
                   <li
                     key={method}
-                    className="text-sm flex items-center gap-3 text-[oklch(0.55_0.01_260)]"
+                    className="text-sm flex items-center gap-3 text-[oklch(0.52_0.01_260)]"
                   >
                     <span
                       className="w-1 h-1 rounded-full shrink-0 opacity-50"

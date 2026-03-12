@@ -32,7 +32,7 @@ function confidenceBar(confidence: number) {
       <div className="w-12 h-1 rounded-full bg-[oklch(0.15_0.008_260)] overflow-hidden">
         <div className={`h-full rounded-full ${color}`} style={{ width: `${pct}%` }} />
       </div>
-      <span className="text-[10px] text-[oklch(0.45_0.01_260)] tabular-nums">{pct}%</span>
+      <span className="text-[10px] text-[oklch(0.50_0.01_260)] tabular-nums">{pct}%</span>
     </div>
   )
 }
@@ -105,7 +105,7 @@ export function MethodCards({ methods, monteCarlo }: Props) {
                         {formatINR(m.value)}
                       </span>
                       {m.method === 'dcf' && monteCarlo && (
-                        <p className="text-[10px] text-[oklch(0.40_0.01_260)] tabular-nums">
+                        <p className="text-[10px] text-[oklch(0.48_0.01_260)] tabular-nums">
                           MC: {formatINR(monteCarlo.p10)}–{formatINR(monteCarlo.p90)}
                         </p>
                       )}

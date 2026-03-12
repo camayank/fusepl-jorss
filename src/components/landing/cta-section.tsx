@@ -49,7 +49,7 @@ export function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className="mt-5 text-sm sm:text-base text-[oklch(0.50_0.01_260)] max-w-lg mx-auto leading-relaxed"
+          className="mt-5 text-sm sm:text-base text-[oklch(0.55_0.01_260)] max-w-lg mx-auto leading-relaxed"
         >
           Whether you&apos;re pitching to investors, negotiating a deal, or planning your next round —
           know exactly what your startup is worth. The same rigour that Shark Tank investors demand.
@@ -85,7 +85,7 @@ export function CtaSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-10 flex items-center justify-center gap-6 text-[10px] text-[oklch(0.40_0.01_260)] uppercase tracking-[0.15em]"
+          className="mt-10 flex items-center justify-center gap-6 text-[10px] text-[oklch(0.48_0.01_260)] uppercase tracking-[0.15em]"
         >
           <span>IVS 105 Aligned</span>
           <span className="w-px h-3 bg-[oklch(0.20_0.008_260)]" />

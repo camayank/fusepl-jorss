@@ -30,7 +30,7 @@ export function MarketProductStep() {
       <div className="space-y-5">
         <div>
           <Label htmlFor="tam" className="text-[oklch(0.65_0.005_80)]">Total Addressable Market (TAM in Cr) *</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">Enter in crores (e.g., 5000 = Rs 5,000 Cr)</p>
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-1">Enter in crores (e.g., 5000 = Rs 5,000 Cr)</p>
           <Input
             id="tam"
             type="number"
@@ -59,7 +59,7 @@ export function MarketProductStep() {
 
         <div>
           <Label className="text-[oklch(0.65_0.005_80)]">Competition Level (1-5): {inputs.competition_level}</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-2">1 = Blue ocean, 5 = Hypercompetitive market</p>
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-2">1 = Blue ocean, 5 = Hypercompetitive market</p>
           <Slider
             value={[inputs.competition_level]}
             onValueChange={(v) => setField('competition_level', Array.isArray(v) ? v[0] : v)}

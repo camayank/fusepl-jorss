@@ -19,7 +19,7 @@ export function ESOPCapTableStep() {
       <div className="space-y-5">
         <div>
           <Label className="text-[oklch(0.65_0.005_80)]">ESOP Pool (%)</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-1">
             Default for {inputs.stage.replace('_', ' ')} stage: {defaultEsop}%
           </p>
           <Input
@@ -35,7 +35,7 @@ export function ESOPCapTableStep() {
 
         <div>
           <Label className="text-[oklch(0.65_0.005_80)]">Time to Liquidity (years)</Label>
-          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">Expected years until exit/IPO</p>
+          <p className="text-xs text-[oklch(0.38_0.01_260)] mb-1">Expected years until exit/IPO</p>
           <Input
             type="number"
             value={inputs.time_to_liquidity_years ?? ''}
@@ -51,7 +51,7 @@ export function ESOPCapTableStep() {
           <div className="flex items-center justify-between mb-3">
             <div>
               <p className="text-sm text-[oklch(0.50_0.01_260)]">Current Cap Table (optional)</p>
-              <p className="text-xs text-[oklch(0.30_0.01_260)]">Add up to 10 shareholders. Total should equal 100%.</p>
+              <p className="text-xs text-[oklch(0.38_0.01_260)]">Add up to 10 shareholders. Total should equal 100%.</p>
             </div>
             <button
               onClick={() => {
@@ -71,7 +71,7 @@ export function ESOPCapTableStep() {
 
           {inputs.current_cap_table && inputs.current_cap_table.length > 0 ? (
             <div className="space-y-2">
-              <div className="grid grid-cols-12 gap-2 text-xs text-[oklch(0.30_0.01_260)] font-medium px-1">
+              <div className="grid grid-cols-12 gap-2 text-xs text-[oklch(0.38_0.01_260)] font-medium px-1">
                 <span className="col-span-5">Name</span>
                 <span className="col-span-3">Ownership %</span>
                 <span className="col-span-3">Class</span>
@@ -125,12 +125,12 @@ export function ESOPCapTableStep() {
                   </button>
                 </div>
               ))}
-              <p className="text-xs text-[oklch(0.30_0.01_260)] mt-2">
+              <p className="text-xs text-[oklch(0.38_0.01_260)] mt-2">
                 Total: {inputs.current_cap_table.reduce((s, e) => s + e.percentage, 0).toFixed(1)}%
               </p>
             </div>
           ) : (
-            <p className="text-sm text-[oklch(0.30_0.01_260)] italic">No cap table entries. Click &quot;+ Add Row&quot; to start.</p>
+            <p className="text-sm text-[oklch(0.38_0.01_260)] italic">No cap table entries. Click &quot;+ Add Row&quot; to start.</p>
           )}
         </div>
       </div>

@@ -65,7 +65,7 @@ export function ConfidenceBreakdown({ result }: Props) {
                     <span className="text-xs font-bold tabular-nums" style={{ color: item.color }}>
                       {item.score}
                     </span>
-                    <span className="text-[10px] text-[oklch(0.35_0.01_260)]">/ {item.max}</span>
+                    <span className="text-[10px] text-[oklch(0.48_0.01_260)]">/ {item.max}</span>
                   </div>
                 </div>
                 <div className="h-2 rounded-full bg-[oklch(0.13_0.008_260)] overflow-hidden">
@@ -78,7 +78,7 @@ export function ConfidenceBreakdown({ result }: Props) {
                     transition={{ delay: 0.3 + i * 0.1, duration: 0.6, ease: 'easeOut' }}
                   />
                 </div>
-                <p className="text-[10px] text-[oklch(0.40_0.01_260)]">{item.description}</p>
+                <p className="text-[10px] text-[oklch(0.48_0.01_260)]">{item.description}</p>
               </motion.div>
             )
           })}
@@ -89,7 +89,7 @@ export function ConfidenceBreakdown({ result }: Props) {
               <span className="text-sm font-medium text-[oklch(0.70_0.005_80)]">Total Score</span>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-bold text-[oklch(0.78_0.14_80)]">{result.confidence_score}</span>
-                <span className="text-xs text-[oklch(0.40_0.01_260)]">/ 100</span>
+                <span className="text-xs text-[oklch(0.48_0.01_260)]">/ 100</span>
               </div>
             </div>
           </div>

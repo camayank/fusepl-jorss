@@ -65,7 +65,7 @@ export function TrustSignals() {
           <h2 className="font-heading text-3xl sm:text-4xl text-[oklch(0.93_0.005_80)]">
             Not a Random Number Generator
           </h2>
-          <p className="mt-4 text-sm text-[oklch(0.45_0.01_260)] max-w-md mx-auto leading-relaxed">
+          <p className="mt-4 text-sm text-[oklch(0.50_0.01_260)] max-w-md mx-auto leading-relaxed">
             When a Shark asks &ldquo;how did you arrive at this valuation?&rdquo; — you&apos;ll have a real answer.
           </p>
         </motion.div>
@@ -81,17 +81,17 @@ export function TrustSignals() {
             <motion.div
               key={signal.label}
               variants={cardVariants}
-              className="group relative p-5 rounded-lg bg-[oklch(0.12_0.008_260)] border border-[oklch(0.20_0.008_260)] transition-all duration-300 hover:border-[oklch(0.78_0.14_80/0.15)] hover:bg-[oklch(0.13_0.008_260)]"
+              className="card-hover group relative p-5 rounded-lg bg-[oklch(0.12_0.008_260)] border border-[oklch(0.20_0.008_260)] hover:border-[oklch(0.78_0.14_80/0.2)]"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-bold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.15em]">
                   {signal.label}
                 </span>
-                <span className="text-[10px] text-[oklch(0.45_0.01_260)] tabular-nums">
+                <span className="text-[10px] text-[oklch(0.50_0.01_260)] tabular-nums">
                   {signal.metric}
                 </span>
               </div>
-              <p className="text-sm text-[oklch(0.60_0.01_260)] leading-relaxed">
+              <p className="text-sm text-[oklch(0.55_0.01_260)] leading-relaxed">
                 {signal.text}
               </p>
             </motion.div>

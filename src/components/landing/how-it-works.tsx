@@ -90,7 +90,7 @@ export function HowItWorks() {
                   <h3 className="font-heading text-lg text-[oklch(0.93_0.005_80)]">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-[oklch(0.45_0.01_260)] leading-relaxed max-w-xs">
+                  <p className="mt-2 text-sm text-[oklch(0.52_0.01_260)] leading-relaxed max-w-xs">
                     {step.desc}
                   </p>
                   <span className="inline-block mt-3 text-[10px] font-semibold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.15em]">
