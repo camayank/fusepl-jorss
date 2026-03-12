@@ -286,22 +286,40 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid URL format' }, { status: 400 })
     }
 
-    // Fetch the webpage
+    // Fetch the webpage with a realistic User-Agent
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 8000)
+    const timeout = setTimeout(() => controller.abort(), 10000)
 
     let html: string
     try {
       const response = await fetch(normalizedUrl, {
         signal: controller.signal,
         headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; FirstUnicornBot/1.0)',
-          Accept: 'text/html',
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
         },
+        redirect: 'follow',
       })
+
+      if (!response.ok) {
+        return NextResponse.json({
+          success: false,
+          error: 'Could not fetch website',
+          hint: `The website returned status ${response.status}. Please fill the fields manually.`,
+        }, { status: 422 })
+      }
+
       html = await response.text()
-    } catch {
-      return NextResponse.json({ error: 'Could not fetch website' }, { status: 422 })
+    } catch (fetchErr) {
+      const isTimeout = fetchErr instanceof DOMException && fetchErr.name === 'AbortError'
+      return NextResponse.json({
+        success: false,
+        error: 'Could not fetch website',
+        hint: isTimeout
+          ? 'The website took too long to respond. Please fill the fields manually.'
+          : 'The website could not be reached. Check the URL and try again.',
+      }, { status: 422 })
     } finally {
       clearTimeout(timeout)
     }

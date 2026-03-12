@@ -7,16 +7,20 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { STARTUP_CATEGORIES, CATEGORY_LABELS, STAGES, STAGE_LABELS, BUSINESS_MODELS, BUSINESS_MODEL_LABELS } from '@/types'
 import type { StartupCategory, BusinessModel } from '@/types'
-import { Globe, Loader2, Sparkles, Search, Info } from 'lucide-react'
+import { Globe, Loader2, Search, CheckCircle2, AlertTriangle, X } from 'lucide-react'
 import { toast } from 'sonner'
 
 const SECTOR_ENTRIES: [StartupCategory, string][] = STARTUP_CATEGORIES.map(key => [key, CATEGORY_LABELS[key]])
 const BIZ_MODEL_ENTRIES: [BusinessModel, string][] = BUSINESS_MODELS.map(key => [key, BUSINESS_MODEL_LABELS[key]])
 
+type PrefillStatus = 'idle' | 'loading' | 'success' | 'partial' | 'error'
+
 export function CompanyStep() {
   const { inputs, setField } = useValuationStore()
   const [websiteUrl, setWebsiteUrl] = useState('')
   const [analyzing, setAnalyzing] = useState(false)
+  const [prefillStatus, setPrefillStatus] = useState<PrefillStatus>('idle')
+  const [prefillMessage, setPrefillMessage] = useState('')
   const [sectorSearch, setSectorSearch] = useState('')
   const [bizModelSearch, setBizModelSearch] = useState('')
 
@@ -33,87 +37,88 @@ export function CompanyStep() {
   }, [bizModelSearch])
 
   const handleAnalyzeUrl = async () => {
-    if (!websiteUrl.trim()) return
+    const raw = websiteUrl.trim()
+    if (!raw) return
     setAnalyzing(true)
+    setPrefillStatus('loading')
+    setPrefillMessage('')
 
     try {
       const res = await fetch('/api/analyze-url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: websiteUrl }),
+        body: JSON.stringify({ url: raw }),
       })
 
       const data = await res.json()
 
       if (data.success && data.data) {
         const d = data.data
-        if (d.company_name && !inputs.company_name) setField('company_name', d.company_name)
-        if (d.sector) setField('sector', d.sector)
-        if (d.city) setField('city', d.city)
-        if (d.founding_year) setField('founding_year', d.founding_year)
-        if (d.team_size) setField('team_size', d.team_size)
+        const fields: string[] = []
 
-        const filled = [d.company_name, d.sector, d.city, d.founding_year, d.team_size].filter(Boolean).length
-        toast.success(`Auto-filled ${filled} fields from your website`)
+        if (d.company_name && !inputs.company_name) {
+          setField('company_name', d.company_name)
+          fields.push('company name')
+        }
+        if (d.sector) {
+          setField('sector', d.sector)
+          fields.push('sector')
+        }
+        if (d.city) {
+          setField('city', d.city)
+          fields.push('city')
+        }
+        if (d.founding_year) {
+          setField('founding_year', d.founding_year)
+          fields.push('founded year')
+        }
+        if (d.team_size) {
+          setField('team_size', d.team_size)
+          fields.push('team size')
+        }
+
+        if (fields.length > 0) {
+          setPrefillStatus(fields.length >= 3 ? 'success' : 'partial')
+          setPrefillMessage(`Detected: ${fields.join(', ')}`)
+          toast.success(`Auto-filled ${fields.length} fields from website`)
+        } else {
+          setPrefillStatus('partial')
+          setPrefillMessage('Website loaded but no fields could be detected. Please fill manually.')
+        }
       } else {
-        toast.error(data.error || 'Could not analyze website')
+        setPrefillStatus('error')
+        setPrefillMessage(
+          data.hint || (
+            data.error === 'Could not fetch website'
+              ? 'Website unreachable — please fill the fields manually below.'
+              : 'Could not extract data — please fill the fields manually below.'
+          )
+        )
       }
     } catch {
-      toast.error('Failed to analyze website')
+      setPrefillStatus('error')
+      setPrefillMessage('Network error — please fill the fields manually below.')
     } finally {
       setAnalyzing(false)
     }
   }
 
+  const clearPrefill = () => {
+    setPrefillStatus('idle')
+    setPrefillMessage('')
+    setWebsiteUrl('')
+  }
+
   return (
     <div className="space-y-6">
-      {/* Step header with education */}
+      {/* Step header */}
       <div>
         <h2 className="text-2xl font-bold text-[oklch(0.95_0.002_250)] mb-1">Company Profile</h2>
         <p className="text-[oklch(0.60_0.01_250)] text-sm">Your sector and stage directly determine which valuation methods we use and which comparable companies we match against.</p>
       </div>
 
-      {/* URL Auto-fill */}
-      <div className="rounded-xl border border-dashed border-[oklch(0.72_0.17_162/0.25)] bg-[oklch(0.72_0.17_162/0.03)] p-4">
-        <div className="flex items-center gap-2 mb-2">
-          <Sparkles className="w-3.5 h-3.5 text-[oklch(0.72_0.17_162)]" />
-          <span className="text-xs font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-wider">
-            Quick Start
-          </span>
-        </div>
-        <p className="text-xs text-[oklch(0.55_0.01_250)] mb-3">
-          Paste your startup website and we&apos;ll auto-detect your sector, city, founding year, and more.
-        </p>
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[oklch(0.40_0.01_250)]" />
-            <input
-              type="url"
-              value={websiteUrl}
-              onChange={(e) => setWebsiteUrl(e.target.value)}
-              placeholder="yourstarup.com"
-              onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeUrl()}
-              className="w-full h-10 pl-10 pr-4 text-sm rounded-lg bg-[oklch(0.14_0.015_250)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.72_0.17_162/0.4)] transition-colors"
-            />
-          </div>
-          <button
-            onClick={handleAnalyzeUrl}
-            disabled={!websiteUrl.trim() || analyzing}
-            className="h-10 px-4 text-xs font-semibold rounded-lg bg-[oklch(0.72_0.17_162)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.68_0.18_162)] disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
-          >
-            {analyzing ? (
-              <>
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              'Auto-fill'
-            )}
-          </button>
-        </div>
-      </div>
-
       <div className="space-y-4">
+        {/* Company Name + Website prefill inline */}
         <div>
           <Label htmlFor="company_name" className="text-[oklch(0.68_0.005_250)] text-xs font-medium">Company Name *</Label>
           <Input
@@ -123,6 +128,70 @@ export function CompanyStep() {
             placeholder="e.g., Acme Technologies"
             className="bg-[oklch(0.14_0.015_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] mt-1.5 focus:border-[oklch(0.72_0.17_162/0.4)]"
           />
+
+          {/* Inline website prefill — compact, non-intrusive */}
+          <div className="mt-2">
+            {prefillStatus === 'idle' || prefillStatus === 'loading' ? (
+              <div className="flex items-center gap-2">
+                <div className="relative flex-1">
+                  <Globe className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.40_0.01_250)]" />
+                  <input
+                    type="url"
+                    value={websiteUrl}
+                    onChange={(e) => setWebsiteUrl(e.target.value)}
+                    placeholder="Paste website URL to auto-fill fields"
+                    onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeUrl()}
+                    className="w-full h-8 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.12_0.012_250)] border border-[oklch(0.22_0.015_250)] text-[oklch(0.78_0.005_250)] placeholder:text-[oklch(0.40_0.01_250)] focus:outline-none focus:border-[oklch(0.72_0.17_162/0.3)] transition-colors"
+                  />
+                </div>
+                <button
+                  onClick={handleAnalyzeUrl}
+                  disabled={!websiteUrl.trim() || analyzing}
+                  className="h-8 px-3 text-[11px] font-medium rounded-lg bg-[oklch(0.20_0.015_250)] border border-[oklch(0.28_0.018_250)] text-[oklch(0.68_0.005_250)] transition-all hover:bg-[oklch(0.24_0.018_250)] hover:text-[oklch(0.72_0.17_162)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  {analyzing ? (
+                    <>
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                      Detecting...
+                    </>
+                  ) : (
+                    'Detect'
+                  )}
+                </button>
+              </div>
+            ) : (
+              /* Status feedback after attempt */
+              <div className={`flex items-start gap-2 px-3 py-2 rounded-lg text-xs ${
+                prefillStatus === 'success'
+                  ? 'bg-[oklch(0.65_0.16_155/0.06)] border border-[oklch(0.65_0.16_155/0.15)]'
+                  : prefillStatus === 'partial'
+                  ? 'bg-[oklch(0.72_0.15_85/0.06)] border border-[oklch(0.72_0.15_85/0.15)]'
+                  : 'bg-[oklch(0.62_0.18_25/0.06)] border border-[oklch(0.62_0.18_25/0.15)]'
+              }`}>
+                {prefillStatus === 'success' ? (
+                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 text-[oklch(0.65_0.16_155)] shrink-0" />
+                ) : (
+                  <AlertTriangle className="w-3.5 h-3.5 mt-0.5 text-[oklch(0.72_0.15_85)] shrink-0" />
+                )}
+                <span className={`flex-1 ${
+                  prefillStatus === 'success'
+                    ? 'text-[oklch(0.65_0.16_155)]'
+                    : prefillStatus === 'partial'
+                    ? 'text-[oklch(0.72_0.15_85)]'
+                    : 'text-[oklch(0.62_0.18_25)]'
+                }`}>
+                  {prefillMessage}
+                </span>
+                <button
+                  onClick={clearPrefill}
+                  className="text-[oklch(0.50_0.01_250)] hover:text-[oklch(0.70_0.01_250)] transition-colors shrink-0"
+                  title="Try another URL"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

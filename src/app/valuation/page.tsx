@@ -10,6 +10,7 @@ import { MethodCards } from '@/components/results/method-cards'
 import { MethodContribution } from '@/components/results/method-contribution'
 import { MonteCarloChart } from '@/components/results/monte-carlo-chart'
 import { ConfidenceBreakdown } from '@/components/results/confidence-breakdown'
+import { ComparablesPreview } from '@/components/results/comparables-preview'
 import { ShareButtons } from '@/components/results/share-buttons'
 import { EmailGate } from '@/components/results/email-gate'
 import { PDFDownloadButton } from '@/components/report/pdf-download-button'
@@ -167,6 +168,13 @@ export default function ValuationPage() {
               />
               <ConfidenceBreakdown result={result} />
             </div>
+
+            <ComparablesPreview
+              sector={inputs.sector}
+              stage={inputs.stage}
+              revenue={inputs.annual_revenue}
+              compositeValue={result.composite_value}
+            />
 
             <div className="flex justify-center">
               <ShareButtons
