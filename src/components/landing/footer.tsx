@@ -28,8 +28,8 @@ export function Footer() {
         <div className="grid gap-12 sm:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="text-lg" aria-hidden="true">&#x1f984;</span>
-              <span className="font-heading text-lg tracking-tight text-gold-gradient">First Unicorn Startup</span>
+              <span className="font-heading text-xl tracking-tight text-gold-gradient">FUS</span>
+              <span className="text-[13px] font-medium text-[oklch(0.62_0.01_250)] ml-1.5 tracking-wide uppercase">First Unicorn Startup</span>
             </Link>
             <p className="mt-4 text-sm text-[oklch(0.58_0.01_250)] leading-relaxed max-w-xs">
               India&apos;s most rigorous startup valuation platform. Built by an IBBI-Registered Insolvency Professional &amp; SFA-Licensed Valuer.

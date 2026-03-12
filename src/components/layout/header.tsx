@@ -18,8 +18,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-[oklch(0.26_0.018_250/0.5)] bg-[oklch(0.14_0.015_250/0.80)] backdrop-blur-2xl backdrop-saturate-150">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-          <span className="text-lg" aria-hidden="true">&#x1f984;</span>
-          <span className="font-heading text-lg tracking-tight text-gold-gradient">First Unicorn Startup</span>
+          <span className="font-heading text-xl tracking-tight text-gold-gradient">FUS</span>
+          <span className="hidden sm:inline text-[13px] font-medium text-[oklch(0.62_0.01_250)] ml-1.5 tracking-wide uppercase">First Unicorn Startup</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">

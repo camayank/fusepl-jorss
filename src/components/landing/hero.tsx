@@ -39,7 +39,7 @@ function useCounter(end: number, duration = 2000) {
 const STATS = [
   { end: 10, suffix: '', label: 'Methods', detail: 'Institutional-grade' },
   { end: 4, suffix: '', label: 'Approaches', detail: 'Income, Market, Asset, VC' },
-  { end: 25, suffix: '+', label: 'Sectors', detail: 'Every Indian industry' },
+  { end: 164, suffix: '', label: 'Sectors', detail: 'Every Indian industry' },
   { end: 10, suffix: 'K', label: 'Simulations', detail: 'Monte Carlo powered' },
 ] as const
 
@@ -95,16 +95,23 @@ export function Hero() {
       <motion.p custom={2} variants={fadeUp} initial="hidden" animate="visible"
         className="mt-7 text-[clamp(1rem,1.5vw,1.15rem)] text-[oklch(0.72_0.01_250)] max-w-2xl leading-relaxed"
       >
-        India&apos;s most rigorous startup valuation engine. IBBI-registered professionals, Damodaran data, 10 institutional methods.
+        India&apos;s most rigorous startup valuation engine. 164 sectors, 10 institutional methods, Damodaran benchmarks.
         <span className="text-[oklch(0.80_0.14_162)] font-medium"> Get your number in 5 minutes.</span>
       </motion.p>
 
-      {/* Trust line */}
-      <motion.p custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
-        className="mt-3 text-xs text-[oklch(0.55_0.01_250)]"
+      {/* Credential strip — elevated */}
+      <motion.div custom={2.5} variants={fadeUp} initial="hidden" animate="visible"
+        className="mt-4 inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-[oklch(0.72_0.17_162/0.12)] bg-[oklch(0.72_0.17_162/0.04)]"
       >
-        Built by an IBBI-Registered Insolvency Professional & SFA-Licensed Valuer
-      </motion.p>
+        <div className="w-6 h-6 rounded-md bg-[oklch(0.72_0.17_162/0.15)] flex items-center justify-center shrink-0">
+          <svg className="w-3.5 h-3.5 text-[oklch(0.72_0.17_162)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <span className="text-xs text-[oklch(0.68_0.005_250)]">
+          Built by an <span className="font-semibold text-[oklch(0.80_0.14_162)]">IBBI-Registered Insolvency Professional</span> &amp; <span className="font-semibold text-[oklch(0.80_0.14_162)]">SFA-Licensed Valuer</span>
+        </span>
+      </motion.div>
 
       {/* CTAs */}
       <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible"

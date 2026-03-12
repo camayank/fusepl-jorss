@@ -2,17 +2,17 @@
 
 import { motion } from 'framer-motion'
 
-const BRANDS = [
-  { name: 'YourStory', desc: 'Startup Media' },
-  { name: 'Inc42', desc: 'Startup Intelligence' },
-  { name: 'Economic Times', desc: 'Startup News' },
-  { name: 'Mint', desc: 'Business & Markets' },
-  { name: 'TechCrunch', desc: 'Tech & Startups' },
-  { name: 'Entrepreneur India', desc: 'Founders & Growth' },
-  { name: 'Business Standard', desc: 'Economy & Finance' },
-  { name: 'VCCircle', desc: 'PE & VC Deals' },
-  { name: 'Moneycontrol', desc: 'Markets & Investing' },
-  { name: 'Forbes India', desc: 'Business Leaders' },
+const CREDENTIALS = [
+  { label: 'IBBI Registered', detail: 'Insolvency Professional' },
+  { label: 'SFA Licensed', detail: 'Registered Valuer' },
+  { label: 'IVS 105', detail: 'Valuation Standards' },
+  { label: 'Rule 11UA', detail: 'Income Tax Act' },
+  { label: 'FEMA NDI', detail: 'Cross-Border Compliance' },
+  { label: 'Damodaran India', detail: 'Jan 2026 Benchmarks' },
+  { label: '10 Methods', detail: '4 Approaches' },
+  { label: '164 Sectors', detail: 'Indian Startup Taxonomy' },
+  { label: 'Monte Carlo', detail: '10,000 Simulations' },
+  { label: 'IBC Case Law', detail: '3,952 Outcomes' },
 ]
 
 export function AuthorityBrands() {
@@ -24,15 +24,15 @@ export function AuthorityBrands() {
       <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
         className="text-center text-[10px] font-semibold text-[oklch(0.55_0.01_250)] uppercase tracking-[0.25em] mb-5"
       >
-        As featured in leading startup &amp; business media
+        Standards, data sources &amp; methodology we follow
       </motion.p>
 
       <div className="relative">
         <motion.div className="flex gap-6 w-max" animate={{ x: ['0%', '-50%'] }} transition={{ duration: 35, ease: 'linear', repeat: Infinity }}>
-          {[...BRANDS, ...BRANDS].map((b, i) => (
-            <div key={`${b.name}-${i}`} className="flex items-center gap-3 px-5 py-2.5 rounded-xl border border-[oklch(0.28_0.015_250)] bg-[oklch(0.16_0.015_250/0.6)] backdrop-blur-sm shrink-0">
-              <span className="text-sm font-semibold text-[oklch(0.88_0.005_250)]">{b.name}</span>
-              <span className="text-[10px] text-[oklch(0.55_0.01_250)] uppercase tracking-wider">{b.desc}</span>
+          {[...CREDENTIALS, ...CREDENTIALS].map((b, i) => (
+            <div key={`${b.label}-${i}`} className="flex items-center gap-3 px-5 py-2.5 rounded-xl border border-[oklch(0.28_0.015_250)] bg-[oklch(0.16_0.015_250/0.6)] backdrop-blur-sm shrink-0">
+              <span className="text-sm font-semibold text-[oklch(0.88_0.005_250)]">{b.label}</span>
+              <span className="text-[10px] text-[oklch(0.55_0.01_250)] uppercase tracking-wider">{b.detail}</span>
             </div>
           ))}
         </motion.div>

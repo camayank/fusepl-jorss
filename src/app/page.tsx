@@ -1,6 +1,7 @@
 import { Hero } from '@/components/landing/hero'
 import { AuthorityBrands } from '@/components/landing/authority-brands'
 import { TrustSignals } from '@/components/landing/trust-signals'
+import { FounderAuthority } from '@/components/landing/founder-authority'
 import { HowItWorks } from '@/components/landing/how-it-works'
 import { MethodShowcase } from '@/components/landing/method-showcase'
 import { CtaSection } from '@/components/landing/cta-section'
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <Hero />
       <AuthorityBrands />
       <TrustSignals />
+      <FounderAuthority />
       <HowItWorks />
       <MethodShowcase />
       <CtaSection />
