@@ -11,10 +11,10 @@ function CurrencyInput({ label, value, onChange, placeholder, help }: {
 }) {
   return (
     <div>
-      <Label className="text-slate-300">{label}</Label>
-      {help && <p className="text-xs text-slate-500 mb-1">{help}</p>}
+      <Label className="text-[oklch(0.65_0.005_80)]">{label}</Label>
+      {help && <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">{help}</p>}
       <div className="relative mt-1">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">₹</span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[oklch(0.30_0.01_260)] text-sm">₹</span>
         <Input
           type="number"
           value={value ?? ''}
@@ -23,7 +23,7 @@ function CurrencyInput({ label, value, onChange, placeholder, help }: {
             onChange(v === '' ? null : parseFloat(v))
           }}
           placeholder={placeholder || '0'}
-          className="bg-slate-800 border-slate-700 text-white pl-7"
+          className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] pl-7"
         />
       </div>
       {value !== null && value > 0 && (
@@ -39,8 +39,8 @@ export function FinancialsStep() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-white mb-1">Financials</h2>
-        <p className="text-slate-400 text-sm">Revenue, costs, and unit economics</p>
+        <h2 className="text-2xl font-bold text-[oklch(0.93_0.005_80)] mb-1">Financials</h2>
+        <p className="text-[oklch(0.50_0.01_260)] text-sm">Revenue, costs, and unit economics</p>
       </div>
 
       <div className="space-y-4">
@@ -53,25 +53,25 @@ export function FinancialsStep() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <Label className="text-slate-300">Revenue Growth (%)</Label>
+            <Label className="text-[oklch(0.65_0.005_80)]">Revenue Growth (%)</Label>
             <Input
               type="number"
               value={inputs.revenue_growth_pct}
               onChange={(e) => setField('revenue_growth_pct', parseFloat(e.target.value) || 0)}
-              className="bg-slate-800 border-slate-700 text-white mt-1"
+              className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1"
               placeholder="80"
             />
           </div>
 
           <div>
-            <Label className="text-slate-300">Gross Margin (%)</Label>
+            <Label className="text-[oklch(0.65_0.005_80)]">Gross Margin (%)</Label>
             <Input
               type="number"
               value={inputs.gross_margin_pct}
               onChange={(e) => setField('gross_margin_pct', parseFloat(e.target.value) || 0)}
               min={0}
               max={100}
-              className="bg-slate-800 border-slate-700 text-white mt-1"
+              className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1"
               placeholder="70"
             />
           </div>
@@ -90,8 +90,8 @@ export function FinancialsStep() {
           />
         </div>
 
-        <div className="border-t border-slate-800 pt-4">
-          <p className="text-sm text-slate-400 mb-3">Unit Economics (optional — improves accuracy)</p>
+        <div className="border-t border-[oklch(0.20_0.008_260)] pt-4">
+          <p className="text-sm text-[oklch(0.50_0.01_260)] mb-3">Unit Economics (optional — improves accuracy)</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <CurrencyInput
               label="Customer Acquisition Cost (CAC)"
@@ -106,8 +106,8 @@ export function FinancialsStep() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-4">
-          <p className="text-sm text-slate-400 mb-3">Previous Funding (optional)</p>
+        <div className="border-t border-[oklch(0.20_0.008_260)] pt-4">
+          <p className="text-sm text-[oklch(0.50_0.01_260)] mb-3">Previous Funding (optional)</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <CurrencyInput
               label="Last Round Size"

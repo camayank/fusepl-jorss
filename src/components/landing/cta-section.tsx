@@ -29,7 +29,7 @@ export function CtaSection() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="text-[11px] font-semibold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.2em] mb-5"
         >
-          Start now
+          Ready to pitch?
         </motion.p>
 
         <motion.h2
@@ -39,9 +39,9 @@ export function CtaSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
           className="font-heading text-3xl sm:text-4xl lg:text-5xl text-[oklch(0.93_0.005_80)] leading-[1.1]"
         >
-          Know Your Startup&apos;s
+          Walk Into Any Room With
           <br />
-          <span className="text-gold-gradient">True Worth</span>
+          <span className="text-gold-gradient">Numbers That Command Respect</span>
         </motion.h2>
 
         <motion.p
@@ -51,8 +51,8 @@ export function CtaSection() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           className="mt-5 text-sm sm:text-base text-[oklch(0.50_0.01_260)] max-w-lg mx-auto leading-relaxed"
         >
-          Institutional-grade valuation in under 5 minutes.
-          Defensible numbers powered by Damodaran India data.
+          Whether you&apos;re pitching to investors, negotiating a deal, or planning your next round —
+          know exactly what your startup is worth. The same rigour that Shark Tank investors demand.
         </motion.p>
 
         <motion.div

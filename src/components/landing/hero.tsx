@@ -41,13 +41,13 @@ function useCounter(end: number, duration = 2000) {
 }
 
 // ---------------------------------------------------------------------------
-// Stats
+// Stats — Shark Tank style authority numbers
 // ---------------------------------------------------------------------------
 const STATS = [
-  { end: 10, suffix: '', label: 'Methods', detail: 'IVS 105 Aligned' },
+  { end: 10, suffix: '', label: 'Methods', detail: 'Like the Sharks use' },
   { end: 4, suffix: '', label: 'Approaches', detail: 'Income, Market, Asset, VC' },
-  { end: 25, suffix: '+', label: 'Sectors', detail: 'Damodaran India Data' },
-  { end: 10, suffix: 'K', label: 'Simulations', detail: 'Monte Carlo Engine' },
+  { end: 25, suffix: '+', label: 'Sectors', detail: 'Every Indian Industry' },
+  { end: 10, suffix: 'K', label: 'Simulations', detail: 'Monte Carlo Power' },
 ] as const
 
 // ---------------------------------------------------------------------------
@@ -71,11 +71,8 @@ export function Hero() {
       {/* ---- Gradient mesh background ---- */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[oklch(0.08_0.008_260)]" />
-        {/* Primary warm glow */}
         <div className="absolute top-[-35%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[oklch(0.78_0.14_80/0.06)] blur-[140px] animate-[hero-glow_10s_ease-in-out_infinite_alternate]" />
-        {/* Secondary cool glow for depth */}
         <div className="absolute bottom-[-25%] right-[-8%] w-[500px] h-[500px] rounded-full bg-[oklch(0.55_0.15_250/0.04)] blur-[120px] animate-[hero-glow_14s_ease-in-out_infinite_alternate-reverse]" />
-        {/* Fine diagonal lines for texture */}
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -85,7 +82,7 @@ export function Hero() {
         />
       </div>
 
-      {/* ---- Badge ---- */}
+      {/* ---- Authority Badge ---- */}
       <motion.div
         custom={0}
         variants={fadeUp}
@@ -94,14 +91,14 @@ export function Hero() {
         className="mb-8"
       >
         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[oklch(0.78_0.14_80/0.2)] bg-[oklch(0.78_0.14_80/0.06)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.78_0.14_80)] animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.65_0.16_155)] animate-pulse" />
           <span className="text-[11px] font-semibold text-[oklch(0.80_0.12_80)] uppercase tracking-[0.18em]">
-            Built by an IBBI-Registered Valuer
+            Free During Beta
           </span>
         </span>
       </motion.div>
 
-      {/* ---- Headline ---- */}
+      {/* ---- Headline — Shark Tank energy ---- */}
       <motion.h1
         custom={1}
         variants={fadeUp}
@@ -109,25 +106,36 @@ export function Hero() {
         animate="visible"
         className="font-heading text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] tracking-tight max-w-5xl"
       >
-        <span className="text-gold-gradient">
-          India&apos;s Most Rigorous
+        <span className="text-[oklch(0.93_0.005_80)]">
+          What&apos;s Your Startup
         </span>
         <br />
-        <span className="text-[oklch(0.93_0.005_80)]">
-          Startup Valuation
+        <span className="text-gold-gradient">
+          Really Worth?
         </span>
       </motion.h1>
 
-      {/* ---- Sub-headline ---- */}
+      {/* ---- Sub-headline — approachable authority ---- */}
       <motion.p
         custom={2}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-7 text-[clamp(0.95rem,1.5vw,1.15rem)] text-[oklch(0.50_0.01_260)] max-w-2xl leading-relaxed font-light"
+        className="mt-7 text-[clamp(0.95rem,1.5vw,1.15rem)] text-[oklch(0.55_0.01_260)] max-w-2xl leading-relaxed"
       >
-        4 approaches. 10 valuation methods. 10,000 Monte Carlo simulations.
-        Powered by Damodaran India benchmarks. Aligned with IVS 105, Rule 11UA, and FEMA NDI Rules.
+        The same valuation rigour that Shark Tank investors demand — now available to every Indian founder.
+        <span className="text-[oklch(0.78_0.14_80)] font-medium"> 5 minutes. 10 methods. Institutional-grade numbers.</span>
+      </motion.p>
+
+      {/* ---- Trust line ---- */}
+      <motion.p
+        custom={2.5}
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+        className="mt-3 text-xs text-[oklch(0.40_0.01_260)]"
+      >
+        Built by an IBBI-Registered Insolvency Professional & SFA-Licensed Valuer
       </motion.p>
 
       {/* ---- CTAs ---- */}
@@ -136,23 +144,34 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="flex flex-wrap justify-center gap-4 mt-11"
+        className="flex flex-wrap justify-center gap-4 mt-10"
       >
         <Link
           href="/valuation"
-          className="group relative inline-flex items-center justify-center h-12 px-8 text-sm font-semibold tracking-wide bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] rounded-lg transition-all duration-300 hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_40px_oklch(0.78_0.14_80/0.25)] active:scale-[0.97]"
+          className="group relative inline-flex items-center justify-center h-13 px-10 text-base font-semibold tracking-wide bg-[oklch(0.78_0.14_80)] text-[oklch(0.10_0_0)] rounded-xl transition-all duration-300 hover:bg-[oklch(0.82_0.14_80)] hover:shadow-[0_0_48px_oklch(0.78_0.14_80/0.3)] active:scale-[0.97]"
         >
-          Get Your Valuation
-          <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          Value My Startup — Free
+          <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </Link>
         <Link
           href="/deal-check"
-          className="inline-flex items-center justify-center h-12 px-7 text-sm font-medium tracking-wide border border-[oklch(0.78_0.14_80/0.2)] text-[oklch(0.70_0.05_80)] rounded-lg transition-all duration-300 hover:border-[oklch(0.78_0.14_80/0.35)] hover:text-[oklch(0.85_0.10_80)] hover:bg-[oklch(0.78_0.14_80/0.04)]"
+          className="inline-flex items-center justify-center h-13 px-8 text-base font-medium tracking-wide border border-[oklch(0.78_0.14_80/0.2)] text-[oklch(0.70_0.05_80)] rounded-xl transition-all duration-300 hover:border-[oklch(0.78_0.14_80/0.35)] hover:text-[oklch(0.85_0.10_80)] hover:bg-[oklch(0.78_0.14_80/0.04)]"
         >
           Investor Deal Check
         </Link>
+      </motion.div>
+
+      {/* ---- Social proof micro-strip ---- */}
+      <motion.div
+        custom={3.5}
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+        className="mt-6 text-[10px] text-[oklch(0.38_0.01_260)]"
+      >
+        No signup required &bull; Results in under 5 minutes &bull; Powered by Damodaran India data
       </motion.div>
 
       {/* ---- Stat counters ---- */}
@@ -161,7 +180,7 @@ export function Hero() {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[oklch(0.78_0.14_80/0.08)] rounded-xl overflow-hidden border border-[oklch(0.78_0.14_80/0.08)]"
+        className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[oklch(0.78_0.14_80/0.08)] rounded-xl overflow-hidden border border-[oklch(0.78_0.14_80/0.08)]"
       >
         {STATS.map((stat) => (
           <StatItem key={stat.label} {...stat} />

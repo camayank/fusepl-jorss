@@ -5,20 +5,20 @@ import { motion } from 'framer-motion'
 const STEPS = [
   {
     num: '01',
-    title: 'Choose Your Purpose',
-    desc: 'Indicative, fundraising, ESOP, Rule 11UA, FEMA, or M&A. Your purpose determines the analysis depth and regulatory framing.',
+    title: 'Paste Your Website',
+    desc: 'Drop your startup URL and we auto-detect your sector, team, and key details. Or fill in manually — takes under 2 minutes.',
     time: '30 seconds',
   },
   {
     num: '02',
-    title: 'Complete the Wizard',
-    desc: 'Six steps: company profile, team, financials, market, strategy, cap table. Tooltips and mini-calculators at every field.',
+    title: 'Answer 6 Simple Questions',
+    desc: 'Company basics, team strength, revenue, market size, strategy, and equity. No jargon — we translate everything for you.',
     time: '3-5 minutes',
   },
   {
     num: '03',
-    title: 'Get Your Report',
-    desc: '10 methods compute your range instantly. Monte Carlo simulation, AI narrative, comparable analysis, and investor matching.',
+    title: 'Get Your Valuation',
+    desc: '10 methods run simultaneously. Monte Carlo simulates 10,000 scenarios. You get a range that would hold up in a Shark Tank pitch.',
     time: 'Instant',
   },
 ]
@@ -53,10 +53,10 @@ export function HowItWorks() {
           className="text-center mb-16"
         >
           <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_80)] uppercase tracking-[0.2em] mb-4">
-            Process
+            How It Works
           </p>
           <h2 className="font-heading text-3xl sm:text-4xl text-[oklch(0.93_0.005_80)]">
-            Three Steps to Defensible Numbers
+            From Zero to Valuation in 5 Minutes
           </h2>
         </motion.div>
 

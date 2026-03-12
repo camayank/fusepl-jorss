@@ -13,20 +13,20 @@ export function StrategicStep() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-white mb-1">Strategic Factors</h2>
-        <p className="text-slate-400 text-sm">Partnerships, risk, and market positioning</p>
+        <h2 className="text-2xl font-bold text-[oklch(0.93_0.005_80)] mb-1">Strategic Factors</h2>
+        <p className="text-[oklch(0.50_0.01_260)] text-sm">Partnerships, risk, and market positioning</p>
       </div>
 
       <div className="space-y-5">
         <div>
-          <Label className="text-slate-300">Strategic Partnerships</Label>
+          <Label className="text-[oklch(0.65_0.005_80)]">Strategic Partnerships</Label>
           <Select value={inputs.strategic_partnerships} onValueChange={(v) => setField('strategic_partnerships', v as any)}>
-            <SelectTrigger className="bg-slate-800 border-slate-700 text-white mt-1">
+            <SelectTrigger className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-slate-800 border-slate-700">
+            <SelectContent className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)]">
               {Object.entries(PARTNERSHIP_LEVELS).map(([key, label]) => (
-                <SelectItem key={key} value={key} className="text-white hover:bg-slate-700">
+                <SelectItem key={key} value={key} className="text-[oklch(0.93_0.005_80)] hover:bg-[oklch(0.15_0.008_260)]">
                   {label}
                 </SelectItem>
               ))}
@@ -35,8 +35,8 @@ export function StrategicStep() {
         </div>
 
         <div>
-          <Label className="text-slate-300">Regulatory Risk (1-5): {inputs.regulatory_risk}</Label>
-          <p className="text-xs text-slate-500 mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
+          <Label className="text-[oklch(0.65_0.005_80)]">Regulatory Risk (1-5): {inputs.regulatory_risk}</Label>
+          <p className="text-xs text-[oklch(0.30_0.01_260)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
           <Slider
             value={[inputs.regulatory_risk]}
             onValueChange={(v) => setField('regulatory_risk', Array.isArray(v) ? v[0] : v)}
@@ -47,12 +47,12 @@ export function StrategicStep() {
           />
         </div>
 
-        <div className="border-t border-slate-800 pt-4">
-          <p className="text-sm text-slate-400 mb-3">Revenue Composition (optional)</p>
+        <div className="border-t border-[oklch(0.20_0.008_260)] pt-4">
+          <p className="text-sm text-[oklch(0.50_0.01_260)] mb-3">Revenue Composition (optional)</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label className="text-slate-300">Revenue Concentration (%)</Label>
-              <p className="text-xs text-slate-500 mb-1">% from top 3 customers</p>
+              <Label className="text-[oklch(0.65_0.005_80)]">Revenue Concentration (%)</Label>
+              <p className="text-xs text-[oklch(0.30_0.01_260)] mb-1">% from top 3 customers</p>
               <Input
                 type="number"
                 value={inputs.revenue_concentration_pct ?? ''}
@@ -60,11 +60,11 @@ export function StrategicStep() {
                 min={0}
                 max={100}
                 placeholder="e.g., 40"
-                className="bg-slate-800 border-slate-700 text-white mt-1"
+                className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1"
               />
             </div>
             <div>
-              <Label className="text-slate-300">International Revenue (%)</Label>
+              <Label className="text-[oklch(0.65_0.005_80)]">International Revenue (%)</Label>
               <Input
                 type="number"
                 value={inputs.international_revenue_pct}
@@ -72,27 +72,27 @@ export function StrategicStep() {
                 min={0}
                 max={100}
                 placeholder="0"
-                className="bg-slate-800 border-slate-700 text-white mt-1"
+                className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1"
               />
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-4">
-          <p className="text-sm text-slate-400 mb-3">Fundraising Plans (optional)</p>
+        <div className="border-t border-[oklch(0.20_0.008_260)] pt-4">
+          <p className="text-sm text-[oklch(0.50_0.01_260)] mb-3">Fundraising Plans (optional)</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label className="text-slate-300">Target Raise (₹)</Label>
+              <Label className="text-[oklch(0.65_0.005_80)]">Target Raise (₹)</Label>
               <Input
                 type="number"
                 value={inputs.target_raise ?? ''}
                 onChange={(e) => setField('target_raise', e.target.value === '' ? null : parseFloat(e.target.value))}
                 placeholder="50000000"
-                className="bg-slate-800 border-slate-700 text-white mt-1"
+                className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1"
               />
             </div>
             <div>
-              <Label className="text-slate-300">Expected Dilution (%)</Label>
+              <Label className="text-[oklch(0.65_0.005_80)]">Expected Dilution (%)</Label>
               <Input
                 type="number"
                 value={inputs.expected_dilution_pct ?? ''}
@@ -100,7 +100,7 @@ export function StrategicStep() {
                 min={0}
                 max={50}
                 placeholder="15-25"
-                className="bg-slate-800 border-slate-700 text-white mt-1"
+                className="bg-[oklch(0.08_0.008_260)] border-[oklch(0.20_0.008_260)] text-[oklch(0.93_0.005_80)] mt-1"
               />
             </div>
           </div>
