@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { sendValuationEmail } from '@/lib/email'
+import { sendValuationEmail, sendLeadNotification } from '@/lib/email'
 import { formatINR } from '@/lib/utils'
 import type { CaptureRequest } from '@/types'
 import { EMAIL_REGEX } from '@/lib/utils'
@@ -108,6 +108,19 @@ export async function POST(req: NextRequest) {
       methodCount: applicableMethods,
       reportUrl: reportId !== 'local' ? `${baseUrl}/report/${reportId}` : undefined,
     }).catch(err => console.error('[capture] Email send failed:', err))
+
+    // Send lead notification to business owner
+    sendLeadNotification({
+      email,
+      companyName: inputs.company_name,
+      sector: inputs.sector,
+      stage: inputs.stage,
+      annualRevenue: inputs.annual_revenue,
+      compositeValue: formatINR(result.composite_value),
+      compositeRange: `${formatINR(result.composite_low)} — ${formatINR(result.composite_high)}`,
+      confidenceScore: result.confidence_score,
+      purpose: purpose || 'indicative',
+    }).catch(err => console.error('[capture] Lead notification failed:', err))
 
     return NextResponse.json({ report_id: reportId })
   } catch (err) {

@@ -77,9 +77,9 @@ export function EmailGate({ onUnlocked }: Props) {
           <div className="h-4 bg-[oklch(0.24_0.018_250)] rounded w-2/3" />
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex items-center gap-2 bg-[oklch(0.08_0.008_260/0.9)] backdrop-blur-sm px-4 py-2 rounded-full border border-[oklch(0.78_0.14_80/0.2)]">
+          <div className="flex items-center gap-2 bg-[oklch(0.14_0.015_250/0.9)] backdrop-blur-sm px-4 py-2 rounded-full border border-[oklch(0.72_0.17_162/0.2)]">
             <Lock className="h-3.5 w-3.5 text-[oklch(0.72_0.17_162)]" />
-            <span className="text-xs font-medium text-[oklch(0.70_0.05_80)]">Full report locked</span>
+            <span className="text-xs font-medium text-[oklch(0.75_0.005_250)]">Full report locked</span>
           </div>
         </div>
       </div>
@@ -87,11 +87,11 @@ export function EmailGate({ onUnlocked }: Props) {
       {/* Gate card */}
       <div className="relative rounded-2xl overflow-hidden">
         {/* Animated border */}
-        <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[oklch(0.78_0.14_80/0.3)] via-[oklch(0.78_0.14_80/0.08)] to-[oklch(0.78_0.14_80/0.15)]" />
+        <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[oklch(0.72_0.17_162/0.3)] via-[oklch(0.72_0.17_162/0.08)] to-[oklch(0.72_0.17_162/0.15)]" />
 
-        <div className="relative rounded-2xl bg-[oklch(0.09_0.01_80)] m-px p-6 sm:p-8">
+        <div className="relative rounded-2xl bg-[oklch(0.16_0.015_250)] m-px p-6 sm:p-8">
           {/* Ambient glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[250px] h-[150px] bg-[oklch(0.78_0.14_80/0.04)] blur-[60px] pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[250px] h-[150px] bg-[oklch(0.72_0.17_162/0.04)] blur-[60px] pointer-events-none" />
 
           <div className="relative">
             <div className="text-center mb-6">
@@ -134,13 +134,13 @@ export function EmailGate({ onUnlocked }: Props) {
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
                   required
-                  className="w-full h-12 px-4 text-sm rounded-xl bg-[oklch(0.14_0.015_250)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.85_0.005_80)] placeholder:text-[oklch(0.40_0.01_260)] focus:outline-none focus:border-[oklch(0.78_0.14_80/0.4)] focus:shadow-[0_0_0_3px_oklch(0.78_0.14_80/0.06)] transition-all"
+                  className="w-full h-12 px-4 text-sm rounded-xl bg-[oklch(0.14_0.015_250)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.72_0.17_162/0.4)] focus:shadow-[0_0_0_3px_oklch(0.72_0.17_162/0.06)] transition-all"
                 />
               </div>
               <button
                 type="submit"
                 disabled={!isValidEmail || loading}
-                className="group h-12 px-6 text-sm font-semibold rounded-xl bg-[oklch(0.72_0.17_162)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.68_0.18_162)] hover:shadow-[0_0_24px_oklch(0.78_0.14_80/0.2)] disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap flex items-center gap-2"
+                className="group h-12 px-6 text-sm font-semibold rounded-xl bg-[oklch(0.72_0.17_162)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.68_0.18_162)] hover:shadow-[0_0_24px_oklch(0.72_0.17_162/0.2)] disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap flex items-center gap-2"
               >
                 {loading ? (
                   <>
@@ -160,7 +160,7 @@ export function EmailGate({ onUnlocked }: Props) {
               <p className="text-xs text-[oklch(0.62_0.18_25)] mt-2">{error}</p>
             )}
 
-            <p className="text-[10px] text-[oklch(0.40_0.01_260)] mt-3 text-center">
+            <p className="text-[10px] text-[oklch(0.45_0.01_250)] mt-3 text-center">
               No spam. We only send your valuation report.
             </p>
           </div>
