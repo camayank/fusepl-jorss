@@ -112,11 +112,17 @@ export const useValuationStore = create<ValuationStore>()(
     }),
     {
       name: 'fus-valuation-store',
-      version: 2,
+      version: 3,
       migrate: (persisted, version) => {
         const state = persisted as Partial<ValuationStore>
         if (version < 2) {
           state.purpose = 'indicative'
+        }
+        if (version < 3) {
+          // Clear stale wizard inputs from previous sessions
+          state.inputs = { ...DEFAULT_INPUTS }
+          state.currentStep = 1
+          state.highestCompletedStep = 0
         }
         return state as ValuationStore
       },

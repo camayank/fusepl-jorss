@@ -16,7 +16,7 @@ export default function NotFound() {
         <div className="flex flex-wrap justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center justify-center h-10 px-6 text-sm font-semibold bg-[oklch(0.62 0.22 330)] text-[oklch(0.985 0.002 260)] rounded-lg transition-all hover:bg-[oklch(0.55 0.20 330)]"
+            className="inline-flex items-center justify-center h-10 px-6 text-sm font-semibold bg-[oklch(0.62 0.22 330)] text-white rounded-lg transition-all hover:bg-[oklch(0.55 0.20 330)]"
           >
             Go Home
           </Link>

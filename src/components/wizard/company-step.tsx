@@ -98,7 +98,7 @@ function SectorDropdownContent({ search, onSearch }: { search: string; onSearch:
       </div>
       {filteredGroups.map(({ group, items }) => (
         <SelectGroup key={group}>
-          <SelectLabel className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.62 0.22 330)] px-3 py-1.5 bg-[oklch(0.15_0.012_250)] sticky">
+          <SelectLabel className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.62 0.22 330)] px-3 py-1.5 bg-[oklch(0.96_0.005_260)] sticky">
             {group}
           </SelectLabel>
           {items.map(key => (

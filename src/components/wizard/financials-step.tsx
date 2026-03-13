@@ -200,12 +200,12 @@ export function FinancialsStep() {
 
         {/* Visual runway bar */}
         {runway !== null && (
-          <div className="rounded-lg bg-[oklch(0.14_0.012_250)] border border-[oklch(0.25_0.015_250)] p-3">
+          <div className="rounded-lg bg-[oklch(0.97_0.003_260)] border border-[oklch(0.91_0.005_260)] p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Runway</span>
               <span className={`font-mono text-xl font-bold tabular-nums ${runway >= 18 ? 'text-[oklch(0.65_0.16_155)]' : runway >= 6 ? 'text-[oklch(0.72_0.14_80)]' : 'text-[oklch(0.62_0.18_25)]'}`}>{runway}<span className="text-xs ml-0.5">mo</span></span>
             </div>
-            <div className="h-3 bg-[oklch(0.18_0.012_250)] rounded-full overflow-hidden relative">
+            <div className="h-3 bg-[oklch(0.93_0.005_260)] rounded-full overflow-hidden relative">
               <div className="absolute inset-0 flex">
                 <div className="w-1/4 bg-[oklch(0.62_0.18_25/0.1)]" />
                 <div className="w-1/4 bg-[oklch(0.72_0.14_80/0.08)]" />
