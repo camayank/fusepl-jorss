@@ -17,7 +17,7 @@ const APPROACH_ICONS: Record<ValuationApproach, typeof TrendingUp> = {
 const APPROACH_ACCENT: Record<ValuationApproach, string> = {
   income: 'oklch(0.65 0.16 250)',
   market: 'oklch(0.65 0.16 155)',
-  asset_cost: 'oklch(0.72 0.17 162)',
+  asset_cost: 'oklch(0.78 0.14 75)',
   vc_startup: 'oklch(0.65 0.16 310)',
 }
 
@@ -25,7 +25,7 @@ function confidenceBar(confidence: number) {
   const pct = Math.round(confidence * 100)
   const color =
     confidence >= 0.7 ? 'bg-[oklch(0.65_0.16_155)]' :
-    confidence >= 0.4 ? 'bg-[oklch(0.72_0.17_162)]' :
+    confidence >= 0.4 ? 'bg-[oklch(0.78_0.14_75)]' :
     'bg-[oklch(0.45_0.01_250)]'
   return (
     <div className="flex items-center gap-2">
@@ -101,7 +101,7 @@ export function MethodCards({ methods, monteCarlo }: Props) {
                       {confidenceBar(m.confidence)}
                     </div>
                     <div className="text-right">
-                      <span className="font-semibold text-sm text-[oklch(0.95_0.002_250)] tabular-nums">
+                      <span className="font-semibold text-sm text-[oklch(0.95_0.01_80)] tabular-nums">
                         {formatINR(m.value)}
                       </span>
                       {m.method === 'dcf' && monteCarlo && (

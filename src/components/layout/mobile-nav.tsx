@@ -69,7 +69,7 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
                     relative rounded-lg px-4 py-3 text-sm font-medium transition-colors
                     ${
                       isActive
-                        ? 'bg-[oklch(0.72_0.17_162/0.08)] text-[oklch(0.72_0.17_162)] border-l-2 border-[oklch(0.72_0.17_162)]'
+                        ? 'bg-[oklch(0.78_0.14_75/0.08)] text-[oklch(0.78_0.14_75)] border-l-2 border-[oklch(0.78_0.14_75)]'
                         : 'text-[oklch(0.55_0.01_250)] hover:text-[oklch(0.88_0.005_250)] hover:bg-[oklch(0.18_0.018_250)]'
                     }
                   `}
@@ -85,7 +85,7 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
             <Link
               href="/valuation"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-full rounded-lg h-10 px-4 text-sm font-semibold bg-[oklch(0.72_0.17_162)] text-[oklch(0.10_0_0)] transition-all hover:bg-[oklch(0.68_0.18_162)]"
+              className="flex items-center justify-center w-full rounded-lg h-10 px-4 text-sm font-semibold bg-[oklch(0.78_0.14_75)] text-[oklch(0.12_0.025_260)] transition-all hover:bg-[oklch(0.72_0.12_75)]"
             >
               Get Valuation
             </Link>

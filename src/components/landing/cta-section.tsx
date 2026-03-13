@@ -8,12 +8,12 @@ export function CtaSection() {
     <section className="relative py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.12_0.012_250)] via-[oklch(0.16_0.025_200)] to-[oklch(0.12_0.012_250)]" />
       {/* Larger, more directional glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] rounded-full bg-[oklch(0.72_0.17_162/0.08)] blur-[200px]" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] rounded-full bg-[oklch(0.78_0.14_75/0.08)] blur-[200px]" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[oklch(0.55_0.15_250/0.04)] blur-[120px]" />
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(oklch(0.90 0 0 / 0.3) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
       <div className="relative max-w-3xl mx-auto text-center">
-        <motion.p initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[11px] font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.2em] mb-5">Ready to pitch?</motion.p>
+        <motion.p initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[11px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-5">Ready to pitch?</motion.p>
         <motion.h2 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }} className="font-heading text-3xl sm:text-4xl lg:text-[3.25rem] text-[oklch(0.97_0.002_250)] leading-[1.1]">
           Walk Into Any Room With<br /><span className="text-gold-gradient">Numbers That Command Respect</span>
         </motion.h2>
@@ -21,11 +21,11 @@ export function CtaSection() {
           Whether you&apos;re pitching to investors, negotiating a deal, or planning your next round — know exactly what your startup is worth.
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }} className="flex flex-wrap justify-center gap-4 mt-10">
-          <Link href="/valuation" className="btn-press group inline-flex items-center justify-center h-14 px-10 text-base font-semibold tracking-wide rounded-2xl bg-[oklch(0.72_0.17_162)] text-white transition-all duration-300 hover:bg-[oklch(0.68_0.18_162)] hover:shadow-[0_0_48px_oklch(0.72_0.17_162/0.35)] hover:scale-[1.02]">
+          <Link href="/valuation" className="btn-press group inline-flex items-center justify-center h-14 px-10 text-base font-semibold tracking-wide rounded-2xl bg-[oklch(0.78_0.14_75)] text-white transition-all duration-300 hover:bg-[oklch(0.72_0.12_75)] hover:shadow-[0_0_48px_oklch(0.78_0.14_75/0.35)] hover:scale-[1.02]">
             Get Your Valuation
             <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </Link>
-          <Link href="/deal-check" className="btn-press inline-flex items-center justify-center h-14 px-8 text-base font-medium tracking-wide rounded-2xl border border-[oklch(0.40_0.015_250)] text-[oklch(0.80_0.005_250)] transition-all duration-300 hover:border-[oklch(0.72_0.17_162/0.4)] hover:text-white hover:bg-[oklch(0.72_0.17_162/0.08)]">
+          <Link href="/deal-check" className="btn-press inline-flex items-center justify-center h-14 px-8 text-base font-medium tracking-wide rounded-2xl border border-[oklch(0.40_0.015_250)] text-[oklch(0.80_0.005_250)] transition-all duration-300 hover:border-[oklch(0.78_0.14_75/0.4)] hover:text-white hover:bg-[oklch(0.78_0.14_75/0.08)]">
             Investor Deal Check
           </Link>
         </motion.div>
@@ -35,7 +35,7 @@ export function CtaSection() {
           className="mt-12 inline-flex items-center gap-6 px-6 py-3 rounded-xl border border-[oklch(0.28_0.018_250/0.5)] bg-[oklch(0.16_0.018_250/0.4)] backdrop-blur-sm"
         >
           <div className="flex items-center gap-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(0.72 0.17 162)" strokeWidth={1.8} className="w-4 h-4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(0.78 0.14 75)" strokeWidth={1.8} className="w-4 h-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
             <span className="text-[11px] text-[oklch(0.65_0.01_250)] uppercase tracking-[0.1em]">IVS 105</span>

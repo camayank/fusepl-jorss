@@ -231,7 +231,7 @@ export function WizardContainer() {
           <motion.div
             className="absolute inset-y-0 left-0 rounded-full"
             style={{
-              background: 'linear-gradient(90deg, oklch(0.78 0.14 75), oklch(0.72 0.17 162))',
+              background: 'linear-gradient(90deg, oklch(0.78 0.14 75), oklch(0.78 0.14 75))',
             }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}

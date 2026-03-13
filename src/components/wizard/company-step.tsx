@@ -27,7 +27,7 @@ function CompletionDots({ filled, total }: { filled: boolean[]; total: number })
         <span className="font-heading text-sm text-[oklch(0.60_0.01_250)]">Profile Completion</span>
         <span
           className={`font-mono text-lg font-bold tabular-nums ${allFilled ? 'text-gold-gradient' : ''}`}
-          style={!allFilled ? { color: count >= 3 ? 'oklch(0.72 0.17 162)' : 'oklch(0.50 0.01 250)' } : undefined}
+          style={!allFilled ? { color: count >= 3 ? 'oklch(0.78 0.14 75)' : 'oklch(0.50 0.01 250)' } : undefined}
         >
           {count}/{total}
         </span>
@@ -92,7 +92,7 @@ function SectorDropdownContent({ search, onSearch }: { search: string; onSearch:
             onChange={(e) => onSearch(e.target.value)}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => e.stopPropagation()}
-            className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.14_0.015_250)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.72_0.17_162/0.4)]"
+            className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.12_0.025_260)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.78_0.14_75/0.4)]"
           />
         </div>
       </div>
@@ -200,7 +200,7 @@ export function CompanyStep() {
       {/* Header */}
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.12)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.12)] flex items-center justify-center">
             <Building2 className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
           <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Company Profile</h2>
@@ -222,7 +222,7 @@ export function CompanyStep() {
             value={inputs.company_name}
             onChange={(e) => setField('company_name', e.target.value)}
             placeholder="e.g., Acme Technologies"
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] placeholder:text-[oklch(0.40_0.01_250)] mt-1.5 focus:border-[oklch(0.72_0.17_162/0.5)] h-11 text-base"
+            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] placeholder:text-[oklch(0.40_0.01_250)] mt-1.5 focus:border-[oklch(0.78_0.14_75/0.5)] h-11 text-base"
           />
 
           {/* Website prefill */}
@@ -237,13 +237,13 @@ export function CompanyStep() {
                     onChange={(e) => setWebsiteUrl(e.target.value)}
                     placeholder="Paste website URL to auto-fill fields"
                     onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeUrl()}
-                    className="w-full h-9 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.10_0.010_250)] border border-dashed border-[oklch(0.28_0.015_250)] text-[oklch(0.78_0.005_250)] placeholder:text-[oklch(0.38_0.01_250)] focus:outline-none focus:border-[oklch(0.72_0.17_162/0.4)] transition-colors"
+                    className="w-full h-9 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.10_0.010_250)] border border-dashed border-[oklch(0.28_0.015_250)] text-[oklch(0.78_0.005_250)] placeholder:text-[oklch(0.38_0.01_250)] focus:outline-none focus:border-[oklch(0.78_0.14_75/0.4)] transition-colors"
                   />
                 </div>
                 <button
                   onClick={handleAnalyzeUrl}
                   disabled={!websiteUrl.trim() || analyzing}
-                  className="h-9 px-4 text-[11px] font-semibold rounded-lg bg-[oklch(0.72_0.17_162/0.12)] border border-[oklch(0.72_0.17_162/0.25)] text-[oklch(0.78_0.14_75)] transition-all hover:bg-[oklch(0.72_0.17_162/0.18)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
+                  className="h-9 px-4 text-[11px] font-semibold rounded-lg bg-[oklch(0.78_0.14_75/0.12)] border border-[oklch(0.78_0.14_75/0.25)] text-[oklch(0.78_0.14_75)] transition-all hover:bg-[oklch(0.78_0.14_75/0.18)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
                 >
                   {analyzing ? <><Loader2 className="w-3 h-3 animate-spin" />Detecting...</> : <><Zap className="w-3 h-3" />Auto-Detect</>}
                 </button>
@@ -272,7 +272,7 @@ export function CompanyStep() {
             <div className="flex items-center gap-2 mb-1">
               <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Sector *</Label>
               {autoDetectedFields.has('sector') && (
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.72_0.17_162/0.12)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.72_0.17_162/0.25)]">
+                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.78_0.14_75/0.12)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.78_0.14_75/0.25)]">
                   <Zap className="w-2.5 h-2.5" />Auto
                 </span>
               )}
@@ -327,7 +327,7 @@ export function CompanyStep() {
                       type="text" placeholder="Search models..." value={bizModelSearch}
                       onChange={(e) => setBizModelSearch(e.target.value)}
                       onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}
-                      className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.14_0.015_250)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.72_0.17_162/0.4)]"
+                      className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.12_0.025_260)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.78_0.14_75/0.4)]"
                     />
                   </div>
                 </div>

@@ -33,7 +33,7 @@ export function MonteCarloChart({ monteCarlo }: Props) {
   const percentiles = [
     { label: 'P10', value: p10, color: 'text-[oklch(0.55_0.10_25)]' },
     { label: 'P25', value: p25, color: 'text-[oklch(0.55_0.01_250)]' },
-    { label: 'P50', value: p50, color: 'text-[oklch(0.72_0.17_162)] font-semibold' },
+    { label: 'P50', value: p50, color: 'text-[oklch(0.78_0.14_75)] font-semibold' },
     { label: 'P75', value: p75, color: 'text-[oklch(0.55_0.01_250)]' },
     { label: 'P90', value: p90, color: 'text-[oklch(0.55_0.10_25)]' },
   ]
@@ -51,7 +51,7 @@ export function MonteCarloChart({ monteCarlo }: Props) {
             <div className="w-7 h-7 rounded-lg bg-[oklch(0.65_0.16_155/0.1)] flex items-center justify-center">
               <Activity className="w-3.5 h-3.5 text-[oklch(0.65_0.16_155)]" />
             </div>
-            <h3 className="text-sm font-semibold text-[oklch(0.72_0.17_162)]">Monte Carlo Simulation</h3>
+            <h3 className="text-sm font-semibold text-[oklch(0.78_0.14_75)]">Monte Carlo Simulation</h3>
           </div>
           <span className="text-[10px] text-[oklch(0.52_0.01_250)] tabular-nums">
             {monteCarlo.iterations_valid.toLocaleString()} / {monteCarlo.iterations_total.toLocaleString()} valid
@@ -63,8 +63,8 @@ export function MonteCarloChart({ monteCarlo }: Props) {
               <AreaChart data={points} margin={{ top: 10, right: 20, bottom: 5, left: 20 }}>
                 <defs>
                   <linearGradient id="mcGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="oklch(0.72 0.17 162)" stopOpacity={0.25} />
-                    <stop offset="100%" stopColor="oklch(0.72 0.17 162)" stopOpacity={0.02} />
+                    <stop offset="0%" stopColor="oklch(0.78 0.14 75)" stopOpacity={0.25} />
+                    <stop offset="100%" stopColor="oklch(0.78 0.14 75)" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
                 <XAxis
@@ -92,7 +92,7 @@ export function MonteCarloChart({ monteCarlo }: Props) {
                 <Area
                   type="monotone"
                   dataKey="density"
-                  stroke="oklch(0.72 0.17 162)"
+                  stroke="oklch(0.78 0.14 75)"
                   strokeWidth={2}
                   fill="url(#mcGradient)"
                 />

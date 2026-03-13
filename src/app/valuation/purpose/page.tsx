@@ -103,9 +103,9 @@ export default function PurposeSelectorPage() {
   }
 
   return (
-    <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.14_0.015_250)] py-16 px-6">
+    <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.12_0.025_260)] py-16 px-6">
       {/* Background glow */}
-      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.72_0.17_162/0.04)] blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.78_0.14_75/0.04)] blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto">
         {/* Header */}
@@ -119,11 +119,11 @@ export default function PurposeSelectorPage() {
             <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.65_0.16_155)] animate-pulse" />
             <span className="text-[10px] font-semibold text-[oklch(0.65_0.16_155)] uppercase tracking-wider">Free Beta</span>
           </div>
-          <h1 className="font-heading text-3xl sm:text-4xl text-[oklch(0.95_0.002_250)]">
+          <h1 className="font-heading text-3xl sm:text-4xl text-[oklch(0.95_0.01_80)]">
             Valuation Plans
           </h1>
           <p className="mt-4 text-sm text-[oklch(0.45_0.01_260)] max-w-md mx-auto">
-            Indicative valuation is <span className="text-[oklch(0.72_0.17_162)] font-medium">free during beta</span>. Premium plans coming soon.
+            Indicative valuation is <span className="text-[oklch(0.78_0.14_75)] font-medium">free during beta</span>. Premium plans coming soon.
           </p>
         </motion.div>
 
@@ -148,7 +148,7 @@ export default function PurposeSelectorPage() {
                 className={`
                   relative text-left rounded-lg p-5 transition-all duration-300
                   ${isFree
-                    ? 'bg-[oklch(0.14_0.02_80)] border-2 border-[oklch(0.72_0.17_162/0.5)] shadow-[0_0_24px_oklch(0.72_0.17_162/0.08)] cursor-pointer'
+                    ? 'bg-[oklch(0.14_0.02_80)] border-2 border-[oklch(0.78_0.14_75/0.5)] shadow-[0_0_24px_oklch(0.78_0.14_75/0.08)] cursor-pointer'
                     : 'bg-[oklch(0.16_0.015_250)] border border-[oklch(0.20_0.015_250)] opacity-50 cursor-not-allowed'
                   }
                 `}
@@ -164,16 +164,16 @@ export default function PurposeSelectorPage() {
                 {/* Header row */}
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-heading text-base text-[oklch(0.95_0.002_250)]">
+                    <h3 className="font-heading text-base text-[oklch(0.95_0.01_80)]">
                       {PURPOSE_LABELS[p]}
                     </h3>
-                    <p className={`font-semibold text-lg mt-0.5 ${isFree ? 'text-[oklch(0.72_0.17_162)]' : 'text-[oklch(0.40_0.01_250)]'}`}>
+                    <p className={`font-semibold text-lg mt-0.5 ${isFree ? 'text-[oklch(0.78_0.14_75)]' : 'text-[oklch(0.40_0.01_250)]'}`}>
                       {formatPrice(price)}
                     </p>
                   </div>
                   {isSelected && isFree && (
-                    <div className="h-6 w-6 rounded-full bg-[oklch(0.72_0.17_162)] flex items-center justify-center flex-shrink-0">
-                      <Check className="h-4 w-4 text-[oklch(0.10_0_0)]" />
+                    <div className="h-6 w-6 rounded-full bg-[oklch(0.78_0.14_75)] flex items-center justify-center flex-shrink-0">
+                      <Check className="h-4 w-4 text-[oklch(0.12_0.025_260)]" />
                     </div>
                   )}
                 </div>
@@ -188,7 +188,7 @@ export default function PurposeSelectorPage() {
                   {PURPOSE_FEATURES[p].map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-xs text-[oklch(0.60_0.01_250)]">
                       <span
-                        className={`w-1 h-1 rounded-full mt-1.5 shrink-0 ${isFree ? 'bg-[oklch(0.72_0.17_162)]' : 'bg-[oklch(0.25_0.01_260)]'}`}
+                        className={`w-1 h-1 rounded-full mt-1.5 shrink-0 ${isFree ? 'bg-[oklch(0.78_0.14_75)]' : 'bg-[oklch(0.25_0.01_260)]'}`}
                       />
                       <span>{feature}</span>
                     </li>
@@ -208,7 +208,7 @@ export default function PurposeSelectorPage() {
         >
           <button
             onClick={handleContinue}
-            className="group relative inline-flex items-center justify-center h-12 px-8 text-sm font-semibold tracking-wide bg-[oklch(0.72_0.17_162)] text-[oklch(0.10_0_0)] rounded-lg transition-all duration-300 hover:bg-[oklch(0.68_0.18_162)] hover:shadow-[0_0_40px_oklch(0.72_0.17_162/0.25)] active:scale-[0.97]"
+            className="group relative inline-flex items-center justify-center h-12 px-8 text-sm font-semibold tracking-wide bg-[oklch(0.78_0.14_75)] text-[oklch(0.12_0.025_260)] rounded-lg transition-all duration-300 hover:bg-[oklch(0.72_0.12_75)] hover:shadow-[0_0_40px_oklch(0.78_0.14_75/0.25)] active:scale-[0.97]"
           >
             Start Free Valuation
             <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

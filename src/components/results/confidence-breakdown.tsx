@@ -29,7 +29,7 @@ export function ConfidenceBreakdown({ result }: Props) {
   const breakdown = [
     { label: 'Data Completeness', score: dataCompleteness, max: 30, description: `${applicable.length}/10 methods`, color: 'oklch(0.65 0.16 250)' },
     { label: 'Method Agreement', score: methodAgreement, max: 40, description: `CV ${(cv * 100).toFixed(0)}%`, color: 'oklch(0.65 0.16 155)' },
-    { label: 'Revenue Maturity', score: revenueMature, max: 20, description: hasDCF ? 'Revenue available' : 'Limited data', color: 'oklch(0.72 0.17 162)' },
+    { label: 'Revenue Maturity', score: revenueMature, max: 20, description: hasDCF ? 'Revenue available' : 'Limited data', color: 'oklch(0.78 0.14 75)' },
     { label: 'Data Quality', score: dataQuality, max: 10, description: 'Internal consistency', color: 'oklch(0.65 0.16 310)' },
   ]
 
@@ -42,10 +42,10 @@ export function ConfidenceBreakdown({ result }: Props) {
     >
       <div className="rounded-xl bg-[oklch(0.16_0.015_250)] border border-[oklch(0.24_0.018_250)] overflow-hidden h-full">
         <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-[oklch(0.20_0.015_250)]">
-          <div className="w-7 h-7 rounded-lg bg-[oklch(0.72_0.17_162/0.08)] flex items-center justify-center">
-            <ShieldCheck className="w-3.5 h-3.5 text-[oklch(0.72_0.17_162)]" />
+          <div className="w-7 h-7 rounded-lg bg-[oklch(0.78_0.14_75/0.08)] flex items-center justify-center">
+            <ShieldCheck className="w-3.5 h-3.5 text-[oklch(0.78_0.14_75)]" />
           </div>
-          <h3 className="text-sm font-semibold text-[oklch(0.72_0.17_162)]">Confidence Breakdown</h3>
+          <h3 className="text-sm font-semibold text-[oklch(0.78_0.14_75)]">Confidence Breakdown</h3>
         </div>
         <div className="p-5 space-y-4">
           {breakdown.map((item, i) => {
@@ -88,7 +88,7 @@ export function ConfidenceBreakdown({ result }: Props) {
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium text-[oklch(0.70_0.005_80)]">Total Score</span>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-[oklch(0.72_0.17_162)]">{result.confidence_score}</span>
+                <span className="text-xl font-bold text-[oklch(0.78_0.14_75)]">{result.confidence_score}</span>
                 <span className="text-xs text-[oklch(0.52_0.01_250)]">/ 100</span>
               </div>
             </div>

@@ -10,7 +10,7 @@ import { PieChartIcon } from 'lucide-react'
 const APPROACH_COLORS: Record<ValuationApproach, string> = {
   income: 'oklch(0.65 0.16 250)',
   market: 'oklch(0.65 0.16 155)',
-  asset_cost: 'oklch(0.72 0.17 162)',
+  asset_cost: 'oklch(0.78 0.14 75)',
   vc_startup: 'oklch(0.65 0.16 310)',
 }
 
@@ -51,7 +51,7 @@ export function MethodContribution({ methods, compositeValue }: Props) {
           <div className="w-7 h-7 rounded-lg bg-[oklch(0.65_0.16_310/0.1)] flex items-center justify-center">
             <PieChartIcon className="w-3.5 h-3.5 text-[oklch(0.65_0.16_310)]" />
           </div>
-          <h3 className="text-sm font-semibold text-[oklch(0.72_0.17_162)]">Method Contribution</h3>
+          <h3 className="text-sm font-semibold text-[oklch(0.78_0.14_75)]">Method Contribution</h3>
         </div>
         <div className="p-5">
           <div className="h-[200px]">
@@ -105,7 +105,7 @@ export function MethodContribution({ methods, compositeValue }: Props) {
 
           <div className="mt-4 pt-3 border-t border-[oklch(0.20_0.015_250)] text-center">
             <span className="text-[10px] text-[oklch(0.52_0.01_250)] uppercase tracking-wider">Composite</span>
-            <p className="text-sm font-bold text-[oklch(0.72_0.17_162)] tabular-nums">{formatINR(compositeValue)}</p>
+            <p className="text-sm font-bold text-[oklch(0.78_0.14_75)] tabular-nums">{formatINR(compositeValue)}</p>
           </div>
         </div>
       </div>

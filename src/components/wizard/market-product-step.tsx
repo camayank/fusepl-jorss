@@ -179,7 +179,7 @@ export function MarketProductStep() {
             <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-[oklch(0.14_0.015_250)] border-[oklch(0.26_0.018_250)]">
+            <SelectContent className="bg-[oklch(0.12_0.025_260)] border-[oklch(0.26_0.018_250)]">
               {DEV_STAGES.map(key => (
                 <SelectItem key={key} value={key} className="text-[oklch(0.95_0.01_80)] hover:bg-[oklch(0.20_0.015_250)]">
                   {DEV_STAGE_LABELS[key]}
@@ -210,7 +210,7 @@ export function MarketProductStep() {
             <p className="text-[10px] text-[oklch(0.50_0.01_250)]">What makes you hard to copy? Select all that apply (+12 pts each)</p>
           </div>
           {advantageCount > 0 && (
-            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[oklch(0.72_0.17_162/0.1)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.72_0.17_162/0.2)]">
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[oklch(0.78_0.14_75/0.1)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.78_0.14_75/0.2)]">
               <Shield className="w-3 h-3" />
               {advantageCount} moat{advantageCount !== 1 ? 's' : ''}
             </span>
@@ -222,8 +222,8 @@ export function MarketProductStep() {
               <label
                 className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg border cursor-pointer transition-all text-sm ${
                   inputs.competitive_advantages.includes(key)
-                    ? 'border-[oklch(0.72_0.17_162/0.5)] bg-[oklch(0.72_0.17_162/0.10)] text-[oklch(0.82_0.12_75)] shadow-[0_0_12px_oklch(0.72_0.17_162/0.08)]'
-                    : 'border-[oklch(0.26_0.018_250)] bg-[oklch(0.12_0.012_250)] text-[oklch(0.55_0.01_250)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.14_0.015_250)]'
+                    ? 'border-[oklch(0.78_0.14_75/0.5)] bg-[oklch(0.78_0.14_75/0.10)] text-[oklch(0.82_0.12_75)] shadow-[0_0_12px_oklch(0.78_0.14_75/0.08)]'
+                    : 'border-[oklch(0.26_0.018_250)] bg-[oklch(0.12_0.012_250)] text-[oklch(0.55_0.01_250)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.12_0.025_260)]'
                 }`}
                 onMouseEnter={() => setHoveredAdvantage(key)}
                 onMouseLeave={() => setHoveredAdvantage(null)}

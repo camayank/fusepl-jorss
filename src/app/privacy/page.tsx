@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-[calc(100vh-3.5rem)] bg-[oklch(0.14_0.015_250)] py-16 px-6">
+    <main className="min-h-[calc(100vh-3.5rem)] bg-[oklch(0.12_0.025_260)] py-16 px-6">
       <article className="max-w-3xl mx-auto prose-invert">
-        <p className="text-[11px] font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.2em] mb-4">
+        <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">
           Legal
         </p>
-        <h1 className="font-heading text-3xl text-[oklch(0.95_0.002_250)] mb-8">
+        <h1 className="font-heading text-3xl text-[oklch(0.95_0.01_80)] mb-8">
           Privacy Policy
         </h1>
         <p className="text-[11px] text-[oklch(0.45_0.01_250)] mb-10">
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
           <Section title="7. Contact">
             <p>
               For privacy-related inquiries, contact us at{' '}
-              <a href="mailto:privacy@firstunicornstartup.com" className="text-[oklch(0.72_0.17_162)] hover:underline">
+              <a href="mailto:privacy@firstunicornstartup.com" className="text-[oklch(0.78_0.14_75)] hover:underline">
                 privacy@firstunicornstartup.com
               </a>
             </p>
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="font-heading text-lg text-[oklch(0.95_0.002_250)] mb-3">{title}</h2>
+      <h2 className="font-heading text-lg text-[oklch(0.95_0.01_80)] mb-3">{title}</h2>
       <div className="space-y-3">{children}</div>
     </section>
   )

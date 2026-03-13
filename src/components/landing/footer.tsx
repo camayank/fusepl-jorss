@@ -37,7 +37,7 @@ export function Footer() {
           </div>
           {LINKS.map((group) => (
             <div key={group.heading}>
-              <h4 className="text-[10px] font-bold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.2em] mb-4">{group.heading}</h4>
+              <h4 className="text-[10px] font-bold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">{group.heading}</h4>
               <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.label}>

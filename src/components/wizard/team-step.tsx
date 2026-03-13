@@ -96,7 +96,7 @@ export function TeamStep() {
     <motion.div className="space-y-5" variants={staggerContainer} initial="hidden" animate="visible">
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.12)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.12)] flex items-center justify-center">
             <Users className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
           <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Team</h2>
@@ -119,13 +119,13 @@ export function TeamStep() {
 
         <div>
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Founder Experience: <span className="text-[oklch(0.78_0.14_75)]">{inputs.founder_experience}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.72_0.17_162/0.7)] mb-2">{EXPERIENCE_LEVELS[inputs.founder_experience]}</p>
+          <p className="text-[10px] text-[oklch(0.78_0.14_75/0.7)] mb-2">{EXPERIENCE_LEVELS[inputs.founder_experience]}</p>
           <Slider value={[inputs.founder_experience]} onValueChange={(v) => setField('founder_experience', Array.isArray(v) ? v[0] : v)} min={1} max={5} step={1} />
         </div>
 
         <div>
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Domain Expertise: <span className="text-[oklch(0.78_0.14_75)]">{inputs.domain_expertise}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.72_0.17_162/0.7)] mb-2">{EXPERTISE_LEVELS[inputs.domain_expertise]}</p>
+          <p className="text-[10px] text-[oklch(0.78_0.14_75/0.7)] mb-2">{EXPERTISE_LEVELS[inputs.domain_expertise]}</p>
           <Slider value={[inputs.domain_expertise]} onValueChange={(v) => setField('domain_expertise', Array.isArray(v) ? v[0] : v)} min={1} max={5} step={1} />
         </div>
       </motion.div>
@@ -157,7 +157,7 @@ export function TeamStep() {
         </div>
         <div className="flex flex-wrap gap-2.5">
           {KEY_HIRE_OPTIONS.map(option => (
-            <label key={option.value} className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg border cursor-pointer transition-all text-sm ${inputs.key_hires.includes(option.value) ? 'border-[oklch(0.72_0.17_162/0.5)] bg-[oklch(0.72_0.17_162/0.10)] text-[oklch(0.82_0.12_75)] shadow-[0_0_12px_oklch(0.72_0.17_162/0.08)]' : 'border-[oklch(0.26_0.018_250)] bg-[oklch(0.12_0.012_250)] text-[oklch(0.55_0.01_250)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.14_0.015_250)]'}`}>
+            <label key={option.value} className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg border cursor-pointer transition-all text-sm ${inputs.key_hires.includes(option.value) ? 'border-[oklch(0.78_0.14_75/0.5)] bg-[oklch(0.78_0.14_75/0.10)] text-[oklch(0.82_0.12_75)] shadow-[0_0_12px_oklch(0.78_0.14_75/0.08)]' : 'border-[oklch(0.26_0.018_250)] bg-[oklch(0.12_0.012_250)] text-[oklch(0.55_0.01_250)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.12_0.025_260)]'}`}>
               <Checkbox checked={inputs.key_hires.includes(option.value)} onCheckedChange={() => toggleKeyHire(option.value)} className="hidden" />
               <span>{option.label}</span>
             </label>

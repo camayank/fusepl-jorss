@@ -9,7 +9,7 @@ const STEPS: { num: string; title: string; desc: string; time: string; color: st
     title: 'Paste Your Website',
     desc: 'Drop your startup URL and we auto-detect your sector, team, and key details. Or fill in manually.',
     time: '30 seconds',
-    color: 'oklch(0.72 0.17 162)',
+    color: 'oklch(0.78 0.14 75)',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
@@ -51,7 +51,7 @@ export function HowItWorks() {
       <div className="section-divider absolute inset-x-0 top-0" />
       <div className="max-w-5xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-16">
-          <p className="text-[11px] font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.2em] mb-4">How It Works</p>
+          <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">How It Works</p>
           <h2 className="font-heading text-3xl sm:text-[2.75rem] text-[oklch(0.97_0.002_250)] leading-tight">From Zero to Valuation in 5 Minutes</h2>
         </motion.div>
 
@@ -72,7 +72,7 @@ export function HowItWorks() {
               </div>
               {/* Step number */}
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 block" style={{ color: step.color }}>{step.num}</span>
-              <h3 className="font-heading text-xl text-[oklch(0.95_0.002_250)] mb-3">{step.title}</h3>
+              <h3 className="font-heading text-xl text-[oklch(0.95_0.01_80)] mb-3">{step.title}</h3>
               <p className="text-sm text-[oklch(0.65_0.01_250)] leading-relaxed mb-4">{step.desc}</p>
               <span className="inline-block text-[11px] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full" style={{ color: step.color, backgroundColor: `color-mix(in oklch, ${step.color} 10%, transparent)` }}>{step.time}</span>
             </motion.div>

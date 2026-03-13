@@ -9,7 +9,7 @@ const APPROACHES: { key: ValuationApproach; methods: string[]; color: string; ic
   {
     key: 'income',
     methods: ['DCF — Future cash flows worth today', 'PWERM — Weighted best/base/worst case'],
-    color: 'oklch(0.72 0.17 162)',
+    color: 'oklch(0.78 0.14 75)',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
@@ -57,7 +57,7 @@ export function MethodShowcase() {
       <div className="section-divider absolute inset-x-0 top-0" />
       <div className="max-w-5xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-16">
-          <p className="text-[11px] font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.2em] mb-4">The Rigour Behind the Numbers</p>
+          <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">The Rigour Behind the Numbers</p>
           <h2 className="font-heading text-3xl sm:text-[2.75rem] text-[oklch(0.97_0.002_250)] leading-tight">4 Approaches &times; 10 Methods</h2>
           <p className="mt-5 text-base text-[oklch(0.65_0.01_250)] max-w-lg mx-auto leading-relaxed">The same framework that institutional investors and IBBI professionals rely on.</p>
         </motion.div>
@@ -72,7 +72,7 @@ export function MethodShowcase() {
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ color: a.color, background: `color-mix(in oklch, ${a.color} 12%, transparent)`, border: `1px solid color-mix(in oklch, ${a.color} 25%, transparent)` }}>
                     {a.icon}
                   </div>
-                  <h3 className="font-heading text-lg text-[oklch(0.95_0.002_250)]">{APPROACH_LABELS[a.key]}</h3>
+                  <h3 className="font-heading text-lg text-[oklch(0.95_0.01_80)]">{APPROACH_LABELS[a.key]}</h3>
                   <span className="ml-auto text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ color: a.color, backgroundColor: `color-mix(in oklch, ${a.color} 10%, transparent)` }}>{a.methods.length} methods</span>
                 </div>
                 <ul className="space-y-3">

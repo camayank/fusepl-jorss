@@ -25,11 +25,11 @@ function CurrencyInput({ label, value, onChange, placeholder, help }: {
           value={value ?? ''}
           onChange={(e) => { const v = e.target.value; onChange(v === '' ? null : parseFloat(v)) }}
           placeholder={placeholder || '0'}
-          className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] pl-7 h-10 focus:border-[oklch(0.72_0.17_162/0.5)] transition-colors"
+          className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] pl-7 h-10 focus:border-[oklch(0.78_0.14_75/0.5)] transition-colors"
         />
       </div>
       {value !== null && value > 0 && (
-        <p className="text-[10px] text-[oklch(0.72_0.17_162/0.8)] mt-1 font-mono">{formatINR(value)}</p>
+        <p className="text-[10px] text-[oklch(0.78_0.14_75/0.8)] mt-1 font-mono">{formatINR(value)}</p>
       )}
     </div>
   )
@@ -69,7 +69,7 @@ function HealthSemicircleGauge({ score, color, label }: { score: number; color: 
     <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.22 0.02 250 / 0.9), oklch(0.18 0.018 250 / 0.7)), linear-gradient(180deg, oklch(0.72 0.12 155 / 0.04), transparent)' }}>
       {/* Grid-line background for dashboard feel */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{
-        backgroundImage: `linear-gradient(oklch(0.72 0.17 162 / 0.5) 1px, transparent 1px), linear-gradient(90deg, oklch(0.72 0.17 162 / 0.5) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(oklch(0.78 0.14 75 / 0.5) 1px, transparent 1px), linear-gradient(90deg, oklch(0.78 0.14 75 / 0.5) 1px, transparent 1px)`,
         backgroundSize: '24px 24px',
       }} />
       {/* Subtle background icons */}
@@ -119,7 +119,7 @@ export function FinancialsStep() {
       {/* Header */}
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.15)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.15)] flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
           <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Financials</h2>
@@ -142,7 +142,7 @@ export function FinancialsStep() {
         <CurrencyInput label="Annual Revenue (ARR) *" value={inputs.annual_revenue} onChange={(v) => setField('annual_revenue', v ?? 0)} help="Enter 0 if pre-revenue — VC methods will be used" />
 
         {inputs.annual_revenue === 0 && (
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-[oklch(0.72_0.17_162/0.08)] border border-[oklch(0.72_0.17_162/0.2)] text-[oklch(0.78_0.14_75)]">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-[oklch(0.78_0.14_75/0.08)] border border-[oklch(0.78_0.14_75/0.2)] text-[oklch(0.78_0.14_75)]">
             Pre-revenue startups can still have strong valuations through VC methods like Scorecard and Berkus
           </div>
         )}
@@ -161,7 +161,7 @@ export function FinancialsStep() {
             step={5}
           />
           <div className="flex items-center gap-2 mt-2">
-            <Input type="number" value={inputs.revenue_growth_pct} onChange={(e) => setField('revenue_growth_pct', parseFloat(e.target.value) || 0)} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-24 text-sm focus:border-[oklch(0.72_0.17_162/0.5)]" placeholder="80" />
+            <Input type="number" value={inputs.revenue_growth_pct} onChange={(e) => setField('revenue_growth_pct', parseFloat(e.target.value) || 0)} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-24 text-sm focus:border-[oklch(0.78_0.14_75/0.5)]" placeholder="80" />
             <span className="text-[9px] text-[oklch(0.50_0.01_250)] font-mono">% per year</span>
           </div>
         </div>
@@ -180,7 +180,7 @@ export function FinancialsStep() {
             step={1}
           />
           <div className="flex items-center gap-2 mt-2">
-            <Input type="number" value={inputs.gross_margin_pct} onChange={(e) => setField('gross_margin_pct', parseFloat(e.target.value) || 0)} min={0} max={100} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-24 text-sm focus:border-[oklch(0.72_0.17_162/0.5)]" placeholder="70" />
+            <Input type="number" value={inputs.gross_margin_pct} onChange={(e) => setField('gross_margin_pct', parseFloat(e.target.value) || 0)} min={0} max={100} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-24 text-sm focus:border-[oklch(0.78_0.14_75/0.5)]" placeholder="70" />
             <span className="text-[9px] text-[oklch(0.50_0.01_250)] font-mono">%</span>
           </div>
         </div>
@@ -213,7 +213,7 @@ export function FinancialsStep() {
               </div>
               {[6, 12, 18].map(m => <div key={m} className="absolute top-0 bottom-0 w-px bg-[oklch(0.40_0.01_250/0.4)]" style={{ left: `${(m / 24) * 100}%` }} />)}
               <motion.div className="h-full rounded-full relative z-10" style={{ background: runway >= 18 ? 'oklch(0.65 0.16 155)' : runway >= 6 ? 'oklch(0.72 0.14 80)' : 'oklch(0.62 0.18 25)' }} animate={{ width: `${Math.min(100, (runway / 24) * 100)}%` }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} />
-              <motion.div className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full z-20 border-2 border-[oklch(0.14_0.015_250)]" style={{ background: runway >= 18 ? 'oklch(0.65 0.16 155)' : runway >= 6 ? 'oklch(0.72 0.14 80)' : 'oklch(0.62 0.18 25)', boxShadow: `0 0 10px ${runway >= 18 ? 'oklch(0.65 0.16 155 / 0.5)' : runway >= 6 ? 'oklch(0.72 0.14 80 / 0.5)' : 'oklch(0.62 0.18 25 / 0.5)'}` }} animate={{ left: `calc(${Math.min(100, (runway / 24) * 100)}% - 7px)`, scale: [1, 1.15, 1] }} transition={{ left: { duration: 0.5 }, scale: { duration: 2, repeat: Infinity } }} />
+              <motion.div className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full z-20 border-2 border-[oklch(0.12_0.025_260)]" style={{ background: runway >= 18 ? 'oklch(0.65 0.16 155)' : runway >= 6 ? 'oklch(0.72 0.14 80)' : 'oklch(0.62 0.18 25)', boxShadow: `0 0 10px ${runway >= 18 ? 'oklch(0.65 0.16 155 / 0.5)' : runway >= 6 ? 'oklch(0.72 0.14 80 / 0.5)' : 'oklch(0.62 0.18 25 / 0.5)'}` }} animate={{ left: `calc(${Math.min(100, (runway / 24) * 100)}% - 7px)`, scale: [1, 1.15, 1] }} transition={{ left: { duration: 0.5 }, scale: { duration: 2, repeat: Infinity } }} />
             </div>
             <div className="flex justify-between mt-1.5">
               {['0', '6m', '12m', '18m', '24m+'].map(l => <span key={l} className="text-[8px] font-mono text-[oklch(0.40_0.01_250)]">{l}</span>)}
@@ -234,7 +234,7 @@ export function FinancialsStep() {
           <CurrencyInput label="Lifetime Value (LTV)" value={inputs.ltv} onChange={(v) => setField('ltv', v)} />
         </div>
         {inputs.cac && inputs.ltv && inputs.cac > 0 && (
-          <div className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-xs ${inputs.ltv / inputs.cac >= 3 ? 'bg-[oklch(0.72_0.17_162/0.10)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.72_0.17_162/0.2)]' : inputs.ltv / inputs.cac >= 1 ? 'bg-[oklch(0.72_0.14_80/0.10)] text-[oklch(0.72_0.14_80)] border border-[oklch(0.72_0.14_80/0.2)]' : 'bg-[oklch(0.62_0.18_25/0.10)] text-[oklch(0.62_0.18_25)] border border-[oklch(0.62_0.18_25/0.2)]'}`}>
+          <div className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-xs ${inputs.ltv / inputs.cac >= 3 ? 'bg-[oklch(0.78_0.14_75/0.10)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.78_0.14_75/0.2)]' : inputs.ltv / inputs.cac >= 1 ? 'bg-[oklch(0.72_0.14_80/0.10)] text-[oklch(0.72_0.14_80)] border border-[oklch(0.72_0.14_80/0.2)]' : 'bg-[oklch(0.62_0.18_25/0.10)] text-[oklch(0.62_0.18_25)] border border-[oklch(0.62_0.18_25/0.2)]'}`}>
             <span className="font-mono font-bold text-base">{(inputs.ltv / inputs.cac).toFixed(1)}x</span>
             <span className="text-[oklch(0.55_0.01_250)]">{inputs.ltv / inputs.cac >= 3 ? '— Excellent unit economics' : inputs.ltv / inputs.cac >= 1 ? '— Needs improvement (target 3x+)' : '— Losing money per customer'}</span>
           </div>

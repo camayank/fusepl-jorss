@@ -161,7 +161,7 @@ export function ESOPCapTableStep() {
       {/* Header */}
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.12)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.12)] flex items-center justify-center">
             <PieChart className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
           <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">ESOP & Cap Table</h2>
@@ -233,7 +233,7 @@ export function ESOPCapTableStep() {
                 ])
               }
             }}
-            className="text-sm text-[oklch(0.78_0.14_75)] hover:text-[oklch(0.82_0.12_75)] px-3 py-1.5 rounded border border-[oklch(0.72_0.17_162/0.3)] hover:border-[oklch(0.72_0.17_162/0.5)] transition-colors"
+            className="text-sm text-[oklch(0.78_0.14_75)] hover:text-[oklch(0.82_0.12_75)] px-3 py-1.5 rounded border border-[oklch(0.78_0.14_75/0.3)] hover:border-[oklch(0.78_0.14_75/0.5)] transition-colors"
           >
             + Add Row
           </button>

@@ -18,7 +18,7 @@ export function ValuationReveal({ result, companyName }: Props) {
 
   const confidenceColor =
     result.confidence_score >= 70 ? 'oklch(0.65 0.16 155)' :
-    result.confidence_score >= 40 ? 'oklch(0.72 0.17 162)' : 'oklch(0.62 0.18 25)'
+    result.confidence_score >= 40 ? 'oklch(0.78 0.14 75)' : 'oklch(0.62 0.18 25)'
 
   const applicableMethods = result.methods.filter(m => m.applicable).length
 
@@ -30,21 +30,21 @@ export function ValuationReveal({ result, companyName }: Props) {
     >
       <div className="relative rounded-2xl overflow-hidden">
         {/* Animated border glow */}
-        <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[oklch(0.72_0.17_162/0.4)] via-[oklch(0.72_0.17_162/0.1)] to-[oklch(0.72_0.17_162/0.2)]" />
+        <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[oklch(0.78_0.14_75/0.4)] via-[oklch(0.78_0.14_75/0.1)] to-[oklch(0.78_0.14_75/0.2)]" />
 
         {/* Inner content */}
         <div className="relative rounded-2xl bg-[oklch(0.09_0.008_260)] m-px">
           {/* Top shimmer line */}
           <div className="absolute top-0 inset-x-0 h-px">
             <motion.div
-              className="h-full bg-gradient-to-r from-transparent via-[oklch(0.72_0.17_162/0.8)] to-transparent"
+              className="h-full bg-gradient-to-r from-transparent via-[oklch(0.78_0.14_75/0.8)] to-transparent"
               animate={{ x: ['-100%', '100%'] }}
               transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
             />
           </div>
 
           {/* Ambient glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-[oklch(0.72_0.17_162/0.05)] blur-[80px] pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-[oklch(0.78_0.14_75/0.05)] blur-[80px] pointer-events-none" />
 
           <div className="relative p-8 sm:p-10 text-center">
             {/* Pre-label */}
@@ -54,11 +54,11 @@ export function ValuationReveal({ result, companyName }: Props) {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex items-center justify-center gap-2 mb-2"
             >
-              <div className="h-px w-8 bg-gradient-to-r from-transparent to-[oklch(0.72_0.17_162/0.4)]" />
-              <span className="text-[10px] font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.25em]">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-[oklch(0.78_0.14_75/0.4)]" />
+              <span className="text-[10px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.25em]">
                 Estimated Valuation
               </span>
-              <div className="h-px w-8 bg-gradient-to-l from-transparent to-[oklch(0.72_0.17_162/0.4)]" />
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-[oklch(0.78_0.14_75/0.4)]" />
             </motion.div>
 
             {/* Company name */}
@@ -66,7 +66,7 @@ export function ValuationReveal({ result, companyName }: Props) {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="font-heading text-xl sm:text-2xl text-[oklch(0.95_0.002_250)] mb-8"
+              className="font-heading text-xl sm:text-2xl text-[oklch(0.95_0.01_80)] mb-8"
             >
               {companyName || 'Your Startup'}
             </motion.h2>
@@ -78,7 +78,7 @@ export function ValuationReveal({ result, companyName }: Props) {
               transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
               className="mb-3"
             >
-              <p className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[oklch(0.95_0.002_250)]">
+              <p className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">
                 <AnimatedCounter value={result.composite_value} formatter={formatINR} duration={1800} />
               </p>
             </motion.div>
@@ -108,8 +108,8 @@ export function ValuationReveal({ result, companyName }: Props) {
               className="grid grid-cols-3 gap-4 pt-6 border-t border-[oklch(0.20_0.015_250)]"
             >
               <div className="flex flex-col items-center gap-1.5">
-                <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.08)] flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-[oklch(0.72_0.17_162)]" />
+                <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.08)] flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
                 </div>
                 <span
                   className="text-lg font-bold"
