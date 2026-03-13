@@ -78,7 +78,7 @@ function HealthSemicircleGauge({ score, color, label }: { score: number; color: 
       </div>
       <div className="relative z-[1]">
         <div className="flex items-center gap-2 mb-2">
-          <Activity className="w-4 h-4 text-[oklch(0.72_0.17_162)]" />
+          <Activity className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           <span className="font-heading text-sm text-[oklch(0.70_0.01_250)]">Financial Health</span>
         </div>
         <div className="relative flex flex-col items-center">
@@ -120,9 +120,9 @@ export function FinancialsStep() {
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
           <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.15)] flex items-center justify-center">
-            <TrendingUp className="w-4 h-4 text-[oklch(0.72_0.17_162)]" />
+            <TrendingUp className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.002_250)]">Financials</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Financials</h2>
         </div>
         <p className="text-[oklch(0.60_0.01_250)] text-sm">These numbers drive your DCF and market multiple valuations. Pre-revenue? Enter 0 — we still value you using VC methods.</p>
       </motion.div>
@@ -142,7 +142,7 @@ export function FinancialsStep() {
         <CurrencyInput label="Annual Revenue (ARR) *" value={inputs.annual_revenue} onChange={(v) => setField('annual_revenue', v ?? 0)} help="Enter 0 if pre-revenue — VC methods will be used" />
 
         {inputs.annual_revenue === 0 && (
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-[oklch(0.72_0.17_162/0.08)] border border-[oklch(0.72_0.17_162/0.2)] text-[oklch(0.72_0.17_162)]">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs bg-[oklch(0.72_0.17_162/0.08)] border border-[oklch(0.72_0.17_162/0.2)] text-[oklch(0.78_0.14_75)]">
             Pre-revenue startups can still have strong valuations through VC methods like Scorecard and Berkus
           </div>
         )}
@@ -150,7 +150,7 @@ export function FinancialsStep() {
         <div>
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Growth (%)</Label>
-            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.revenue_growth_pct}%</span>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.78_0.14_75)]">{inputs.revenue_growth_pct}%</span>
           </div>
           <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">YoY growth. Good SaaS = 100%+, Average = 30-50%</p>
           <Slider
@@ -169,7 +169,7 @@ export function FinancialsStep() {
         <div>
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Gross Margin (%)</Label>
-            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.gross_margin_pct}%</span>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.78_0.14_75)]">{inputs.gross_margin_pct}%</span>
           </div>
           <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">SaaS = 70-90%, E-commerce = 30-50%</p>
           <Slider
@@ -234,7 +234,7 @@ export function FinancialsStep() {
           <CurrencyInput label="Lifetime Value (LTV)" value={inputs.ltv} onChange={(v) => setField('ltv', v)} />
         </div>
         {inputs.cac && inputs.ltv && inputs.cac > 0 && (
-          <div className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-xs ${inputs.ltv / inputs.cac >= 3 ? 'bg-[oklch(0.72_0.17_162/0.10)] text-[oklch(0.72_0.17_162)] border border-[oklch(0.72_0.17_162/0.2)]' : inputs.ltv / inputs.cac >= 1 ? 'bg-[oklch(0.72_0.14_80/0.10)] text-[oklch(0.72_0.14_80)] border border-[oklch(0.72_0.14_80/0.2)]' : 'bg-[oklch(0.62_0.18_25/0.10)] text-[oklch(0.62_0.18_25)] border border-[oklch(0.62_0.18_25/0.2)]'}`}>
+          <div className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-xs ${inputs.ltv / inputs.cac >= 3 ? 'bg-[oklch(0.72_0.17_162/0.10)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.72_0.17_162/0.2)]' : inputs.ltv / inputs.cac >= 1 ? 'bg-[oklch(0.72_0.14_80/0.10)] text-[oklch(0.72_0.14_80)] border border-[oklch(0.72_0.14_80/0.2)]' : 'bg-[oklch(0.62_0.18_25/0.10)] text-[oklch(0.62_0.18_25)] border border-[oklch(0.62_0.18_25/0.2)]'}`}>
             <span className="font-mono font-bold text-base">{(inputs.ltv / inputs.cac).toFixed(1)}x</span>
             <span className="text-[oklch(0.55_0.01_250)]">{inputs.ltv / inputs.cac >= 3 ? '— Excellent unit economics' : inputs.ltv / inputs.cac >= 1 ? '— Needs improvement (target 3x+)' : '— Losing money per customer'}</span>
           </div>

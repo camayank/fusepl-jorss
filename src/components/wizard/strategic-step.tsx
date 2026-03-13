@@ -145,7 +145,7 @@ export function StrategicStep() {
           <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.12_55/0.12)] flex items-center justify-center">
             <Compass className="w-4 h-4 text-[oklch(0.72_0.12_55)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.002_250)]">Strategic Factors</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Strategic Factors</h2>
         </div>
         <p className="text-[oklch(0.55_0.01_250)] text-sm">Partnerships reduce risk, regulatory moats protect margins — these factors shape how investors discount your valuation.</p>
       </motion.div>
@@ -166,7 +166,7 @@ export function StrategicStep() {
             </SelectTrigger>
             <SelectContent className="bg-[oklch(0.14_0.015_250)] border-[oklch(0.26_0.018_250)]">
               {PARTNERSHIP_LEVELS.map(key => (
-                <SelectItem key={key} value={key} className="text-[oklch(0.95_0.002_250)] hover:bg-[oklch(0.20_0.015_250)]">
+                <SelectItem key={key} value={key} className="text-[oklch(0.95_0.01_80)] hover:bg-[oklch(0.20_0.015_250)]">
                   {PARTNERSHIP_LABELS[key]}
                 </SelectItem>
               ))}

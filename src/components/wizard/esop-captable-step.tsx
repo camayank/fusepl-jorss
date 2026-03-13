@@ -62,7 +62,7 @@ function CapTableRing({ percentage, entries }: {
         <PieChart className="w-10 h-10" /><PieChart className="w-10 h-10" /><PieChart className="w-10 h-10" />
       </div>
       <div className="flex items-center gap-2 mb-3 self-start">
-        <PieChart className="w-4 h-4 text-[oklch(0.72_0.17_162)]" />
+        <PieChart className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
         <span className="font-heading text-sm text-[oklch(0.65_0.01_250)]">Ownership Distribution</span>
       </div>
       <div className="relative">
@@ -162,18 +162,18 @@ export function ESOPCapTableStep() {
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
           <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.12)] flex items-center justify-center">
-            <PieChart className="w-4 h-4 text-[oklch(0.72_0.17_162)]" />
+            <PieChart className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.002_250)]">ESOP & Cap Table</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">ESOP & Cap Table</h2>
         </div>
         <p className="text-[oklch(0.55_0.01_250)] text-sm">Optional but powerful. ESOP pools and cap tables help us calculate per-share value and dilution impact.</p>
       </motion.div>
 
       {/* Skip encouragement */}
       <motion.div variants={staggerItem} className="glass-card relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg">
-        <SkipForward className="w-4 h-4 text-[oklch(0.72_0.17_162)] shrink-0 animate-[float_3s_ease-in-out_infinite]" />
+        <SkipForward className="w-4 h-4 text-[oklch(0.78_0.14_75)] shrink-0 animate-[float_3s_ease-in-out_infinite]" />
         <p className="text-xs text-[oklch(0.60_0.01_250)]">
-          Not sure? <span className="text-[oklch(0.72_0.17_162)] font-medium">Just click &quot;Get Valuation&quot;</span> — we&apos;ll use smart defaults based on your stage ({inputs.stage.replace(/_/g, ' ')}: {defaultEsop}% ESOP).
+          Not sure? <span className="text-[oklch(0.78_0.14_75)] font-medium">Just click &quot;Get Valuation&quot;</span> — we&apos;ll use smart defaults based on your stage ({inputs.stage.replace(/_/g, ' ')}: {defaultEsop}% ESOP).
         </p>
       </motion.div>
 
@@ -190,7 +190,7 @@ export function ESOPCapTableStep() {
         <div>
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">ESOP Pool (%)</Label>
-            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.esop_pool_pct ?? defaultEsop}%</span>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.78_0.14_75)]">{inputs.esop_pool_pct ?? defaultEsop}%</span>
           </div>
           <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">
             Equity reserved for employees. Typical for {inputs.stage.replace(/_/g, ' ')}: {defaultEsop}%
@@ -205,7 +205,7 @@ export function ESOPCapTableStep() {
         <div>
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Time to Liquidity</Label>
-            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.time_to_liquidity_years ?? 4} yrs</span>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.78_0.14_75)]">{inputs.time_to_liquidity_years ?? 4} yrs</span>
           </div>
           <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Years until exit (acquisition/IPO). Typical: 3-7 years.</p>
           <Slider
@@ -233,7 +233,7 @@ export function ESOPCapTableStep() {
                 ])
               }
             }}
-            className="text-sm text-[oklch(0.72_0.17_162)] hover:text-[oklch(0.80_0.14_162)] px-3 py-1.5 rounded border border-[oklch(0.72_0.17_162/0.3)] hover:border-[oklch(0.72_0.17_162/0.5)] transition-colors"
+            className="text-sm text-[oklch(0.78_0.14_75)] hover:text-[oklch(0.82_0.12_75)] px-3 py-1.5 rounded border border-[oklch(0.72_0.17_162/0.3)] hover:border-[oklch(0.72_0.17_162/0.5)] transition-colors"
           >
             + Add Row
           </button>

@@ -98,7 +98,7 @@ function SectorDropdownContent({ search, onSearch }: { search: string; onSearch:
       </div>
       {filteredGroups.map(({ group, items }) => (
         <SelectGroup key={group}>
-          <SelectLabel className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.72_0.17_162)] px-3 py-1.5 bg-[oklch(0.15_0.012_250)] sticky">
+          <SelectLabel className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.78_0.14_75)] px-3 py-1.5 bg-[oklch(0.15_0.012_250)] sticky">
             {group}
           </SelectLabel>
           {items.map(key => (
@@ -201,9 +201,9 @@ export function CompanyStep() {
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
           <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.17_162/0.12)] flex items-center justify-center">
-            <Building2 className="w-4 h-4 text-[oklch(0.72_0.17_162)]" />
+            <Building2 className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.002_250)]">Company Profile</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Company Profile</h2>
         </div>
         <p className="text-[oklch(0.55_0.01_250)] text-sm">Your sector and stage directly determine which valuation methods we use and which comparable companies we match against.</p>
       </motion.div>
@@ -243,7 +243,7 @@ export function CompanyStep() {
                 <button
                   onClick={handleAnalyzeUrl}
                   disabled={!websiteUrl.trim() || analyzing}
-                  className="h-9 px-4 text-[11px] font-semibold rounded-lg bg-[oklch(0.72_0.17_162/0.12)] border border-[oklch(0.72_0.17_162/0.25)] text-[oklch(0.72_0.17_162)] transition-all hover:bg-[oklch(0.72_0.17_162/0.18)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
+                  className="h-9 px-4 text-[11px] font-semibold rounded-lg bg-[oklch(0.72_0.17_162/0.12)] border border-[oklch(0.72_0.17_162/0.25)] text-[oklch(0.78_0.14_75)] transition-all hover:bg-[oklch(0.72_0.17_162/0.18)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
                 >
                   {analyzing ? <><Loader2 className="w-3 h-3 animate-spin" />Detecting...</> : <><Zap className="w-3 h-3" />Auto-Detect</>}
                 </button>
@@ -272,7 +272,7 @@ export function CompanyStep() {
             <div className="flex items-center gap-2 mb-1">
               <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Sector *</Label>
               {autoDetectedFields.has('sector') && (
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.72_0.17_162/0.12)] text-[oklch(0.72_0.17_162)] border border-[oklch(0.72_0.17_162/0.25)]">
+                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.72_0.17_162/0.12)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.72_0.17_162/0.25)]">
                   <Zap className="w-2.5 h-2.5" />Auto
                 </span>
               )}
