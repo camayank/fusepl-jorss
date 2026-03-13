@@ -237,7 +237,7 @@ export function CompanyStep() {
                     onChange={(e) => setWebsiteUrl(e.target.value)}
                     placeholder="Paste website URL to auto-fill fields"
                     onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeUrl()}
-                    className="w-full h-9 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.10_0.010_250)] border border-dashed border-[oklch(0.91 0.005 260)] text-[oklch(0.78_0.005_250)] placeholder:text-[oklch(0.38_0.01_250)] focus:outline-none focus:border-[oklch(0.62_0.22_330/0.4)] transition-colors"
+                    className="w-full h-9 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.98_0.002_260)] border border-dashed border-[oklch(0.91 0.005 260)] text-[oklch(0.20_0.02_260)] placeholder:text-[oklch(0.50_0.01_260)] focus:outline-none focus:border-[oklch(0.62_0.22_330/0.4)] transition-colors"
                   />
                 </div>
                 <button
