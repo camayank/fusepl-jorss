@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { MobileNav } from './mobile-nav'
 
@@ -15,11 +16,10 @@ export function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[oklch(0.26_0.018_250/0.5)] bg-[oklch(0.12_0.025_260/0.80)] backdrop-blur-2xl backdrop-saturate-150">
+    <header className="sticky top-0 z-50 w-full border-b border-[oklch(0.91_0.005_260)] bg-[oklch(1_0_0/0.85)] backdrop-blur-2xl backdrop-saturate-150">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-          <span className="font-heading text-xl tracking-tight text-gold-gradient">FUS</span>
-          <span className="hidden sm:inline text-[13px] font-medium text-[oklch(0.62_0.01_250)] ml-1.5 tracking-wide uppercase">First Unicorn Startup</span>
+          <Image src="/logo.png" alt="First Unicorn Startup" width={140} height={36} className="h-8 w-auto" priority />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
@@ -28,15 +28,15 @@ export function Header() {
             return (
               <Link key={link.href} href={link.href}
                 className={`focus-ring relative px-3.5 py-1.5 text-[13px] font-medium tracking-wide uppercase rounded-lg transition-all duration-200
-                  ${isActive ? 'text-[oklch(0.82_0.12_75)] bg-[oklch(0.78_0.14_75/0.10)]' : 'text-[oklch(0.62_0.01_250)] hover:text-[oklch(0.88_0.005_250)] hover:bg-[oklch(0.78_0.14_75/0.06)]'}`}
+                  ${isActive ? 'text-[oklch(0.62_0.22_330)] bg-[oklch(0.62_0.22_330/0.08)]' : 'text-[oklch(0.35_0.02_260)] hover:text-[oklch(0.20_0.02_260)] hover:bg-[oklch(0.96_0.005_260)]'}`}
                 aria-current={isActive ? 'page' : undefined}
               >
                 {link.label}
               </Link>
             )
           })}
-          <div className="ml-4 pl-4 border-l border-[oklch(0.30_0.015_250)]">
-            <Link href="/valuation" className="btn-press focus-ring inline-flex items-center justify-center rounded-xl h-9 px-5 text-[13px] font-semibold tracking-wide bg-[oklch(0.78_0.14_75)] text-white transition-all hover:bg-[oklch(0.72_0.12_75)] hover:shadow-[0_0_24px_oklch(0.78_0.14_75/0.3)]">
+          <div className="ml-4 pl-4 border-l border-[oklch(0.91_0.005_260)]">
+            <Link href="/valuation" className="btn-press focus-ring inline-flex items-center justify-center rounded-xl h-9 px-5 text-[13px] font-semibold tracking-wide bg-[#32373c] text-white transition-all hover:bg-[#1d2024] hover:shadow-[0_4px_16px_oklch(0_0_0/0.15)]">
               Get Valuation
             </Link>
           </div>

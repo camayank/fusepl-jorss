@@ -58,23 +58,23 @@ function SemicircleGauge({ score, color }: { score: number; color: string }) {
   const arcPath = `M ${startX} ${startY} A ${r} ${r} 0 0 1 ${endX} ${endY}`
 
   return (
-    <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.20 0.02 250 / 0.8), oklch(0.17 0.018 250 / 0.6)), linear-gradient(180deg, oklch(0.72 0.12 55 / 0.04), transparent)' }}>
+    <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.98 0.003 260 / 0.8), oklch(0.97 0.003 260 / 0.6)), linear-gradient(180deg, oklch(0.72 0.12 55 / 0.04), transparent)' }}>
       {/* Subtle Users icons */}
       <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-[0.04] pointer-events-none">
         <Users className="w-10 h-10" /><Users className="w-10 h-10" /><Users className="w-10 h-10" />
       </div>
       <div className="flex items-center gap-2 mb-2">
-        <Users className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
-        <span className="font-heading text-sm text-[oklch(0.65_0.01_250)]">Team Strength</span>
+        <Users className="w-4 h-4 text-[oklch(0.62 0.22 330)]" />
+        <span className="font-heading text-sm text-[oklch(0.45 0.01 260)]">Team Strength</span>
       </div>
       <div className="relative flex flex-col items-center">
         <svg width="200" height="110" viewBox="0 0 200 110" className="overflow-visible">
-          <path d={arcPath} fill="none" stroke="oklch(0.20 0.015 250)" strokeWidth="12" strokeLinecap="round" />
+          <path d={arcPath} fill="none" stroke="oklch(0.91 0.005 260)" strokeWidth="12" strokeLinecap="round" />
           <motion.path d={arcPath} fill="none" stroke={color} strokeWidth="12" strokeLinecap="round" pathLength={1} initial={{ pathLength: 0 }} animate={{ pathLength: score / 100 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} style={{ filter: `drop-shadow(0 0 8px ${color})` }} />
         </svg>
         <div className="absolute top-[36px] left-1/2 -translate-x-1/2 text-center">
           <span className={`font-mono text-4xl font-bold tabular-nums leading-none ${score >= 70 ? 'text-gold-gradient' : ''}`} style={score < 70 ? { color } : undefined}>{animatedScore}</span>
-          <span className="text-xs block mt-0.5 text-[oklch(0.50_0.01_250)]">/ 100</span>
+          <span className="text-xs block mt-0.5 text-[oklch(0.50 0.01 260)]">/ 100</span>
         </div>
       </div>
       <motion.p key={getScoreMessage(score)} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="text-[11px] font-heading text-center mt-1" style={{ color }}>{getScoreMessage(score)}</motion.p>
@@ -96,12 +96,12 @@ export function TeamStep() {
     <motion.div className="space-y-5" variants={staggerContainer} initial="hidden" animate="visible">
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.12)] flex items-center justify-center">
-            <Users className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.62_0.22_330/0.12)] flex items-center justify-center">
+            <Users className="w-4 h-4 text-[oklch(0.62 0.22 330)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Team</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.15 0.02 260)]">Team</h2>
         </div>
-        <p className="text-[oklch(0.55_0.01_250)] text-sm">Investors bet on people first. A strong team can add 2-3x to your valuation.</p>
+        <p className="text-[oklch(0.45 0.01 260)] text-sm">Investors bet on people first. A strong team can add 2-3x to your valuation.</p>
       </motion.div>
 
       {/* Gauge at TOP */}
@@ -113,38 +113,38 @@ export function TeamStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
         <div>
           <Label htmlFor="team_size" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Team Size *</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Founders + employees + contractors</p>
-          <Input id="team_size" type="number" value={inputs.team_size} onChange={(e) => setField('team_size', parseInt(e.target.value) || 1)} min={1} max={500} className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-32 h-10" />
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Founders + employees + contractors</p>
+          <Input id="team_size" type="number" value={inputs.team_size} onChange={(e) => setField('team_size', parseInt(e.target.value) || 1)} min={1} max={500} className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] mt-1 w-32 h-10" />
         </div>
 
         <div>
-          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Founder Experience: <span className="text-[oklch(0.78_0.14_75)]">{inputs.founder_experience}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.78_0.14_75/0.7)] mb-2">{EXPERIENCE_LEVELS[inputs.founder_experience]}</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Founder Experience: <span className="text-[oklch(0.62 0.22 330)]">{inputs.founder_experience}/5</span></Label>
+          <p className="text-[10px] text-[oklch(0.62_0.22_330/0.7)] mb-2">{EXPERIENCE_LEVELS[inputs.founder_experience]}</p>
           <Slider value={[inputs.founder_experience]} onValueChange={(v) => setField('founder_experience', Array.isArray(v) ? v[0] : v)} min={1} max={5} step={1} />
         </div>
 
         <div>
-          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Domain Expertise: <span className="text-[oklch(0.78_0.14_75)]">{inputs.domain_expertise}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.78_0.14_75/0.7)] mb-2">{EXPERTISE_LEVELS[inputs.domain_expertise]}</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Domain Expertise: <span className="text-[oklch(0.62 0.22 330)]">{inputs.domain_expertise}/5</span></Label>
+          <p className="text-[10px] text-[oklch(0.62_0.22_330/0.7)] mb-2">{EXPERTISE_LEVELS[inputs.domain_expertise]}</p>
           <Slider value={[inputs.domain_expertise]} onValueChange={(v) => setField('domain_expertise', Array.isArray(v) ? v[0] : v)} min={1} max={5} step={1} />
         </div>
       </motion.div>
 
       {/* Founder Signals */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-4">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.62_0.01_250)]">Founder Signals</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Founder Signals</span>
         <div className="flex items-center gap-3">
           <Checkbox id="previous_exits" checked={inputs.previous_exits} onCheckedChange={(checked) => setField('previous_exits', !!checked)} />
           <div>
             <Label htmlFor="previous_exits" className="text-[oklch(0.78_0.005_250)] cursor-pointer text-sm">Founders have previous exits</Label>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Previously sold or IPO&apos;d a company (+15 pts)</p>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Previously sold or IPO&apos;d a company (+15 pts)</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <Checkbox id="technical_cofounder" checked={inputs.technical_cofounder} onCheckedChange={(checked) => setField('technical_cofounder', !!checked)} />
           <div>
             <Label htmlFor="technical_cofounder" className="text-[oklch(0.78_0.005_250)] cursor-pointer text-sm">Has technical co-founder</Label>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Reduces execution risk for product-led startups (+10 pts)</p>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Reduces execution risk for product-led startups (+10 pts)</p>
           </div>
         </div>
       </motion.div>
@@ -153,11 +153,11 @@ export function TeamStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
         <div className="mb-3">
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Key Hires</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Senior roles already filled (+2 pts each)</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Senior roles already filled (+2 pts each)</p>
         </div>
         <div className="flex flex-wrap gap-2.5">
           {KEY_HIRE_OPTIONS.map(option => (
-            <label key={option.value} className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg border cursor-pointer transition-all text-sm ${inputs.key_hires.includes(option.value) ? 'border-[oklch(0.78_0.14_75/0.5)] bg-[oklch(0.78_0.14_75/0.10)] text-[oklch(0.82_0.12_75)] shadow-[0_0_12px_oklch(0.78_0.14_75/0.08)]' : 'border-[oklch(0.26_0.018_250)] bg-[oklch(0.12_0.012_250)] text-[oklch(0.55_0.01_250)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.12_0.025_260)]'}`}>
+            <label key={option.value} className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg border cursor-pointer transition-all text-sm ${inputs.key_hires.includes(option.value) ? 'border-[oklch(0.62_0.22_330/0.5)] bg-[oklch(0.62_0.22_330/0.10)] text-[oklch(0.75 0.18 162)] shadow-[0_0_12px_oklch(0.62_0.22_330/0.08)]' : 'border-[oklch(0.91 0.005 260)] bg-[oklch(0.98 0.002 260)] text-[oklch(0.45 0.01 260)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.985 0.002 260)]'}`}>
               <Checkbox checked={inputs.key_hires.includes(option.value)} onCheckedChange={() => toggleKeyHire(option.value)} className="hidden" />
               <span>{option.label}</span>
             </label>

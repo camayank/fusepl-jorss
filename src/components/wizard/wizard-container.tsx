@@ -62,7 +62,7 @@ function CelebrationParticles({ active }: { active: boolean }) {
     const angle = (i / 14) * 360 + (Math.random() * 20 - 10)
     const distance = 50 + Math.random() * 40
     const size = 4 + Math.random() * 4
-    const hue = 60 + Math.random() * 30
+    const hue = Math.random() > 0.5 ? 330 + Math.random() * 20 : 155 + Math.random() * 20
     const rad = (angle * Math.PI) / 180
     return (
       <motion.div
@@ -71,7 +71,7 @@ function CelebrationParticles({ active }: { active: boolean }) {
         style={{
           width: size,
           height: size,
-          background: `oklch(0.78 0.14 ${hue})`,
+          background: `oklch(0.68 0.20 ${hue})`,
           left: '50%',
           top: '50%',
           marginLeft: -size / 2,
@@ -102,7 +102,7 @@ function CelebrationParticles({ active }: { active: boolean }) {
         animate={{ opacity: [0, 0.15, 0] }}
         transition={{ duration: 0.5 }}
         style={{
-          background: 'radial-gradient(circle at center, oklch(0.78 0.14 75 / 0.3), transparent 70%)',
+          background: 'radial-gradient(circle at center, oklch(0.62 0.22 330 / 0.3), transparent 70%)',
         }}
       />
       {particles}
@@ -211,34 +211,34 @@ export function WizardContainer() {
       {/* Header with step info */}
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-2 mb-3">
-          <div className="h-px w-8 bg-gradient-to-r from-transparent to-[oklch(0.78_0.14_75/0.4)]" />
-          <span className="text-[10px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.25em]">
+          <div className="h-px w-8 bg-gradient-to-r from-transparent to-[oklch(0.62_0.22_330/0.4)]" />
+          <span className="text-[10px] font-semibold text-[oklch(0.62 0.22 330)] uppercase tracking-[0.25em]">
             Step {currentStep} of 6 — {completionPct}% complete
           </span>
-          <div className="h-px w-8 bg-gradient-to-l from-transparent to-[oklch(0.78_0.14_75/0.4)]" />
+          <div className="h-px w-8 bg-gradient-to-l from-transparent to-[oklch(0.62_0.22_330/0.4)]" />
         </div>
-        <h1 className="font-heading text-2xl sm:text-3xl text-[oklch(0.95_0.01_80)]">
+        <h1 className="font-heading text-2xl sm:text-3xl text-[oklch(0.15 0.02 260)]">
           {WIZARD_STEPS[currentStep - 1]}
         </h1>
-        <p className="text-xs text-[oklch(0.55_0.02_260)] mt-1.5">
+        <p className="text-xs text-[oklch(0.45 0.02 260)] mt-1.5">
           {STEP_SUBTITLES[currentStep - 1]}
         </p>
       </div>
 
       {/* Progress bar */}
       <div className="mb-8">
-        <div className="relative h-1 bg-[oklch(0.15_0.025_260)] rounded-full overflow-hidden">
+        <div className="relative h-1 bg-[oklch(0.97 0.003 260)] rounded-full overflow-hidden">
           <motion.div
             className="absolute inset-y-0 left-0 rounded-full"
             style={{
-              background: 'linear-gradient(90deg, oklch(0.78 0.14 75), oklch(0.78 0.14 75))',
+              background: 'linear-gradient(90deg, oklch(0.62 0.22 330), oklch(0.75 0.18 162))',
             }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           />
           {/* Glow effect at tip */}
           <motion.div
-            className="absolute top-1/2 -translate-y-1/2 w-8 h-3 rounded-full blur-md bg-[oklch(0.78_0.14_75/0.4)]"
+            className="absolute top-1/2 -translate-y-1/2 w-8 h-3 rounded-full blur-md bg-[oklch(0.62_0.22_330/0.4)]"
             animate={{ left: `calc(${progress}% - 16px)` }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           />
@@ -274,12 +274,12 @@ export function WizardContainer() {
                   className={`
                     inline-flex items-center justify-center w-8 h-8 rounded-full text-[11px] font-semibold transition-all duration-300
                     ${isActive
-                      ? 'bg-[oklch(0.78_0.14_75)] text-[oklch(0.12_0.025_260)] shadow-[0_0_16px_oklch(0.78_0.14_75/0.3)]'
+                      ? 'bg-[oklch(0.62 0.22 330)] text-[oklch(0.985 0.002 260)] shadow-[0_0_16px_oklch(0.62_0.22_330/0.3)]'
                       : isCompleted
                       ? 'bg-[oklch(0.65_0.16_155/0.15)] text-[oklch(0.65_0.16_155)] ring-1 ring-[oklch(0.65_0.16_155/0.3)]'
                       : isClickable
-                      ? 'bg-[oklch(0.18_0.025_260)] text-[oklch(0.55_0.02_260)] group-hover:bg-[oklch(0.22_0.03_260)]'
-                      : 'bg-[oklch(0.16_0.025_260)] text-[oklch(0.28_0.02_260)] cursor-not-allowed'
+                      ? 'bg-[oklch(0.96 0.005 260)] text-[oklch(0.45 0.02 260)] group-hover:bg-[oklch(0.95 0.005 260)]'
+                      : 'bg-[oklch(0.16_0.025_260)] text-[oklch(0.80 0.01 260)] cursor-not-allowed'
                     }
                   `}
                 >
@@ -289,10 +289,10 @@ export function WizardContainer() {
                 <CelebrationParticles active={isCelebrating} />
                 <span className={`text-[9px] hidden sm:block uppercase tracking-wider transition-colors ${
                   isActive
-                    ? 'text-[oklch(0.78_0.14_75)]'
+                    ? 'text-[oklch(0.62 0.22 330)]'
                     : isCompleted
-                    ? 'text-[oklch(0.55_0.02_260)]'
-                    : 'text-[oklch(0.28_0.02_260)]'
+                    ? 'text-[oklch(0.45 0.02 260)]'
+                    : 'text-[oklch(0.80 0.01 260)]'
                 }`}>
                   {label}
                 </span>
@@ -303,11 +303,11 @@ export function WizardContainer() {
       </div>
 
       {/* Step content */}
-      <div className="relative bg-gradient-to-b from-[oklch(0.16_0.03_260)] to-[oklch(0.13_0.025_260)] border border-[oklch(0.25_0.03_260)] rounded-2xl p-6 md:p-8 mb-6 overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.45),inset_0_1px_0_oklch(0.28_0.03_260/0.3)]">
+      <div className="relative bg-gradient-to-b from-[oklch(1 0 0)] to-[oklch(0.98 0.002 260)] border border-[oklch(0.91 0.005 260)] rounded-2xl p-6 md:p-8 mb-6 overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.45),inset_0_1px_0_oklch(0.28_0.03_260/0.3)]">
         {/* Top border accent — warm gold */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.78_0.14_75/0.35)] to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.62_0.22_330/0.35)] to-transparent" />
         {/* Bottom edge */}
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.78_0.14_75/0.08)] to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.62_0.22_330/0.08)] to-transparent" />
 
         {/* Ambient glow orb — warm */}
         <div
@@ -338,7 +338,7 @@ export function WizardContainer() {
         <button
           onClick={handlePrev}
           disabled={currentStep === 1}
-          className="btn-press focus-ring group inline-flex items-center gap-1.5 h-11 px-5 text-sm font-medium rounded-lg border border-[oklch(0.25_0.03_260)] text-[oklch(0.62_0.02_260)] transition-all hover:border-[oklch(0.78_0.14_75/0.3)] hover:text-[oklch(0.78_0.14_75)] hover:bg-[oklch(0.78_0.14_75/0.05)] disabled:opacity-20 disabled:cursor-not-allowed"
+          className="btn-press focus-ring group inline-flex items-center gap-1.5 h-11 px-5 text-sm font-medium rounded-lg border border-[oklch(0.91 0.005 260)] text-[oklch(0.45 0.02 260)] transition-all hover:border-[oklch(0.62_0.22_330/0.3)] hover:text-[oklch(0.62 0.22 330)] hover:bg-[oklch(0.62_0.22_330/0.05)] disabled:opacity-20 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
           Back
@@ -346,7 +346,7 @@ export function WizardContainer() {
         <button
           onClick={handleNext}
           disabled={computing}
-          className="btn-press focus-ring group inline-flex items-center gap-2 h-11 px-8 text-sm font-semibold rounded-lg bg-[oklch(0.78_0.14_75)] text-[oklch(0.12_0.025_260)] transition-all hover:bg-[oklch(0.72_0.12_75)] hover:shadow-[0_0_24px_oklch(0.78_0.14_75/0.25)] disabled:opacity-50"
+          className="btn-press focus-ring group inline-flex items-center gap-2 h-11 px-8 text-sm font-semibold rounded-lg bg-[oklch(0.62 0.22 330)] text-[oklch(0.985 0.002 260)] transition-all hover:bg-[oklch(0.55 0.20 330)] hover:shadow-[0_0_24px_oklch(0.62_0.22_330/0.25)] disabled:opacity-50"
         >
           {computing ? (
             <>

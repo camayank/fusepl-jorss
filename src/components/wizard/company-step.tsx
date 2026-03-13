@@ -24,10 +24,10 @@ function CompletionDots({ filled, total }: { filled: boolean[]; total: number })
   return (
     <div className="glass-card grain relative rounded-xl p-4">
       <div className="flex items-center justify-between mb-3">
-        <span className="font-heading text-sm text-[oklch(0.60_0.01_250)]">Profile Completion</span>
+        <span className="font-heading text-sm text-[oklch(0.45 0.01 260)]">Profile Completion</span>
         <span
           className={`font-mono text-lg font-bold tabular-nums ${allFilled ? 'text-gold-gradient' : ''}`}
-          style={!allFilled ? { color: count >= 3 ? 'oklch(0.78 0.14 75)' : 'oklch(0.50 0.01 250)' } : undefined}
+          style={!allFilled ? { color: count >= 3 ? 'oklch(0.62 0.22 330)' : 'oklch(0.50 0.01 260)' } : undefined}
         >
           {count}/{total}
         </span>
@@ -38,7 +38,7 @@ function CompletionDots({ filled, total }: { filled: boolean[]; total: number })
             key={i}
             className="flex-1 h-2 rounded-full"
             style={{
-              background: isFilled ? 'oklch(0.65 0.16 155)' : 'oklch(0.20 0.015 250)',
+              background: isFilled ? 'oklch(0.65 0.16 155)' : 'oklch(0.91 0.005 260)',
               boxShadow: isFilled ? '0 0 8px oklch(0.65 0.16 155 / 0.3)' : 'none',
             }}
             animate={isFilled ? { scale: [0.9, 1] } : { scale: 1 }}
@@ -82,9 +82,9 @@ function SectorDropdownContent({ search, onSearch }: { search: string; onSearch:
 
   return (
     <>
-      <div className="px-2 pb-2 pt-1 sticky top-0 bg-[oklch(0.18_0.018_250)] z-10">
+      <div className="px-2 pb-2 pt-1 sticky top-0 bg-[oklch(0.96 0.005 260)] z-10">
         <div className="relative">
-          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.40_0.01_250)]" />
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.50 0.01 260)]" />
           <input
             type="text"
             placeholder="Search 139 sectors..."
@@ -92,20 +92,20 @@ function SectorDropdownContent({ search, onSearch }: { search: string; onSearch:
             onChange={(e) => onSearch(e.target.value)}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => e.stopPropagation()}
-            className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.12_0.025_260)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.78_0.14_75/0.4)]"
+            className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.985 0.002 260)] border border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.62_0.22_330/0.4)]"
           />
         </div>
       </div>
       {filteredGroups.map(({ group, items }) => (
         <SelectGroup key={group}>
-          <SelectLabel className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.78_0.14_75)] px-3 py-1.5 bg-[oklch(0.15_0.012_250)] sticky">
+          <SelectLabel className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.62 0.22 330)] px-3 py-1.5 bg-[oklch(0.15_0.012_250)] sticky">
             {group}
           </SelectLabel>
           {items.map(key => (
             <SelectItem
               key={key}
               value={key}
-              className="text-[oklch(0.82_0.005_250)] hover:bg-[oklch(0.20_0.015_250)] focus:bg-[oklch(0.20_0.015_250)] text-xs pl-5"
+              className="text-[oklch(0.25 0.02 260)] hover:bg-[oklch(0.91 0.005 260)] focus:bg-[oklch(0.91 0.005 260)] text-xs pl-5"
             >
               {CATEGORY_SHORT_LABELS[key]}
             </SelectItem>
@@ -200,12 +200,12 @@ export function CompanyStep() {
       {/* Header */}
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.12)] flex items-center justify-center">
-            <Building2 className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.62_0.22_330/0.12)] flex items-center justify-center">
+            <Building2 className="w-4 h-4 text-[oklch(0.62 0.22 330)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Company Profile</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.15 0.02 260)]">Company Profile</h2>
         </div>
-        <p className="text-[oklch(0.55_0.01_250)] text-sm">Your sector and stage directly determine which valuation methods we use and which comparable companies we match against.</p>
+        <p className="text-[oklch(0.45 0.01 260)] text-sm">Your sector and stage directly determine which valuation methods we use and which comparable companies we match against.</p>
       </motion.div>
 
       {/* Completion meter at TOP */}
@@ -222,7 +222,7 @@ export function CompanyStep() {
             value={inputs.company_name}
             onChange={(e) => setField('company_name', e.target.value)}
             placeholder="e.g., Acme Technologies"
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] placeholder:text-[oklch(0.40_0.01_250)] mt-1.5 focus:border-[oklch(0.78_0.14_75/0.5)] h-11 text-base"
+            className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] placeholder:text-[oklch(0.50 0.01 260)] mt-1.5 focus:border-[oklch(0.62_0.22_330/0.5)] h-11 text-base"
           />
 
           {/* Website prefill */}
@@ -230,20 +230,20 @@ export function CompanyStep() {
             {prefillStatus === 'idle' || prefillStatus === 'loading' ? (
               <div className="flex items-center gap-2">
                 <div className="relative flex-1">
-                  <Globe className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.40_0.01_250)]" />
+                  <Globe className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.50 0.01 260)]" />
                   <input
                     type="url"
                     value={websiteUrl}
                     onChange={(e) => setWebsiteUrl(e.target.value)}
                     placeholder="Paste website URL to auto-fill fields"
                     onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeUrl()}
-                    className="w-full h-9 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.10_0.010_250)] border border-dashed border-[oklch(0.28_0.015_250)] text-[oklch(0.78_0.005_250)] placeholder:text-[oklch(0.38_0.01_250)] focus:outline-none focus:border-[oklch(0.78_0.14_75/0.4)] transition-colors"
+                    className="w-full h-9 pl-8 pr-3 text-xs rounded-lg bg-[oklch(0.10_0.010_250)] border border-dashed border-[oklch(0.91 0.005 260)] text-[oklch(0.78_0.005_250)] placeholder:text-[oklch(0.38_0.01_250)] focus:outline-none focus:border-[oklch(0.62_0.22_330/0.4)] transition-colors"
                   />
                 </div>
                 <button
                   onClick={handleAnalyzeUrl}
                   disabled={!websiteUrl.trim() || analyzing}
-                  className="h-9 px-4 text-[11px] font-semibold rounded-lg bg-[oklch(0.78_0.14_75/0.12)] border border-[oklch(0.78_0.14_75/0.25)] text-[oklch(0.78_0.14_75)] transition-all hover:bg-[oklch(0.78_0.14_75/0.18)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
+                  className="h-9 px-4 text-[11px] font-semibold rounded-lg bg-[oklch(0.62_0.22_330/0.12)] border border-[oklch(0.62_0.22_330/0.25)] text-[oklch(0.62 0.22 330)] transition-all hover:bg-[oklch(0.62_0.22_330/0.18)] disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 whitespace-nowrap"
                 >
                   {analyzing ? <><Loader2 className="w-3 h-3 animate-spin" />Detecting...</> : <><Zap className="w-3 h-3" />Auto-Detect</>}
                 </button>
@@ -257,7 +257,7 @@ export function CompanyStep() {
                 {prefillStatus === 'success' ? <CheckCircle2 className="w-4 h-4 mt-0.5 text-[oklch(0.65_0.16_155)] shrink-0" />
                 : <AlertTriangle className="w-4 h-4 mt-0.5 text-[oklch(0.72_0.15_85)] shrink-0" />}
                 <span className={`flex-1 ${prefillStatus === 'success' ? 'text-[oklch(0.65_0.16_155)]' : prefillStatus === 'partial' ? 'text-[oklch(0.72_0.15_85)]' : 'text-[oklch(0.62_0.18_25)]'}`}>{prefillMessage}</span>
-                <button onClick={clearPrefill} className="text-[oklch(0.50_0.01_250)] hover:text-[oklch(0.70_0.01_250)] transition-colors shrink-0" title="Try another URL"><X className="w-3.5 h-3.5" /></button>
+                <button onClick={clearPrefill} className="text-[oklch(0.50 0.01 260)] hover:text-[oklch(0.30 0.01 260)] transition-colors shrink-0" title="Try another URL"><X className="w-3.5 h-3.5" /></button>
               </div>
             )}
           </div>
@@ -272,22 +272,22 @@ export function CompanyStep() {
             <div className="flex items-center gap-2 mb-1">
               <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Sector *</Label>
               {autoDetectedFields.has('sector') && (
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.78_0.14_75/0.12)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.78_0.14_75/0.25)]">
+                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.62_0.22_330/0.12)] text-[oklch(0.62 0.22 330)] border border-[oklch(0.62_0.22_330/0.25)]">
                   <Zap className="w-2.5 h-2.5" />Auto
                 </span>
               )}
             </div>
-            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Determines comparable companies & industry multiples</p>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-1">Determines comparable companies & industry multiples</p>
             <Select value={inputs.sector} onValueChange={(v) => setField('sector', v as StartupCategory)}>
-              <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] h-10">
+              <SelectTrigger className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] h-10">
                 <SelectValue>
                   {currentSectorGroup && (
-                    <span className="text-[oklch(0.55_0.01_250)]">{currentSectorGroup} / </span>
+                    <span className="text-[oklch(0.45 0.01 260)]">{currentSectorGroup} / </span>
                   )}
                   {CATEGORY_SHORT_LABELS[inputs.sector]}
                 </SelectValue>
               </SelectTrigger>
-              <SelectContent className="bg-[oklch(0.18_0.018_250)] border-[oklch(0.26_0.018_250)] max-h-[320px]">
+              <SelectContent className="bg-[oklch(0.96 0.005 260)] border-[oklch(0.91 0.005 260)] max-h-[320px]">
                 <SectorDropdownContent search={sectorSearch} onSearch={setSectorSearch} />
               </SelectContent>
             </Select>
@@ -295,14 +295,14 @@ export function CompanyStep() {
 
           <div>
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Stage *</Label>
-            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Affects risk discount & applicable methods</p>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-1">Affects risk discount & applicable methods</p>
             <Select value={inputs.stage} onValueChange={(v) => setField('stage', v as any)}>
-              <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] h-10">
+              <SelectTrigger className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] h-10">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[oklch(0.18_0.018_250)] border-[oklch(0.26_0.018_250)]">
+              <SelectContent className="bg-[oklch(0.96 0.005 260)] border-[oklch(0.91 0.005 260)]">
                 {STAGES.map(key => (
-                  <SelectItem key={key} value={key} className="text-[oklch(0.82_0.005_250)] hover:bg-[oklch(0.20_0.015_250)] text-xs">
+                  <SelectItem key={key} value={key} className="text-[oklch(0.25 0.02 260)] hover:bg-[oklch(0.91 0.005 260)] text-xs">
                     {STAGE_LABELS[key]}
                   </SelectItem>
                 ))}
@@ -314,25 +314,25 @@ export function CompanyStep() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Business Model *</Label>
-            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Drives revenue multiple selection</p>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-1">Drives revenue multiple selection</p>
             <Select value={inputs.business_model} onValueChange={(v) => setField('business_model', v as any)}>
-              <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] h-10">
+              <SelectTrigger className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] h-10">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-[oklch(0.18_0.018_250)] border-[oklch(0.26_0.018_250)] max-h-[280px]">
-                <div className="px-2 pb-2 pt-1 sticky top-0 bg-[oklch(0.18_0.018_250)] z-10">
+              <SelectContent className="bg-[oklch(0.96 0.005 260)] border-[oklch(0.91 0.005 260)] max-h-[280px]">
+                <div className="px-2 pb-2 pt-1 sticky top-0 bg-[oklch(0.96 0.005 260)] z-10">
                   <div className="relative">
-                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.40_0.01_250)]" />
+                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[oklch(0.50 0.01 260)]" />
                     <input
                       type="text" placeholder="Search models..." value={bizModelSearch}
                       onChange={(e) => setBizModelSearch(e.target.value)}
                       onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}
-                      className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.12_0.025_260)] border border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.78_0.14_75/0.4)]"
+                      className="w-full h-8 pl-8 pr-3 text-xs rounded-md bg-[oklch(0.985 0.002 260)] border border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] placeholder:text-[oklch(0.45_0.01_250)] focus:outline-none focus:border-[oklch(0.62_0.22_330/0.4)]"
                     />
                   </div>
                 </div>
                 {filteredBizModels.map(([key, label]) => (
-                  <SelectItem key={key} value={key} className="text-[oklch(0.82_0.005_250)] hover:bg-[oklch(0.20_0.015_250)] focus:bg-[oklch(0.20_0.015_250)] text-xs">{label}</SelectItem>
+                  <SelectItem key={key} value={key} className="text-[oklch(0.25 0.02 260)] hover:bg-[oklch(0.91 0.005 260)] focus:bg-[oklch(0.91 0.005 260)] text-xs">{label}</SelectItem>
                 ))}
                 {filteredBizModels.length === 0 && <div className="px-3 py-2 text-xs text-[oklch(0.45_0.01_250)]">No models found</div>}
               </SelectContent>
@@ -341,12 +341,12 @@ export function CompanyStep() {
 
           <div>
             <Label htmlFor="city" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Headquarters City</Label>
-            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Primary office location</p>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-1">Primary office location</p>
             <Input
               id="city" value={inputs.city}
               onChange={(e) => setField('city', e.target.value)}
               placeholder="e.g., Bangalore"
-              className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] placeholder:text-[oklch(0.40_0.01_250)] h-10"
+              className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] placeholder:text-[oklch(0.50 0.01 260)] h-10"
             />
           </div>
         </div>
@@ -357,7 +357,7 @@ export function CompanyStep() {
             id="founding_year" type="number" value={inputs.founding_year}
             onChange={(e) => setField('founding_year', parseInt(e.target.value) || 2020)}
             min={2000} max={new Date().getFullYear()}
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] mt-1 w-40 h-10"
+            className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.20 0.02 260)] mt-1 w-40 h-10"
           />
         </div>
       </motion.div>

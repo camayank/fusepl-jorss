@@ -23,36 +23,36 @@ const LINKS: { heading: string; links: { href: string; label: string }[] }[] = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-[oklch(0.26_0.018_250)] bg-[oklch(0.11_0.012_250)]">
+    <footer className="relative border-t border-[oklch(0.91 0.005 260)] bg-[oklch(0.97 0.003 260)]">
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid gap-12 sm:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
               <span className="font-heading text-xl tracking-tight text-gold-gradient">FUS</span>
-              <span className="text-[13px] font-medium text-[oklch(0.62_0.01_250)] ml-1.5 tracking-wide uppercase">First Unicorn Startup</span>
+              <span className="text-[13px] font-medium text-[oklch(0.45 0.01 260)] ml-1.5 tracking-wide uppercase">First Unicorn Startup</span>
             </Link>
-            <p className="mt-4 text-sm text-[oklch(0.58_0.01_250)] leading-relaxed max-w-xs">
+            <p className="mt-4 text-sm text-[oklch(0.45 0.01 260)] leading-relaxed max-w-xs">
               India&apos;s most rigorous startup valuation platform. Built by an IBBI-Registered Insolvency Professional &amp; SFA-Licensed Valuer.
             </p>
           </div>
           {LINKS.map((group) => (
             <div key={group.heading}>
-              <h4 className="text-[10px] font-bold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">{group.heading}</h4>
+              <h4 className="text-[10px] font-bold text-[oklch(0.62 0.22 330)] uppercase tracking-[0.2em] mb-4">{group.heading}</h4>
               <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-sm text-[oklch(0.58_0.01_250)] transition-colors hover:text-[oklch(0.85_0.005_250)]">{link.label}</Link>
+                    <Link href={link.href} className="text-sm text-[oklch(0.45 0.01 260)] transition-colors hover:text-[oklch(0.25 0.01 260)]">{link.label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="mt-14 pt-6 border-t border-[oklch(0.22_0.015_250)] flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[11px] text-[oklch(0.50_0.01_250)]">&copy; {new Date().getFullYear()} firstunicornstartup.com. All rights reserved.</p>
-          <div className="flex items-center gap-5 text-[11px] text-[oklch(0.50_0.01_250)]">
-            <Link href="/privacy" className="transition-colors hover:text-[oklch(0.70_0.01_250)]">Privacy</Link>
-            <Link href="/terms" className="transition-colors hover:text-[oklch(0.70_0.01_250)]">Terms</Link>
+        <div className="mt-14 pt-6 border-t border-[oklch(0.91 0.005 260)] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[11px] text-[oklch(0.50 0.01 260)]">&copy; {new Date().getFullYear()} firstunicornstartup.com. All rights reserved.</p>
+          <div className="flex items-center gap-5 text-[11px] text-[oklch(0.50 0.01 260)]">
+            <Link href="/privacy" className="transition-colors hover:text-[oklch(0.30 0.01 260)]">Privacy</Link>
+            <Link href="/terms" className="transition-colors hover:text-[oklch(0.30 0.01 260)]">Terms</Link>
           </div>
         </div>
       </div>

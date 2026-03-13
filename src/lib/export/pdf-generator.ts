@@ -32,10 +32,10 @@ interface PDFData {
   aiNarrative?: string | null
 }
 
-// Brand colors (RGB equivalents of OKLCH gold palette)
-const GOLD = [45, 180, 140] as const      // oklch(0.78 0.14 75) approx
-const DARK_BG = [18, 18, 22] as const     // oklch(0.08 0.008 260) approx
-const GOLD_LIGHT = [210, 178, 90] as const
+// Brand colors (RGB equivalents — magenta #D558C8 to teal #24D292)
+const GOLD = [213, 88, 200] as const      // #D558C8 magenta
+const DARK_BG = [50, 55, 60] as const     // #32373c brand dark gray
+const GOLD_LIGHT = [36, 210, 146] as const // #24D292 teal
 const TEXT_DARK = [30, 30, 35] as const
 const TEXT_MED = [100, 100, 108] as const
 const TEXT_LIGHT = [140, 140, 148] as const

@@ -30,17 +30,17 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
       transition={{ delay: 0.3, duration: 0.5 }}
     >
       <div className="relative rounded-2xl overflow-hidden">
-        <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[oklch(0.78_0.14_75/0.15)] via-transparent to-[oklch(0.78_0.14_75/0.08)]" />
+        <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-[oklch(0.62_0.22_330/0.15)] via-transparent to-[oklch(0.62_0.22_330/0.08)]" />
 
-        <div className="relative rounded-2xl bg-[oklch(0.09_0.008_260)] m-px p-6 sm:p-8">
+        <div className="relative rounded-2xl bg-[oklch(0.98 0.002 260)] m-px p-6 sm:p-8">
           {/* Header */}
           <div className="flex items-center gap-2.5 mb-1">
-            <div className="w-7 h-7 rounded-lg bg-[oklch(0.78_0.14_75/0.08)] flex items-center justify-center">
-              <Scale className="w-3.5 h-3.5 text-[oklch(0.78_0.14_75)]" />
+            <div className="w-7 h-7 rounded-lg bg-[oklch(0.62_0.22_330/0.08)] flex items-center justify-center">
+              <Scale className="w-3.5 h-3.5 text-[oklch(0.62 0.22 330)]" />
             </div>
             <h3 className="text-base font-semibold text-[oklch(0.92_0.003_250)]">Comparable Companies</h3>
           </div>
-          <p className="text-xs text-[oklch(0.50_0.01_250)] mb-5 ml-[38px]">
+          <p className="text-xs text-[oklch(0.50 0.01 260)] mb-5 ml-[38px]">
             Transparency matters — here are the companies we compared your startup against in {sectorLabel}.
           </p>
 
@@ -57,22 +57,22 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
               <div className="overflow-x-auto -mx-2 px-2">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-[oklch(0.20_0.015_250)]">
-                      <th className="text-left py-2 text-[oklch(0.55_0.01_250)] font-medium">Company</th>
-                      <th className="text-left py-2 text-[oklch(0.55_0.01_250)] font-medium">Stage</th>
-                      <th className="text-right py-2 text-[oklch(0.55_0.01_250)] font-medium">Valuation</th>
-                      <th className="text-right py-2 text-[oklch(0.55_0.01_250)] font-medium hidden sm:table-cell">Revenue</th>
-                      <th className="text-right py-2 text-[oklch(0.55_0.01_250)] font-medium hidden sm:table-cell">Multiple</th>
-                      <th className="text-center py-2 text-[oklch(0.55_0.01_250)] font-medium">Year</th>
+                    <tr className="border-b border-[oklch(0.91 0.005 260)]">
+                      <th className="text-left py-2 text-[oklch(0.45 0.01 260)] font-medium">Company</th>
+                      <th className="text-left py-2 text-[oklch(0.45 0.01 260)] font-medium">Stage</th>
+                      <th className="text-right py-2 text-[oklch(0.45 0.01 260)] font-medium">Valuation</th>
+                      <th className="text-right py-2 text-[oklch(0.45 0.01 260)] font-medium hidden sm:table-cell">Revenue</th>
+                      <th className="text-right py-2 text-[oklch(0.45 0.01 260)] font-medium hidden sm:table-cell">Multiple</th>
+                      <th className="text-center py-2 text-[oklch(0.45 0.01 260)] font-medium">Year</th>
                     </tr>
                   </thead>
                   <tbody>
                     {comparables.map((c, i) => {
                       const multiple = c.revenue_cr && c.revenue_cr > 0 ? c.valuation_cr / c.revenue_cr : null
                       return (
-                        <tr key={i} className="border-b border-[oklch(0.15_0.01_250)] last:border-0">
+                        <tr key={i} className="border-b border-[oklch(0.91 0.005 260)] last:border-0">
                           <td className="py-2.5">
-                            <span className="font-medium text-[oklch(0.88_0.005_250)]">{c.name}</span>
+                            <span className="font-medium text-[oklch(0.20 0.02 260)]">{c.name}</span>
                             {c.city && (
                               <span className="text-[oklch(0.45_0.01_250)] ml-1.5 hidden sm:inline">({c.city})</span>
                             )}
@@ -80,7 +80,7 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
                           <td className="py-2.5 text-[oklch(0.65_0.005_250)]">
                             {STAGE_LABELS[c.stage_at_round as Stage] || c.stage_at_round.replace(/_/g, ' ')}
                           </td>
-                          <td className="py-2.5 text-right font-medium text-[oklch(0.78_0.14_75)]">
+                          <td className="py-2.5 text-right font-medium text-[oklch(0.62 0.22 330)]">
                             {formatINR(c.valuation_cr * 1_00_00_000)}
                           </td>
                           <td className="py-2.5 text-right text-[oklch(0.65_0.005_250)] hidden sm:table-cell">
@@ -89,7 +89,7 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
                           <td className="py-2.5 text-right text-[oklch(0.65_0.005_250)] hidden sm:table-cell">
                             {multiple ? `${multiple.toFixed(1)}x` : '—'}
                           </td>
-                          <td className="py-2.5 text-center text-[oklch(0.55_0.01_250)]">{c.year}</td>
+                          <td className="py-2.5 text-center text-[oklch(0.45 0.01 260)]">{c.year}</td>
                         </tr>
                       )
                     })}
@@ -112,23 +112,23 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
               <div className="overflow-x-auto -mx-2 px-2">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-[oklch(0.20_0.015_250)]">
-                      <th className="text-left py-2 text-[oklch(0.55_0.01_250)] font-medium">Company</th>
-                      <th className="text-left py-2 text-[oklch(0.55_0.01_250)] font-medium hidden sm:table-cell">Ticker</th>
-                      <th className="text-right py-2 text-[oklch(0.55_0.01_250)] font-medium">Market Cap</th>
-                      <th className="text-right py-2 text-[oklch(0.55_0.01_250)] font-medium">EV/Revenue</th>
-                      <th className="text-right py-2 text-[oklch(0.55_0.01_250)] font-medium hidden sm:table-cell">P/E</th>
+                    <tr className="border-b border-[oklch(0.91 0.005 260)]">
+                      <th className="text-left py-2 text-[oklch(0.45 0.01 260)] font-medium">Company</th>
+                      <th className="text-left py-2 text-[oklch(0.45 0.01 260)] font-medium hidden sm:table-cell">Ticker</th>
+                      <th className="text-right py-2 text-[oklch(0.45 0.01 260)] font-medium">Market Cap</th>
+                      <th className="text-right py-2 text-[oklch(0.45 0.01 260)] font-medium">EV/Revenue</th>
+                      <th className="text-right py-2 text-[oklch(0.45 0.01 260)] font-medium hidden sm:table-cell">P/E</th>
                     </tr>
                   </thead>
                   <tbody>
                     {listedComps.slice(0, 4).map((c, i) => (
-                      <tr key={i} className="border-b border-[oklch(0.15_0.01_250)] last:border-0">
-                        <td className="py-2.5 font-medium text-[oklch(0.88_0.005_250)]">{c.name}</td>
-                        <td className="py-2.5 text-[oklch(0.55_0.01_250)] hidden sm:table-cell">{c.ticker}</td>
+                      <tr key={i} className="border-b border-[oklch(0.91 0.005 260)] last:border-0">
+                        <td className="py-2.5 font-medium text-[oklch(0.20 0.02 260)]">{c.name}</td>
+                        <td className="py-2.5 text-[oklch(0.45 0.01 260)] hidden sm:table-cell">{c.ticker}</td>
                         <td className="py-2.5 text-right text-[oklch(0.65_0.005_250)]">
                           {formatINR(c.market_cap_cr * 1_00_00_000)}
                         </td>
-                        <td className="py-2.5 text-right font-medium text-[oklch(0.78_0.14_75)]">
+                        <td className="py-2.5 text-right font-medium text-[oklch(0.62 0.22 330)]">
                           {c.ev_revenue.toFixed(1)}x
                         </td>
                         <td className="py-2.5 text-right text-[oklch(0.65_0.005_250)] hidden sm:table-cell">
@@ -143,7 +143,7 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
           )}
 
           {/* Source attribution */}
-          <p className="text-[10px] text-[oklch(0.40_0.01_250)] mt-4 pt-3 border-t border-[oklch(0.15_0.01_250)]">
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mt-4 pt-3 border-t border-[oklch(0.91 0.005 260)]">
             Sources: Publicly reported Indian startup funding rounds, NSE/BSE listed company data, Damodaran India (Jan 2026).
             Valuations are estimates. Listed multiples as of Dec 2025.
           </p>

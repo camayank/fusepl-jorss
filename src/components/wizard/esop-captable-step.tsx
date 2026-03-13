@@ -43,7 +43,7 @@ function CapTableRing({ percentage, entries }: {
     ? 'oklch(0.72 0.14 80)'
     : percentage > 100
     ? 'oklch(0.62 0.18 25)'
-    : 'oklch(0.50 0.01 250)'
+    : 'oklch(0.50 0.01 260)'
 
   let cumulativeOffset = 0
   const segments = entries.filter(e => e.percentage > 0).map((entry, i) => {
@@ -56,21 +56,21 @@ function CapTableRing({ percentage, entries }: {
   })
 
   return (
-    <div className="glass-card grain relative rounded-xl p-5 flex flex-col items-center overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.20 0.02 250 / 0.8), oklch(0.17 0.018 250 / 0.6))' }}>
+    <div className="glass-card grain relative rounded-xl p-5 flex flex-col items-center overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.98 0.003 260 / 0.8), oklch(0.97 0.003 260 / 0.6))' }}>
       {/* Subtle background icons */}
       <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-[0.04] pointer-events-none">
         <PieChart className="w-10 h-10" /><PieChart className="w-10 h-10" /><PieChart className="w-10 h-10" />
       </div>
       <div className="flex items-center gap-2 mb-3 self-start">
-        <PieChart className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
-        <span className="font-heading text-sm text-[oklch(0.65_0.01_250)]">Ownership Distribution</span>
+        <PieChart className="w-4 h-4 text-[oklch(0.62 0.22 330)]" />
+        <span className="font-heading text-sm text-[oklch(0.45 0.01 260)]">Ownership Distribution</span>
       </div>
       <div className="relative">
         <svg width="120" height="120" viewBox="0 0 120 120" className="overflow-visible">
           {/* Decorative outer dashed ring */}
           <circle cx={cx} cy={cy} r={radius + 8} fill="none" stroke="oklch(0.30 0.01 250 / 0.4)" strokeWidth="1" strokeDasharray="4 8" />
           {/* Background circle */}
-          <circle cx={cx} cy={cy} r={radius} fill="none" stroke="oklch(0.18 0.015 250)" strokeWidth="8" />
+          <circle cx={cx} cy={cy} r={radius} fill="none" stroke="oklch(0.96 0.005 260)" strokeWidth="8" />
           {/* Multi-segment arcs */}
           {segments.map((seg) => (
             <motion.circle
@@ -133,7 +133,7 @@ function CapTableRing({ percentage, entries }: {
           {segments.map((seg) => (
             <div key={seg.index} className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: seg.color }} />
-              <span className="text-[10px] text-[oklch(0.60_0.01_250)]">{seg.name || 'Unnamed'} ({seg.percentage}%)</span>
+              <span className="text-[10px] text-[oklch(0.45 0.01 260)]">{seg.name || 'Unnamed'} ({seg.percentage}%)</span>
             </div>
           ))}
         </div>
@@ -161,19 +161,19 @@ export function ESOPCapTableStep() {
       {/* Header */}
       <motion.div variants={staggerItem}>
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[oklch(0.78_0.14_75/0.12)] flex items-center justify-center">
-            <PieChart className="w-4 h-4 text-[oklch(0.78_0.14_75)]" />
+          <div className="w-8 h-8 rounded-lg bg-[oklch(0.62_0.22_330/0.12)] flex items-center justify-center">
+            <PieChart className="w-4 h-4 text-[oklch(0.62 0.22 330)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">ESOP & Cap Table</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.15 0.02 260)]">ESOP & Cap Table</h2>
         </div>
-        <p className="text-[oklch(0.55_0.01_250)] text-sm">Optional but powerful. ESOP pools and cap tables help us calculate per-share value and dilution impact.</p>
+        <p className="text-[oklch(0.45 0.01 260)] text-sm">Optional but powerful. ESOP pools and cap tables help us calculate per-share value and dilution impact.</p>
       </motion.div>
 
       {/* Skip encouragement */}
       <motion.div variants={staggerItem} className="glass-card relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg">
-        <SkipForward className="w-4 h-4 text-[oklch(0.78_0.14_75)] shrink-0 animate-[float_3s_ease-in-out_infinite]" />
-        <p className="text-xs text-[oklch(0.60_0.01_250)]">
-          Not sure? <span className="text-[oklch(0.78_0.14_75)] font-medium">Just click &quot;Get Valuation&quot;</span> — we&apos;ll use smart defaults based on your stage ({inputs.stage.replace(/_/g, ' ')}: {defaultEsop}% ESOP).
+        <SkipForward className="w-4 h-4 text-[oklch(0.62 0.22 330)] shrink-0 animate-[float_3s_ease-in-out_infinite]" />
+        <p className="text-xs text-[oklch(0.45 0.01 260)]">
+          Not sure? <span className="text-[oklch(0.62 0.22 330)] font-medium">Just click &quot;Get Valuation&quot;</span> — we&apos;ll use smart defaults based on your stage ({inputs.stage.replace(/_/g, ' ')}: {defaultEsop}% ESOP).
         </p>
       </motion.div>
 
@@ -186,13 +186,13 @@ export function ESOPCapTableStep() {
 
       {/* ESOP Pool */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">ESOP Pool</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">ESOP Pool</span>
         <div>
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">ESOP Pool (%)</Label>
-            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.78_0.14_75)]">{inputs.esop_pool_pct ?? defaultEsop}%</span>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.62 0.22 330)]">{inputs.esop_pool_pct ?? defaultEsop}%</span>
           </div>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">
             Equity reserved for employees. Typical for {inputs.stage.replace(/_/g, ' ')}: {defaultEsop}%
           </p>
           <Slider
@@ -205,9 +205,9 @@ export function ESOPCapTableStep() {
         <div>
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Time to Liquidity</Label>
-            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.78_0.14_75)]">{inputs.time_to_liquidity_years ?? 4} yrs</span>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.62 0.22 330)]">{inputs.time_to_liquidity_years ?? 4} yrs</span>
           </div>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Years until exit (acquisition/IPO). Typical: 3-7 years.</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">Years until exit (acquisition/IPO). Typical: 3-7 years.</p>
           <Slider
             value={[inputs.time_to_liquidity_years ?? 4]}
             onValueChange={(v) => setField('time_to_liquidity_years', Array.isArray(v) ? v[0] : v)}
@@ -220,8 +220,8 @@ export function ESOPCapTableStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Current Cap Table</span>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Add up to 10 shareholders. Total should equal 100%.</p>
+            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Current Cap Table</span>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Add up to 10 shareholders. Total should equal 100%.</p>
           </div>
           <button
             onClick={() => {
@@ -233,7 +233,7 @@ export function ESOPCapTableStep() {
                 ])
               }
             }}
-            className="text-sm text-[oklch(0.78_0.14_75)] hover:text-[oklch(0.82_0.12_75)] px-3 py-1.5 rounded border border-[oklch(0.78_0.14_75/0.3)] hover:border-[oklch(0.78_0.14_75/0.5)] transition-colors"
+            className="text-sm text-[oklch(0.62 0.22 330)] hover:text-[oklch(0.75 0.18 162)] px-3 py-1.5 rounded border border-[oklch(0.62_0.22_330/0.3)] hover:border-[oklch(0.62_0.22_330/0.5)] transition-colors"
           >
             + Add Row
           </button>
@@ -257,7 +257,7 @@ export function ESOPCapTableStep() {
                     setField('current_cap_table', updated)
                   }}
                   placeholder="Shareholder name"
-                  className="col-span-5 bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] text-sm h-9"
+                  className="col-span-5 bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] text-sm h-9"
                 />
                 <Input
                   type="number"
@@ -268,7 +268,7 @@ export function ESOPCapTableStep() {
                     setField('current_cap_table', updated)
                   }}
                   min={0} max={100}
-                  className="col-span-3 bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] text-sm h-9"
+                  className="col-span-3 bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] text-sm h-9"
                 />
                 <select
                   value={entry.share_class}
@@ -277,7 +277,7 @@ export function ESOPCapTableStep() {
                     updated[idx] = { ...updated[idx], share_class: e.target.value as any }
                     setField('current_cap_table', updated)
                   }}
-                  className="col-span-3 bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] text-sm h-9 rounded-md px-2"
+                  className="col-span-3 bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] text-sm h-9 rounded-md px-2"
                 >
                   <option value="common">Common</option>
                   <option value="preference">Preference</option>

@@ -61,14 +61,14 @@ function ConcentricShieldRings({ score, color }: { score: number; color: string 
   ]
 
   return (
-    <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ borderColor: 'oklch(0.32 0.02 200 / 0.4)', background: 'linear-gradient(135deg, oklch(0.20 0.02 250 / 0.8), oklch(0.17 0.018 250 / 0.6)), linear-gradient(180deg, oklch(0.50 0.06 200 / 0.03), transparent)' }}>
+    <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ borderColor: 'oklch(0.32 0.02 200 / 0.4)', background: 'linear-gradient(135deg, oklch(0.98 0.003 260 / 0.8), oklch(0.97 0.003 260 / 0.6)), linear-gradient(180deg, oklch(0.50 0.06 200 / 0.03), transparent)' }}>
       {/* Subtle Shield icons */}
       <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-[0.04] pointer-events-none">
         <Shield className="w-10 h-10" /><Shield className="w-10 h-10" /><Shield className="w-10 h-10" />
       </div>
       <div className="flex items-center gap-2 mb-2">
         <ShieldCheck className="w-4 h-4 text-[oklch(0.65_0.14_200)]" />
-        <span className="font-heading text-sm text-[oklch(0.65_0.01_250)]">Moat Strength</span>
+        <span className="font-heading text-sm text-[oklch(0.45 0.01 260)]">Moat Strength</span>
       </div>
       <div className="relative flex flex-col items-center">
         <svg width="140" height="140" viewBox="0 0 140 140" className="overflow-visible">
@@ -79,11 +79,11 @@ function ConcentricShieldRings({ score, color }: { score: number; color: string 
 
             return (
               <g key={i}>
-                <circle cx={cx} cy={cy} r={r} fill="none" stroke="oklch(0.20 0.015 250)" strokeWidth={i === 0 ? 5 : i === 1 ? 6 : 7} />
+                <circle cx={cx} cy={cy} r={r} fill="none" stroke="oklch(0.91 0.005 260)" strokeWidth={i === 0 ? 5 : i === 1 ? 6 : 7} />
                 <motion.circle
                   cx={cx} cy={cy} r={r}
                   fill="none"
-                  stroke={active ? color : `color-mix(in oklch, ${color} 50%, oklch(0.30 0.01 250))`}
+                  stroke={active ? color : `color-mix(in oklch, ${color} 50%, oklch(0.80 0.01 260))`}
                   strokeWidth={i === 0 ? 5 : i === 1 ? 6 : 7}
                   strokeLinecap="round"
                   strokeDasharray={circumference}
@@ -142,9 +142,9 @@ export function MarketProductStep() {
           <div className="w-8 h-8 rounded-lg bg-[oklch(0.65_0.14_200/0.12)] flex items-center justify-center">
             <Target className="w-4 h-4 text-[oklch(0.65_0.14_200)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Market & Product</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.15 0.02 260)]">Market & Product</h2>
         </div>
-        <p className="text-[oklch(0.55_0.01_250)] text-sm">Big markets = big valuations. Investors want to know the total opportunity and where your product stands.</p>
+        <p className="text-[oklch(0.45 0.01 260)] text-sm">Big markets = big valuations. Investors want to know the total opportunity and where your product stands.</p>
       </motion.div>
 
       {/* Moat Gauge at TOP */}
@@ -154,19 +154,19 @@ export function MarketProductStep() {
 
       {/* Market Sizing */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Market Sizing</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Market Sizing</span>
         <div>
           <Label htmlFor="tam" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Total Addressable Market (TAM in Cr) *</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">The total market size if you captured 100% of your target customers</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)]">The total market size if you captured 100% of your target customers</p>
           <Input
             id="tam"
             type="number"
             value={inputs.tam}
             onChange={(e) => setField('tam', parseInt(e.target.value) || 0)}
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-48 h-10"
+            className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] mt-1 w-48 h-10"
             placeholder="5000"
           />
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mt-1.5 flex items-center gap-1">
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mt-1.5 flex items-center gap-1">
             <Info className="w-3 h-3" />
             Benchmark: Median SaaS TAM in India ≈ ₹5,000 Cr
           </p>
@@ -174,14 +174,14 @@ export function MarketProductStep() {
 
         <div>
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Development Stage *</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Where your product is in its journey — from idea to scaling</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Where your product is in its journey — from idea to scaling</p>
           <Select value={inputs.dev_stage} onValueChange={(v) => setField('dev_stage', v as any)}>
-            <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10">
+            <SelectTrigger className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] mt-1 h-10">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-[oklch(0.12_0.025_260)] border-[oklch(0.26_0.018_250)]">
+            <SelectContent className="bg-[oklch(0.985 0.002 260)] border-[oklch(0.91 0.005 260)]">
               {DEV_STAGES.map(key => (
-                <SelectItem key={key} value={key} className="text-[oklch(0.95_0.01_80)] hover:bg-[oklch(0.20_0.015_250)]">
+                <SelectItem key={key} value={key} className="text-[oklch(0.15 0.02 260)] hover:bg-[oklch(0.91 0.005 260)]">
                   {DEV_STAGE_LABELS[key]}
                 </SelectItem>
               ))}
@@ -191,7 +191,7 @@ export function MarketProductStep() {
 
         <div>
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Competition Level: <span className="text-[oklch(0.65_0.14_200)]">{inputs.competition_level}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">1 = Blue ocean, 5 = Hypercompetitive market</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">1 = Blue ocean, 5 = Hypercompetitive market</p>
           <Slider
             value={[inputs.competition_level]}
             onValueChange={(v) => setField('competition_level', Array.isArray(v) ? v[0] : v)}
@@ -206,11 +206,11 @@ export function MarketProductStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Competitive Advantages</span>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">What makes you hard to copy? Select all that apply (+12 pts each)</p>
+            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Competitive Advantages</span>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)]">What makes you hard to copy? Select all that apply (+12 pts each)</p>
           </div>
           {advantageCount > 0 && (
-            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[oklch(0.78_0.14_75/0.1)] text-[oklch(0.78_0.14_75)] border border-[oklch(0.78_0.14_75/0.2)]">
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[oklch(0.62_0.22_330/0.1)] text-[oklch(0.62 0.22 330)] border border-[oklch(0.62_0.22_330/0.2)]">
               <Shield className="w-3 h-3" />
               {advantageCount} moat{advantageCount !== 1 ? 's' : ''}
             </span>
@@ -222,8 +222,8 @@ export function MarketProductStep() {
               <label
                 className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg border cursor-pointer transition-all text-sm ${
                   inputs.competitive_advantages.includes(key)
-                    ? 'border-[oklch(0.78_0.14_75/0.5)] bg-[oklch(0.78_0.14_75/0.10)] text-[oklch(0.82_0.12_75)] shadow-[0_0_12px_oklch(0.78_0.14_75/0.08)]'
-                    : 'border-[oklch(0.26_0.018_250)] bg-[oklch(0.12_0.012_250)] text-[oklch(0.55_0.01_250)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.12_0.025_260)]'
+                    ? 'border-[oklch(0.62_0.22_330/0.5)] bg-[oklch(0.62_0.22_330/0.10)] text-[oklch(0.75 0.18 162)] shadow-[0_0_12px_oklch(0.62_0.22_330/0.08)]'
+                    : 'border-[oklch(0.91 0.005 260)] bg-[oklch(0.98 0.002 260)] text-[oklch(0.45 0.01 260)] hover:border-[oklch(0.35_0.008_260)] hover:bg-[oklch(0.985 0.002 260)]'
                 }`}
                 onMouseEnter={() => setHoveredAdvantage(key)}
                 onMouseLeave={() => setHoveredAdvantage(null)}
@@ -248,13 +248,13 @@ export function MarketProductStep() {
 
       {/* Patents */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Intellectual Property</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Intellectual Property</span>
         <div className="mt-3">
           <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Patents</Label>
             <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.65_0.14_200)]">{inputs.patents_count}</span>
           </div>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Filed or granted patents (+5 pts each, max 20)</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">Filed or granted patents (+5 pts each, max 20)</p>
           <Slider
             value={[Math.min(inputs.patents_count, 20)]}
             onValueChange={(v) => setField('patents_count', Array.isArray(v) ? v[0] : v)}
@@ -266,9 +266,9 @@ export function MarketProductStep() {
               value={inputs.patents_count}
               onChange={(e) => setField('patents_count', parseInt(e.target.value) || 0)}
               min={0}
-              className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-20 text-sm"
+              className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] h-9 w-20 text-sm"
             />
-            <span className="text-[9px] text-[oklch(0.50_0.01_250)]">Enter higher values manually</span>
+            <span className="text-[9px] text-[oklch(0.50 0.01 260)]">Enter higher values manually</span>
           </div>
         </div>
       </motion.div>

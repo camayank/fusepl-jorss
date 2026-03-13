@@ -55,13 +55,13 @@ export default function ValuationPage() {
   // Loading state while Zustand hydrates
   if (mode === 'loading') {
     return (
-      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.12_0.025_260)] flex items-center justify-center">
+      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="flex flex-col items-center gap-3"
         >
-          <Sparkles className="w-6 h-6 text-[oklch(0.78_0.14_75)] animate-pulse" />
+          <Sparkles className="w-6 h-6 text-[oklch(0.62 0.22 330)] animate-pulse" />
           <p className="text-xs text-[oklch(0.50_0.01_260)]">Loading...</p>
         </motion.div>
       </main>
@@ -71,8 +71,8 @@ export default function ValuationPage() {
   // Interstitial: previous result exists
   if (mode === 'interstitial' && result) {
     return (
-      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.12_0.025_260)] flex items-center justify-center px-6">
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.78_0.14_75/0.04)] blur-[120px] pointer-events-none" />
+      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] flex items-center justify-center px-6">
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[120px] pointer-events-none" />
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -80,15 +80,15 @@ export default function ValuationPage() {
           transition={{ duration: 0.5 }}
           className="relative max-w-md w-full text-center"
         >
-          <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">
+          <p className="text-[11px] font-semibold text-[oklch(0.62 0.22 330)] uppercase tracking-[0.2em] mb-4">
             Welcome back
           </p>
-          <h1 className="font-heading text-2xl sm:text-3xl text-[oklch(0.95_0.01_80)] mb-2">
+          <h1 className="font-heading text-2xl sm:text-3xl text-[oklch(0.15 0.02 260)] mb-2">
             {inputs.company_name || 'Your Startup'}
           </h1>
-          <p className="text-sm text-[oklch(0.55_0.01_250)] mb-8">
+          <p className="text-sm text-[oklch(0.45 0.01 260)] mb-8">
             You have a previous valuation of{' '}
-            <span className="font-semibold text-[oklch(0.78_0.14_75)]">
+            <span className="font-semibold text-[oklch(0.62 0.22 330)]">
               {formatINR(result.composite_value)}
             </span>
           </p>
@@ -96,14 +96,14 @@ export default function ValuationPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={handleViewResults}
-              className="inline-flex items-center justify-center gap-2 h-12 px-7 text-sm font-semibold rounded-lg border border-[oklch(0.78_0.14_75/0.3)] text-[oklch(0.78_0.14_75)] transition-all hover:bg-[oklch(0.78_0.14_75/0.06)] hover:border-[oklch(0.78_0.14_75/0.5)]"
+              className="inline-flex items-center justify-center gap-2 h-12 px-7 text-sm font-semibold rounded-lg border border-[oklch(0.62_0.22_330/0.3)] text-[oklch(0.62 0.22 330)] transition-all hover:bg-[oklch(0.62_0.22_330/0.06)] hover:border-[oklch(0.62_0.22_330/0.5)]"
             >
               <BarChart3 className="w-4 h-4" />
               View Previous Results
             </button>
             <button
               onClick={handleStartNew}
-              className="inline-flex items-center justify-center gap-2 h-12 px-7 text-sm font-semibold rounded-lg bg-[oklch(0.78_0.14_75)] text-[oklch(0.12_0.025_260)] transition-all hover:bg-[oklch(0.72_0.12_75)] hover:shadow-[0_0_24px_oklch(0.78_0.14_75/0.2)] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 h-12 px-7 text-sm font-semibold rounded-lg bg-[oklch(0.62 0.22 330)] text-[oklch(0.985 0.002 260)] transition-all hover:bg-[oklch(0.55 0.20 330)] hover:shadow-[0_0_24px_oklch(0.62_0.22_330/0.2)] active:scale-[0.98]"
             >
               <Plus className="w-4 h-4" />
               Start New Valuation
@@ -117,8 +117,8 @@ export default function ValuationPage() {
   // Wizard mode
   if (mode === 'wizard' || !result) {
     return (
-      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.12_0.025_260)] py-10">
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.78_0.14_75/0.04)] blur-[120px] pointer-events-none" />
+      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] py-10">
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[120px] pointer-events-none" />
         <div className="relative container mx-auto px-4">
           <WizardContainer />
         </div>
@@ -128,8 +128,8 @@ export default function ValuationPage() {
 
   // Results mode
   return (
-    <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.12_0.025_260)] py-10">
-      <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[oklch(0.78_0.14_75/0.04)] blur-[140px] pointer-events-none" />
+    <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] py-10">
+      <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[140px] pointer-events-none" />
 
       <div className="relative container mx-auto px-4 max-w-3xl space-y-6">
         <AnimatePresence>
@@ -143,7 +143,7 @@ export default function ValuationPage() {
             <div className="flex justify-end">
               <button
                 onClick={handleStartNew}
-                className="text-[11px] font-medium text-[oklch(0.55_0.01_250)] uppercase tracking-[0.15em] transition-colors hover:text-[oklch(0.78_0.14_75)] flex items-center gap-1.5"
+                className="text-[11px] font-medium text-[oklch(0.45 0.01 260)] uppercase tracking-[0.15em] transition-colors hover:text-[oklch(0.62 0.22 330)] flex items-center gap-1.5"
               >
                 <Plus className="w-3.5 h-3.5" />
                 New Valuation

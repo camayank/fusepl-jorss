@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu } from 'lucide-react'
 import {
   Sheet,
@@ -31,7 +32,7 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="text-[oklch(0.55_0.01_250)] hover:text-[oklch(0.88_0.005_250)]"
+            className="text-[oklch(0.35_0.02_260)] hover:text-[oklch(0.15_0.02_260)]"
           />
         }
       >
@@ -41,17 +42,14 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
 
       <SheetContent
         side="right"
-        className="w-[300px] bg-[oklch(0.08_0.008_260/0.95)] backdrop-blur-xl border-[oklch(0.24_0.018_250)] p-0"
+        className="w-[300px] bg-[oklch(1_0_0/0.97)] backdrop-blur-xl border-[oklch(0.91_0.005_260)] p-0"
       >
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 
         <div className="flex flex-col h-full">
           {/* Branding */}
-          <div className="flex items-center gap-2 p-5 border-b border-[oklch(0.24_0.018_250)]">
-            <span className="text-lg">&#x1f984;</span>
-            <span className="font-heading text-lg text-gold-gradient">
-              First Unicorn Startup
-            </span>
+          <div className="flex items-center gap-2 p-5 border-b border-[oklch(0.91_0.005_260)]">
+            <Image src="/logo.png" alt="First Unicorn Startup" width={120} height={32} className="h-7 w-auto" />
           </div>
 
           {/* Navigation */}
@@ -69,8 +67,8 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
                     relative rounded-lg px-4 py-3 text-sm font-medium transition-colors
                     ${
                       isActive
-                        ? 'bg-[oklch(0.78_0.14_75/0.08)] text-[oklch(0.78_0.14_75)] border-l-2 border-[oklch(0.78_0.14_75)]'
-                        : 'text-[oklch(0.55_0.01_250)] hover:text-[oklch(0.88_0.005_250)] hover:bg-[oklch(0.18_0.018_250)]'
+                        ? 'bg-[oklch(0.62_0.22_330/0.08)] text-[oklch(0.62_0.22_330)] border-l-2 border-[oklch(0.62_0.22_330)]'
+                        : 'text-[oklch(0.35_0.02_260)] hover:text-[oklch(0.15_0.02_260)] hover:bg-[oklch(0.96_0.005_260)]'
                     }
                   `}
                 >
@@ -81,11 +79,11 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
           </nav>
 
           {/* CTA at bottom */}
-          <div className="p-4 border-t border-[oklch(0.24_0.018_250)]">
+          <div className="p-4 border-t border-[oklch(0.91_0.005_260)]">
             <Link
               href="/valuation"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-full rounded-lg h-10 px-4 text-sm font-semibold bg-[oklch(0.78_0.14_75)] text-[oklch(0.12_0.025_260)] transition-all hover:bg-[oklch(0.72_0.12_75)]"
+              className="flex items-center justify-center w-full rounded-lg h-10 px-4 text-sm font-semibold bg-[#32373c] text-white transition-all hover:bg-[#1d2024]"
             >
               Get Valuation
             </Link>

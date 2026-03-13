@@ -7,7 +7,7 @@ const SIGNALS = [
     label: 'IBBI Registered',
     text: 'Built by an IBBI-Registered Insolvency Professional & SFA-Licensed Valuer.',
     metric: 'Verified',
-    color: 'oklch(0.78 0.14 75)',
+    color: 'oklch(0.62 0.22 330)',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -83,13 +83,13 @@ const cardVariants = {
 
 export function TrustSignals() {
   return (
-    <section className="grain relative py-28 px-6 bg-gradient-to-b from-[oklch(0.12_0.012_250)] via-[oklch(0.12_0.025_260)] to-[oklch(0.12_0.012_250)]">
+    <section className="grain relative py-28 px-6 bg-gradient-to-b from-[oklch(0.98 0.002 260)] via-[oklch(0.985 0.002 260)] to-[oklch(0.98 0.002 260)]">
       <div className="section-divider absolute inset-x-0 top-0" />
       <div className="max-w-5xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-16">
-          <p className="text-[11px] font-semibold text-[oklch(0.78_0.14_75)] uppercase tracking-[0.2em] mb-4">Why founders trust us</p>
-          <h2 className="font-heading text-3xl sm:text-[2.75rem] text-[oklch(0.97_0.002_250)] leading-tight">Not a Random Number Generator</h2>
-          <p className="mt-5 text-base text-[oklch(0.68_0.01_250)] max-w-lg mx-auto leading-relaxed">
+          <p className="text-[11px] font-semibold text-[oklch(0.62 0.22 330)] uppercase tracking-[0.2em] mb-4">Why founders trust us</p>
+          <h2 className="font-heading text-3xl sm:text-[2.75rem] text-[oklch(0.15 0.02 260)] leading-tight">Not a Random Number Generator</h2>
+          <p className="mt-5 text-base text-[oklch(0.40 0.01 260)] max-w-lg mx-auto leading-relaxed">
             When an investor asks &ldquo;how did you arrive at this valuation?&rdquo; — you&apos;ll have a real answer.
           </p>
         </motion.div>
@@ -102,10 +102,10 @@ export function TrustSignals() {
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ color: s.color, backgroundColor: `color-mix(in oklch, ${s.color} 12%, transparent)`, border: `1px solid color-mix(in oklch, ${s.color} 20%, transparent)` }}>
                   {s.icon}
                 </div>
-                <span className="text-xs font-bold text-[oklch(0.88_0.005_250)] uppercase tracking-[0.12em]">{s.label}</span>
+                <span className="text-xs font-bold text-[oklch(0.20 0.02 260)] uppercase tracking-[0.12em]">{s.label}</span>
                 <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ color: s.color, backgroundColor: `color-mix(in oklch, ${s.color} 12%, transparent)` }}>{s.metric}</span>
               </div>
-              <p className="text-sm text-[oklch(0.68_0.01_250)] leading-relaxed">{s.text}</p>
+              <p className="text-sm text-[oklch(0.40 0.01 260)] leading-relaxed">{s.text}</p>
             </motion.div>
           ))}
         </motion.div>

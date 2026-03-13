@@ -41,7 +41,7 @@ function RiskThermometerCard({ score, color, label, message }: { score: number; 
   const fillHeight = (score / 100) * height
 
   return (
-    <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.20 0.02 250 / 0.8), oklch(0.17 0.018 250 / 0.6))' }}>
+    <div className="glass-card grain relative rounded-xl p-5 overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.98 0.003 260 / 0.8), oklch(0.97 0.003 260 / 0.6))' }}>
       {/* Subtle background icons */}
       <div className="absolute top-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-[0.04] pointer-events-none">
         <AlertTriangle className="w-10 h-10" /><ShieldCheck className="w-10 h-10" /><AlertTriangle className="w-10 h-10" />
@@ -58,14 +58,14 @@ function RiskThermometerCard({ score, color, label, message }: { score: number; 
             </motion.div>
           )}
         </AnimatePresence>
-        <span className="font-heading text-sm text-[oklch(0.65_0.01_250)]">Risk Profile</span>
+        <span className="font-heading text-sm text-[oklch(0.45 0.01 260)]">Risk Profile</span>
       </div>
 
       <div className="flex items-center gap-6">
         {/* Thermometer */}
         <div className="relative shrink-0" style={{ height: height + 20, width: 36 }}>
           <svg width="36" height={height + 20} viewBox={`0 0 36 ${height + 20}`} className="overflow-visible">
-            <rect x="10" y="8" width="16" height={height} rx="8" fill="oklch(0.18 0.015 250)" />
+            <rect x="10" y="8" width="16" height={height} rx="8" fill="oklch(0.96 0.005 260)" />
             <defs>
               <linearGradient id="thermo-gradient" x1="0" y1="1" x2="0" y2="0">
                 <stop offset="0%" stopColor="oklch(0.65 0.16 155)" />
@@ -101,11 +101,11 @@ function RiskThermometerCard({ score, color, label, message }: { score: number; 
 
         {/* Score + message */}
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-1">↑ Higher = more risk</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-1">↑ Higher = more risk</p>
           <span className={`font-mono text-4xl font-bold tabular-nums leading-none ${score <= 25 ? 'text-gold-gradient' : ''}`} style={score > 25 ? { color } : undefined}>
             {animatedScore}
           </span>
-          <span className="text-xs block mt-0.5 text-[oklch(0.50_0.01_250)]">/ 100</span>
+          <span className="text-xs block mt-0.5 text-[oklch(0.50 0.01 260)]">/ 100</span>
           <span
             className="font-heading text-sm font-bold inline-block mt-2 px-2 py-0.5 rounded"
             style={{ color, background: `color-mix(in oklch, ${color} 12%, transparent)` }}
@@ -145,9 +145,9 @@ export function StrategicStep() {
           <div className="w-8 h-8 rounded-lg bg-[oklch(0.72_0.12_55/0.12)] flex items-center justify-center">
             <Compass className="w-4 h-4 text-[oklch(0.72_0.12_55)]" />
           </div>
-          <h2 className="font-heading text-2xl text-[oklch(0.95_0.01_80)]">Strategic Factors</h2>
+          <h2 className="font-heading text-2xl text-[oklch(0.15 0.02 260)]">Strategic Factors</h2>
         </div>
-        <p className="text-[oklch(0.55_0.01_250)] text-sm">Partnerships reduce risk, regulatory moats protect margins — these factors shape how investors discount your valuation.</p>
+        <p className="text-[oklch(0.45 0.01 260)] text-sm">Partnerships reduce risk, regulatory moats protect margins — these factors shape how investors discount your valuation.</p>
       </motion.div>
 
       {/* Risk Thermometer at TOP */}
@@ -157,16 +157,16 @@ export function StrategicStep() {
 
       {/* Core Strategic Inputs */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Strategic Position</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Strategic Position</span>
         <div>
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Strategic Partnerships</Label>
           <Select value={inputs.strategic_partnerships} onValueChange={(v) => setField('strategic_partnerships', v as any)}>
-            <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10">
+            <SelectTrigger className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] mt-1 h-10">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-[oklch(0.12_0.025_260)] border-[oklch(0.26_0.018_250)]">
+            <SelectContent className="bg-[oklch(0.985 0.002 260)] border-[oklch(0.91 0.005 260)]">
               {PARTNERSHIP_LEVELS.map(key => (
-                <SelectItem key={key} value={key} className="text-[oklch(0.95_0.01_80)] hover:bg-[oklch(0.20_0.015_250)]">
+                <SelectItem key={key} value={key} className="text-[oklch(0.15 0.02 260)] hover:bg-[oklch(0.91 0.005 260)]">
                   {PARTNERSHIP_LABELS[key]}
                 </SelectItem>
               ))}
@@ -176,7 +176,7 @@ export function StrategicStep() {
 
         <div>
           <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Regulatory Risk: <span className="text-[oklch(0.72_0.12_55)]">{inputs.regulatory_risk}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
+          <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
           <Slider
             value={[inputs.regulatory_risk]}
             onValueChange={(v) => setField('regulatory_risk', Array.isArray(v) ? v[0] : v)}
@@ -194,8 +194,8 @@ export function StrategicStep() {
           className="flex items-center justify-between w-full text-left group"
         >
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Revenue Composition</span>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Optional — helps refine risk assessment</p>
+            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Revenue Composition</span>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Optional — helps refine risk assessment</p>
           </div>
           <motion.div animate={{ rotate: revenueOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown className="w-4 h-4 text-[oklch(0.45_0.01_250)]" />
@@ -215,7 +215,7 @@ export function StrategicStep() {
                   <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Concentration (%)</Label>
                   <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.12_55)]">{inputs.revenue_concentration_pct ?? 0}%</span>
                 </div>
-                <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">% from top 3 customers. Lower is better.</p>
+                <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">% from top 3 customers. Lower is better.</p>
                 <Slider
                   value={[inputs.revenue_concentration_pct ?? 0]}
                   onValueChange={(v) => setField('revenue_concentration_pct', Array.isArray(v) ? v[0] : v)}
@@ -227,7 +227,7 @@ export function StrategicStep() {
                   <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">International Revenue (%)</Label>
                   <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.12_55)]">{inputs.international_revenue_pct}%</span>
                 </div>
-                <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Revenue from outside India</p>
+                <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">Revenue from outside India</p>
                 <Slider
                   value={[inputs.international_revenue_pct]}
                   onValueChange={(v) => setField('international_revenue_pct', Array.isArray(v) ? v[0] : v)}
@@ -246,8 +246,8 @@ export function StrategicStep() {
           className="flex items-center justify-between w-full text-left group"
         >
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Fundraising Plans</span>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Optional — target raise and expected dilution</p>
+            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45 0.01 260)]">Fundraising Plans</span>
+            <p className="text-[10px] text-[oklch(0.50 0.01 260)]">Optional — target raise and expected dilution</p>
           </div>
           <motion.div animate={{ rotate: fundraiseOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown className="w-4 h-4 text-[oklch(0.45_0.01_250)]" />
@@ -269,7 +269,7 @@ export function StrategicStep() {
                   value={inputs.target_raise ?? ''}
                   onChange={(e) => setField('target_raise', e.target.value === '' ? null : parseFloat(e.target.value))}
                   placeholder="50000000"
-                  className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10"
+                  className="bg-[oklch(0.98 0.002 260)] border-[oklch(0.91 0.005 260)] text-[oklch(0.15 0.02 260)] mt-1 h-10"
                 />
               </div>
               <div>
@@ -277,7 +277,7 @@ export function StrategicStep() {
                   <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Expected Dilution (%)</Label>
                   <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.12_55)]">{inputs.expected_dilution_pct ?? 0}%</span>
                 </div>
-                <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Typical: 15-25% per round</p>
+                <p className="text-[10px] text-[oklch(0.50 0.01 260)] mb-2">Typical: 15-25% per round</p>
                 <Slider
                   value={[inputs.expected_dilution_pct ?? 0]}
                   onValueChange={(v) => setField('expected_dilution_pct', Array.isArray(v) ? v[0] : v)}
