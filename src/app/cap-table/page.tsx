@@ -19,7 +19,7 @@ export default function CapTablePage() {
         <p className="text-sm text-muted-foreground mb-3">
           Want a full 10-method startup valuation with this cap table analysis?
         </p>
-        <a href="/valuation" className="text-amber-400 font-medium hover:underline">
+        <a href="/valuation" className="text-[oklch(0.62_0.22_330)] font-medium hover:underline">
           Get Your Free Valuation &rarr;
         </a>
       </div>

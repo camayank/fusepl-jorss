@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { STARTUP_CATEGORIES, CATEGORY_LABELS, STAGES, type StartupCategory, type Stage, type DealCheckInput, type DealCheckResult } from '@/types'
 import { computeDealCheck } from '@/lib/deal-check'
 import { formatINR } from '@/lib/utils'
+import { CheckCircle2, AlertTriangle, XCircle, HelpCircle, Sparkles, Scale, TrendingUp, Users, ArrowRight } from 'lucide-react'
 
 const STAGE_LABELS: Record<Stage, string> = {
   idea: 'Idea',
@@ -20,11 +20,35 @@ const STAGE_LABELS: Record<Stage, string> = {
   series_c_plus: 'Series C+',
 }
 
-const VERDICT_COLORS = {
-  green: 'border-green-500 bg-green-500/10 text-green-400',
-  yellow: 'border-amber-500 bg-amber-500/10 text-amber-400',
-  red: 'border-red-500 bg-red-500/10 text-red-400',
-  blue: 'border-blue-500 bg-blue-500/10 text-blue-400',
+const VERDICT_CONFIG = {
+  green: {
+    bg: 'bg-[oklch(0.65_0.16_155/0.08)]',
+    border: 'border-[oklch(0.65_0.16_155/0.3)]',
+    text: 'text-[oklch(0.55_0.16_155)]',
+    accent: 'oklch(0.65 0.16 155)',
+    Icon: CheckCircle2,
+  },
+  yellow: {
+    bg: 'bg-[oklch(0.72_0.14_80/0.08)]',
+    border: 'border-[oklch(0.72_0.14_80/0.3)]',
+    text: 'text-[oklch(0.60_0.14_80)]',
+    accent: 'oklch(0.72 0.14 80)',
+    Icon: AlertTriangle,
+  },
+  red: {
+    bg: 'bg-[oklch(0.62_0.18_25/0.08)]',
+    border: 'border-[oklch(0.62_0.18_25/0.3)]',
+    text: 'text-[oklch(0.55_0.18_25)]',
+    accent: 'oklch(0.62 0.18 25)',
+    Icon: XCircle,
+  },
+  blue: {
+    bg: 'bg-[oklch(0.62_0.16_250/0.08)]',
+    border: 'border-[oklch(0.62_0.16_250/0.3)]',
+    text: 'text-[oklch(0.55_0.16_250)]',
+    accent: 'oklch(0.62 0.16 250)',
+    Icon: HelpCircle,
+  },
 }
 
 export default function DealCheckPage() {
@@ -44,175 +68,211 @@ export default function DealCheckPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-950 py-8">
-      <div className="container mx-auto px-4 max-w-2xl space-y-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">Investor Deal Check</h1>
-          <p className="text-slate-400">
+    <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985_0.002_260)] py-10">
+      <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[140px] pointer-events-none" />
+
+      <div className="relative container mx-auto px-4 max-w-2xl space-y-6">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-[oklch(0.62_0.22_330/0.4)]" />
+            <span className="text-[10px] font-semibold text-[oklch(0.62_0.22_330)] uppercase tracking-[0.25em]">
+              Investor Tool
+            </span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-[oklch(0.62_0.22_330/0.4)]" />
+          </div>
+          <h1 className="font-heading text-2xl sm:text-3xl text-[oklch(0.15_0.02_260)]">
+            Deal Check
+          </h1>
+          <p className="text-sm text-[oklch(0.45_0.01_260)] mt-1.5">
             Quickly validate if a startup&apos;s valuation ask is reasonable.
           </p>
         </div>
 
-        <Card className="bg-slate-900 border-slate-800">
-          <CardHeader>
-            <CardTitle className="text-white text-lg">Deal Parameters</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-slate-300 text-sm">Sector</Label>
-                <Select
-                  value={input.sector}
-                  onValueChange={(v) => setInput({ ...input, sector: v as StartupCategory })}
-                >
-                  <SelectTrigger className="bg-slate-800 border-slate-700 text-white mt-1">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {STARTUP_CATEGORIES.map((s) => (
-                      <SelectItem key={s} value={s}>
-                        {CATEGORY_LABELS[s]}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label className="text-slate-300 text-sm">Stage</Label>
-                <Select
-                  value={input.stage}
-                  onValueChange={(v) => setInput({ ...input, stage: v as Stage })}
-                >
-                  <SelectTrigger className="bg-slate-800 border-slate-700 text-white mt-1">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {STAGES.map((s) => (
-                      <SelectItem key={s} value={s}>
-                        {STAGE_LABELS[s]}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+        {/* Deal Parameters */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="glass-card grain relative rounded-xl p-6 space-y-5"
+        >
+          <div className="flex items-center gap-2.5 mb-1">
+            <div className="w-7 h-7 rounded-lg bg-[oklch(0.62_0.22_330/0.12)] flex items-center justify-center">
+              <Scale className="w-3.5 h-3.5 text-[oklch(0.62_0.22_330)]" />
             </div>
+            <h2 className="font-heading text-lg text-[oklch(0.15_0.02_260)]">Deal Parameters</h2>
+          </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-slate-300 text-sm">Annual Revenue (Rs Cr)</Label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Sector</Label>
+              <Select
+                value={input.sector}
+                onValueChange={(v) => setInput({ ...input, sector: v as StartupCategory })}
+              >
+                <SelectTrigger className="bg-[oklch(0.98_0.002_260)] border-[oklch(0.91_0.005_260)] text-[oklch(0.20_0.02_260)] mt-1 h-10">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent alignItemWithTrigger={false} className="bg-[oklch(0.96_0.005_260)] border-[oklch(0.91_0.005_260)] max-h-[280px]">
+                  {STARTUP_CATEGORIES.map((s) => (
+                    <SelectItem key={s} value={s} className="text-[oklch(0.25_0.02_260)] hover:bg-[oklch(0.91_0.005_260)] text-xs">
+                      {CATEGORY_LABELS[s]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Stage</Label>
+              <Select
+                value={input.stage}
+                onValueChange={(v) => setInput({ ...input, stage: v as Stage })}
+              >
+                <SelectTrigger className="bg-[oklch(0.98_0.002_260)] border-[oklch(0.91_0.005_260)] text-[oklch(0.20_0.02_260)] mt-1 h-10">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent alignItemWithTrigger={false} className="bg-[oklch(0.96_0.005_260)] border-[oklch(0.91_0.005_260)]">
+                  {STAGES.map((s) => (
+                    <SelectItem key={s} value={s} className="text-[oklch(0.25_0.02_260)] hover:bg-[oklch(0.91_0.005_260)] text-xs">
+                      {STAGE_LABELS[s]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Annual Revenue (Cr)</Label>
+              <div className="relative mt-1">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[oklch(0.50_0.01_260)] text-sm font-mono">₹</span>
                 <Input
                   type="number"
                   value={input.revenue_cr || ''}
                   onChange={(e) => setInput({ ...input, revenue_cr: Number(e.target.value) || 0 })}
-                  className="bg-slate-800 border-slate-700 text-white mt-1"
+                  className="bg-[oklch(0.98_0.002_260)] border-[oklch(0.91_0.005_260)] text-[oklch(0.15_0.02_260)] pl-7 h-10"
                   placeholder="e.g., 10"
                 />
               </div>
-              <div>
-                <Label className="text-slate-300 text-sm">Revenue Growth %</Label>
-                <Input
-                  type="number"
-                  value={input.growth_pct || ''}
-                  onChange={(e) => setInput({ ...input, growth_pct: Number(e.target.value) || 0 })}
-                  className="bg-slate-800 border-slate-700 text-white mt-1"
-                  placeholder="e.g., 80"
-                />
-              </div>
             </div>
+            <div>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Growth %</Label>
+              <Input
+                type="number"
+                value={input.growth_pct || ''}
+                onChange={(e) => setInput({ ...input, growth_pct: Number(e.target.value) || 0 })}
+                className="bg-[oklch(0.98_0.002_260)] border-[oklch(0.91_0.005_260)] text-[oklch(0.15_0.02_260)] mt-1 h-10"
+                placeholder="e.g., 80"
+              />
+            </div>
+          </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label className="text-slate-300 text-sm">Amount Raising (Rs Cr)</Label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Amount Raising (Cr)</Label>
+              <div className="relative mt-1">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[oklch(0.50_0.01_260)] text-sm font-mono">₹</span>
                 <Input
                   type="number"
                   value={input.raise_cr || ''}
                   onChange={(e) => setInput({ ...input, raise_cr: Number(e.target.value) || 0 })}
-                  className="bg-slate-800 border-slate-700 text-white mt-1"
+                  className="bg-[oklch(0.98_0.002_260)] border-[oklch(0.91_0.005_260)] text-[oklch(0.15_0.02_260)] pl-7 h-10"
                   placeholder="e.g., 5"
                 />
               </div>
-              <div>
-                <Label className="text-slate-300 text-sm">Valuation Ask (Rs Cr)</Label>
+            </div>
+            <div>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Valuation Ask (Cr)</Label>
+              <div className="relative mt-1">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[oklch(0.50_0.01_260)] text-sm font-mono">₹</span>
                 <Input
                   type="number"
                   value={input.ask_cr || ''}
                   onChange={(e) => setInput({ ...input, ask_cr: Number(e.target.value) || 0 })}
-                  className="bg-slate-800 border-slate-700 text-white mt-1"
+                  className="bg-[oklch(0.98_0.002_260)] border-[oklch(0.91_0.005_260)] text-[oklch(0.15_0.02_260)] pl-7 h-10"
                   placeholder="e.g., 50"
                 />
               </div>
             </div>
+          </div>
 
-            <Button
-              className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold"
-              onClick={handleCheck}
+          <button
+            onClick={handleCheck}
+            className="btn-press focus-ring w-full inline-flex items-center justify-center gap-2 h-11 text-sm font-semibold rounded-lg bg-[#32373c] text-white transition-all hover:bg-[#1d2024] hover:shadow-[0_0_24px_oklch(0.62_0.22_330/0.25)]"
+          >
+            <Sparkles className="w-4 h-4" />
+            Check Deal
+          </button>
+        </motion.div>
+
+        {/* Results */}
+        <AnimatePresence>
+          {result && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
             >
-              Check Deal
-            </Button>
-          </CardContent>
-        </Card>
+              {/* Verdict */}
+              {(() => {
+                const v = VERDICT_CONFIG[result.verdict]
+                const VIcon = v.Icon
+                return (
+                  <div className={`rounded-xl border-2 ${v.border} ${v.bg} p-6 text-center space-y-2`}>
+                    <VIcon className="w-8 h-8 mx-auto" style={{ color: v.accent }} />
+                    <p className={`font-heading text-2xl font-bold ${v.text}`}>{result.label}</p>
+                    <p className="text-sm text-[oklch(0.40_0.01_260)]">{result.explanation}</p>
+                  </div>
+                )
+              })()}
 
-        {result && (
-          <div className="space-y-4">
-            {/* Verdict */}
-            <Card className={`border-2 ${VERDICT_COLORS[result.verdict]}`}>
-              <CardContent className="py-6 text-center space-y-2">
-                <p className="text-3xl font-bold">{result.label}</p>
-                <p className="text-sm text-slate-300">{result.explanation}</p>
-              </CardContent>
-            </Card>
+              {/* Metrics */}
+              <div className="grid grid-cols-3 gap-3">
+                <div className="glass-card rounded-xl p-4 text-center">
+                  <p className="text-[10px] font-semibold text-[oklch(0.50_0.01_260)] uppercase tracking-wider">Fair Value</p>
+                  <p className="font-heading text-lg font-bold text-[oklch(0.15_0.02_260)] mt-1">{formatINR(result.fairValue)}</p>
+                </div>
+                <div className="glass-card rounded-xl p-4 text-center">
+                  <p className="text-[10px] font-semibold text-[oklch(0.50_0.01_260)] uppercase tracking-wider">Implied Multiple</p>
+                  <p className="font-heading text-lg font-bold text-[oklch(0.15_0.02_260)] mt-1">{result.impliedMultiple.toFixed(1)}x</p>
+                  <p className="text-[10px] text-[oklch(0.50_0.01_260)]">vs {result.sectorMedianMultiple.toFixed(1)}x median</p>
+                </div>
+                <div className="glass-card rounded-xl p-4 text-center">
+                  <p className="text-[10px] font-semibold text-[oklch(0.50_0.01_260)] uppercase tracking-wider">Dilution</p>
+                  <p className="font-heading text-lg font-bold text-[oklch(0.15_0.02_260)] mt-1">{result.dilutionPct.toFixed(1)}%</p>
+                </div>
+              </div>
 
-            {/* Metrics */}
-            <div className="grid grid-cols-3 gap-3">
-              <Card className="bg-slate-900 border-slate-800">
-                <CardContent className="py-4 text-center">
-                  <p className="text-xs text-slate-400">Fair Value</p>
-                  <p className="text-lg font-bold text-white">{formatINR(result.fairValue)}</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-slate-900 border-slate-800">
-                <CardContent className="py-4 text-center">
-                  <p className="text-xs text-slate-400">Implied Multiple</p>
-                  <p className="text-lg font-bold text-white">{result.impliedMultiple.toFixed(1)}x</p>
-                  <p className="text-xs text-slate-500">vs {result.sectorMedianMultiple.toFixed(1)}x median</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-slate-900 border-slate-800">
-                <CardContent className="py-4 text-center">
-                  <p className="text-xs text-slate-400">Dilution</p>
-                  <p className="text-lg font-bold text-white">{result.dilutionPct.toFixed(1)}%</p>
-                </CardContent>
-              </Card>
-            </div>
+              {/* Negotiation Insight */}
+              <div className="glass-card grain relative rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="w-3.5 h-3.5 text-[oklch(0.62_0.22_330)]" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45_0.01_260)]">Negotiation Insight</span>
+                </div>
+                <p className="text-sm text-[oklch(0.30_0.02_260)] leading-relaxed">{result.negotiationInsight}</p>
+              </div>
 
-            {/* Negotiation Insight */}
-            <Card className="bg-slate-900 border-slate-800">
-              <CardHeader>
-                <CardTitle className="text-white text-sm">Negotiation Insight</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-slate-300">{result.negotiationInsight}</p>
-              </CardContent>
-            </Card>
-
-            {/* Comparables */}
-            {result.comparables.length > 0 && (
-              <Card className="bg-slate-900 border-slate-800">
-                <CardHeader>
-                  <CardTitle className="text-white text-sm">Comparable Transactions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
+              {/* Comparables */}
+              {result.comparables.length > 0 && (
+                <div className="glass-card grain relative rounded-xl p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Users className="w-3.5 h-3.5 text-[oklch(0.62_0.22_330)]" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.45_0.01_260)]">Comparable Transactions</span>
+                  </div>
+                  <div className="space-y-2.5">
                     {result.comparables.map((c) => (
-                      <div key={c.name} className="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                      <div key={c.name} className="flex justify-between items-center text-sm border-b border-[oklch(0.91_0.005_260)] pb-2.5 last:border-0">
                         <div>
-                          <p className="text-white font-medium">{c.name}</p>
-                          <p className="text-xs text-slate-500">{c.sector} | {c.stage_at_round} | {c.year}</p>
+                          <p className="font-medium text-[oklch(0.20_0.02_260)]">{c.name}</p>
+                          <p className="text-[10px] text-[oklch(0.50_0.01_260)]">{c.sector} | {c.stage_at_round} | {c.year}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-amber-400">Rs {c.valuation_cr.toLocaleString('en-IN')} Cr</p>
+                          <p className="font-semibold text-[oklch(0.62_0.22_330)] tabular-nums">₹{c.valuation_cr.toLocaleString('en-IN')} Cr</p>
                           {c.revenue_cr && c.revenue_cr > 0 && (
-                            <p className="text-xs text-slate-500">
+                            <p className="text-[10px] text-[oklch(0.50_0.01_260)] tabular-nums">
                               {(c.valuation_cr / c.revenue_cr).toFixed(1)}x revenue
                             </p>
                           )}
@@ -220,11 +280,22 @@ export default function DealCheckPage() {
                       </div>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        )}
+                </div>
+              )}
+
+              {/* CTA */}
+              <div className="text-center pt-2">
+                <p className="text-xs text-[oklch(0.50_0.01_260)] mb-2">Want a full 10-method valuation with this deal analysis?</p>
+                <a
+                  href="/valuation"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[oklch(0.62_0.22_330)] hover:text-[oklch(0.50_0.22_330)] transition-colors"
+                >
+                  Get Your Free Valuation <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   )
