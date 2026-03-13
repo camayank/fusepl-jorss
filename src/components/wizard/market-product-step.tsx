@@ -250,16 +250,26 @@ export function MarketProductStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Intellectual Property</span>
         <div className="mt-3">
-          <Label htmlFor="patents_count" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Number of Patents</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Filed or granted patents (+5 pts each, max 20)</p>
-          <Input
-            id="patents_count"
-            type="number"
-            value={inputs.patents_count}
-            onChange={(e) => setField('patents_count', parseInt(e.target.value) || 0)}
-            min={0}
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-32 h-10"
+          <div className="flex items-center justify-between">
+            <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Patents</Label>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.65_0.14_200)]">{inputs.patents_count}</span>
+          </div>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Filed or granted patents (+5 pts each, max 20)</p>
+          <Slider
+            value={[Math.min(inputs.patents_count, 20)]}
+            onValueChange={(v) => setField('patents_count', Array.isArray(v) ? v[0] : v)}
+            min={0} max={20} step={1}
           />
+          <div className="flex items-center gap-2 mt-2">
+            <Input
+              type="number"
+              value={inputs.patents_count}
+              onChange={(e) => setField('patents_count', parseInt(e.target.value) || 0)}
+              min={0}
+              className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-20 text-sm"
+            />
+            <span className="text-[9px] text-[oklch(0.50_0.01_250)]">Enter higher values manually</span>
+          </div>
         </div>
       </motion.div>
     </motion.div>

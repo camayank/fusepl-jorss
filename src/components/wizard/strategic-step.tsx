@@ -209,28 +209,29 @@ export function StrategicStep() {
             transition={{ duration: 0.2 }}
             className="mt-4"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
               <div>
-                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Concentration (%)</Label>
-                <p className="text-[10px] text-[oklch(0.50_0.01_250)]">% from top 3 customers</p>
-                <Input
-                  type="number"
-                  value={inputs.revenue_concentration_pct ?? ''}
-                  onChange={(e) => setField('revenue_concentration_pct', e.target.value === '' ? null : parseFloat(e.target.value))}
-                  min={0} max={100}
-                  placeholder="e.g., 40"
-                  className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10"
+                <div className="flex items-center justify-between">
+                  <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Concentration (%)</Label>
+                  <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.12_55)]">{inputs.revenue_concentration_pct ?? 0}%</span>
+                </div>
+                <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">% from top 3 customers. Lower is better.</p>
+                <Slider
+                  value={[inputs.revenue_concentration_pct ?? 0]}
+                  onValueChange={(v) => setField('revenue_concentration_pct', Array.isArray(v) ? v[0] : v)}
+                  min={0} max={100} step={5}
                 />
               </div>
               <div>
-                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">International Revenue (%)</Label>
-                <Input
-                  type="number"
-                  value={inputs.international_revenue_pct}
-                  onChange={(e) => setField('international_revenue_pct', parseFloat(e.target.value) || 0)}
-                  min={0} max={100}
-                  placeholder="0"
-                  className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10"
+                <div className="flex items-center justify-between">
+                  <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">International Revenue (%)</Label>
+                  <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.12_55)]">{inputs.international_revenue_pct}%</span>
+                </div>
+                <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Revenue from outside India</p>
+                <Slider
+                  value={[inputs.international_revenue_pct]}
+                  onValueChange={(v) => setField('international_revenue_pct', Array.isArray(v) ? v[0] : v)}
+                  min={0} max={100} step={5}
                 />
               </div>
             </div>
@@ -260,7 +261,7 @@ export function StrategicStep() {
             transition={{ duration: 0.2 }}
             className="mt-4"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
               <div>
                 <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Target Raise (₹)</Label>
                 <Input
@@ -268,18 +269,19 @@ export function StrategicStep() {
                   value={inputs.target_raise ?? ''}
                   onChange={(e) => setField('target_raise', e.target.value === '' ? null : parseFloat(e.target.value))}
                   placeholder="50000000"
-                  className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10"
+                  className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10"
                 />
               </div>
               <div>
-                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Expected Dilution (%)</Label>
-                <Input
-                  type="number"
-                  value={inputs.expected_dilution_pct ?? ''}
-                  onChange={(e) => setField('expected_dilution_pct', e.target.value === '' ? null : parseFloat(e.target.value))}
-                  min={0} max={50}
-                  placeholder="15-25"
-                  className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10"
+                <div className="flex items-center justify-between">
+                  <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Expected Dilution (%)</Label>
+                  <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.12_55)]">{inputs.expected_dilution_pct ?? 0}%</span>
+                </div>
+                <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Typical: 15-25% per round</p>
+                <Slider
+                  value={[inputs.expected_dilution_pct ?? 0]}
+                  onValueChange={(v) => setField('expected_dilution_pct', Array.isArray(v) ? v[0] : v)}
+                  min={0} max={50} step={1}
                 />
               </div>
             </div>

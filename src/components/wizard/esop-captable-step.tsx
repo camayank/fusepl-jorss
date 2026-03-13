@@ -5,6 +5,7 @@ import { useValuationStore } from '@/stores/valuation-store'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DEFAULT_ESOP_PCT } from '@/lib/constants'
+import { Slider } from '@/components/ui/slider'
 import { SkipForward, PieChart } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useAnimatedCounter, staggerContainer, staggerItem } from './wizard-container'
@@ -187,30 +188,30 @@ export function ESOPCapTableStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">ESOP Pool</span>
         <div>
-          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">ESOP Pool (%)</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">
-            Percentage of equity reserved for employee stock options. Typical for {inputs.stage.replace(/_/g, ' ')} stage: {defaultEsop}%
+          <div className="flex items-center justify-between">
+            <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">ESOP Pool (%)</Label>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.esop_pool_pct ?? defaultEsop}%</span>
+          </div>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">
+            Equity reserved for employees. Typical for {inputs.stage.replace(/_/g, ' ')}: {defaultEsop}%
           </p>
-          <Input
-            type="number"
-            value={inputs.esop_pool_pct ?? ''}
-            onChange={(e) => setField('esop_pool_pct', e.target.value === '' ? null : parseFloat(e.target.value))}
-            min={0} max={30}
-            placeholder={String(defaultEsop)}
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-32 h-10"
+          <Slider
+            value={[inputs.esop_pool_pct ?? defaultEsop]}
+            onValueChange={(v) => setField('esop_pool_pct', Array.isArray(v) ? v[0] : v)}
+            min={0} max={30} step={1}
           />
         </div>
 
         <div>
-          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Time to Liquidity (years)</Label>
-          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">How many years until a potential exit (acquisition/IPO)? Used for Black-Scholes ESOP valuation. Typical: 3-7 years.</p>
-          <Input
-            type="number"
-            value={inputs.time_to_liquidity_years ?? ''}
-            onChange={(e) => setField('time_to_liquidity_years', e.target.value === '' ? null : parseInt(e.target.value))}
-            min={1} max={15}
-            placeholder="4"
-            className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-32 h-10"
+          <div className="flex items-center justify-between">
+            <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Time to Liquidity</Label>
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.time_to_liquidity_years ?? 4} yrs</span>
+          </div>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">Years until exit (acquisition/IPO). Typical: 3-7 years.</p>
+          <Slider
+            value={[inputs.time_to_liquidity_years ?? 4]}
+            onValueChange={(v) => setField('time_to_liquidity_years', Array.isArray(v) ? v[0] : v)}
+            min={1} max={15} step={1}
           />
         </div>
       </motion.div>
