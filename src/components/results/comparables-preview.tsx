@@ -38,7 +38,7 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
             <div className="w-7 h-7 rounded-lg bg-[oklch(0.62_0.22_330/0.08)] flex items-center justify-center">
               <Scale className="w-3.5 h-3.5 text-[oklch(0.62 0.22 330)]" />
             </div>
-            <h3 className="text-base font-semibold text-[oklch(0.92_0.003_250)]">Comparable Companies</h3>
+            <h3 className="text-base font-semibold text-[oklch(0.15_0.02_260)]">Comparable Companies</h3>
           </div>
           <p className="text-xs text-[oklch(0.50 0.01 260)] mb-5 ml-[38px]">
             Transparency matters — here are the companies we compared your startup against in {sectorLabel}.
@@ -49,7 +49,7 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="w-3.5 h-3.5 text-[oklch(0.65_0.16_155)]" />
-                <span className="text-xs font-semibold text-[oklch(0.72_0.005_250)] uppercase tracking-wider">
+                <span className="text-xs font-semibold text-[oklch(0.45_0.01_260)] uppercase tracking-wider">
                   Private Startup Transactions
                 </span>
               </div>
@@ -104,7 +104,7 @@ export function ComparablesPreview({ sector, stage, revenue, compositeValue }: P
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Building2 className="w-3.5 h-3.5 text-[oklch(0.65_0.16_250)]" />
-                <span className="text-xs font-semibold text-[oklch(0.72_0.005_250)] uppercase tracking-wider">
+                <span className="text-xs font-semibold text-[oklch(0.45_0.01_260)] uppercase tracking-wider">
                   Public Market Benchmarks
                 </span>
               </div>

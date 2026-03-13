@@ -126,7 +126,7 @@ export function Hero() {
           </svg>
         </Link>
         <Link href="/deal-check"
-          className="btn-press inline-flex items-center justify-center h-14 px-8 text-base font-medium tracking-wide rounded-2xl border border-[oklch(0.80 0.015 260)] text-[oklch(0.25 0.02 260)] transition-all duration-300 hover:border-[oklch(0.62_0.22_330/0.4)] hover:text-white hover:bg-[oklch(0.62_0.22_330/0.08)]"
+          className="btn-press inline-flex items-center justify-center h-14 px-8 text-base font-medium tracking-wide rounded-2xl border border-[oklch(0.80 0.015 260)] text-[oklch(0.25 0.02 260)] transition-all duration-300 hover:border-[oklch(0.62_0.22_330/0.4)] hover:text-[oklch(0.62_0.22_330)] hover:bg-[oklch(0.62_0.22_330/0.08)]"
         >
           Investor Deal Check
         </Link>

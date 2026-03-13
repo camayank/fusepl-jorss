@@ -165,20 +165,20 @@ export default function ReportPage() {
     return (
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="text-center py-20 space-y-4">
-          <h1 className="text-2xl font-bold text-white mb-2">Report Not Found</h1>
-          <p className="text-slate-400 max-w-md mx-auto">
+          <h1 className="text-2xl font-bold text-[oklch(0.15_0.02_260)] mb-2">Report Not Found</h1>
+          <p className="text-[oklch(0.45_0.01_260)] max-w-md mx-auto">
             This report could not be loaded. It may not exist, or the database may not be configured.
           </p>
           <div className="flex gap-3 justify-center mt-6">
             <Button
               onClick={() => window.location.reload()}
               variant="outline"
-              className="border-slate-700 text-slate-300"
+              className="border-[oklch(0.80_0.015_260)] text-[oklch(0.35_0.01_260)]"
             >
               Retry
             </Button>
             <Link href="/valuation">
-              <Button className="bg-amber-500 hover:bg-amber-600 text-slate-900">
+              <Button className="bg-[oklch(0.62_0.22_330)] hover:bg-[oklch(0.55_0.20_330)] text-white">
                 Create New Valuation
               </Button>
             </Link>

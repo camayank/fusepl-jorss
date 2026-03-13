@@ -25,7 +25,7 @@ export function CtaSection() {
             Get Your Valuation
             <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </Link>
-          <Link href="/deal-check" className="btn-press inline-flex items-center justify-center h-14 px-8 text-base font-medium tracking-wide rounded-2xl border border-[oklch(0.80 0.015 260)] text-[oklch(0.25 0.02 260)] transition-all duration-300 hover:border-[oklch(0.62_0.22_330/0.4)] hover:text-white hover:bg-[oklch(0.62_0.22_330/0.08)]">
+          <Link href="/deal-check" className="btn-press inline-flex items-center justify-center h-14 px-8 text-base font-medium tracking-wide rounded-2xl border border-[oklch(0.80 0.015 260)] text-[oklch(0.25 0.02 260)] transition-all duration-300 hover:border-[oklch(0.62_0.22_330/0.4)] hover:text-[oklch(0.62_0.22_330)] hover:bg-[oklch(0.62_0.22_330/0.08)]">
             Investor Deal Check
           </Link>
         </motion.div>

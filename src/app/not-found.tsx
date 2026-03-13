@@ -22,7 +22,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/valuation"
-            className="inline-flex items-center justify-center h-10 px-6 text-sm font-medium border border-[oklch(0.62_0.22_330/0.2)] text-[oklch(0.72_0.005_250)] rounded-lg transition-all hover:border-[oklch(0.62_0.22_330/0.35)]"
+            className="inline-flex items-center justify-center h-10 px-6 text-sm font-medium border border-[oklch(0.62_0.22_330/0.2)] text-[oklch(0.35_0.01_260)] rounded-lg transition-all hover:border-[oklch(0.62_0.22_330/0.35)] hover:text-[oklch(0.62_0.22_330)]"
           >
             Get Valuation
           </Link>

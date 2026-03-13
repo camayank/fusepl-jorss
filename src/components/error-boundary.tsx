@@ -41,24 +41,24 @@ export class ErrorBoundary extends React.Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-8 text-center space-y-4">
-          <h2 className="text-lg font-semibold text-white">
+          <h2 className="text-lg font-semibold text-[oklch(0.15_0.02_260)]">
             {this.props.fallbackTitle ?? 'Something went wrong'}
           </h2>
-          <p className="text-sm text-slate-400 max-w-md mx-auto">
+          <p className="text-sm text-[oklch(0.45_0.01_260)] max-w-md mx-auto">
             {this.props.fallbackMessage ??
               'An unexpected error occurred. Please try again.'}
           </p>
           {this.state.error && (
-            <details className="text-xs text-slate-600 mt-2">
-              <summary className="cursor-pointer hover:text-slate-400">Error details</summary>
-              <pre className="mt-2 text-left bg-slate-900 p-3 rounded overflow-x-auto">
+            <details className="text-xs text-[oklch(0.50_0.01_260)] mt-2">
+              <summary className="cursor-pointer hover:text-[oklch(0.35_0.01_260)]">Error details</summary>
+              <pre className="mt-2 text-left bg-[oklch(0.96_0.005_260)] p-3 rounded overflow-x-auto">
                 {this.state.error.message}
               </pre>
             </details>
           )}
           <Button
             onClick={this.handleReset}
-            className="bg-amber-500 hover:bg-amber-600 text-slate-900"
+            className="bg-[oklch(0.62_0.22_330)] hover:bg-[oklch(0.55_0.20_330)] text-white"
           >
             Try Again
           </Button>

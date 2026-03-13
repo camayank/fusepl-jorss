@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const LINKS: { heading: string; links: { href: string; label: string }[] }[] = [
   {
@@ -28,8 +29,7 @@ export function Footer() {
         <div className="grid gap-12 sm:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="font-heading text-xl tracking-tight text-gold-gradient">FUS</span>
-              <span className="text-[13px] font-medium text-[oklch(0.45 0.01 260)] ml-1.5 tracking-wide uppercase">First Unicorn Startup</span>
+              <Image src="/logo.png" alt="First Unicorn Startup" width={150} height={46} className="h-auto" />
             </Link>
             <p className="mt-4 text-sm text-[oklch(0.45 0.01 260)] leading-relaxed max-w-xs">
               India&apos;s most rigorous startup valuation platform. Built by an IBBI-Registered Insolvency Professional &amp; SFA-Licensed Valuer.

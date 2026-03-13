@@ -107,10 +107,10 @@ export function CertifiedCTA({ valuationId, email, purpose }: Props) {
       <Card className="border-2 border-green-500/30 bg-green-500/5">
         <CardContent className="text-center py-8 space-y-3">
           <CheckCircle className="h-12 w-12 text-green-400 mx-auto" />
-          <h2 className="text-xl font-bold text-white">Payment Received</h2>
-          <p className="text-sm text-slate-400">
+          <h2 className="text-xl font-bold text-[oklch(0.15_0.02_260)]">Payment Received</h2>
+          <p className="text-sm text-[oklch(0.45_0.01_260)]">
             Your {PURPOSE_LABELS[purpose].toLowerCase()} report will be delivered to{' '}
-            <strong className="text-white">{email}</strong> within 48 hours.
+            <strong className="text-[oklch(0.15_0.02_260)]">{email}</strong> within 48 hours.
           </p>
         </CardContent>
       </Card>
@@ -120,16 +120,16 @@ export function CertifiedCTA({ valuationId, email, purpose }: Props) {
   return (
     <Card className="border-2 border-amber-500/30 bg-amber-500/5">
       <CardContent className="text-center py-8 space-y-4">
-        <h2 className="text-xl font-bold text-white">
+        <h2 className="text-xl font-bold text-[oklch(0.15_0.02_260)]">
           Upgrade to {PURPOSE_LABELS[purpose]}
         </h2>
-        <p className="text-sm text-slate-400 max-w-lg mx-auto">
+        <p className="text-sm text-[oklch(0.45_0.01_260)] max-w-lg mx-auto">
           Get a professionally prepared {PURPOSE_LABELS[purpose].toLowerCase()} report
           — {formatPrice(price)}. Signed by a registered valuer where applicable.
         </p>
         <Button
           size="lg"
-          className="mt-2 bg-amber-500 hover:bg-amber-600 text-black font-semibold"
+          className="mt-2 bg-[oklch(0.62_0.22_330)] hover:bg-[oklch(0.55_0.20_330)] text-white font-semibold"
           onClick={handleCheckout}
           disabled={loading || !canPurchase}
         >
@@ -143,9 +143,9 @@ export function CertifiedCTA({ valuationId, email, purpose }: Props) {
           )}
         </Button>
         {!email && (
-          <p className="text-xs text-amber-400">Complete the email gate above to purchase</p>
+          <p className="text-xs text-[oklch(0.62_0.22_330)]">Complete the email gate above to purchase</p>
         )}
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-[oklch(0.50_0.01_260)]">
           Payment via Razorpay. GST included. Refund if not delivered within 48 hours.
         </p>
       </CardContent>
