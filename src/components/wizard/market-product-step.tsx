@@ -156,8 +156,8 @@ export function MarketProductStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Market Sizing</span>
         <div>
-          <Label htmlFor="tam" className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Total Addressable Market (TAM in Cr) *</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">The total market size if you captured 100% of your target customers</p>
+          <Label htmlFor="tam" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Total Addressable Market (TAM in Cr) *</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">The total market size if you captured 100% of your target customers</p>
           <Input
             id="tam"
             type="number"
@@ -166,15 +166,15 @@ export function MarketProductStep() {
             className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-48 h-10"
             placeholder="5000"
           />
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)] mt-1.5 flex items-center gap-1">
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mt-1.5 flex items-center gap-1">
             <Info className="w-3 h-3" />
             Benchmark: Median SaaS TAM in India ≈ ₹5,000 Cr
           </p>
         </div>
 
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Development Stage *</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Where your product is in its journey — from idea to scaling</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Development Stage *</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Where your product is in its journey — from idea to scaling</p>
           <Select value={inputs.dev_stage} onValueChange={(v) => setField('dev_stage', v as any)}>
             <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10">
               <SelectValue />
@@ -190,8 +190,8 @@ export function MarketProductStep() {
         </div>
 
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Competition Level: <span className="text-[oklch(0.65_0.14_200)]">{inputs.competition_level}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)] mb-2">1 = Blue ocean, 5 = Hypercompetitive market</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Competition Level: <span className="text-[oklch(0.65_0.14_200)]">{inputs.competition_level}/5</span></Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">1 = Blue ocean, 5 = Hypercompetitive market</p>
           <Slider
             value={[inputs.competition_level]}
             onValueChange={(v) => setField('competition_level', Array.isArray(v) ? v[0] : v)}
@@ -207,7 +207,7 @@ export function MarketProductStep() {
         <div className="flex items-center justify-between mb-3">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Competitive Advantages</span>
-            <p className="text-[10px] text-[oklch(0.42_0.01_250)]">What makes you hard to copy? Select all that apply (+12 pts each)</p>
+            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">What makes you hard to copy? Select all that apply (+12 pts each)</p>
           </div>
           {advantageCount > 0 && (
             <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[oklch(0.72_0.17_162/0.1)] text-[oklch(0.72_0.17_162)] border border-[oklch(0.72_0.17_162/0.2)]">
@@ -250,8 +250,8 @@ export function MarketProductStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Intellectual Property</span>
         <div className="mt-3">
-          <Label htmlFor="patents_count" className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Number of Patents</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Filed or granted patents (+5 pts each, max 20)</p>
+          <Label htmlFor="patents_count" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Number of Patents</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Filed or granted patents (+5 pts each, max 20)</p>
           <Input
             id="patents_count"
             type="number"

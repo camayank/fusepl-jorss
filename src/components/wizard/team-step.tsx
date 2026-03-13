@@ -112,19 +112,19 @@ export function TeamStep() {
       {/* Team Details */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
         <div>
-          <Label htmlFor="team_size" className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Team Size *</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Founders + employees + contractors</p>
+          <Label htmlFor="team_size" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Team Size *</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Founders + employees + contractors</p>
           <Input id="team_size" type="number" value={inputs.team_size} onChange={(e) => setField('team_size', parseInt(e.target.value) || 1)} min={1} max={500} className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 w-32 h-10" />
         </div>
 
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Founder Experience: <span className="text-[oklch(0.72_0.17_162)]">{inputs.founder_experience}/5</span></Label>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Founder Experience: <span className="text-[oklch(0.72_0.17_162)]">{inputs.founder_experience}/5</span></Label>
           <p className="text-[10px] text-[oklch(0.72_0.17_162/0.7)] mb-2">{EXPERIENCE_LEVELS[inputs.founder_experience]}</p>
           <Slider value={[inputs.founder_experience]} onValueChange={(v) => setField('founder_experience', Array.isArray(v) ? v[0] : v)} min={1} max={5} step={1} />
         </div>
 
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Domain Expertise: <span className="text-[oklch(0.72_0.17_162)]">{inputs.domain_expertise}/5</span></Label>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Domain Expertise: <span className="text-[oklch(0.72_0.17_162)]">{inputs.domain_expertise}/5</span></Label>
           <p className="text-[10px] text-[oklch(0.72_0.17_162/0.7)] mb-2">{EXPERTISE_LEVELS[inputs.domain_expertise]}</p>
           <Slider value={[inputs.domain_expertise]} onValueChange={(v) => setField('domain_expertise', Array.isArray(v) ? v[0] : v)} min={1} max={5} step={1} />
         </div>
@@ -132,19 +132,19 @@ export function TeamStep() {
 
       {/* Founder Signals */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-4">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Founder Signals</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.62_0.01_250)]">Founder Signals</span>
         <div className="flex items-center gap-3">
           <Checkbox id="previous_exits" checked={inputs.previous_exits} onCheckedChange={(checked) => setField('previous_exits', !!checked)} />
           <div>
-            <Label htmlFor="previous_exits" className="text-[oklch(0.72_0.005_250)] cursor-pointer text-sm">Founders have previous exits</Label>
-            <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Previously sold or IPO&apos;d a company (+15 pts)</p>
+            <Label htmlFor="previous_exits" className="text-[oklch(0.78_0.005_250)] cursor-pointer text-sm">Founders have previous exits</Label>
+            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Previously sold or IPO&apos;d a company (+15 pts)</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <Checkbox id="technical_cofounder" checked={inputs.technical_cofounder} onCheckedChange={(checked) => setField('technical_cofounder', !!checked)} />
           <div>
-            <Label htmlFor="technical_cofounder" className="text-[oklch(0.72_0.005_250)] cursor-pointer text-sm">Has technical co-founder</Label>
-            <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Reduces execution risk for product-led startups (+10 pts)</p>
+            <Label htmlFor="technical_cofounder" className="text-[oklch(0.78_0.005_250)] cursor-pointer text-sm">Has technical co-founder</Label>
+            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Reduces execution risk for product-led startups (+10 pts)</p>
           </div>
         </div>
       </motion.div>
@@ -152,8 +152,8 @@ export function TeamStep() {
       {/* Key Hires */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5">
         <div className="mb-3">
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Key Hires</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Senior roles already filled (+2 pts each)</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Key Hires</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Senior roles already filled (+2 pts each)</p>
         </div>
         <div className="flex flex-wrap gap-2.5">
           {KEY_HIRE_OPTIONS.map(option => (

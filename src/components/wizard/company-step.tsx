@@ -216,7 +216,7 @@ export function CompanyStep() {
       {/* Company Name + Website Auto-fill */}
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-4">
         <div>
-          <Label htmlFor="company_name" className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Company Name *</Label>
+          <Label htmlFor="company_name" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Company Name *</Label>
           <Input
             id="company_name"
             value={inputs.company_name}
@@ -270,14 +270,14 @@ export function CompanyStep() {
           {/* Grouped Sector Dropdown */}
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Sector *</Label>
+              <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Sector *</Label>
               {autoDetectedFields.has('sector') && (
                 <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-medium bg-[oklch(0.72_0.17_162/0.12)] text-[oklch(0.72_0.17_162)] border border-[oklch(0.72_0.17_162/0.25)]">
                   <Zap className="w-2.5 h-2.5" />Auto
                 </span>
               )}
             </div>
-            <p className="text-[10px] text-[oklch(0.45_0.01_250)] mb-1">Determines comparable companies & industry multiples</p>
+            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Determines comparable companies & industry multiples</p>
             <Select value={inputs.sector} onValueChange={(v) => setField('sector', v as StartupCategory)}>
               <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] h-10">
                 <SelectValue>
@@ -294,8 +294,8 @@ export function CompanyStep() {
           </div>
 
           <div>
-            <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Stage *</Label>
-            <p className="text-[10px] text-[oklch(0.45_0.01_250)] mb-1">Affects risk discount & applicable methods</p>
+            <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Stage *</Label>
+            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Affects risk discount & applicable methods</p>
             <Select value={inputs.stage} onValueChange={(v) => setField('stage', v as any)}>
               <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] h-10">
                 <SelectValue />
@@ -313,8 +313,8 @@ export function CompanyStep() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Business Model *</Label>
-            <p className="text-[10px] text-[oklch(0.45_0.01_250)] mb-1">Drives revenue multiple selection</p>
+            <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Business Model *</Label>
+            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Drives revenue multiple selection</p>
             <Select value={inputs.business_model} onValueChange={(v) => setField('business_model', v as any)}>
               <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.88_0.005_250)] h-10">
                 <SelectValue />
@@ -340,8 +340,8 @@ export function CompanyStep() {
           </div>
 
           <div>
-            <Label htmlFor="city" className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Headquarters City</Label>
-            <p className="text-[10px] text-[oklch(0.45_0.01_250)] mb-1">Primary office location</p>
+            <Label htmlFor="city" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Headquarters City</Label>
+            <p className="text-[10px] text-[oklch(0.52_0.01_250)] mb-1">Primary office location</p>
             <Input
               id="city" value={inputs.city}
               onChange={(e) => setField('city', e.target.value)}
@@ -352,7 +352,7 @@ export function CompanyStep() {
         </div>
 
         <div>
-          <Label htmlFor="founding_year" className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Year of Incorporation</Label>
+          <Label htmlFor="founding_year" className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Year of Incorporation</Label>
           <Input
             id="founding_year" type="number" value={inputs.founding_year}
             onChange={(e) => setField('founding_year', parseInt(e.target.value) || 2020)}

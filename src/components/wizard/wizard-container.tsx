@@ -303,16 +303,18 @@ export function WizardContainer() {
       </div>
 
       {/* Step content */}
-      <div className="relative bg-[oklch(0.16_0.015_250)] border border-[oklch(0.24_0.018_250)] rounded-2xl p-6 md:p-8 mb-6 overflow-hidden">
-        {/* Subtle top border accent */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.17_162/0.2)] to-transparent" />
+      <div className="relative bg-gradient-to-b from-[oklch(0.17_0.018_250)] to-[oklch(0.14_0.015_250)] border border-[oklch(0.28_0.02_250)] rounded-2xl p-6 md:p-8 mb-6 overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.4),inset_0_1px_0_oklch(0.30_0.02_250/0.3)]">
+        {/* Top border accent — stronger */}
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.17_162/0.4)] to-transparent" />
+        {/* Bottom edge */}
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.17_162/0.1)] to-transparent" />
 
-        {/* Ambient glow orb */}
+        {/* Ambient glow orb — stronger */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none -z-0"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none -z-0"
           style={{
-            background: 'oklch(0.72 0.17 162 / 0.03)',
-            filter: 'blur(120px)',
+            background: 'oklch(0.72 0.17 162 / 0.05)',
+            filter: 'blur(100px)',
           }}
         />
 

@@ -159,7 +159,7 @@ export function StrategicStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Strategic Position</span>
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Strategic Partnerships</Label>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Strategic Partnerships</Label>
           <Select value={inputs.strategic_partnerships} onValueChange={(v) => setField('strategic_partnerships', v as any)}>
             <SelectTrigger className="bg-[oklch(0.12_0.012_250)] border-[oklch(0.26_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10">
               <SelectValue />
@@ -175,8 +175,8 @@ export function StrategicStep() {
         </div>
 
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Regulatory Risk: <span className="text-[oklch(0.72_0.12_55)]">{inputs.regulatory_risk}/5</span></Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Regulatory Risk: <span className="text-[oklch(0.72_0.12_55)]">{inputs.regulatory_risk}/5</span></Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">1 = Minimal regulation, 5 = Heavily regulated industry</p>
           <Slider
             value={[inputs.regulatory_risk]}
             onValueChange={(v) => setField('regulatory_risk', Array.isArray(v) ? v[0] : v)}
@@ -195,7 +195,7 @@ export function StrategicStep() {
         >
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Revenue Composition</span>
-            <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Optional — helps refine risk assessment</p>
+            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Optional — helps refine risk assessment</p>
           </div>
           <motion.div animate={{ rotate: revenueOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown className="w-4 h-4 text-[oklch(0.45_0.01_250)]" />
@@ -211,8 +211,8 @@ export function StrategicStep() {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Concentration (%)</Label>
-                <p className="text-[10px] text-[oklch(0.42_0.01_250)]">% from top 3 customers</p>
+                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Concentration (%)</Label>
+                <p className="text-[10px] text-[oklch(0.50_0.01_250)]">% from top 3 customers</p>
                 <Input
                   type="number"
                   value={inputs.revenue_concentration_pct ?? ''}
@@ -223,7 +223,7 @@ export function StrategicStep() {
                 />
               </div>
               <div>
-                <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">International Revenue (%)</Label>
+                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">International Revenue (%)</Label>
                 <Input
                   type="number"
                   value={inputs.international_revenue_pct}
@@ -246,7 +246,7 @@ export function StrategicStep() {
         >
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Fundraising Plans</span>
-            <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Optional — target raise and expected dilution</p>
+            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Optional — target raise and expected dilution</p>
           </div>
           <motion.div animate={{ rotate: fundraiseOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown className="w-4 h-4 text-[oklch(0.45_0.01_250)]" />
@@ -262,7 +262,7 @@ export function StrategicStep() {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Target Raise (₹)</Label>
+                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Target Raise (₹)</Label>
                 <Input
                   type="number"
                   value={inputs.target_raise ?? ''}
@@ -272,7 +272,7 @@ export function StrategicStep() {
                 />
               </div>
               <div>
-                <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Expected Dilution (%)</Label>
+                <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Expected Dilution (%)</Label>
                 <Input
                   type="number"
                   value={inputs.expected_dilution_pct ?? ''}

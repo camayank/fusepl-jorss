@@ -187,8 +187,8 @@ export function ESOPCapTableStep() {
       <motion.div variants={staggerItem} className="glass-card grain relative rounded-xl p-5 space-y-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">ESOP Pool</span>
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">ESOP Pool (%)</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">ESOP Pool (%)</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">
             Percentage of equity reserved for employee stock options. Typical for {inputs.stage.replace(/_/g, ' ')} stage: {defaultEsop}%
           </p>
           <Input
@@ -202,8 +202,8 @@ export function ESOPCapTableStep() {
         </div>
 
         <div>
-          <Label className="text-[oklch(0.72_0.005_250)] text-xs font-semibold uppercase tracking-wider">Time to Liquidity (years)</Label>
-          <p className="text-[10px] text-[oklch(0.42_0.01_250)]">How many years until a potential exit (acquisition/IPO)? Used for Black-Scholes ESOP valuation. Typical: 3-7 years.</p>
+          <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Time to Liquidity (years)</Label>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)]">How many years until a potential exit (acquisition/IPO)? Used for Black-Scholes ESOP valuation. Typical: 3-7 years.</p>
           <Input
             type="number"
             value={inputs.time_to_liquidity_years ?? ''}
@@ -220,7 +220,7 @@ export function ESOPCapTableStep() {
         <div className="flex items-center justify-between mb-3">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[oklch(0.55_0.01_250)]">Current Cap Table</span>
-            <p className="text-[10px] text-[oklch(0.42_0.01_250)]">Add up to 10 shareholders. Total should equal 100%.</p>
+            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">Add up to 10 shareholders. Total should equal 100%.</p>
           </div>
           <button
             onClick={() => {
