@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { formatINR } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { Slider } from '@/components/ui/slider'
 import { Activity, TrendingUp, Wallet, CircleDollarSign } from 'lucide-react'
 import { useAnimatedCounter, staggerContainer, staggerItem } from './wizard-container'
 
@@ -146,25 +147,41 @@ export function FinancialsStep() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
+        <div>
+          <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Revenue Growth (%)</Label>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">YoY growth. Good SaaS = 100%+, Average = 30-50%</p>
-            <Input type="number" value={inputs.revenue_growth_pct} onChange={(e) => setField('revenue_growth_pct', parseFloat(e.target.value) || 0)} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10 focus:border-[oklch(0.72_0.17_162/0.5)]" placeholder="80" />
-            {inputs.annual_revenue > 0 && inputs.revenue_growth_pct > 0 && (
-              <div className="mt-1.5 flex items-center gap-2">
-                <div className="flex-1 h-1.5 bg-[oklch(0.20_0.015_250)] rounded-full overflow-hidden relative">
-                  <div className="absolute top-0 bottom-0 w-px bg-[oklch(0.50_0.01_250)]" style={{ left: `${Math.min(100, (50 / Math.max(inputs.revenue_growth_pct, 100)) * 100)}%` }} />
-                  <motion.div className="h-full rounded-full" style={{ width: `${Math.min(100, (inputs.revenue_growth_pct / Math.max(inputs.revenue_growth_pct, 100)) * 100)}%`, background: inputs.revenue_growth_pct >= 50 ? 'oklch(0.65 0.16 155)' : 'oklch(0.72 0.14 80)' }} animate={{ width: `${Math.min(100, (inputs.revenue_growth_pct / Math.max(inputs.revenue_growth_pct, 100)) * 100)}%` }} />
-                </div>
-                <span className="text-[9px] text-[oklch(0.45_0.01_250)] whitespace-nowrap font-mono">Median: 50%</span>
-              </div>
-            )}
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.revenue_growth_pct}%</span>
           </div>
-          <div>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">YoY growth. Good SaaS = 100%+, Average = 30-50%</p>
+          <Slider
+            value={[Math.min(inputs.revenue_growth_pct, 300)]}
+            onValueChange={(v) => setField('revenue_growth_pct', Array.isArray(v) ? v[0] : v)}
+            min={0}
+            max={300}
+            step={5}
+          />
+          <div className="flex items-center gap-2 mt-2">
+            <Input type="number" value={inputs.revenue_growth_pct} onChange={(e) => setField('revenue_growth_pct', parseFloat(e.target.value) || 0)} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-24 text-sm focus:border-[oklch(0.72_0.17_162/0.5)]" placeholder="80" />
+            <span className="text-[9px] text-[oklch(0.50_0.01_250)] font-mono">% per year</span>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between">
             <Label className="text-[oklch(0.78_0.005_250)] text-xs font-semibold uppercase tracking-wider">Gross Margin (%)</Label>
-            <p className="text-[10px] text-[oklch(0.50_0.01_250)]">SaaS = 70-90%, E-commerce = 30-50%</p>
-            <Input type="number" value={inputs.gross_margin_pct} onChange={(e) => setField('gross_margin_pct', parseFloat(e.target.value) || 0)} min={0} max={100} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] mt-1 h-10 focus:border-[oklch(0.72_0.17_162/0.5)]" placeholder="70" />
+            <span className="font-mono text-sm font-bold tabular-nums text-[oklch(0.72_0.17_162)]">{inputs.gross_margin_pct}%</span>
+          </div>
+          <p className="text-[10px] text-[oklch(0.50_0.01_250)] mb-2">SaaS = 70-90%, E-commerce = 30-50%</p>
+          <Slider
+            value={[inputs.gross_margin_pct]}
+            onValueChange={(v) => setField('gross_margin_pct', Array.isArray(v) ? v[0] : v)}
+            min={0}
+            max={100}
+            step={1}
+          />
+          <div className="flex items-center gap-2 mt-2">
+            <Input type="number" value={inputs.gross_margin_pct} onChange={(e) => setField('gross_margin_pct', parseFloat(e.target.value) || 0)} min={0} max={100} className="bg-[oklch(0.13_0.012_250)] border-[oklch(0.28_0.018_250)] text-[oklch(0.92_0.005_250)] h-9 w-24 text-sm focus:border-[oklch(0.72_0.17_162/0.5)]" placeholder="70" />
+            <span className="text-[9px] text-[oklch(0.50_0.01_250)] font-mono">%</span>
           </div>
         </div>
       </motion.div>
