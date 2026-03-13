@@ -30,17 +30,12 @@ export default function ValuationPage() {
     setHydrated(true)
   }, [])
 
-  // Determine mode after hydration + transition wizard→results when done
+  // Determine initial mode after hydration (runs once)
   useEffect(() => {
     if (!hydrated) return
-    if (mode === 'results') return // already showing results
-    if (mode === 'wizard') {
-      // Wizard completed — transition to results when result is set
-      if (result) setMode('results')
-      return
-    }
     setMode(result ? 'interstitial' : 'wizard')
-  }, [hydrated, result, mode])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hydrated])
 
   const handleUnlocked = (reportId: string) => {
     if (reportId !== 'local') {
@@ -119,8 +114,8 @@ export default function ValuationPage() {
     )
   }
 
-  // Wizard mode
-  if (mode === 'wizard' || !result) {
+  // Wizard mode — show wizard only when no result yet
+  if (!result) {
     return (
       <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] py-10">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[120px] pointer-events-none" />
