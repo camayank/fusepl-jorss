@@ -77,9 +77,9 @@ export function MethodContribution({ methods, compositeValue }: Props) {
                     return [`${value}% weight (${formatINR(avgValue)})`, '']
                   }}
                   contentStyle={{
-                    backgroundColor: 'oklch(0.12 0.008 260)',
-                    border: '1px solid oklch(0.22 0.008 260)',
-                    color: 'oklch(0.85 0.005 80)',
+                    backgroundColor: 'white',
+                    border: '1px solid oklch(0.91 0.005 260)',
+                    color: 'oklch(0.25 0.02 260)',
                     borderRadius: '10px',
                     fontSize: '11px',
                     padding: '8px 12px',

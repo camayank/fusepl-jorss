@@ -236,9 +236,9 @@ export function MarketProductStep() {
                 {COMPETITIVE_ADVANTAGE_LABELS[key]}
               </label>
               {hoveredAdvantage === key && ADVANTAGE_DESCRIPTIONS[key] && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 rounded-lg bg-[oklch(0.22_0.018_250)] border border-[oklch(0.30_0.018_250)] text-[10px] text-[oklch(0.75_0.005_250)] whitespace-nowrap max-w-[250px] text-wrap z-50 shadow-lg pointer-events-none">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 rounded-lg bg-white border border-[oklch(0.91_0.005_260)] text-[10px] text-[oklch(0.35_0.02_260)] whitespace-nowrap max-w-[250px] text-wrap z-50 shadow-lg pointer-events-none">
                   {ADVANTAGE_DESCRIPTIONS[key]}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-[oklch(0.30_0.018_250)]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-l-transparent border-r-transparent border-t-[oklch(0.91_0.005_260)]" />
                 </div>
               )}
             </div>

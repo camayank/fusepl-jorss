@@ -68,7 +68,7 @@ export function MethodCards({ methods, monteCarlo }: Props) {
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.4, delay: i * 0.08 }}
           >
-            <div className="group rounded-xl bg-[oklch(0.97 0.003 260)] border border-[oklch(0.91 0.005 260)] overflow-hidden transition-all duration-300 hover:border-[oklch(0.25_0.008_260)] hover:shadow-[0_4px_24px_oklch(0_0_0/0.3)]">
+            <div className="group rounded-xl bg-[oklch(0.97 0.003 260)] border border-[oklch(0.91 0.005 260)] overflow-hidden transition-all duration-300 hover:border-[oklch(0.62_0.22_330/0.3)] hover:shadow-[0_4px_24px_oklch(0_0_0/0.08)]">
               {/* Header */}
               <div className="flex items-center justify-between px-5 py-3.5 border-b border-[oklch(0.91 0.005 260)]">
                 <div className="flex items-center gap-2.5">

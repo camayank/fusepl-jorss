@@ -68,7 +68,7 @@ function CapTableRing({ percentage, entries }: {
       <div className="relative">
         <svg width="120" height="120" viewBox="0 0 120 120" className="overflow-visible">
           {/* Decorative outer dashed ring */}
-          <circle cx={cx} cy={cy} r={radius + 8} fill="none" stroke="oklch(0.30 0.01 250 / 0.4)" strokeWidth="1" strokeDasharray="4 8" />
+          <circle cx={cx} cy={cy} r={radius + 8} fill="none" stroke="oklch(0.80 0.01 260 / 0.4)" strokeWidth="1" strokeDasharray="4 8" />
           {/* Background circle */}
           <circle cx={cx} cy={cy} r={radius} fill="none" stroke="oklch(0.96 0.005 260)" strokeWidth="8" />
           {/* Multi-segment arcs */}

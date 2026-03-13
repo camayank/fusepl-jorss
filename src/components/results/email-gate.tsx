@@ -77,9 +77,9 @@ export function EmailGate({ onUnlocked }: Props) {
           <div className="h-4 bg-[oklch(0.91 0.005 260)] rounded w-2/3" />
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex items-center gap-2 bg-[oklch(0.12_0.025_260/0.9)] backdrop-blur-sm px-4 py-2 rounded-full border border-[oklch(0.62_0.22_330/0.2)]">
+          <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[oklch(0.91_0.005_260)] shadow-sm">
             <Lock className="h-3.5 w-3.5 text-[oklch(0.62 0.22 330)]" />
-            <span className="text-xs font-medium text-[oklch(0.75_0.005_250)]">Full report locked</span>
+            <span className="text-xs font-medium text-[oklch(0.35_0.02_260)]">Full report locked</span>
           </div>
         </div>
       </div>
