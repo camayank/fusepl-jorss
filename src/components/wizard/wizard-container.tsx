@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { useValuationStore } from '@/stores/valuation-store'
 import { calculateValuation } from '@/lib/valuation'
 import { WIZARD_STEPS } from '@/lib/constants'
@@ -14,6 +14,101 @@ import { ESOPCapTableStep } from './esop-captable-step'
 import { toast } from 'sonner'
 import { Loader2, ChevronLeft, ChevronRight, Sparkles, Check } from 'lucide-react'
 import type { WizardInputs } from '@/types'
+
+/* ─── useAnimatedCounter ────────────────────────────────────────────── */
+export function useAnimatedCounter(target: number, duration = 600) {
+  const [value, setValue] = useState(target)
+  const prevTarget = useRef(target)
+
+  useEffect(() => {
+    if (target === prevTarget.current) return
+    const from = prevTarget.current
+    prevTarget.current = target
+    const startTime = performance.now()
+    const tick = (now: number) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 4) // easeOutQuart
+      setValue(Math.round(from + (target - from) * eased))
+      if (progress < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [target, duration])
+
+  return value
+}
+
+/* ─── Stagger variants ──────────────────────────────────────────────── */
+export const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+  },
+}
+
+export const staggerItem = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  },
+}
+
+/* ─── Celebration Particles ─────────────────────────────────────────── */
+function CelebrationParticles({ active }: { active: boolean }) {
+  if (!active) return null
+  const particles = Array.from({ length: 14 }, (_, i) => {
+    const angle = (i / 14) * 360 + (Math.random() * 20 - 10)
+    const distance = 50 + Math.random() * 40
+    const size = 4 + Math.random() * 4
+    const hue = 155 + Math.random() * 25
+    const rad = (angle * Math.PI) / 180
+    return (
+      <motion.div
+        key={i}
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: size,
+          height: size,
+          background: `oklch(0.72 0.17 ${hue})`,
+          left: '50%',
+          top: '50%',
+          marginLeft: -size / 2,
+          marginTop: -size / 2,
+        }}
+        initial={{ x: 0, y: 0, opacity: 1, scale: 0 }}
+        animate={{
+          x: Math.cos(rad) * distance,
+          y: Math.sin(rad) * distance,
+          opacity: 0,
+          scale: 1,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: i * 0.03,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      />
+    )
+  })
+
+  return (
+    <>
+      {/* Radial gradient flash */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.15, 0] }}
+        transition={{ duration: 0.5 }}
+        style={{
+          background: 'radial-gradient(circle at center, oklch(0.65 0.16 155 / 0.3), transparent 70%)',
+        }}
+      />
+      {particles}
+    </>
+  )
+}
 
 function validateStep(step: number, inputs: WizardInputs): string | null {
   switch (step) {
@@ -52,14 +147,30 @@ const STEP_COMPONENTS = [
   ESOPCapTableStep,
 ]
 
+const STEP_SUBTITLES = [
+  "Let's start with the basics",
+  "Tell us about your people",
+  "Show us the numbers",
+  "How big is the opportunity?",
+  "Almost there — just 2 more steps!",
+  "Final step — you're at the finish line!",
+]
+
 export function WizardContainer() {
   const { currentStep, highestCompletedStep, inputs, nextStep, prevStep, goToStep, completeStep, setResult } =
     useValuationStore()
   const [direction, setDirection] = useState(1)
   const [computing, setComputing] = useState(false)
+  const [celebratingStep, setCelebratingStep] = useState<number | null>(null)
 
   const StepComponent = STEP_COMPONENTS[currentStep - 1]
   const progress = ((currentStep - 1) / 5) * 100
+  const completionPct = Math.round(((currentStep - 1) / 6) * 100)
+
+  const triggerCelebration = useCallback((step: number) => {
+    setCelebratingStep(step)
+    setTimeout(() => setCelebratingStep(null), 800)
+  }, [])
 
   const handleNext = () => {
     const error = validateStep(currentStep, inputs)
@@ -68,6 +179,7 @@ export function WizardContainer() {
       return
     }
     completeStep(currentStep)
+    triggerCelebration(currentStep)
     if (currentStep === 6) {
       setComputing(true)
       setTimeout(() => {
@@ -101,13 +213,16 @@ export function WizardContainer() {
         <div className="flex items-center justify-center gap-2 mb-3">
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-[oklch(0.72_0.17_162/0.4)]" />
           <span className="text-[10px] font-semibold text-[oklch(0.72_0.17_162)] uppercase tracking-[0.25em]">
-            Step {currentStep} of 6
+            Step {currentStep} of 6 — {completionPct}% complete
           </span>
           <div className="h-px w-8 bg-gradient-to-l from-transparent to-[oklch(0.72_0.17_162/0.4)]" />
         </div>
         <h1 className="font-heading text-2xl sm:text-3xl text-[oklch(0.95_0.002_250)]">
           {WIZARD_STEPS[currentStep - 1]}
         </h1>
+        <p className="text-xs text-[oklch(0.50_0.01_250)] mt-1.5">
+          {STEP_SUBTITLES[currentStep - 1]}
+        </p>
       </div>
 
       {/* Progress bar */}
@@ -136,16 +251,26 @@ export function WizardContainer() {
             const isActive = stepNum === currentStep
             const isCompleted = stepNum <= highestCompletedStep
             const isClickable = stepNum <= highestCompletedStep + 1
+            const isCelebrating = celebratingStep === stepNum
             return (
               <button
                 key={label}
                 onClick={() => handleStepClick(stepNum)}
                 disabled={!isClickable}
-                className="flex flex-col items-center gap-2 transition-all group"
+                className="flex flex-col items-center gap-2 transition-all group relative"
               >
                 <motion.span
                   whileHover={isClickable ? { scale: 1.1 } : {}}
                   whileTap={isClickable ? { scale: 0.95 } : {}}
+                  animate={isCelebrating ? {
+                    scale: [1, 1.35, 1],
+                    boxShadow: [
+                      '0 0 0px oklch(0.65 0.16 155 / 0)',
+                      '0 0 20px oklch(0.65 0.16 155 / 0.5)',
+                      '0 0 0px oklch(0.65 0.16 155 / 0)',
+                    ],
+                  } : {}}
+                  transition={isCelebrating ? { duration: 0.5, ease: 'easeOut' } : undefined}
                   className={`
                     inline-flex items-center justify-center w-8 h-8 rounded-full text-[11px] font-semibold transition-all duration-300
                     ${isActive
@@ -160,6 +285,8 @@ export function WizardContainer() {
                 >
                   {isCompleted ? <Check className="w-3.5 h-3.5" /> : stepNum}
                 </motion.span>
+                {/* Celebration particles on step indicator */}
+                <CelebrationParticles active={isCelebrating} />
                 <span className={`text-[9px] hidden sm:block uppercase tracking-wider transition-colors ${
                   isActive
                     ? 'text-[oklch(0.72_0.17_162)]'
@@ -180,6 +307,15 @@ export function WizardContainer() {
         {/* Subtle top border accent */}
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.17_162/0.2)] to-transparent" />
 
+        {/* Ambient glow orb */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none -z-0"
+          style={{
+            background: 'oklch(0.72 0.17 162 / 0.03)',
+            filter: 'blur(120px)',
+          }}
+        />
+
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentStep}
@@ -188,6 +324,7 @@ export function WizardContainer() {
             animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, x: direction > 0 ? -40 : 40, filter: 'blur(4px)' }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-[1]"
           >
             <StepComponent />
           </motion.div>
