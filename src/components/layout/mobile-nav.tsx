@@ -49,7 +49,7 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
         <div className="flex flex-col h-full">
           {/* Branding */}
           <div className="flex items-center gap-2 p-5 border-b border-[oklch(0.91_0.005_260)]">
-            <Image src="/logo.png" alt="First Unicorn Startup" width={120} height={32} className="h-7 w-auto" />
+            <Image src="/logo.png" alt="First Unicorn Startup" width={140} height={36} className="h-8 w-auto" />
           </div>
 
           {/* Navigation */}

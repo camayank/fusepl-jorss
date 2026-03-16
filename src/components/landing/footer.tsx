@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid gap-12 sm:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <Image src="/logo.png" alt="First Unicorn Startup" width={150} height={46} className="h-auto" />
+              <Image src="/logo.png" alt="First Unicorn Startup" width={180} height={56} className="h-12 w-auto" />
             </Link>
             <p className="mt-4 text-sm text-[oklch(0.45 0.01 260)] leading-relaxed max-w-xs">
               India&apos;s most rigorous startup valuation platform. Built by an IBBI-Registered Insolvency Professional &amp; SFA-Licensed Valuer.
@@ -52,6 +52,7 @@ export function Footer() {
           <p className="text-[11px] text-[oklch(0.50 0.01 260)]">&copy; {new Date().getFullYear()} firstunicornstartup.com. All rights reserved.</p>
           <div className="flex items-center gap-5 text-[11px] text-[oklch(0.50 0.01 260)]">
             <Link href="/privacy" className="transition-colors hover:text-[oklch(0.30 0.01 260)]">Privacy</Link>
+            <Link href="/refund-policy" className="transition-colors hover:text-[oklch(0.30 0.01 260)]">Refunds</Link>
             <Link href="/terms" className="transition-colors hover:text-[oklch(0.30 0.01 260)]">Terms</Link>
           </div>
         </div>

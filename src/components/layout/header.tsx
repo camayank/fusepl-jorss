@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: '/deal-check', label: 'Deal Check' },
   { href: '/cap-table', label: 'Cap Table' },
   { href: '/esop-calculator', label: 'ESOP' },
+  { href: 'https://profile.firstunicornstartup.com/', label: 'Our Services', isExternal: true },
 ]
 
 export function Header() {
@@ -19,14 +20,17 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-[oklch(0.91_0.005_260)] bg-[oklch(0.995_0.001_260)]">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-          <Image src="/logo.png" alt="First Unicorn Startup" width={140} height={36} className="h-8 w-auto" priority />
+          <Image src="/logo.png" alt="First Unicorn Startup" width={160} height={42} className="h-9 w-auto" priority />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href || (pathname?.startsWith(link.href + '/') ?? false)
+            const isExternal = (link as any).isExternal
             return (
               <Link key={link.href} href={link.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
                 className={`focus-ring relative px-3.5 py-1.5 text-[13px] font-medium tracking-wide uppercase rounded-lg transition-all duration-200
                   ${isActive ? 'text-[oklch(0.62_0.22_330)] bg-[oklch(0.62_0.22_330/0.08)]' : 'text-[oklch(0.35_0.02_260)] hover:text-[oklch(0.20_0.02_260)] hover:bg-[oklch(0.96_0.005_260)]'}`}
                 aria-current={isActive ? 'page' : undefined}

@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     title: 'First Unicorn Startup — Startup Valuation Platform',
     description: '10 methods, 3 approaches, Monte Carlo, Damodaran India data. Free.',
   },
+  icons: {
+    icon: '/logo.png',
+  },
   metadataBase: new URL('https://firstunicornstartup.com'),
 }
 
