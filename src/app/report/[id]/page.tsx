@@ -16,6 +16,7 @@ import { RecommendationsSection } from '@/components/report/recommendations-sect
 import { CertifiedCTA } from '@/components/report/certified-cta'
 import { GatedSection } from '@/components/report/gated-section'
 import { PDFDownloadButton } from '@/components/report/pdf-download-button'
+import { StickyReportCTA } from '@/components/report/sticky-report-cta'
 import { getReportConfig } from '@/lib/report-config'
 import { formatINR } from '@/lib/utils'
 import { ReportSkeleton } from '@/components/skeletons'
@@ -100,37 +101,37 @@ export default function ReportPage() {
         setValuation({
           id: id,
           email: '',
-          companyName: storeInputs.company_name,
+          company_name: storeInputs.company_name,
           sector: storeInputs.sector,
           stage: storeInputs.stage,
-          annualRevenue: storeInputs.annual_revenue?.toString(),
-          revenueGrowthPct: storeInputs.revenue_growth_pct?.toString(),
-          grossMarginPct: storeInputs.gross_margin_pct?.toString(),
-          monthlyBurn: storeInputs.monthly_burn?.toString(),
-          cashInBank: storeInputs.cash_in_bank?.toString(),
+          annual_revenue: storeInputs.annual_revenue?.toString(),
+          revenue_growth_pct: storeInputs.revenue_growth_pct?.toString(),
+          gross_margin_pct: storeInputs.gross_margin_pct?.toString(),
+          monthly_burn: storeInputs.monthly_burn?.toString(),
+          cash_in_bank: storeInputs.cash_in_bank?.toString(),
           tam: storeInputs.tam?.toString(),
-          teamSize: storeInputs.team_size,
-          founderExperience: storeInputs.founder_experience,
-          domainExpertise: storeInputs.domain_expertise,
-          previousExits: storeInputs.previous_exits,
-          devStage: storeInputs.dev_stage,
-          competitiveAdvantages: storeInputs.competitive_advantages?.join(', ') ?? null,
-          competitionLevel: storeInputs.competition_level,
-          esopPoolPct: storeInputs.esop_pool_pct?.toString(),
-          timeToLiquidityYears: storeInputs.time_to_liquidity_years,
-          targetRaise: storeInputs.target_raise?.toString(),
-          currentCapTable: storeInputs.current_cap_table,
-          valuationLow: storeResult.composite_low?.toString(),
-          valuationMid: storeResult.composite_value?.toString(),
-          valuationHigh: storeResult.composite_high?.toString(),
-          confidenceScore: storeResult.confidence_score,
-          methodResults: storeResult.methods,
-          monteCarloPercentiles: storeResult.monte_carlo,
-          ibcRecoveryRange: storeResult.ibc_recovery_range,
-          aiNarrative: null,
+          team_size: storeInputs.team_size,
+          founder_experience: storeInputs.founder_experience,
+          domain_expertise: storeInputs.domain_expertise,
+          previous_exits: storeInputs.previous_exits,
+          dev_stage: storeInputs.dev_stage,
+          competitive_advantages: storeInputs.competitive_advantages?.join(', ') ?? null,
+          competition_level: storeInputs.competition_level,
+          esop_pool_pct: storeInputs.esop_pool_pct?.toString(),
+          time_to_liquidity_years: storeInputs.time_to_liquidity_years,
+          target_raise: storeInputs.target_raise?.toString(),
+          current_cap_table: storeInputs.current_cap_table,
+          valuation_low: storeResult.composite_low?.toString(),
+          valuation_mid: storeResult.composite_value?.toString(),
+          valuation_high: storeResult.composite_high?.toString(),
+          confidence_score: storeResult.confidence_score,
+          method_results: storeResult.methods,
+          monte_carlo_percentiles: storeResult.monte_carlo,
+          ibc_recovery_range: storeResult.ibc_recovery_range,
+          ai_narrative: null,
           purpose: storePurpose,
-          paidPurpose: null,
-          createdAt: new Date().toISOString(),
+          paid_purpose: null,
+          created_at: new Date().toISOString(),
         })
         setLoading(false)
         return
@@ -217,47 +218,74 @@ export default function ReportPage() {
 
       <MethodologySection methods={result.methods} />
 
-      <BenchmarksSection sector={valuation.sector} />
-
-      <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
-        <ComparablesSection sector={valuation.sector} stage={valuation.stage} />
-      </GatedSection>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="lg:col-span-5">
+           <BenchmarksSection sector={valuation.sector} />
+        </div>
+        <div className="lg:col-span-7">
+          <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+            <ComparablesSection sector={valuation.sector} stage={valuation.stage} />
+          </GatedSection>
+        </div>
+      </div>
 
       {config.showListedComparables && (
         <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
           <ListedComparablesSection
             sector={valuation.sector}
-            revenue={valuation.annualRevenue}
+            revenue={valuation.annual_revenue}
             stage={valuation.stage}
           />
         </GatedSection>
       )}
 
-      {config.showIBCDownside && (
-        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
-          <DownsideSection sector={valuation.sector} />
-        </GatedSection>
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="lg:col-span-6">
+          {config.showESOPDetail ? (
+            <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+              <ESOPSection valuation={valuation} compositeValue={result.composite_value} />
+            </GatedSection>
+          ) : (
+            <div className="glass-card grain rounded-xl p-8 flex flex-col items-center justify-center text-center h-full bg-slate-50/50">
+              <p className="text-sm font-medium text-slate-400 italic">ESOP analysis unavailable for this report type.</p>
+            </div>
+          )}
+        </div>
+        <div className="lg:col-span-6">
+          <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+            <CapTableSection valuation={valuation} compositeValue={result.composite_value} />
+          </GatedSection>
+        </div>
+      </div>
 
-      {config.showESOPDetail && (
-        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
-          <ESOPSection valuation={valuation} compositeValue={result.composite_value} />
-        </GatedSection>
-      )}
-
-      <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
-        <CapTableSection valuation={valuation} compositeValue={result.composite_value} />
-      </GatedSection>
-
-      {config.showInvestorMatch && (
-        <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
-          <InvestorSection
-            sector={valuation.sector}
-            stage={valuation.stage}
-            targetRaise={valuation.targetRaise}
-          />
-        </GatedSection>
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="lg:col-span-7">
+          {config.showInvestorMatch ? (
+            <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+              <InvestorSection
+                sector={valuation.sector}
+                stage={valuation.stage}
+                targetRaise={valuation.target_raise}
+              />
+            </GatedSection>
+          ) : (
+             <div className="glass-card grain rounded-xl p-8 flex flex-col items-center justify-center text-center h-full bg-slate-50/50">
+                <p className="text-sm font-medium text-slate-400 italic">Investor matching unavailable for this report type.</p>
+             </div>
+          )}
+        </div>
+        <div className="lg:col-span-5">
+          {config.showIBCDownside ? (
+            <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
+              <DownsideSection sector={valuation.sector} />
+            </GatedSection>
+          ) : (
+             <div className="glass-card grain rounded-xl p-8 flex flex-col items-center justify-center text-center h-full bg-slate-50/50">
+                <p className="text-sm font-medium text-slate-400 italic">Downside analysis unavailable for this report type.</p>
+             </div>
+          )}
+        </div>
+      </div>
 
       {config.showAINarrative && (
         <GatedSection purpose={purpose} paidPurpose={paidPurpose}>
@@ -271,7 +299,11 @@ export default function ReportPage() {
 
       <PDFDownloadButton valuation={valuation} result={result} />
 
-      <CertifiedCTA valuationId={valuation.id} email={valuation.email || ''} purpose={purpose} />
+      <div id="certified-cta-section">
+        <CertifiedCTA valuationId={valuation.id} email={valuation.email || ''} purpose={purpose} />
+      </div>
+
+      <StickyReportCTA />
     </main>
   )
 }

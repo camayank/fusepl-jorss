@@ -2,8 +2,9 @@
 
 import { db } from '@/db'
 import { valuations, users } from '@/db/schema'
-import { eq } from 'drizzle-orm'
+import { eq, and, desc } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
+import { normalizePhone } from '@/lib/utils'
 
 export async function getValuationById(id: string) {
   if (!id || id === 'local') return null
@@ -11,42 +12,46 @@ export async function getValuationById(id: string) {
   try {
     const result = await db.select({
       id: valuations.id,
-      companyName: valuations.companyName,
+      company_name: valuations.companyName,
       sector: valuations.sector,
       stage: valuations.stage,
-      businessModel: valuations.businessModel,
+      business_model: valuations.businessModel,
       city: valuations.city,
-      foundingYear: valuations.foundingYear,
-      teamSize: valuations.teamSize,
-      founderExperience: valuations.founderExperience,
-      domainExpertise: valuations.domainExpertise,
-      previousExits: valuations.previousExits,
-      devStage: valuations.devStage,
-      competitiveAdvantages: valuations.competitiveAdvantages,
-      competitionLevel: valuations.competitionLevel,
-      annualRevenue: valuations.annualRevenue,
-      revenueGrowthPct: valuations.revenueGrowthPct,
-      grossMarginPct: valuations.grossMarginPct,
-      monthlyBurn: valuations.monthlyBurn,
-      cashInBank: valuations.cashInBank,
+      founding_year: valuations.foundingYear,
+      team_size: valuations.teamSize,
+      founder_experience: valuations.founderExperience,
+      domain_expertise: valuations.domainExpertise,
+      previous_exits: valuations.previousExits,
+      dev_stage: valuations.devStage,
+      competitive_advantages: valuations.competitiveAdvantages,
+      competition_level: valuations.competitionLevel,
+      annual_revenue: valuations.annualRevenue,
+      revenue_growth_pct: valuations.revenueGrowthPct,
+      gross_margin_pct: valuations.grossMarginPct,
+      monthly_burn: valuations.monthlyBurn,
+      cash_in_bank: valuations.cashInBank,
       tam: valuations.tam,
-      esopPoolPct: valuations.esopPoolPct,
-      timeToLiquidityYears: valuations.timeToLiquidityYears,
-      currentCapTable: valuations.currentCapTable,
-      targetRaise: valuations.targetRaise,
-      valuationLow: valuations.valuationLow,
-      valuationMid: valuations.valuationMid,
-      valuationHigh: valuations.valuationHigh,
-      confidenceScore: valuations.confidenceScore,
-      methodResults: valuations.methodResults,
-      monteCarloPercentiles: valuations.monteCarloPercentiles,
-      ibcRecoveryRange: valuations.ibcRecoveryRange,
-      aiNarrative: valuations.aiNarrative,
+      esop_pool_pct: valuations.esopPoolPct,
+      time_to_liquidity_years: valuations.timeToLiquidityYears,
+      current_cap_table: valuations.currentCapTable,
+      target_raise: valuations.targetRaise,
+      valuation_low: valuations.valuationLow,
+      valuation_mid: valuations.valuationMid,
+      valuation_high: valuations.valuationHigh,
+      confidence_score: valuations.confidenceScore,
+      method_results: valuations.methodResults,
+      monte_carlo_percentiles: valuations.monteCarloPercentiles,
+      ibc_recovery_range: valuations.ibcRecoveryRange,
+      ai_narrative: valuations.aiNarrative,
       purpose: valuations.purpose,
-      paidPurpose: valuations.paidPurpose,
-      createdAt: valuations.createdAt,
+      paid_purpose: valuations.paidPurpose,
+      created_at: valuations.createdAt,
+      userName: users.name,
+      userPhone: users.phone,
+      userEmail: users.email,
     })
     .from(valuations)
+    .leftJoin(users, eq(valuations.userId, users.id))
     .where(eq(valuations.id, id))
     .limit(1)
     
@@ -59,18 +64,20 @@ export async function getValuationById(id: string) {
 
 export async function saveValuation(data: any) {
   try {
+    const normalizedPhone = normalizePhone(data.phone)
+
     // 1. Upsert user
     const userResult = await db.insert(users)
       .values({ 
         email: data.email,
         name: data.name,
-        phone: data.phone
+        phone: normalizedPhone
       })
       .onConflictDoUpdate({
         target: users.email,
         set: { 
           name: data.name,
-          phone: data.phone
+          phone: normalizedPhone
         }
       })
       .returning({ id: users.id })
@@ -120,5 +127,35 @@ export async function saveValuation(data: any) {
   } catch (error) {
     console.error('[Action] saveValuation failed:', error)
     throw new Error('Failed to save valuation')
+  }
+}
+export async function getValuationHistory(email: string, phone: string) {
+  try {
+    const normalizedPhone = normalizePhone(phone)
+    const matchedUser = await db.select()
+      .from(users)
+      .where(and(eq(users.email, email), eq(users.phone, normalizedPhone)))
+      .limit(1)
+
+    if (!matchedUser.length) {
+      return { success: false, error: 'No matching records found. Please check your details.' }
+    }
+
+    const records = await db.select({
+      id: valuations.id,
+      companyName: valuations.companyName,
+      createdAt: valuations.createdAt,
+      valuationMid: valuations.valuationMid,
+      sector: valuations.sector,
+      stage: valuations.stage,
+    })
+    .from(valuations)
+    .where(eq(valuations.userId, matchedUser[0].id))
+    .orderBy(desc(valuations.createdAt))
+
+    return { success: true, records }
+  } catch (error) {
+    console.error('[Action] getValuationHistory failed:', error)
+    return { success: false, error: 'Failed to retrieve history.' }
   }
 }

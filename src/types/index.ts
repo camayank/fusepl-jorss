@@ -658,7 +658,7 @@ export interface WizardInputs {
 export interface CapTableEntry {
   name: string
   percentage: number
-  share_class: 'common' | 'preference' | 'esop'
+  share_class: 'common' | 'preference' | 'esop' | 'advisory'
 }
 
 // ============================================================

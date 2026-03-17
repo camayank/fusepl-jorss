@@ -314,12 +314,15 @@ export async function POST(req: NextRequest) {
       normalizedUrl = 'https://' + normalizedUrl;
     }
 
-    // Validate URL format
+    // Validate URL format and presence of a dot in hostname
     let urlObj: URL;
     try {
       urlObj = new URL(normalizedUrl);
+      if (!urlObj.hostname.includes('.')) {
+        throw new Error('No TLD');
+      }
     } catch {
-      return NextResponse.json({ error: 'Invalid URL format' }, { status: 400 });
+      return NextResponse.json({ error: 'Invalid URL format. Please provide a full domain (e.g., example.com).' }, { status: 400 });
     }
 
     // Try to extract from URL itself first
@@ -427,7 +430,16 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const hasData = companyName || (sector && sector !== 'other') || city;
+    const hasHighQualityData = !!(ogTitle || title);
+    const hasAnyData = hasHighQualityData || (sector && sector !== 'other') || city;
+
+    // Only return success if we actually reached the site OR if we got high-quality metadata from the URL (rare)
+    if (!fetchSucceeded && !hasHighQualityData) {
+      return NextResponse.json({ 
+        error: 'Website unreachable. Please fill manually.',
+        hint: 'We could not reach the website to extract data. You can still fill the form below.'
+      }, { status: 404 });
+    }
 
     return NextResponse.json({
       success: true,
@@ -440,8 +452,8 @@ export async function POST(req: NextRequest) {
         team_size: teamSize,
         description: description.slice(0, 200) || null,
       },
-      ...((!fetchSucceeded && hasData) ? { note: 'Website was unreachable, but we detected some fields from the URL.' } : {}),
-      ...(!hasData ? { note: 'Could not detect fields. Please fill manually.' } : {}),
+      ...((!fetchSucceeded && hasAnyData) ? { note: 'Website was unreachable, but we detected some fields from the URL.' } : {}),
+      ...(!hasAnyData ? { note: 'Could not detect fields. Please fill manually.' } : {}),
     });
   } catch (err: any) {
     console.error('[analyze-url] Critical failure:', err);

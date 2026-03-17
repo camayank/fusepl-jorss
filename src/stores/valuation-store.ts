@@ -48,6 +48,8 @@ interface ValuationStore {
   inputs: WizardInputs
   result: ValuationResult | null
   email: string | null
+  userName: string | null
+  userPhone: string | null
   purpose: ValuationPurpose
 
   setField: <K extends keyof WizardInputs>(key: K, value: WizardInputs[K]) => void
@@ -57,6 +59,8 @@ interface ValuationStore {
   completeStep: (step: number) => void
   setResult: (result: ValuationResult) => void
   setEmail: (email: string) => void
+  setUserName: (name: string) => void
+  setUserPhone: (phone: string) => void
   setPurpose: (purpose: ValuationPurpose) => void
   reset: () => void
 }
@@ -69,6 +73,8 @@ export const useValuationStore = create<ValuationStore>()(
       inputs: { ...DEFAULT_INPUTS },
       result: null,
       email: null,
+      userName: null,
+      userPhone: null,
       purpose: 'indicative',
 
       setField: (key, value) =>
@@ -98,6 +104,10 @@ export const useValuationStore = create<ValuationStore>()(
 
       setEmail: (email) => set({ email }),
 
+      setUserName: (name) => set({ userName: name }),
+
+      setUserPhone: (phone) => set({ userPhone: phone }),
+
       setPurpose: (purpose) => set({ purpose }),
 
       reset: () =>
@@ -107,6 +117,8 @@ export const useValuationStore = create<ValuationStore>()(
           inputs: { ...DEFAULT_INPUTS },
           result: null,
           email: null,
+          userName: null,
+          userPhone: null,
           purpose: 'indicative',
         }),
     }),
