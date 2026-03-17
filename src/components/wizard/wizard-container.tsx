@@ -303,14 +303,22 @@ export function WizardContainer() {
         </aside>
 
         {/* Mobile Header - Visible only on small screens */}
-        <div className="lg:hidden w-full space-y-4 mb-4">
-          <div className="flex items-center justify-between">
+        <div className="lg:hidden w-full space-y-2 mb-2">
+          <div className="flex items-start justify-between">
             <div className="flex flex-col">
               <span className="text-[10px] font-bold text-[oklch(0.62_0.22_330)] uppercase tracking-widest">Step {currentStep} of 6</span>
-              <h1 className="font-heading text-xl text-[oklch(0.15_0.02_260)]">{WIZARD_STEPS[currentStep - 1]}</h1>
+              <h1 className="font-heading text-lg text-[oklch(0.15_0.02_260)] leading-tight">{WIZARD_STEPS[currentStep - 1]}</h1>
             </div>
-            <div className="text-right">
-              <div className="text-xl font-heading text-[oklch(0.15_0.02_260)]">{completionPct}%</div>
+            
+            <div className="flex flex-col items-end gap-2">
+              <div className="text-xl font-heading text-[oklch(0.15_0.02_260)] leading-none">{completionPct}%</div>
+              <button 
+                onClick={() => setIsHistoryDialogOpen(true)}
+                className="btn-press flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-[oklch(0.91_0.005_260)] bg-white shadow-sm text-[10px] font-bold uppercase tracking-wider text-[oklch(0.45_0.02_260)]"
+              >
+                <HistoryIcon className="w-3 h-3" />
+                History
+              </button>
             </div>
           </div>
           <div className="h-1.5 w-full bg-[oklch(0.92_0.005_260)] rounded-full overflow-hidden">
@@ -347,74 +355,63 @@ export function WizardContainer() {
               </p>
           </header>
 
-          <div className="relative bg-gradient-to-b from-[oklch(1 0 0)] to-[oklch(0.98 0.002 260)] border border-[oklch(0.91 0.005 260)] rounded-2xl md:rounded-3xl p-5 md:p-10 shadow-[0_4px_32px_oklch(0_0_0/0.04),inset_0_1px_0_oklch(1_0_0/0.5)] overflow-hidden">
+          <div className="relative bg-gradient-to-b from-[oklch(1 0 0)] to-[oklch(0.98 0.002 260)] border border-[oklch(0.91 0.005 260)] rounded-2xl md:rounded-3xl p-3.5 md:p-8 md:pb-10 shadow-[0_4px_32px_oklch(0_0_0/0.04),inset_0_1px_0_oklch(1_0_0/0.5)]">
             {/* Top border accent */}
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.62_0.22_330/0.3)] to-transparent" />
             
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={currentStep}
-                custom={direction}
-                initial={{ opacity: 0, x: direction > 0 ? 30 : -30, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, x: direction > 0 ? -30 : 30, filter: 'blur(8px)' }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative z-[1]"
-              >
-                <StepComponent />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+            {/* Step Content with Min Height to prevent jump */}
+            <div className="min-h-[280px] md:min-h-[380px]">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={currentStep}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction > 0 ? 20 : -20, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, x: direction > 0 ? -20 : 20, filter: 'blur(8px)' }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative z-[1]"
+                >
+                  <StepComponent />
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-          {/* Navigation Controls - Fixed on mobile, relative on desktop */}
-          <div className="fixed bottom-0 left-0 right-0 z-50 lg:relative lg:bottom-auto bg-[oklch(1_0_0/0.85)] lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-t lg:border-t-0 border-[oklch(0.91_0.005_260/0.6)] px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] lg:p-0">
-            <div className="max-w-6xl mx-auto flex justify-between items-center lg:bg-white/50 lg:backdrop-blur-sm lg:p-4 lg:rounded-2xl lg:border lg:border-[oklch(0.91_0.005_260/0.6)]">
+            {/* Integrated Navigation Controls */}
+            <div className="mt-4 pt-4 md:mt-8 md:pt-6 border-t border-[oklch(0.91_0.005_260/0.4)] flex items-center justify-between gap-3 relative z-10">
               <button
                 onClick={handlePrev}
                 disabled={currentStep === 1}
-                className="btn-press focus-ring group inline-flex items-center gap-1.5 h-11 px-4 sm:px-5 text-sm font-medium rounded-xl border border-[oklch(0.91 0.005 260)] text-[oklch(0.45 0.02 260)] transition-all hover:border-[oklch(0.62_0.22_330/0.3)] hover:text-[oklch(0.62 0.22 330)] hover:bg-[oklch(0.62_0.22_330/0.05)] disabled:opacity-20"
+                className="btn-press focus-ring group inline-flex items-center gap-1.5 h-8.5 md:h-11 px-2.5 md:px-5 text-[11px] md:text-sm font-medium rounded-lg md:rounded-xl border border-[oklch(0.91 0.005 260)] text-[oklch(0.45 0.02 260)] transition-all hover:border-[oklch(0.62_0.22_330/0.3)] hover:text-[oklch(0.62 0.22 330)] hover:bg-[oklch(0.62_0.22_330/0.05)] disabled:opacity-20"
               >
-                <ChevronLeft className="w-4 h-4" />
-                <span className="hidden sm:inline">Back</span>
-              </button>
-              
-              <button 
-                onClick={() => setIsHistoryDialogOpen(true)}
-                className="lg:hidden flex flex-col items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-[oklch(0.45_0.01_260)] opacity-60 hover:opacity-100 transition-opacity"
-              >
-                <HistoryIcon className="w-4 h-4" />
-                History
+                <ChevronLeft className="w-3 md:w-4 md:h-4 transition-transform group-hover:-translate-x-0.5" />
+                <span>Back</span>
               </button>
 
               <button
                 onClick={handleNext}
                 disabled={computing}
-                className="btn-press focus-ring group inline-flex items-center gap-2 h-11 px-6 sm:px-8 text-sm font-semibold rounded-xl bg-[#1e2226] text-white transition-all hover:bg-[#000] hover:shadow-[0_0_24px_oklch(0.62_0.22_330/0.3)] disabled:opacity-50"
+                className="btn-press focus-ring group inline-flex items-center gap-2 h-8.5 md:h-11 px-5 md:px-8 text-[11px] md:text-sm font-semibold rounded-lg md:rounded-xl bg-[#1e2226] text-white transition-all hover:bg-[#000] hover:shadow-[0_0_24px_oklch(0.62_0.22_330/0.3)] disabled:opacity-50"
               >
                 {computing ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-3 md:h-4 md:w-4 animate-spin" />
                     <span className="hidden sm:inline">Analyzing Protocol...</span>
                     <span className="sm:hidden">Computing...</span>
                   </>
                 ) : currentStep === 6 ? (
                   <>
-                    <Sparkles className="h-4 w-4" />
+                    <Sparkles className="h-3 md:h-4 md:w-4" />
                     <span>Evaluate</span>
                   </>
                 ) : (
                   <>
-                    <span className="hidden sm:inline">Next Phase</span>
-                    <span className="sm:hidden">Next</span>
-                    <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    <span>Next Phase</span>
+                    <ChevronRight className="w-3 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5" />
                   </>
                 )}
               </button>
             </div>
           </div>
-          
-          {/* Bottom Spacer for Mobile */}
-          <div className="h-24 lg:hidden" />
         </main>
       </div>
     </div>

@@ -50,7 +50,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${dmSans.variable} ${dmSerif.variable} font-sans antialiased`} suppressHydrationWarning>
         <Header />
         {children}
-        <Toaster position="top-right" />
+        <Toaster 
+          position="top-center" 
+          richColors 
+          closeButton
+          toastOptions={{
+            style: {
+              background: 'oklch(0.99 0.002 260)',
+              border: '1px solid oklch(0.91 0.005 260)',
+              borderRadius: '16px',
+              fontSize: '13px',
+              boxShadow: '0 8px 32px oklch(0 0 0 / 0.08)',
+            },
+          }}
+        />
       </body>
     </html>
   )

@@ -66,7 +66,7 @@ export default function ValuationPage() {
   // Loading state while Zustand hydrates
   if (mode === 'loading') {
     return (
-      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] flex items-center justify-center">
+      <main className="grain relative min-h-[calc(100dvh-5rem)] bg-[oklch(0.985 0.002 260)] flex items-center justify-center overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -82,7 +82,7 @@ export default function ValuationPage() {
   // Interstitial: previous result exists
   if (mode === 'interstitial' && result) {
     return (
-      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] flex items-center justify-center px-6">
+      <main className="grain relative min-h-[calc(100dvh-5rem)] bg-[oklch(0.985 0.002 260)] flex items-center justify-center px-6 overflow-x-hidden">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[120px] pointer-events-none" />
 
         <motion.div
@@ -128,7 +128,7 @@ export default function ValuationPage() {
   // Wizard mode — show wizard only when no result yet
   if (!result) {
     return (
-      <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] py-10">
+      <main className="grain relative min-h-[calc(100dvh-5rem)] bg-[oklch(0.985 0.002 260)] py-6 md:py-10 overflow-x-hidden">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[120px] pointer-events-none" />
         <div className="relative container mx-auto px-4">
           <WizardContainer />
@@ -139,7 +139,7 @@ export default function ValuationPage() {
 
   // Results mode
   return (
-    <main className="grain relative min-h-[calc(100vh-3.5rem)] bg-[oklch(0.985 0.002 260)] pt-8 pb-24">
+    <main className="grain relative min-h-[calc(100dvh-5rem)] bg-[oklch(0.985 0.002 260)] pt-4 pb-20 md:pt-8 md:pb-24 overflow-x-hidden">
       <div className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[140px] pointer-events-none" />
 
       <div className="relative container mx-auto px-4 max-w-6xl space-y-8">
