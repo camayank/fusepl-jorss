@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -260,6 +261,27 @@ html {
 }
 
 /* ---- Selection ---- */
+/* ---- Prose Customizations ---- */
+.prose ul > li {
+  position: relative;
+  padding-left: 0.5rem;
+  list-style-type: none !important;
+}
+
+.prose ul > li::before {
+  content: "→";
+  position: absolute;
+  left: -1.25rem;
+  color: oklch(0.62 0.22 330);
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+.prose ol > li::marker {
+  color: oklch(0.62 0.22 330);
+  font-weight: bold;
+}
+
 ::selection {
   background: oklch(0.62 0.22 330 / 0.15);
   color: oklch(0.15 0.02 260);

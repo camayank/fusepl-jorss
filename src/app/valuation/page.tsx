@@ -13,10 +13,11 @@ import { ConfidenceBreakdown } from '@/components/results/confidence-breakdown'
 import { ComparablesPreview } from '@/components/results/comparables-preview'
 import { EmailGate } from '@/components/results/email-gate'
 import { PDFDownloadButton } from '@/components/report/pdf-download-button'
+import { ValuationIntro } from '@/components/valuation/valuation-intro'
 import { formatINR } from '@/lib/utils'
 import { ArrowRight, BarChart3, Lock, Plus, Sparkles } from 'lucide-react'
 
-type PageMode = 'loading' | 'interstitial' | 'wizard' | 'results'
+type PageMode = 'loading' | 'intro' | 'interstitial' | 'wizard' | 'results'
 
 export default function ValuationPage() {
   const { result, inputs, email, userName, userPhone, reset } = useValuationStore()
@@ -43,7 +44,7 @@ export default function ValuationPage() {
   // Determine initial mode after hydration (runs once)
   useEffect(() => {
     if (!hydrated) return
-    setMode(result ? 'interstitial' : 'wizard')
+    setMode(result ? 'interstitial' : 'intro')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated])
 
@@ -124,8 +125,18 @@ export default function ValuationPage() {
     )
   }
 
+  // Intro mode
+  if (mode === 'intro') {
+    return (
+      <main className="grain relative min-h-[calc(100dvh-5rem)] bg-[oklch(0.985 0.002 260)] overflow-x-hidden">
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-[oklch(0.62_0.22_330/0.03)] blur-[150px] pointer-events-none" />
+        <ValuationIntro onStart={() => setMode('wizard')} />
+      </main>
+    )
+  }
+
   // Wizard mode — show wizard only when no result yet
-  if (!result) {
+  if (mode === 'wizard' && !result) {
     return (
       <main className="grain relative min-h-[calc(100dvh-5rem)] bg-[oklch(0.985 0.002 260)] py-6 md:py-10 overflow-x-hidden">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.62_0.22_330/0.04)] blur-[120px] pointer-events-none" />

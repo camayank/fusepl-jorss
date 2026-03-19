@@ -6,6 +6,7 @@ export const users = pgTable('users', {
   name: text('name'),
   phone: text('phone'),
   companyName: text('company_name'),
+  message: text('message'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
   source: text('source').default('organic'),
   utmSource: text('utm_source'),

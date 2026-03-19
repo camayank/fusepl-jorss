@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { DM_Sans, DM_Serif_Display } from 'next/font/google'
 import { Toaster } from 'sonner'
 import { Header } from '@/components/layout/header'
+import { FloatingActions } from '@/components/layout/floating-actions'
+import { ModalProvider } from '@/components/providers/modal-provider'
 import './globals.css'
 
 const dmSans = DM_Sans({
@@ -38,9 +40,6 @@ export const metadata: Metadata = {
     title: 'First Unicorn Startup — Startup Valuation Platform',
     description: '10 methods, 3 approaches, Monte Carlo, Damodaran India data. Free.',
   },
-  icons: {
-    icon: '/logo.png',
-  },
   metadataBase: new URL('https://firstunicornstartup.com'),
 }
 
@@ -48,22 +47,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable} ${dmSerif.variable} font-sans antialiased`} suppressHydrationWarning>
-        <Header />
-        {children}
-        <Toaster 
-          position="top-center" 
-          richColors 
-          closeButton
-          toastOptions={{
-            style: {
-              background: 'oklch(0.99 0.002 260)',
-              border: '1px solid oklch(0.91 0.005 260)',
-              borderRadius: '16px',
-              fontSize: '13px',
-              boxShadow: '0 8px 32px oklch(0 0 0 / 0.08)',
-            },
-          }}
-        />
+        <ModalProvider>
+          <Header />
+          {children}
+          <FloatingActions />
+          <Toaster 
+            position="top-center" 
+            richColors 
+            closeButton
+            toastOptions={{
+              style: {
+                background: 'oklch(0.99 0.002 260)',
+                border: '1px solid oklch(0.91 0.005 260)',
+                borderRadius: '16px',
+                fontSize: '13px',
+                boxShadow: '0 8px 32px oklch(0 0 0 / 0.08)',
+              },
+            }}
+          />
+        </ModalProvider>
       </body>
     </html>
   )
