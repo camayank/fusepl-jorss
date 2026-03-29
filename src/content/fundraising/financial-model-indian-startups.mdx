@@ -1,0 +1,453 @@
+---
+title: "Financial Model for Indian Startups — The Template Investors Actually Want"
+excerpt: "Most founders send investors a 3-tab Excel with revenue projections and call it a financial model. Investors reject it in 90 seconds. Here's the exact structure of the financial model that passes Series A diligence in India — with the specific sheets, the rows that matter, the assumptions investors stress-test, and the mistakes that kill deals."
+pillar: "fundraising"
+publishDate: "2026-03-29"
+readingTime: 17
+wordCount: 7000
+featured: true
+tags: ["financial model", "startup finance", "fundraising India", "Series A", "investor diligence"]
+---
+
+# Financial Model for Indian Startups: The Template Investors Actually Want
+
+A founder once showed me his financial model. It had one tab. Revenue grew at 10% per month. EBITDA turned positive in Month 8. By Year 3, revenue was ₹200 crore.
+
+There were no unit economics. No headcount plan. No burn rate. No working capital. No assumptions documented anywhere. Just a set of numbers that became more optimistic as they moved to the right.
+
+The investor passed in the first meeting.
+
+Not because the numbers were too high. Because the model revealed the founder didn't understand his own business.
+
+A financial model is not a revenue projection. It is a **structured representation of how you believe your business works** — inputs, outputs, assumptions, constraints. A good model makes the investor say "I see how you're thinking about this." A bad model makes them wonder if you've thought about it at all.
+
+This guide gives you the exact structure, the specific rows, the assumptions investors test, and the models that work for different Indian startup types.
+
+---
+
+## What Investors Actually Do With Your Model
+
+Before building, understand how it gets used.
+
+**In the first meeting:** Investors scan the assumptions tab. They're looking for whether you know your key drivers. CAC, LTV, gross margin, churn — do you know these numbers or did you copy them from somewhere?
+
+**In diligence:** They stress-test the model. What happens to your runway if CAC is 2x your assumption? What if churn is 5% instead of 2%? What if the sales cycle is 6 months instead of 3?
+
+**With their IC (Investment Committee):** They use your model to build their own. They'll override your revenue assumptions with conservative ones and check if there's still a business.
+
+**The model tells them three things:**
+1. Do you understand your business drivers?
+2. Are your assumptions defensible?
+3. Is there a path to a business worth their while?
+
+A technically perfect model with wrong assumptions is worse than a simpler model with honest ones.
+
+---
+
+## The 7-Tab Structure Investors Expect
+
+### Tab 1: Assumptions (The Most Important Tab)
+
+Every number in the model flows from this tab. If an assumption is hard-coded inside a formula somewhere, the model is broken.
+
+**The assumptions tab should contain:**
+
+**Revenue Drivers:**
+- Pricing per product/tier (monthly, annual)
+- MoM or YoY growth rate (by channel or cohort)
+- Conversion rate at each funnel stage
+- Average contract value (ACV) for B2B
+- Average order value (AOV) for B2C/D2C
+
+**Customer Metrics:**
+- Monthly churn rate (or annual for B2B)
+- Net Revenue Retention (NRR)
+- CAC by channel (paid, organic, referral, sales-led)
+- LTV (calculated, not assumed)
+- CAC payback period
+
+**Unit Economics:**
+- Gross margin %
+- Variable cost per unit/transaction
+- Contribution margin after variable marketing
+
+**Headcount:**
+- Hiring plan by role and month
+- Average CTC by function (tech, sales, ops, leadership)
+- Employer PF and other payroll costs (+13% on basic)
+
+**India-Specific Items:**
+- GST rate applicable (5%, 12%, 18%, or 28%)
+- TDS impact on receivables
+- Working capital: receivables days, payables days
+- Advance tax payment schedule
+
+**Funding:**
+- Current cash on hand
+- Planned fundraise dates and amounts
+- Drawdown schedule
+
+**How to document assumptions:**
+Every non-obvious assumption should have a source. "CAC ₹800 — based on 6-month test across Google/Meta with ₹15L spend" is credible. "CAC ₹800" with no source is a guess.
+
+---
+
+### Tab 2: P&L (3-Year Monthly, Then Annual)
+
+**Structure:**
+
+```
+REVENUE
+  Product/Service Line 1 Revenue
+  Product/Service Line 2 Revenue
+  Total Revenue
+
+COST OF REVENUE (COGS)
+  Hosting / Infrastructure
+  Payment processing fees
+  Delivery / fulfillment costs (D2C/logistics)
+  Support costs directly attributable to revenue
+  Total COGS
+
+GROSS PROFIT
+  Gross Margin %
+
+OPERATING EXPENSES
+  Sales & Marketing
+    - Paid Advertising
+    - Sales team (salaries)
+    - Marketing team (salaries)
+    - Agency / contractor costs
+  Product & Technology
+    - Engineering salaries
+    - Product management salaries
+    - Tools & software
+  General & Administrative
+    - Founder salaries
+    - Operations salaries
+    - Legal & CA fees
+    - Rent & utilities
+    - Insurance
+    - Miscellaneous
+
+EBITDA
+  EBITDA Margin %
+
+DEPRECIATION & AMORTIZATION
+
+EBIT
+
+INTEREST INCOME / (EXPENSE)
+
+PBT (Profit Before Tax)
+  Tax (30% on positive PBT, 0% on losses — track MAT separately)
+
+PAT (Profit After Tax)
+```
+
+**India-specific line items many models miss:**
+
+- **Employer PF contribution:** 12% of basic salary — adds ~5–7% to total headcount cost
+- **Professional Tax:** State-specific, small but add it
+- **GST payable / receivable:** If you have GST on revenue, show the input credit offset
+- **TDS receivable on customer payments:** B2B customers deduct 10% TDS on professional services. You get this back in tax filing but it's a cash flow timing issue.
+
+---
+
+### Tab 3: Cash Flow Statement
+
+The P&L shows you whether you're profitable. The cash flow statement shows you whether you're alive.
+
+```
+OPERATING CASH FLOW
+  Net Income (from P&L)
+  + Depreciation & Amortization
+  ± Change in Accounts Receivable
+  ± Change in Accounts Payable
+  ± Change in Deferred Revenue
+  ± Change in Inventory (D2C/product companies)
+  = Cash from Operations
+
+INVESTING CASH FLOW
+  - Capital expenditure (hardware, equipment)
+  - Software development capex (if capitalised)
+  + Proceeds from asset sales
+  = Cash from Investing
+
+FINANCING CASH FLOW
+  + New equity raised
+  + New debt raised
+  - Debt repayment
+  = Cash from Financing
+
+NET CHANGE IN CASH
+OPENING CASH BALANCE
+CLOSING CASH BALANCE
+```
+
+**The cash flow statement reveals runway.** Closing cash balance going negative = cash-zero date.
+
+**Working capital is where early-stage Indian startups get surprised:**
+
+- B2B SaaS: Customers pay 30–90 days after invoice. Revenue is recognized monthly but cash comes later.
+- D2C: You pay suppliers upfront (or on 30-day terms), but customers pay at order. Returns come back 7–30 days later.
+- Marketplace: GMV flows through your account, but net revenue (take rate) is what you keep. Model the GMV separately from revenue.
+
+---
+
+### Tab 4: Balance Sheet
+
+Investors at seed stage don't focus on the balance sheet as much. But at Series A+, you need it to be clean and reconciling.
+
+```
+ASSETS
+  Current Assets
+    Cash & Bank
+    Accounts Receivable
+    Prepaid Expenses
+    Inventory (if applicable)
+    GST Input Credit Receivable
+    TDS Receivable
+
+  Non-Current Assets
+    Fixed Assets (net of depreciation)
+    Intangible Assets (software dev costs, IP)
+    Security Deposits
+
+LIABILITIES
+  Current Liabilities
+    Accounts Payable
+    Accrued Salaries
+    Deferred Revenue
+    TDS Payable
+    GST Payable
+    Advance Tax Payable
+
+  Non-Current Liabilities
+    Founder Loans
+    Convertible Instruments (CCDs)
+    Long-term Debt
+
+EQUITY
+  Paid-up Share Capital
+  Share Premium Reserve
+  Retained Earnings / Accumulated Losses
+```
+
+**The balance sheet must reconcile:** Assets = Liabilities + Equity. If it doesn't, the model has an error.
+
+---
+
+### Tab 5: Unit Economics
+
+This is the tab investors love and most founders skip.
+
+**For SaaS:**
+
+| Metric | Formula | Your Number | Benchmark |
+|---|---|---|---|
+| MRR | Sum of all active subscriptions | | |
+| ARR | MRR × 12 | | |
+| Monthly Churn Rate | Churned MRR / Beginning MRR | | <2% is good |
+| Net Revenue Retention | (Beginning MRR + Expansion − Churn − Contraction) / Beginning MRR | | >110% is great |
+| CAC | Total Sales+Marketing spend / New customers acquired | | |
+| LTV | ARPU × Gross Margin / Churn Rate | | |
+| LTV:CAC Ratio | LTV / CAC | | >3x |
+| CAC Payback Period | CAC / (ARPU × Gross Margin %) | | <18 months |
+| Magic Number | Net New ARR / Sales+Marketing Spend in prior quarter | | >0.75 |
+
+**For D2C:**
+
+| Metric | Formula | Your Number | Benchmark |
+|---|---|---|---|
+| Revenue per order | Average Order Value (AOV) | | |
+| COGS per order | Manufacturing + packaging + shipping | | |
+| Gross margin per order | (AOV − COGS) / AOV | | >40% healthy |
+| CAC | Ad spend / New customers | | |
+| Return rate | Returns / Orders | | <15% good |
+| Contribution margin | Gross margin − Variable marketing − Returns | | >20% needed |
+| Repeat purchase rate | Customers who reorder / Total customers | | >30% at 90 days |
+| LTV | AOV × Gross margin × Average order frequency × Customer lifespan | | |
+
+**For Marketplace:**
+
+| Metric | Formula | Your Number |
+|---|---|---|
+| Gross Merchandise Value (GMV) | Total transaction value | |
+| Take Rate | Revenue / GMV | |
+| Net Revenue | GMV × Take Rate | |
+| Gross Profit | Net Revenue − Merchant payouts − Payment processing | |
+| CAC (supply side) | Cost to acquire seller/service provider | |
+| CAC (demand side) | Cost to acquire buyer | |
+| Liquidity | Active sellers / Active buyers ratio | |
+
+---
+
+### Tab 6: Headcount Plan
+
+Investors want to see that you've thought about what roles you're hiring for and when.
+
+**Structure:**
+
+| Role | Function | Month Joining | CTC (Annual) | Monthly Cost |
+|---|---|---|---|---|
+| Backend Engineer | Tech | Month 1 | ₹18L | ₹1.5L |
+| Product Manager | Product | Month 3 | ₹24L | ₹2L |
+| Sales Executive (2) | Sales | Month 2 | ₹10L each | ₹1.67L |
+| Customer Success | Ops | Month 4 | ₹8L | ₹67K |
+| VP Marketing | Marketing | Month 6 | ₹36L | ₹3L |
+
+**Include employer costs:** +12% PF on basic (typically 40–50% of CTC), professional tax, gratuity accrual for long-tenured employees.
+
+**The typical headcount cost mistake:** Founders model salary as "CTC / 12" and forget employer PF, office space per head, equipment, software licences, and onboarding costs. Fully-loaded cost per employee is typically 20–25% higher than CTC.
+
+---
+
+### Tab 7: Fundraising & Cap Table
+
+| Round | Date | Amount | Pre-Money Valuation | Investor | Post-Money | Dilution |
+|---|---|---|---|---|---|---|
+| Seed | Jan 2025 | ₹1.5Cr | ₹6Cr | XYZ Fund | ₹7.5Cr | 20% |
+| Series A | Oct 2026 | ₹8Cr | ₹32Cr | Target: institutional VC | ₹40Cr | 20% |
+| Series B | Mar 2028 | ₹30Cr | ₹120Cr | TBD | ₹150Cr | 20% |
+
+This tab shows investors:
+- What you've raised so far
+- When you plan to raise next
+- How much runway the current raise gives you
+- Your thinking on future dilution
+
+---
+
+## Sector-Specific Model Notes
+
+### B2B SaaS Model
+
+**Key drivers:** ACV, sales cycle length, conversion rate (pipeline → closed), expansion revenue, churn.
+
+**The cohort model:** Show revenue buildup by cohort (customers acquired in each month). This makes expansion and churn visible. It's much more credible than top-line growth assumptions.
+
+**The sales pipeline:** Show the pipeline-to-revenue conversion. If you're closing 20% of qualified leads in 3 months, model that explicitly.
+
+**What investors hate:** Hockey stick revenue with no explanation. Show the bottoms-up: if you have a 5-person sales team, each closing 1 deal/month at ₹5L ACV, that's ₹25L/month in new ARR. Simple math, credible projection.
+
+### D2C Brand Model
+
+**Key drivers:** AOV, gross margin per order, repeat rate, CAC by channel, return rate.
+
+**The brand-building effect:** Show how organic and direct traffic grows over time as brand builds. Pure paid-acquisition D2C models are unsustainable — investors want to see the path to lower blended CAC.
+
+**The India-specific costs:**
+- Shipping: ₹50–150 per order depending on weight and zone
+- Returns processing: ₹80–150 per return (handling + reshipping)
+- Cash-on-delivery (COD): ~30–40% of Indian D2C orders. COD has higher return rates and 3–5% payment failure. Model this separately.
+- Packaging: ₹15–50 per order
+
+### Fintech Model
+
+**Key drivers:** TPV (Total Payment Volume), transaction take rate, interest income (if NBFC), credit loss rate (if lending), regulatory capital requirement.
+
+**Regulatory capital:** For NBFCs and payment companies, there are minimum capital requirements. Your model must show you maintain regulatory capital even in downside scenarios.
+
+**Credit risk:** If your model involves lending, show your loss rate assumption explicitly. Investors will stress-test this heavily. A 1% NPA assumption in a consumer lending business is unrealistic.
+
+### Marketplace Model
+
+**The liquidity trap:** Most marketplace models assume both supply and demand grow linearly. In reality, marketplaces die when one side grows faster than the other. Show your liquidity ratio (supply/demand balance) over time.
+
+**GMV vs. Revenue confusion:** Make sure your model clearly separates GMV (total transaction value) from Revenue (your take). Many founders show GMV as revenue — this is a credibility-killer.
+
+---
+
+## The Assumptions Investors Will Challenge (Be Ready)
+
+| Assumption | Typical Founder Number | What Investors Ask | Good Answer |
+|---|---|---|---|
+| CAC | ₹500–800 | "How was this validated?" | "6-month paid acquisition test with ₹20L spend" |
+| Churn | 1–2% monthly | "Why this low for early-stage?" | "Pilot cohort data over 4 months" |
+| Gross margin | 65–70% | "What's in COGS?" | "List every line item" |
+| Sales cycle | 2–3 months | "What slows it down?" | "Legal/procurement approval adds 6 weeks at enterprise" |
+| Expansion revenue | 20% YoY per customer | "What drives this?" | "Historical upsell data from pilots" |
+| Market size | ₹5,000Cr+ | "How did you calculate it?" | "Bottom-up: 50,000 potential customers × ₹1L ACV" |
+
+**The golden rule:** If you don't have data for an assumption, say so. "This is our hypothesis, which we plan to validate with the first ₹1Cr of this raise" is credible. Making up a number is not.
+
+---
+
+## The 5 Model Mistakes That Kill Deals
+
+### 1. Revenue Before Cost
+
+Building the revenue projection first and then adding costs to "make it work" is backwards. Build the cost structure first (headcount, CAC, COGS), then derive the revenue those inputs can generate.
+
+### 2. No Working Capital
+
+Founders who model revenue recognition as cash received will have a model that shows 18 months of runway but actually have 12 months of cash. India's 30–90 day B2B payment terms are a major source of working capital surprise.
+
+### 3. One Scenario Only
+
+Investors always ask for a bear case. If your model has no downside scenario, they build one themselves — and it's usually more pessimistic than anything you'd show them.
+
+**Build three scenarios:** Base (what you expect), Upside (if things go well), Downside (if CAC is 2x, growth is half, key hire delayed by 3 months).
+
+### 4. Not Showing the Next Raise
+
+Your model should show when you'll need to raise the next round and what metrics you'll have achieved by then. "We raise Series A in Month 18 at ₹10Cr ARR" is a concrete milestone. Investors invest in milestones, not just current metrics.
+
+### 5. Formatting That Hides Assumptions
+
+Hard-coded numbers with no labels, colour coding that makes assumptions invisible, merged cells that prevent editing — these signal a model built to impress, not to think. Investors want to edit your model. Make it editable.
+
+**Standard formatting convention:**
+- Blue text / light blue cells = hard-coded inputs (assumptions)
+- Black text / white cells = formulas (don't edit directly)
+- Green cells = outputs / summaries
+
+---
+
+## What to Send vs. What to Keep Back
+
+**Send with your pitch deck:**
+- 1-page financial summary (revenue, burn, runway, key metrics — no formulas)
+- Executive summary of assumptions
+
+**Send in data room (after first meeting):**
+- Full model with all 7 tabs
+- Historical financials (audited if available)
+- MIS reports (last 3–6 months)
+
+**Keep back until term sheet:**
+- Customer-level data
+- Employee-level comp data
+- Detailed competitive intelligence
+
+---
+
+## The Quick-Start Template Structure
+
+If you're building from scratch, set up your model in this order:
+
+1. **Assumptions tab** — fill every driver before touching any other tab
+2. **Headcount tab** — list every hire, month, and cost
+3. **Unit economics tab** — model one customer cohort in full
+4. **P&L tab** — connect to assumptions and headcount
+5. **Cash flow tab** — connect to P&L with working capital adjustments
+6. **Balance sheet tab** — connect and check it reconciles
+7. **Cap table / fundraising tab** — show the fundraising path
+
+Total time for a good model: 20–40 hours for a first build. 5–10 hours per update cycle.
+
+**Tools:** Excel or Google Sheets. Don't use complex financial modeling tools for an early-stage startup model — the investor wants to edit a spreadsheet, not learn your software.
+
+---
+
+*Use the [free valuation tools at First Unicorn](/valuation) alongside your financial model — the valuation tool uses your revenue and margin inputs to generate a multi-method valuation instantly.*
+
+---
+
+## Related Guides
+
+- [Runway Calculator — When Does Your Startup Actually Die?](/learn/founder-playbooks/runway-calculator-startup-india)
+- [LTV/CAC Masterclass — The Only Metric That Matters](/learn/founder-playbooks/ltv-cac-masterclass-india)
+- [TAM SAM SOM — How to Size Your Indian Market Without Lying](/learn/fundraising/tam-sam-som-india-market-sizing)
+- [Free Startup Valuation Tool](/valuation)
