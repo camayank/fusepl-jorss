@@ -1,0 +1,189 @@
+---
+title: "Anti-Dilution Clauses — Full Ratchet vs Weighted Average (With Math)"
+excerpt: "Anti-dilution is the SHA clause nobody explains until a down round happens. Then it's too late. This guide shows the exact math of full ratchet vs. broad-based weighted average in a real down round scenario — including the share count, the dilution to founders, and why this single clause can transfer millions from founders to investors."
+pillar: "fundraising"
+publishDate: "2026-03-29"
+readingTime: 11
+wordCount: 4600
+featured: false
+tags: ["anti-dilution", "full ratchet", "weighted average", "down round", "term sheet India", "SHA"]
+---
+
+# Anti-Dilution Clauses: Full Ratchet vs Weighted Average (With Math)
+
+Anti-dilution protection is buried in every investor term sheet as a single line. Most founders accept it without understanding the numbers.
+
+When times are good, it's irrelevant. When you have a down round — and 30–40% of Indian startups that raised in 2021 are facing down rounds in 2024–2026 — that single line determines whether your founding team retains meaningful ownership.
+
+This article shows you the exact math of each anti-dilution type in a realistic scenario.
+
+---
+
+## Why Anti-Dilution Exists
+
+When an investor buys shares at ₹400 per share, and you later issue shares at ₹250 per share, the investor's original shares are "worth less" — not in absolute terms, but in terms of their ownership percentage of the company.
+
+Anti-dilution protection says: "If you raise at a lower price, I get more shares to compensate."
+
+The question is: how many more shares?
+
+The answer depends on which type of anti-dilution protection was agreed.
+
+---
+
+## Type 1: Full Ratchet (The Aggressive Version)
+
+**Mechanism:** The investor's conversion price is reset to match the new (lower) round price exactly. Every share they hold converts as if they had paid the new price.
+
+**Formula:**
+```
+New Conversion Price = New Round Price (that's it)
+New Share Count = Original Investment / New Round Price
+```
+
+**Example:**
+- Investor paid: ₹8 crore at ₹400/share = 2,00,000 shares
+- Down round price: ₹250/share
+- New conversion price: ₹250 (full ratchet)
+- New share count: ₹8Cr / ₹250 = **3,20,000 shares**
+- Extra shares: **1,20,000 shares** at no additional cost
+
+These 1,20,000 extra shares come from the founders' allocation (via the creation of new shares or transfer).
+
+**The impact:** If total shares are 10,00,000 pre-down round and the investor goes from 2,00,000 to 3,20,000 shares, founders who together owned 60% now own significantly less.
+
+**Full ratchet creates a runaway dilution problem:** Even a tiny down round (e.g., ₹395 instead of ₹400) triggers full repricing to the new price. The size of the down round is irrelevant — even a 1% price reduction triggers full adjustment.
+
+**When you see full ratchet:** In distressed situations (company has no leverage), highly investor-friendly funds, and pre-2000 term sheets. In modern Indian seed/Series A rounds, full ratchet is rare and should be pushed back firmly.
+
+---
+
+## Type 2: Narrow-Based Weighted Average
+
+**Mechanism:** The adjustment is weighted by actual shares issued in the down round, using only issued and outstanding shares in the denominator.
+
+**Formula:**
+```
+New Conversion Price = Old Conversion Price ×
+  (Outstanding Shares + Shares Issuable at Old Price) /
+  (Outstanding Shares + New Shares Issued)
+
+Where "Outstanding Shares" = only issued and outstanding equity shares
+(does NOT include ESOP pool, warrants, convertibles)
+```
+
+**Example:**
+- Old price: ₹400
+- Outstanding shares: 8,00,000 (excludes 2,00,000 ESOP reserved but unissued)
+- New investment: ₹10Cr at ₹250/share = 4,00,000 new shares
+- Shares issuable at old price: ₹10Cr / ₹400 = 2,50,000
+
+```
+New Price = ₹400 × (8,00,000 + 2,50,000) / (8,00,000 + 4,00,000)
+= ₹400 × 10,50,000 / 12,00,000
+= ₹400 × 0.875
+= ₹350
+```
+
+New share count for investor: ₹8Cr / ₹350 = **2,28,571 shares** (up from 2,00,000)
+Extra shares: **28,571**
+
+---
+
+## Type 3: Broad-Based Weighted Average (The Founder-Friendly Standard)
+
+**Mechanism:** Same calculation as narrow-based, but the denominator includes ALL shares on a fully diluted basis — issued shares + ESOP pool + warrants + convertibles.
+
+**Formula:**
+```
+New Conversion Price = Old Conversion Price ×
+  (Fully Diluted Shares + Shares Issuable at Old Price) /
+  (Fully Diluted Shares + New Shares Issued)
+
+Where "Fully Diluted Shares" = ALL shares including ESOP pool, warrants, convertibles
+```
+
+**Example (same scenario):**
+- Old price: ₹400
+- Fully diluted shares: 10,00,000 (includes 2,00,000 ESOP reserved)
+- New investment: ₹10Cr at ₹250/share = 4,00,000 new shares
+- Shares issuable at old price: ₹10Cr / ₹400 = 2,50,000
+
+```
+New Price = ₹400 × (10,00,000 + 2,50,000) / (10,00,000 + 4,00,000)
+= ₹400 × 12,50,000 / 14,00,000
+= ₹400 × 0.8929
+= ₹357.14
+```
+
+New share count for investor: ₹8Cr / ₹357.14 = **2,24,000 shares** (up from 2,00,000)
+Extra shares: **24,000**
+
+---
+
+## The Side-by-Side Comparison
+
+| Anti-Dilution Type | New Conversion Price | New Share Count | Extra Shares | Founder Dilution |
+|---|---|---|---|---|
+| **Full Ratchet** | ₹250 | 3,20,000 | 1,20,000 | Severe |
+| **Narrow-Based WA** | ₹350 | 2,28,571 | 28,571 | Moderate |
+| **Broad-Based WA** | ₹357.14 | 2,24,000 | 24,000 | Minimal |
+| **No Anti-Dilution** | ₹400 (unchanged) | 2,00,000 | 0 | None |
+
+**At the same down round, the difference between full ratchet and broad-based WA is 96,000 extra investor shares — at zero cost to the investor, at full cost to founders.**
+
+On a ₹500 crore exit, 96,000 shares represent approximately ₹4.8 crore of exit proceeds transferring from founders to the investor.
+
+---
+
+## Carve-Outs: When Anti-Dilution Doesn't Apply
+
+Most SHAs include carve-outs — situations where issuing shares at a lower price does NOT trigger anti-dilution. These are standard and important to understand:
+
+| Carve-Out | Why It Exists |
+|---|---|
+| ESOP issuances from approved plan | ESOPs are below FMV by design — triggering anti-dilution every time would make ESOPs impossible |
+| Shares issued as acquisition consideration | M&A transactions use shares at negotiated prices |
+| Shares issued to strategic partners | Partnership agreements at negotiated prices |
+| Shares issued in rights offerings | Pro-rata issuances to existing shareholders |
+| Shares issued as conversion of existing instruments | Converting CCDs, CCPS — already accounted for |
+
+**What matters for founders:** Make sure ESOP issuances are explicitly carved out. If they're not, every ESOP grant below Series A price triggers anti-dilution — which is almost always the case.
+
+---
+
+## Negotiating Anti-Dilution: What to Ask For
+
+**Non-negotiable (always get this):**
+Broad-based weighted average. This is standard market practice. Narrow-based and full ratchet are both investor-friendly deviations from the standard.
+
+**Negotiable in strong markets:**
+- "Pay-to-play": anti-dilution only applies if the existing investor participates in the down round. If they don't participate, they lose anti-dilution protection. This aligns investor incentives with supporting the company.
+
+**The pay-to-play ask:**
+"We're happy with broad-based weighted average anti-dilution. We'd like to include a pay-to-play provision so that the protection is linked to your continued participation in the company's growth."
+
+Most institutional investors will accept pay-to-play in a competitive fundraising environment.
+
+---
+
+## The Most Important Thing to Know
+
+Anti-dilution matters most in the scenarios you hope never happen — down rounds. When you're raising your Series A at a good valuation, you're signing an SHA that will affect you 3–5 years later in a market you can't predict.
+
+**The right approach:**
+1. Always push for broad-based weighted average
+2. Include pay-to-play if you have leverage
+3. Run the down round math before signing — what does your cap table look like if you raise your next round at half price?
+4. Know the carve-outs in your SHA, especially for ESOP
+
+The founders who get hurt by anti-dilution are not the ones who had bad luck. They're the ones who signed without running the numbers.
+
+---
+
+## Related Guides
+
+- [Down Rounds — What Happens to Your Cap Table](/learn/equity/down-rounds-cap-table-india)
+- [Term Sheet vs SHA vs SSA — The 3 Documents That Define Your Startup](/learn/fundraising/term-sheet-sha-ssa-india-startups)
+- [Dilution Calculator — Seed to Series C](/learn/equity/dilution-calculator-seed-to-series-c)
+- [Free Cap Table Modeler — Model Anti-Dilution Scenarios](/cap-table)

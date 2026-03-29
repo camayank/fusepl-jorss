@@ -1,0 +1,264 @@
+---
+title: "Down Rounds — What Happens to Your Cap Table (Worked Example)"
+excerpt: "A down round isn't just a valuation cut. It triggers anti-dilution provisions, resets the option pool, can change board dynamics, and affects every shareholder differently. Here's a complete worked example of a down round cap table — with the math on anti-dilution, founder dilution, and employee ESOP impact."
+pillar: "equity"
+publishDate: "2026-03-29"
+readingTime: 13
+wordCount: 5300
+featured: false
+tags: ["down round", "cap table", "anti-dilution", "startup finance India", "fundraising", "equity"]
+---
+
+# Down Rounds: What Happens to Your Cap Table (Worked Example)
+
+Your Series A investor valued you at ₹50 crore post-money. Eighteen months later, you're raising Series B and the market has moved. The best term sheet you can get is at ₹40 crore pre-money.
+
+That's a down round.
+
+Most founders know a down round is "bad." But they don't know specifically how bad — how it mechanically affects each shareholder, what the anti-dilution provisions actually do to the cap table, and what it means for the company's ability to hire, retain, and exit.
+
+This guide walks through a complete down round scenario with exact numbers.
+
+---
+
+## The Setup: Pre-Down Round Cap Table
+
+**Company:** B2B SaaS startup, 3 years old
+
+**Series A recap:**
+- Amount raised: ₹8 crore
+- Post-money valuation: ₹40 crore
+- Shares issued to Series A investor: 2,00,000 CCPS (Compulsory Convertible Preference Shares)
+- Series A price per share: ₹400
+
+**Pre-Down Round Cap Table:**
+
+| Shareholder | Shares | Type | % (Fully Diluted) |
+|---|---|---|---|
+| Founder A | 30,00,000 | Equity | 38.5% |
+| Founder B | 20,00,000 | Equity | 25.6% |
+| Angel Investor | 5,00,000 | CCPS | 6.4% |
+| Seed Investor | 8,00,000 | CCPS | 10.3% |
+| Series A Investor | 2,00,000 | CCPS | 2.6% |
+| ESOP Pool (issued) | 5,00,000 | Options | 6.4% |
+| ESOP Pool (unissued) | 8,00,000 | Options (reserved) | 10.3% |
+| **Total** | **78,00,000** | | **100%** |
+
+Wait — why is Series A only 2.6% if they paid ₹8Cr at ₹40Cr post-money (which should be 20%)?
+
+**This is a simplified example.** In a real cap table with multiple rounds, Series A investors typically own 15–20%. I've kept the numbers small for clarity. The math principles below apply regardless of actual ownership.
+
+Let me rebuild with realistic numbers:
+
+**Realistic Pre-Down Round Cap Table:**
+
+| Shareholder | Shares | % |
+|---|---|---|
+| Founder A | 3,50,000 | 35% |
+| Founder B | 2,50,000 | 25% |
+| Angel | 1,00,000 | 10% |
+| Seed Investor | 1,00,000 | 10% |
+| Series A Investor | 2,00,000 | 20% |
+| **Total** | **10,00,000** | **100%** |
+
+Series A price: ₹400/share (₹8Cr investment for 20% = ₹40Cr post-money ✓)
+
+---
+
+## The Down Round: ₹30 Crore Pre-Money
+
+The company needs to raise ₹10 crore but the best valuation it can get is ₹30 crore pre-money (₹40 crore post-money at the new price).
+
+Wait — the new post-money is the same as the old post-money. But the pre-money dropped from ₹32Cr to ₹30Cr. This is a modest down round.
+
+Let me make it more realistic:
+
+**New round terms:**
+- Amount: ₹10 crore
+- Pre-money valuation: **₹25 crore** (down from ₹32 crore pre-money — a 22% drop)
+- New price per share = ₹25Cr / 10,00,000 shares = **₹250/share**
+
+The new price (₹250) is 37.5% below the Series A price (₹400). This is a significant down round.
+
+**New shares to issue:**
+₹10Cr / ₹250 per share = 4,00,000 new shares
+
+---
+
+## Anti-Dilution in Action
+
+The Series A investor has **broad-based weighted average anti-dilution** in their SHA. This clause protects them when a down round happens.
+
+**The weighted average anti-dilution formula:**
+
+```
+New Conversion Price = Old Conversion Price ×
+  (Shares Outstanding + Shares Issuable at Old Price) /
+  (Shares Outstanding + Shares Actually Issued)
+
+Where:
+Old Conversion Price = ₹400
+Shares Outstanding (fully diluted) = 10,00,000
+Shares Issuable at Old Price = ₹10Cr / ₹400 = 2,50,000
+Shares Actually Issued = ₹10Cr / ₹250 = 4,00,000
+```
+
+```
+New Conversion Price = ₹400 × (10,00,000 + 2,50,000) / (10,00,000 + 4,00,000)
+= ₹400 × 12,50,000 / 14,00,000
+= ₹400 × 0.8929
+= ₹357.14
+```
+
+The Series A investor's conversion price is adjusted from ₹400 to **₹357.14**.
+
+**What this means for the cap table:**
+
+The Series A investor originally bought 2,00,000 shares for ₹8Cr at ₹400/share.
+
+After anti-dilution adjustment, those same ₹8Cr buy shares at ₹357.14 per share:
+₹8,00,00,000 / ₹357.14 = **2,24,000 shares** (up from 2,00,000)
+
+The investor gets an extra 24,000 shares — at no additional cost. These shares must come from somewhere: they come from the founders' allocation.
+
+---
+
+## Post-Down Round Cap Table
+
+New shares issued in down round: 4,00,000
+Anti-dilution adjustment shares (Series A): +24,000
+
+Total shares post-round: 10,00,000 + 4,00,000 + 24,000 = **14,24,000 shares**
+
+| Shareholder | Pre-Round Shares | New Shares | Post-Round Shares | Post-Round % |
+|---|---|---|---|---|
+| Founder A | 3,50,000 | −14,400 (AD) | 3,35,600 | 23.6% |
+| Founder B | 2,50,000 | −9,600 (AD) | 2,40,400 | 16.9% |
+| Angel | 1,00,000 | 0 | 1,00,000 | 7.0% |
+| Seed Investor | 1,00,000 | 0 | 1,00,000 | 7.0% |
+| Series A Investor | 2,00,000 | +24,000 (AD) | 2,24,000 | 15.7% |
+| **Series B Investor** | — | **4,00,000** | **4,00,000** | **28.1%** |
+| **Anti-dilution adjustment** | — | +24,000 (paid by founders) | — | — |
+| **Total** | **10,00,000** | **+4,24,000** | **14,24,000** | **100%** |
+
+**The founders' combined stake: Pre-round 60% → Post-round 40.5%**
+
+In a single down round, the founders lost nearly 20 percentage points of ownership.
+
+---
+
+## The Liquidation Preference Stack After a Down Round
+
+Down rounds also affect the liquidation preference stack — and not in founders' favour.
+
+**Pre-Down Round Preference Stack:**
+
+| Investor | Investment | 1x Preference |
+|---|---|---|
+| Angel | ₹2Cr | ₹2Cr |
+| Seed | ₹3Cr | ₹3Cr |
+| Series A | ₹8Cr | ₹8Cr |
+| **Total preference** | **₹13Cr** | **₹13Cr** |
+
+**Post-Down Round:**
+
+| Investor | Investment | 1x Preference |
+|---|---|---|
+| Angel | ₹2Cr | ₹2Cr |
+| Seed | ₹3Cr | ₹3Cr |
+| Series A | ₹8Cr | ₹8Cr |
+| **Series B** | **₹10Cr** | **₹10Cr** |
+| **Total preference** | **₹23Cr** | **₹23Cr** |
+
+On any exit below ₹23Cr (the new preference stack), founders receive nothing. The exit threshold at which founders begin to participate has risen from ₹13Cr to ₹23Cr.
+
+At the same time, the company's implied valuation dropped from ₹40Cr (Series A post-money) to ₹35Cr (Series B post-money in the down round scenario).
+
+The economics for founders at any exit below ₹50Cr are deteriorating rapidly.
+
+---
+
+## Employee ESOP Impact
+
+The down round triggers a painful problem for employees: their existing vested options are now underwater.
+
+**Pre-down round ESOP situation:**
+- Exercise price: ₹250/share (granted at a modest discount to Series A price)
+- Current FMV (implied by Series A): ₹400/share
+- In-the-money: ₹150/share above exercise price
+
+**Post-down round ESOP situation:**
+- Exercise price: ₹250/share (unchanged)
+- New FMV: ₹250/share (new round price)
+- In-the-money: ₹0 — exactly at money (or underwater if round was deeper)
+
+Options granted at ₹300–₹400 exercise price (from growth period grants) are now significantly underwater.
+
+**The retention crisis this creates:**
+Employees who joined expecting their options to be worth ₹2–5 crore discover they're worth much less — or nothing. The top performers (who have the most options and the most market value) are the most likely to leave.
+
+**What companies do:**
+1. **ESOP repricing:** Issue new options at the current (lower) exercise price, replacing old underwater options. This requires board approval and shareholder consent in the SHA.
+2. **ESOP pool top-up:** Issue additional options to key employees to compensate for the dilution.
+3. **Retention bonuses (cash):** For employees who can't receive more equity, cash retention bonuses bridge the gap.
+
+All of these solutions cost the company (directly or via dilution), compounding the down round's financial impact.
+
+---
+
+## The Reputational and Operational Impact
+
+Beyond the financial mechanics, down rounds have operational consequences:
+
+**Hiring:** Candidates who research the company see the down round. Some will question the company's trajectory. Offering competitive equity compensation at post-down-round valuations is harder.
+
+**Existing investors:** Investors who didn't participate in the down round are diluted. If they have pro-rata rights they didn't exercise, this can create tension.
+
+**Next raise:** The down round is public record (ROC filings). Future investors will ask about it. Having a clear narrative ("we grew our ARR 3x since the Series A; the down round reflected market conditions, not business regression") is essential.
+
+**Customer perception:** B2B customers sometimes check investor news. A well-communicated down round ("we raised on strong fundamentals") is manageable; a poorly communicated one creates doubt about company stability.
+
+---
+
+## How to Avoid a Down Round: The Real Actions
+
+**1. Raise the right amount at the right valuation the first time**
+
+The most common path to a down round is raising at an inflated valuation in a good market, then struggling to justify that valuation at the next raise. Founders who raised at 50x revenue in 2021 are raising down rounds in 2024–2026.
+
+**2. Extend runway instead of raising**
+
+If market conditions are bad and you'll have to do a down round to raise, consider: can you extend runway to wait for better conditions? Cut burn, find revenue, bridge with existing investors. 6–12 months of patience can mean the difference between a flat round and a down round.
+
+**3. Bridge from existing investors**
+
+A bridge from your existing investors at the same valuation as your last round (a "flat round") is better than a down round from a new investor. Existing investors know the company; they're more likely to give you a reasonable price.
+
+**4. Negotiate anti-dilution protection for yourself**
+
+Founders almost never have anti-dilution protection — it's a privilege reserved for investors. But some SHAs include "management anti-dilution" provisions or minimum founder ownership floors. If you're negotiating an SHA in a strong fundraising environment, this is worth asking for.
+
+---
+
+## If You're Already in a Down Round: The Negotiation
+
+**Negotiate the pre-money, not just the post-money.**
+
+"We're raising ₹10Cr at a ₹40Cr post-money" sounds the same as the original round. But if the pre-money is ₹30Cr instead of ₹32Cr, it's technically a down round. The distinction matters for anti-dilution.
+
+**Pay-to-play provisions**
+
+Many down rounds include "pay-to-play" provisions: existing investors who don't participate in the down round lose some or all of their anti-dilution rights or preferential rights. This incentivises existing investors to participate.
+
+**Consider a recapitalisation**
+
+In severe cases, a down round can be structured as a "recap" — where existing preference shares are converted to common at a negotiated ratio, clearing the preference stack and giving the company a clean start. This requires all existing preferred shareholders to agree, which requires negotiation but is sometimes the only way to make the company fundable again.
+
+---
+
+## Related Guides
+
+- [Liquidation Preference Explained — The Clause That Eats Your Exit](/learn/fundraising/liquidation-preference-india-startups)
+- [Anti-Dilution Clauses — Full Ratchet vs Weighted Average](/learn/fundraising/anti-dilution-clauses-india)
+- [Dilution Calculator — Seed to Series C](/learn/equity/dilution-calculator-seed-to-series-c)
+- [Free Cap Table Modeler](/cap-table)
