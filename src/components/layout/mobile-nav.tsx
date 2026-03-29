@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu } from 'lucide-react'
+import { Menu, ChevronDown } from 'lucide-react'
 import {
   Sheet,
   SheetContent,
@@ -11,6 +11,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import { PILLARS } from '@/lib/pillars'
 
 interface NavLink {
   href: string
@@ -24,6 +25,7 @@ interface MobileNavProps {
 
 export function MobileNav({ links, pathname }: MobileNavProps) {
   const [open, setOpen] = useState(false)
+  const [learnExpanded, setLearnExpanded] = useState(false)
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -53,27 +55,60 @@ export function MobileNav({ links, pathname }: MobileNavProps) {
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-col gap-1 p-4 flex-1">
+          <nav className="flex flex-col gap-1 p-4 flex-1 overflow-y-auto">
             {links.map((link) => {
               const isActive =
                 pathname === link.href ||
                 (pathname?.startsWith(link.href + '/') ?? false)
+              const isLearn = link.href === '/learn'
+
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`
-                    relative rounded-lg px-4 py-3 text-sm font-medium transition-colors
-                    ${
-                      isActive
-                        ? 'bg-[oklch(0.62_0.22_330/0.08)] text-[oklch(0.62_0.22_330)] border-l-2 border-[oklch(0.62_0.22_330)]'
-                        : 'text-[oklch(0.35_0.02_260)] hover:text-[oklch(0.15_0.02_260)] hover:bg-[oklch(0.96_0.005_260)]'
-                    }
-                  `}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.href}>
+                  <div className="flex items-center">
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`
+                        relative rounded-lg px-4 py-3 text-sm font-medium transition-colors flex-1
+                        ${
+                          isActive
+                            ? 'bg-[oklch(0.62_0.22_330/0.08)] text-[oklch(0.62_0.22_330)] border-l-2 border-[oklch(0.62_0.22_330)]'
+                            : 'text-[oklch(0.35_0.02_260)] hover:text-[oklch(0.15_0.02_260)] hover:bg-[oklch(0.96_0.005_260)]'
+                        }
+                      `}
+                    >
+                      {link.label}
+                    </Link>
+                    {isLearn && (
+                      <button
+                        onClick={() => setLearnExpanded(!learnExpanded)}
+                        className="p-2 rounded-lg text-[oklch(0.45_0.01_260)] hover:text-[oklch(0.15_0.02_260)] hover:bg-[oklch(0.96_0.005_260)] transition-colors"
+                      >
+                        <ChevronDown className={`w-4 h-4 transition-transform ${learnExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Learn sub-menu */}
+                  {isLearn && learnExpanded && (
+                    <div className="ml-4 mt-1 mb-2 space-y-0.5">
+                      {PILLARS.map((pillar) => (
+                        <Link
+                          key={pillar.slug}
+                          href={`/learn/${pillar.slug}`}
+                          onClick={() => setOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[12px] text-[oklch(0.45_0.01_260)] hover:text-[oklch(0.15_0.02_260)] hover:bg-[oklch(0.96_0.005_260)] transition-colors"
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full shrink-0"
+                            style={{ backgroundColor: pillar.color }}
+                          />
+                          {pillar.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               )
             })}
           </nav>
